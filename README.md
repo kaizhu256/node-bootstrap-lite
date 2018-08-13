@@ -10,6 +10,8 @@ this zero-dependency package will provide 1) a rolled-up css (with inlined glyph
 
 [![travis-ci.org build-status](https://api.travis-ci.org/kaizhu256/node-bootstrap-lite.svg)](https://travis-ci.org/kaizhu256/node-bootstrap-lite) [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build/coverage.html/index.html)
 
+[![NPM](https://nodei.co/npm/bootstrap-lite.png?downloads=true)](https://www.npmjs.com/package/bootstrap-lite)
+
 [![build commit status](https://kaizhu256.github.io/node-bootstrap-lite/build/build.badge.svg)](https://travis-ci.org/kaizhu256/node-bootstrap-lite)
 
 | git-branch : | [master](https://github.com/kaizhu256/node-bootstrap-lite/tree/master) | [beta](https://github.com/kaizhu256/node-bootstrap-lite/tree/beta) | [alpha](https://github.com/kaizhu256/node-bootstrap-lite/tree/alpha)|
@@ -20,6 +22,8 @@ this zero-dependency package will provide 1) a rolled-up css (with inlined glyph
 | build-artifacts : | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..master..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..beta..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..alpha..travis-ci.org)|
 
 [![npmPackageListing](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageListing.svg)](https://github.com/kaizhu256/node-bootstrap-lite)
+
+![npmPackageDependencyTree](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageDependencyTree.svg)
 
 
 
@@ -101,7 +105,7 @@ this script will run a web-demo of bootstrap-lite
 instruction
     1. save this script as example.js
     2. run the shell command:
-        $ npm install kaizhu256/node-bootstrap-lite#alpha && PORT=8081 node example.js
+        $ npm install bootstrap-lite && PORT=8081 node example.js
     3. open a browser to http://127.0.0.1:8081 and play with the web-demo
     4. edit this script to suit your needs
 */

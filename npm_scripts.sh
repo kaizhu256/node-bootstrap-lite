@@ -16,6 +16,7 @@ shMain() {(set -e
             return
         fi
         utility2 shReadmeTest build_ci.sh
+        printf "... finished running command '$@'"
         ;;
     heroku-postbuild)
         if [ "$npm_package_nameLib" = utility2 ]
@@ -71,23 +72,6 @@ shMain() {(set -e
 )}
 
 # run command
-eval shMain "$npm_lifecycle_event" "$(node -e "
-// <script>
-/* jslint-utility2 */
-/*jslint
-    bitwise: true,
-    browser: true,
-    maxerr: 4,
-    maxlen: 100,
-    node: true,
-    nomen: true,
-    regexp: true,
-    stupid: true
-*/
-'use strict';
-console.log(
+shMain "$npm_lifecycle_event" "$(node -e "console.log(
     JSON.parse(process.env.npm_config_argv).original.join(' ').replace((/^(?:run )?\S+ /), '')
-);
-// </script>
-"
-)"
+)")"
