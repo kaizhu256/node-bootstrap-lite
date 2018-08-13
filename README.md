@@ -1,5 +1,5 @@
 # bootstrap-lite
-this zero-dependency package will provide 1) a rolled-up css (with inlined glyphicons), and 2) a rolled-up js of twitter-bootstrap (v3.3.7), with a working web-demo
+this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.3.7), with a working web-demo
 
 # live web demo
 - [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app)
@@ -1181,7 +1181,7 @@ body {\n\
 {
     "assetsList": "assets.bootstrap-v3.3.7.rollup.min.css assets.bootstrap-v3.3.7.rollup.min.js",
     "author": "kai zhu <kaizhu256@gmail.com>",
-    "description": "this zero-dependency package will provide 1) a rolled-up css (with inlined glyphicons), and 2) a rolled-up js of twitter-bootstrap (v3.3.7), with a working web-demo",
+    "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.3.7), with a working web-demo",
     "devDependencies": {
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
         "utility2": "kaizhu256/node-utility2#alpha"

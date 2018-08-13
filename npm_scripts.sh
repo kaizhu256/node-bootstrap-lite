@@ -16,7 +16,7 @@ shMain() {(set -e
             return
         fi
         utility2 shReadmeTest build_ci.sh
-        printf "... finished running command '$@'"
+        printf "... finished running command '$@'" 1>&2
         ;;
     heroku-postbuild)
         if [ "$npm_package_nameLib" = utility2 ]
@@ -52,7 +52,7 @@ shMain() {(set -e
             export PORT=$(./lib.utility2.sh shServerPortRandom)
             export PORT_REPL=$(./lib.utility2.sh shServerPortRandom)
             export npm_config_mode_auto_restart=1
-            export npm_config_timeout_default=60000
+            export npm_config_timeout_default=90000
             ./lib.utility2.sh test test.js
             return
         fi
