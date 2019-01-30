@@ -1,3 +1,13 @@
+#!/usr/bin/env node
+/*
+ * lib.bootstrap.js (2019.1.30)
+ * https://github.com/kaizhu256/node-bootstrap-lite
+ * this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a working web-demo
+ *
+ */
+
+
+
 /* istanbul instrument in package bootstrap */
 /* istanbul ignore next */
 /* jslint utility2:true */
@@ -147,63 +157,46 @@
 
 
 
+/* istanbul ignore next */
 // run shared js-env code - init-before
 (function () {
 // init local
-local = (globalThis.utility2 || require("utility2")).requireReadme();
-globalThis.local = local;
-// init test
-local.testRunDefault(local);
-}());
+local = (
+    globalThis.utility2_rollup
+    // || globalThis.utility2_rollup_old
+    // || require("./assets.utility2.rollup.js")
+    || globalThis.globalLocal
+);
+// init exports
+if (local.isBrowser) {
+    globalThis.utility2_bootstrap = local;
+} else {
+    module.exports = local;
+    module.exports.__dirname = __dirname;
+}
+// init lib main
+local.bootstrap = local;
 
 
 
-// run shared js-env code - function
-(function () {
-local.testCase_buildApp_default = function (option, onError) {
-/*
- * this function will test buildApp's default handling-behavior
- */
-    if (local.isBrowser) {
-        onError(null, option);
+/* validateLineSortedReset */
+if (local.isBrowser) {
+    return;
+}
+// init assets
+local.assetsDict = local.assetsDict || {};
+[
+    "assets.bootstrap-v3.4.0.rollup.min.css",
+    "assets.bootstrap-v3.4.0.rollup.min.js"
+].forEach(function (file) {
+    if (globalThis.utility2_rollup) {
         return;
     }
-    local.testCase_buildReadme_default(option, local.onErrorThrow);
-    local.testCase_buildLib_default(option, local.onErrorThrow);
-    local.testCase_buildTest_default(option, local.onErrorThrow);
-    option = {
-        assetsList: [{
-            file: "/assets.bootstrap-v3.4.0.rollup.min.css",
-            url: "/assets.bootstrap-v3.4.0.rollup.min.css"
-        }, {
-            file: "/assets.bootstrap-v3.4.0.rollup.min.js",
-            url: "/assets.bootstrap-v3.4.0.rollup.min.js"
-        }]
-    };
-    local.buildApp(option, onError);
-};
-
-local.testCase_buildReadme_default = function (option, onError) {
-/*
- * this function will test buildReadme's default handling-behavior
- */
-    if (local.isBrowser) {
-        onError(null, option);
-        return;
-    }
-    option = {};
-    option.customize = function () {
-        // search-and-replace - customize dataTo
-        [(
-            /\n\/\*\u0020jslint\u0020ignore:start\u0020\*\/\nlocal.assetsDict\["\/assets.index.template.html"\]\u0020=\u0020'\\\n[\S\s]*?\n\/\*\u0020jslint\u0020ignore:end\u0020\*\/\n/
-        )].forEach(function (rgx) {
-            option.dataFrom.replace(rgx, function (match0) {
-                option.dataTo = option.dataTo.replace(rgx, match0);
-            });
-        });
-    };
-    local.buildReadme(option, onError);
-};
+    local.assetsDict["/" + file] = local.fs.readFileSync(
+        __dirname + "/" + file,
+        "utf8"
+    );
+});
 }());
 
 

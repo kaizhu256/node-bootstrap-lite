@@ -1,14 +1,15 @@
 #!/bin/sh
-# jslint-utility2
+# jslint utility2:true
 
-shMain() {(set -e
+shMain () {(set -e
 # this function will run the main program
-    if [ "$*" ]
-    then
-        printf "running command 'npm run $*' ...\n" 1>&2
-    fi
-    # run command
+    printf "running command 'npm run $*' ...\n" 1>&2
+    ARG1="$1"
+    # run command - custom
     case "$1" in
+    esac
+    # run command - default
+    case "$ARG1" in
     build-ci)
         if [ "$npm_package_nameLib" = utility2 ]
         then
@@ -16,6 +17,10 @@ shMain() {(set -e
             return
         fi
         utility2 shReadmeTest build_ci.sh
+        ;;
+    eval)
+        shift
+        "$@"
         ;;
     heroku-postbuild)
         if [ "$npm_package_nameLib" = utility2 ]
@@ -25,10 +30,6 @@ shMain() {(set -e
         fi
         npm install kaizhu256/node-utility2#alpha --prefix .
         utility2 shDeployHeroku
-        ;;
-    eval)
-        shift
-        "$@"
         ;;
     start)
         export PORT=${PORT:-8080}
@@ -68,13 +69,10 @@ shMain() {(set -e
         utility2 "$@"
         ;;
     esac
-    if [ "$*" ]
-    then
-        printf "... finished running command 'npm run $*'\n" 1>&2
-    fi
+    printf "... finished running command 'npm run $*'\n" 1>&2
 )}
 
 # run command
-shMain "$npm_lifecycle_event" "$(node -e "console.log(
-    JSON.parse(process.env.npm_config_argv).original.join(' ').replace((/^(?:run )?\S+ /), '')
-)")"
+shMain "$npm_lifecycle_event" "$(node -e 'console.log(
+    JSON.parse(process.env.npm_config_argv).original.join(" ").replace((/^(?:run )?\S+ /), "")
+)')"
