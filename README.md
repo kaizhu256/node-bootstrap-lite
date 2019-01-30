@@ -61,7 +61,7 @@ this zero-dependency package will provide 1) a rolled-up css (includes glyphicon
 
 #### changelog 2019.1.30
 - npm publish 2019.1.30
-- upgrade to bootstrap-v3.4.0
+- update build
 - none
 
 #### this package requires
