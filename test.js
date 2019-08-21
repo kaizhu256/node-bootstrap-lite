@@ -46,30 +46,30 @@
     // init function
     local.assertThrow = function (passed, message) {
     /*
-     * this function will throw error <message> if <passed> is falsy
+     * this function will throw err.<message> if <passed> is falsy
      */
-        var error;
+        var err;
         if (passed) {
             return;
         }
-        error = (
-            // ternary-condition
+        err = (
+            // ternary-operator
             (
                 message
                 && typeof message.message === "string"
                 && typeof message.stack === "string"
             )
-            // if message is an error-object, then leave it as is
+            // if message is errObj, then leave as is
             ? message
             : new Error(
                 typeof message === "string"
-                // if message is a string, then leave it as is
+                // if message is a string, then leave as is
                 ? message
                 // else JSON.stringify message
                 : JSON.stringify(message, null, 4)
             )
         );
-        throw error;
+        throw err;
     };
     local.functionOrNop = function (fnc) {
     /*
@@ -97,7 +97,8 @@
      * null, undefined, or empty-string,
      * then overwrite them with items from <source>
      */
-        Object.keys(source).forEach(function (key) {
+        target = target || {};
+        Object.keys(source || {}).forEach(function (key) {
             if (
                 target[key] === null
                 || target[key] === undefined
@@ -150,7 +151,9 @@
 // run shared js-env code - init-before
 (function () {
 // init local
-local = (globalThis.utility2 || require("utility2")).requireReadme();
+local = (
+    globalThis.utility2 || require("utility2")
+).requireReadme();
 globalThis.local = local;
 // init test
 local.testRunDefault(local);
@@ -172,13 +175,15 @@ local.testCase_buildApp_default = function (option, onError) {
     local.testCase_buildLib_default(option, local.onErrorThrow);
     local.testCase_buildTest_default(option, local.onErrorThrow);
     option = {
-        assetsList: [{
-            file: "/assets.bootstrap-v3.4.0.rollup.min.css",
-            url: "/assets.bootstrap-v3.4.0.rollup.min.css"
-        }, {
-            file: "/assets.bootstrap-v3.4.0.rollup.min.js",
-            url: "/assets.bootstrap-v3.4.0.rollup.min.js"
-        }]
+        assetsList: [
+            {
+                file: "/assets.bootstrap-v3.4.0.rollup.min.css",
+                url: "/assets.bootstrap-v3.4.0.rollup.min.css"
+            }, {
+                file: "/assets.bootstrap-v3.4.0.rollup.min.js",
+                url: "/assets.bootstrap-v3.4.0.rollup.min.js"
+            }
+        ]
     };
     local.buildApp(option, onError);
 };
@@ -194,9 +199,11 @@ local.testCase_buildReadme_default = function (option, onError) {
     option = {};
     option.customize = function () {
         // search-and-replace - customize dataTo
-        [(
-            /\n\/\*\u0020jslint\u0020ignore:start\u0020\*\/\nlocal.assetsDict\["\/assets.index.template.html"\]\u0020=\u0020'\\\n[\S\s]*?\n\/\*\u0020jslint\u0020ignore:end\u0020\*\/\n/
-        )].forEach(function (rgx) {
+        [
+            (
+                /\n\/\*\u0020jslint\u0020ignore:start\u0020\*\/\nlocal.assetsDict\["\/assets.index.template.html"\]\u0020=\u0020'\\\n[\S\s]*?\n\/\*\u0020jslint\u0020ignore:end\u0020\*\/\n/
+            )
+        ].forEach(function (rgx) {
             option.dataFrom.replace(rgx, function (match0) {
                 option.dataTo = option.dataTo.replace(rgx, match0);
             });
@@ -205,7 +212,4 @@ local.testCase_buildReadme_default = function (option, onError) {
     local.buildReadme(option, onError);
 };
 }());
-
-
-
 }());

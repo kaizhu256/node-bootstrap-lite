@@ -162,30 +162,30 @@ instruction
     // init function
     local.assertThrow = function (passed, message) {
     /*
-     * this function will throw error <message> if <passed> is falsy
+     * this function will throw err.<message> if <passed> is falsy
      */
-        var error;
+        var err;
         if (passed) {
             return;
         }
-        error = (
-            // ternary-condition
+        err = (
+            // ternary-operator
             (
                 message
                 && typeof message.message === "string"
                 && typeof message.stack === "string"
             )
-            // if message is an error-object, then leave it as is
+            // if message is errObj, then leave as is
             ? message
             : new Error(
                 typeof message === "string"
-                // if message is a string, then leave it as is
+                // if message is a string, then leave as is
                 ? message
                 // else JSON.stringify message
                 : JSON.stringify(message, null, 4)
             )
         );
-        throw error;
+        throw err;
     };
     local.functionOrNop = function (fnc) {
     /*
@@ -213,7 +213,8 @@ instruction
      * null, undefined, or empty-string,
      * then overwrite them with items from <source>
      */
-        Object.keys(source).forEach(function (key) {
+        target = target || {};
+        Object.keys(source || {}).forEach(function (key) {
             if (
                 target[key] === null
                 || target[key] === undefined
@@ -1181,8 +1182,9 @@ local.assetsDict["/assets.bootstrap.js"] =
 ).replace((/^#!\//), "// ");
 /* jslint ignore:end */
 /* validateLineSortedReset */
-local.assetsDict["/"] = local.assetsDict["/assets.index.template.html"]
-.replace((
+local.assetsDict["/"] = local.assetsDict[
+    "/assets.index.template.html"
+].replace((
     /\{\{env\.(\w+?)\}\}/g
 ), function (match0, match1) {
     switch (match1) {
@@ -1221,19 +1223,16 @@ if (globalThis.utility2_serverHttp1) {
 }
 process.env.PORT = process.env.PORT || "8081";
 console.error("http-server listening on port " + process.env.PORT);
-local.http.createServer(function (request, response) {
-    request.urlParsed = local.url.parse(request.url);
-    if (local.assetsDict[request.urlParsed.pathname] !== undefined) {
-        response.end(local.assetsDict[request.urlParsed.pathname]);
+local.http.createServer(function (req, res) {
+    req.urlParsed = local.url.parse(req.url);
+    if (local.assetsDict[req.urlParsed.pathname] !== undefined) {
+        res.end(local.assetsDict[req.urlParsed.pathname]);
         return;
     }
-    response.statusCode = 404;
-    response.end();
+    res.statusCode = 404;
+    res.end();
 }).listen(process.env.PORT);
 }());
-
-
-
 }());
 ```
 
