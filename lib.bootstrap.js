@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * lib.bootstrap.js (2019.1.30)
+ * lib.bootstrap.js (2019.8.24)
  * https://github.com/kaizhu256/node-bootstrap-lite
  * this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a working web-demo
  *
@@ -63,7 +63,6 @@
             return;
         }
         err = (
-            // ternary-operator
             (
                 message
                 && typeof message.message === "string"

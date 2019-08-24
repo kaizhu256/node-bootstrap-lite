@@ -56,11 +56,13 @@ this zero-dependency package will provide 1) a rolled-up css (includes glyphicon
 [![apidoc](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/apidoc.html)
 
 #### todo
+- updeate to bootstrap v3.4.1
 - improve apidoc with jquery-plugin documentation
 - none
 
-#### changelog 2019.1.30
-- npm publish 2019.1.30
+#### changelog 2019.8.24
+- npm publish 2019.8.24
+- jslint - remove ternary-operator/newline comment preceding bra
 - update build
 - none
 
@@ -169,7 +171,6 @@ instruction
             return;
         }
         err = (
-            // ternary-operator
             (
                 message
                 && typeof message.message === "string"
@@ -1315,7 +1316,7 @@ local.http.createServer(function (req, res) {
         "test": "./npm_scripts.sh",
         "utility2": "./npm_scripts.sh"
     },
-    "version": "2019.1.30"
+    "version": "2019.8.24"
 }
 ```
 
