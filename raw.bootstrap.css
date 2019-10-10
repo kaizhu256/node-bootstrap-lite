@@ -1,4 +1,18 @@
 /*
+shRawLibFetch '
+{
+    "urlList": [
+        "https://github.com/twbs/bootstrap/blob/v3.4.1/dist/css/bootstrap.css",
+        "https://github.com/twbs/bootstrap/blob/v3.4.1/dist/css/bootstrap-theme.css"
+    ]
+}
+' > tmp/aa.js
+shImageToDataUri https://raw.githubusercontent.com/twbs/bootstrap/v3.4.0/dist/fonts/glyphicons-halflings-regular.woff2 > /tmp/aa.woff2
+*/
+
+
+
+/*
 file bootstrap/bootstrap.css
 https://github.com/twbs/bootstrap/blob/v3.4.0/dist/css/bootstrap.css
 2018-12-10T09:15:54Z - shGithubDateCommitted https://github.com/twbs/bootstrap/commits/v3.4.0
