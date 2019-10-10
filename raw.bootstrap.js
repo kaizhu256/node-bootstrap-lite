@@ -17,7 +17,7 @@ shRawJsFetch '
         "dist/js/bootstrap.js"
     ]
 }, {
-    "prefix": "https://github.com/DataTables/DataTables/tree/1.10.19",
+    "prefix": "https://github.com/DataTables/DataTables/blob/1.10.19",
     "fileList": [
         "media/js/jquery.dataTables.js"
     ]
