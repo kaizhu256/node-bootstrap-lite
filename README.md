@@ -56,12 +56,13 @@ this zero-dependency package will provide 1) a rolled-up css (includes glyphicon
 ![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageCliHelp.svg)
 
 #### todo
-- updeate to bootstrap v3.4.1
 - improve apidoc with jquery-plugin documentation
 - none
 
 #### changelog 2019.8.24
 - npm publish 2019.8.24
+- add assets for jquery.datatables-v1.10.19, chartjs-v2.8.0, tinymce-v5.0.16
+- update to bootstrap v3.4.1
 - jslint - remove ternary-operator/newline comment preceding bra
 - update build
 - none
