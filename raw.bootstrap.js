@@ -1,46 +1,15 @@
 /*
-file https://github.com/jquery/jquery/tree/2.2.4
-shGithubDateCommitted https://github.com/jquery/jquery/commits/2.2.4 # 2016-05-20T17:23:46Z
-file https://github.com/twbs/bootstrap/tree/v3.4.1
-shGithubDateCommitted https://github.com/twbs/bootstrap/commits/v3.4.1 # 2019-02-13T14:23:41Z
-file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataTables.js
-shGithubDateCommitted https://github.com/DataTables/DataTables/commits/1.10.19 # 2018-06-22T15:34:14Z
-shRawJsFetch '
-[{
-    "prefix": "https://github.com/jquery/jquery/blob/2.2.4",
-    "fileList": [
-        "dist/jquery.js"
+shRawJsFetch '{
+    "urlList": [
+        "https://github.com/jquery/jquery/blob/2.2.4/dist/jquery.js",
+        "https://github.com/twbs/bootstrap/blob/v3.4.1/dist/js/bootstrap.js",
+        "https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataTables.js"
     ]
-}, {
-    "prefix": "https://github.com/twbs/bootstrap/blob/v3.4.1",
-    "fileList": [
-        "dist/js/bootstrap.js"
-    ]
-}, {
-    "prefix": "https://github.com/DataTables/DataTables/blob/1.10.19",
-    "fileList": [
-        "media/js/jquery.dataTables.js"
-    ]
-}]
-' > tmp/aa.js
-shRawJsFetch2 '
-[
-    {
-        "url": "https://github.com/jquery/jquery/blob/2.2.4/dist/jquery.js"
-    }, {
-        "url": "https://github.com/twbs/bootstrap/blob/v3.4.1/dist/js/bootstrap.js"
-    }, {
-        "url": "https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataTables.js"
-    }
-]
-' > tmp/aa.js
+}' > tmp/aa.js
 */
-(function () {
-"use strict";
-let exports_DataTables_DataTables_media_js_jquery_dataTables = {};
-let exports_jquery_jquery_dist_jquery = {};
 /*
 repo https://github.com/jquery/jquery/tree/2.2.4
+committed 2016-05-20T17:23:46Z
 */
 
 
@@ -64,15 +33,15 @@ file https://github.com/jquery/jquery/blob/2.2.4/dist/jquery.js
 
 (function( global, factory ) {
 
-	if ( typeof module === "object" && typeof exports_jquery_jquery_dist_jquery === "object" ) {
+	if ( typeof module === "object" && typeof module.exports === "object" ) {
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
 		// For environments that do not have a `window` with a `document`
-		// (such as Node.js), expose a factory as exports_jquery_jquery_dist_jquery.
+		// (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
 		// See ticket #14549 for more info.
-		exports_jquery_jquery_dist_jquery = global.document ?
+		module.exports = global.document ?
 			factory( global, true ) :
 			function( w ) {
 				if ( !w.document ) {
@@ -2755,6 +2724,7 @@ var dir = function( elem, dir, until ) {
 	return matched;
 };
 
+
 var siblings = function( n, elem ) {
 	var matched = [];
 
@@ -2766,6 +2736,7 @@ var siblings = function( n, elem ) {
 
 	return matched;
 };
+
 
 var rneedsContext = jQuery.expr.match.needsContext;
 
@@ -2865,7 +2836,9 @@ jQuery.fn.extend( {
 	}
 } );
 
+
 // Initialize a jQuery object
+
 
 // A central reference to the root jQuery(document)
 var rootjQuery,
@@ -2989,6 +2962,7 @@ init.prototype = jQuery.fn;
 
 // Initialize central reference
 rootjQuery = jQuery( document );
+
 
 var rparentsprev = /^(?:parents|prev(?:Until|All))/,
 
@@ -3380,6 +3354,7 @@ jQuery.Callbacks = function( options ) {
 	return self;
 };
 
+
 jQuery.extend( {
 
 	Deferred: function( func ) {
@@ -3530,6 +3505,7 @@ jQuery.extend( {
 	}
 } );
 
+
 // The deferred used on DOM ready
 var readyList;
 
@@ -3627,6 +3603,7 @@ jQuery.ready.promise();
 
 
 
+
 // Multifunctional method to get and set values of a collection
 // The value/s can optionally be executed if it's a function
 var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
@@ -3695,6 +3672,7 @@ var acceptData = function( owner ) {
 	/* jshint -W018 */
 	return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
 };
+
 
 
 
@@ -4073,6 +4051,7 @@ jQuery.fn.extend( {
 	}
 } );
 
+
 jQuery.extend( {
 	queue: function( elem, type, data ) {
 		var queue;
@@ -4210,6 +4189,7 @@ var pnum = ( /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/ ).source;
 
 var rcssNum = new RegExp( "^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i" );
 
+
 var cssExpand = [ "Top", "Right", "Bottom", "Left" ];
 
 var isHidden = function( elem, el ) {
@@ -4311,6 +4291,7 @@ wrapMap.optgroup = wrapMap.option;
 wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
 wrapMap.th = wrapMap.td;
 
+
 function getAll( context, tag ) {
 
 	// Support: IE9-11+
@@ -4326,6 +4307,7 @@ function getAll( context, tag ) {
 		ret;
 }
 
+
 // Mark scripts as having already been evaluated
 function setGlobalEval( elems, refElements ) {
 	var i = 0,
@@ -4339,6 +4321,7 @@ function setGlobalEval( elems, refElements ) {
 		);
 	}
 }
+
 
 var rhtml = /<|&#?\w+;/;
 
@@ -4431,6 +4414,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	return fragment;
 }
 
+
 ( function() {
 	var fragment = document.createDocumentFragment(),
 		div = fragment.appendChild( document.createElement( "div" ) ),
@@ -4455,6 +4439,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	div.innerHTML = "<textarea>x</textarea>";
 	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
 } )();
+
 
 var
 	rkeyEvent = /^key/,
@@ -5154,6 +5139,7 @@ jQuery.fn.extend( {
 	}
 } );
 
+
 var
 	rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:-]+)[^>]*)\/>/gi,
 
@@ -5606,6 +5592,7 @@ jQuery.each( {
 	};
 } );
 
+
 var iframe,
 	elemdisplay = {
 
@@ -5706,6 +5693,7 @@ var swap = function( elem, options, callback, args ) {
 
 	return ret;
 };
+
 
 var documentElement = document.documentElement;
 
@@ -5822,6 +5810,7 @@ var documentElement = document.documentElement;
 	} );
 } )();
 
+
 function curCSS( elem, name, computed ) {
 	var width, minWidth, maxWidth, ret,
 		style = elem.style;
@@ -5871,6 +5860,7 @@ function curCSS( elem, name, computed ) {
 		ret;
 }
 
+
 function addGetHookIf( conditionFn, hookFn ) {
 
 	// Define the hook, we'll check on the first run if it's really needed.
@@ -5889,6 +5879,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 		}
 	};
 }
+
 
 var
 
@@ -6365,6 +6356,7 @@ jQuery.fn.extend( {
 	}
 } );
 
+
 function Tween( elem, options, prop, end, easing ) {
 	return new Tween.prototype.init( elem, options, prop, end, easing );
 }
@@ -6479,6 +6471,7 @@ jQuery.fx = Tween.prototype.init;
 
 // Back Compat <1.8 extension point
 jQuery.fx.step = {};
+
 
 
 
@@ -7089,6 +7082,7 @@ jQuery.fx.speeds = {
 	_default: 400
 };
 
+
 // Based off of the plugin by Clint Helfers, with permission.
 // http://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/jquery-delay/
 jQuery.fn.delay = function( time, type ) {
@@ -7102,6 +7096,7 @@ jQuery.fn.delay = function( time, type ) {
 		};
 	} );
 };
+
 
 ( function() {
 	var input = document.createElement( "input" ),
@@ -7130,6 +7125,7 @@ jQuery.fn.delay = function( time, type ) {
 	input.type = "radio";
 	support.radioValue = input.value === "t";
 } )();
+
 
 var boolHook,
 	attrHandle = jQuery.expr.attrHandle;
@@ -7266,6 +7262,7 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) 
 
 
 
+
 var rfocusable = /^(?:input|select|textarea|button)$/i,
 	rclickable = /^(?:a|area)$/i;
 
@@ -7382,6 +7379,7 @@ jQuery.each( [
 ], function() {
 	jQuery.propFix[ this.toLowerCase() ] = this;
 } );
+
 
 
 
@@ -7553,6 +7551,7 @@ jQuery.fn.extend( {
 		return false;
 	}
 } );
+
 
 
 
@@ -7728,7 +7727,9 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 
 
 
+
 // Return jQuery for attributes-only inclusion
+
 
 var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/;
 
@@ -7901,6 +7902,7 @@ jQuery.fn.extend( {
 	}
 } );
 
+
 jQuery.each( ( "blur focus focusin focusout load resize scroll unload click dblclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup error contextmenu" ).split( " " ),
@@ -7922,7 +7924,9 @@ jQuery.fn.extend( {
 
 
 
+
 support.focusin = "onfocusin" in window;
+
 
 // Support: Firefox
 // Firefox doesn't have focus(in | out) events
@@ -7979,6 +7983,7 @@ jQuery.parseJSON = function( data ) {
 	return JSON.parse( data + "" );
 };
 
+
 // Cross-browser xml parsing
 jQuery.parseXML = function( data ) {
 	var xml;
@@ -7998,6 +8003,7 @@ jQuery.parseXML = function( data ) {
 	}
 	return xml;
 };
+
 
 var
 	rhash = /#.*$/,
@@ -8827,6 +8833,7 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 	};
 } );
 
+
 jQuery._evalUrl = function( url ) {
 	return jQuery.ajax( {
 		url: url,
@@ -8839,6 +8846,7 @@ jQuery._evalUrl = function( url ) {
 		"throws": true
 	} );
 };
+
 
 jQuery.fn.extend( {
 	wrapAll: function( html ) {
@@ -8910,6 +8918,7 @@ jQuery.fn.extend( {
 	}
 } );
 
+
 jQuery.expr.filters.hidden = function( elem ) {
 	return !jQuery.expr.filters.visible( elem );
 };
@@ -8921,6 +8930,7 @@ jQuery.expr.filters.visible = function( elem ) {
 	// See tickets #10406 and #13132
 	return elem.offsetWidth > 0 || elem.offsetHeight > 0 || elem.getClientRects().length > 0;
 };
+
 
 
 
@@ -9038,6 +9048,7 @@ jQuery.fn.extend( {
 		} ).get();
 	}
 } );
+
 
 jQuery.ajaxSettings.xhr = function() {
 	try {
@@ -9201,6 +9212,7 @@ jQuery.ajaxTransport( function( options ) {
 
 
 
+
 // Install script dataType
 jQuery.ajaxSetup( {
 	accepts: {
@@ -9261,6 +9273,7 @@ jQuery.ajaxTransport( "script", function( s ) {
 		};
 	}
 } );
+
 
 
 
@@ -9358,6 +9371,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 
 
+
 // Argument "data" should be string of html
 // context (optional): If specified, the fragment will be created in this context,
 // defaults to document
@@ -9388,6 +9402,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 
 	return jQuery.merge( [], parsed.childNodes );
 };
+
 
 // Keep a copy of the old load method
 var _load = jQuery.fn.load;
@@ -9461,6 +9476,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 
 
+
 // Attach a bunch of functions for handling common AJAX events
 jQuery.each( [
 	"ajaxStart",
@@ -9477,11 +9493,13 @@ jQuery.each( [
 
 
 
+
 jQuery.expr.filters.animated = function( elem ) {
 	return jQuery.grep( jQuery.timers, function( fn ) {
 		return elem === fn.elem;
 	} ).length;
 };
+
 
 
 
@@ -9686,6 +9704,7 @@ jQuery.each( [ "top", "left" ], function( i, prop ) {
 	);
 } );
 
+
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
 jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
@@ -9732,6 +9751,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 	} );
 } );
 
+
 jQuery.fn.extend( {
 
 	bind: function( types, data, fn ) {
@@ -9757,6 +9777,7 @@ jQuery.fn.extend( {
 } );
 
 jQuery.fn.andSelf = jQuery.fn.addBack;
+
 
 
 
@@ -9815,6 +9836,7 @@ return jQuery;
 
 /*
 repo https://github.com/twbs/bootstrap/tree/v3.4.1
+committed 2019-02-13T14:23:41Z
 */
 
 
@@ -9847,6 +9869,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -9907,6 +9930,7 @@ if (typeof jQuery === 'undefined') {
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
+
 +function ($) {
   'use strict';
 
@@ -9958,6 +9982,7 @@ if (typeof jQuery === 'undefined') {
       removeElement()
   }
 
+
   // ALERT PLUGIN DEFINITION
   // =======================
 
@@ -9976,6 +10001,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.alert             = Plugin
   $.fn.alert.Constructor = Alert
 
+
   // ALERT NO CONFLICT
   // =================
 
@@ -9983,6 +10009,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.alert = old
     return this
   }
+
 
   // ALERT DATA-API
   // ==============
@@ -9998,6 +10025,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -10063,6 +10091,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
+
   // BUTTON PLUGIN DEFINITION
   // ========================
 
@@ -10084,6 +10113,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.button             = Plugin
   $.fn.button.Constructor = Button
 
+
   // BUTTON NO CONFLICT
   // ==================
 
@@ -10091,6 +10121,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.button = old
     return this
   }
+
 
   // BUTTON DATA-API
   // ===============
@@ -10120,6 +10151,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -10285,6 +10317,7 @@ if (typeof jQuery === 'undefined') {
     return this
   }
 
+
   // CAROUSEL PLUGIN DEFINITION
   // ==========================
 
@@ -10307,6 +10340,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.carousel             = Plugin
   $.fn.carousel.Constructor = Carousel
 
+
   // CAROUSEL NO CONFLICT
   // ====================
 
@@ -10314,6 +10348,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.carousel = old
     return this
   }
+
 
   // CAROUSEL DATA-API
   // =================
@@ -10521,6 +10556,7 @@ if (typeof jQuery === 'undefined') {
     return $(document).find(target)
   }
 
+
   // COLLAPSE PLUGIN DEFINITION
   // ==========================
 
@@ -10541,6 +10577,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.collapse             = Plugin
   $.fn.collapse.Constructor = Collapse
 
+
   // COLLAPSE NO CONFLICT
   // ====================
 
@@ -10548,6 +10585,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.collapse = old
     return this
   }
+
 
   // COLLAPSE DATA-API
   // =================
@@ -10573,6 +10611,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -10690,6 +10729,7 @@ if (typeof jQuery === 'undefined') {
     $items.eq(index).trigger('focus')
   }
 
+
   // DROPDOWN PLUGIN DEFINITION
   // ==========================
 
@@ -10708,6 +10748,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.dropdown             = Plugin
   $.fn.dropdown.Constructor = Dropdown
 
+
   // DROPDOWN NO CONFLICT
   // ====================
 
@@ -10715,6 +10756,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.dropdown = old
     return this
   }
+
 
   // APPLY TO STANDARD DROPDOWN ELEMENTS
   // ===================================
@@ -10735,6 +10777,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -11030,6 +11073,7 @@ if (typeof jQuery === 'undefined') {
     return scrollbarWidth
   }
 
+
   // MODAL PLUGIN DEFINITION
   // =======================
 
@@ -11050,6 +11094,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.modal = Plugin
   $.fn.modal.Constructor = Modal
 
+
   // MODAL NO CONFLICT
   // =================
 
@@ -11057,6 +11102,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.modal = old
     return this
   }
+
 
   // MODAL DATA-API
   // ==============
@@ -11750,6 +11796,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.tooltip             = Plugin
   $.fn.tooltip.Constructor = Tooltip
 
+
   // TOOLTIP NO CONFLICT
   // ===================
 
@@ -11767,6 +11814,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -11788,6 +11836,7 @@ if (typeof jQuery === 'undefined') {
     content: '',
     template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
   })
+
 
   // NOTE: POPOVER EXTENDS tooltip.js
   // ================================
@@ -11850,6 +11899,7 @@ if (typeof jQuery === 'undefined') {
     return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
   }
 
+
   // POPOVER PLUGIN DEFINITION
   // =========================
 
@@ -11870,6 +11920,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.popover             = Plugin
   $.fn.popover.Constructor = Popover
 
+
   // POPOVER NO CONFLICT
   // ===================
 
@@ -11887,6 +11938,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -12010,6 +12062,7 @@ if (typeof jQuery === 'undefined') {
       .removeClass('active')
   }
 
+
   // SCROLLSPY PLUGIN DEFINITION
   // ===========================
 
@@ -12029,6 +12082,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.scrollspy             = Plugin
   $.fn.scrollspy.Constructor = ScrollSpy
 
+
   // SCROLLSPY NO CONFLICT
   // =====================
 
@@ -12036,6 +12090,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.scrollspy = old
     return this
   }
+
 
   // SCROLLSPY DATA-API
   // ==================
@@ -12056,6 +12111,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -12161,6 +12217,7 @@ if (typeof jQuery === 'undefined') {
     $active.removeClass('in')
   }
 
+
   // TAB PLUGIN DEFINITION
   // =====================
 
@@ -12179,6 +12236,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.tab             = Plugin
   $.fn.tab.Constructor = Tab
 
+
   // TAB NO CONFLICT
   // ===============
 
@@ -12186,6 +12244,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.tab = old
     return this
   }
+
 
   // TAB DATA-API
   // ============
@@ -12208,6 +12267,7 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -12316,6 +12376,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
+
   // AFFIX PLUGIN DEFINITION
   // =======================
 
@@ -12335,6 +12396,7 @@ if (typeof jQuery === 'undefined') {
   $.fn.affix             = Plugin
   $.fn.affix.Constructor = Affix
 
+
   // AFFIX NO CONFLICT
   // =================
 
@@ -12342,6 +12404,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.affix = old
     return this
   }
+
 
   // AFFIX DATA-API
   // ==============
@@ -12366,6 +12429,7 @@ if (typeof jQuery === 'undefined') {
 
 /*
 repo https://github.com/DataTables/DataTables/tree/1.10.19
+committed 2018-06-22T15:34:14Z
 */
 
 
@@ -12410,7 +12474,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		exports_DataTables_DataTables_media_js_jquery_dataTables = function (root, $) {
+		module.exports = function (root, $) {
 			if ( ! root ) {
 				// CommonJS environments without a window global must pass a
 				// root. This will give an error otherwise
@@ -27505,6 +27569,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		$.fn.DataTable[ prop ] = val;
 	} );
 
+
 	// Information about events fired by DataTables - for documentation.
 	/**
 	 * Draw event, fired whenever the table is redrawn on the page, at the same
@@ -27669,8 +27734,6 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 	return $.fn.dataTable;
 }));
-
-}());
 
 
 
