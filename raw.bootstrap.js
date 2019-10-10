@@ -1,11 +1,13 @@
 /*
-shRawJsFetch '{
+shRawJsFetch '
+{
     "urlList": [
         "https://github.com/jquery/jquery/blob/2.2.4/dist/jquery.js",
         "https://github.com/twbs/bootstrap/blob/v3.4.1/dist/js/bootstrap.js",
         "https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataTables.js"
     ]
-}' > tmp/aa.js
+}
+' > tmp/aa.js
 */
 /*
 repo https://github.com/jquery/jquery/tree/2.2.4
