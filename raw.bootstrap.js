@@ -26,6 +26,7 @@ shRawJsFetch '
 */
 (function () {
 "use strict";
+let exports_DataTables_DataTables_media_js_jquery_dataTables = {};
 let exports_jquery_jquery_dist_jquery = {};
 /*
 repo https://github.com/jquery/jquery/tree/2.2.4
@@ -12350,7 +12351,11 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-}());
+
+
+/*
+repo https://github.com/DataTables/DataTables/tree/1.10.19
+*/
 
 
 
@@ -12358,7 +12363,7 @@ if (typeof jQuery === 'undefined') {
 file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataTables.js
 */
 /*! DataTables 1.10.19
- * �2008-2018 SpryMedia Ltd - datatables.net/license
+ * ©2008-2018 SpryMedia Ltd - datatables.net/license
  */
 
 /**
@@ -12394,7 +12399,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		module.exports = function (root, $) {
+		exports_DataTables_DataTables_media_js_jquery_dataTables = function (root, $) {
 			if ( ! root ) {
 				// CommonJS environments without a window global must pass a
 				// root. This will give an error otherwise
@@ -13712,10 +13717,10 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	// - fr - Swiss Franc
 	// - kr - Swedish krona, Norwegian krone and Danish krone
 	// - \u2009 is thin space and \u202F is narrow no-break space, both used in many
-	// - ? - Bitcoin
-	// - ? - Ethereum
+	// - Ƀ - Bitcoin
+	// - Ξ - Ethereum
 	//   standards as thousands separators.
-	var _re_formatted_numeric = /[',$���%\u2009\u202F\u20BD\u20a9\u20BArfk??]/gi;
+	var _re_formatted_numeric = /[',$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi;
 
 
 	var _empty = function ( d ) {
@@ -27489,7 +27494,6 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		$.fn.DataTable[ prop ] = val;
 	} );
 
-
 	// Information about events fired by DataTables - for documentation.
 	/**
 	 * Draw event, fired whenever the table is redrawn on the page, at the same
@@ -27654,6 +27658,8 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 	return $.fn.dataTable;
 }));
+
+}());
 
 
 
