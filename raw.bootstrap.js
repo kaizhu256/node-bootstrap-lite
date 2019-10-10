@@ -23,6 +23,17 @@ shRawJsFetch '
     ]
 }]
 ' > tmp/aa.js
+shRawJsFetch2 '
+[
+    {
+        "url": "https://github.com/jquery/jquery/blob/2.2.4/dist/jquery.js"
+    }, {
+        "url": "https://github.com/twbs/bootstrap/blob/v3.4.1/dist/js/bootstrap.js"
+    }, {
+        "url": "https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataTables.js"
+    }
+]
+' > tmp/aa.js
 */
 (function () {
 "use strict";
