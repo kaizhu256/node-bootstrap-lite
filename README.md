@@ -655,6 +655,7 @@ body {\n\
 </head>\n\
 <body>\n\
 <!-- https://getbootstrap.com/docs/3.4/examples/dashboard/ -->\n\
+<!-- https://getbootstrap.com/docs/3.4/examples/theme/ -->\n\
 <nav class="navbar navbar-inverse navbar-fixed-top">\n\
     <div class="container-fluid">\n\
         <div class="navbar-header">\n\
@@ -681,7 +682,7 @@ body {\n\
 </nav>\n\
 <div class="container-fluid">\n\
     <div class="row">\n\
-        <div class="col-md-2 col-sm-3 sidebar">\n\
+        <div class="col-sm-3 col-md-2 sidebar">\n\
             <ul class="nav nav-sidebar">\n\
                 <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>\n\
                 <li><a href="#">Reports</a></li>\n\
@@ -701,7 +702,7 @@ body {\n\
                 <li><a href="">Another nav item</a></li>\n\
             </ul>\n\
         </div>\n\
-        <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">\n\
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">\n\
 \n\
 \n\
 \n\
