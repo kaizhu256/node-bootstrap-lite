@@ -560,30 +560,31 @@ local.assetsDict["/assets.index.template.html"] = '\
 <title>{{env.npm_package_name}} ({{env.npm_package_version}})</title>\n\
 <link href="assets.bootstrap.css" rel="stylesheet">\n\
 <style>\n\
+/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/dashboard.css */\n\
 /*\n\
-  * Base structure\n\
-  */\n\
+ * Base structure\n\
+ */\n\
 /* Move down content because we have a fixed navbar that is 50px tall */\n\
 body {\n\
     padding-top: 50px;\n\
 }\n\
 /*\n\
-  * Global add-ons\n\
-  */\n\
+ * Global add-ons\n\
+ */\n\
 .sub-header {\n\
     padding-bottom: 10px;\n\
     border-bottom: 1px solid #eee;\n\
 }\n\
 /*\n\
-  * Top navigation\n\
-  * Hide default border to remove 1px line.\n\
-  */\n\
+ * Top navigation\n\
+ * Hide default border to remove 1px line.\n\
+ */\n\
 .navbar-fixed-top {\n\
     border: 0;\n\
 }\n\
 /*\n\
-  * Sidebar\n\
-  */\n\
+ * Sidebar\n\
+ */\n\
 /* Hide for mobile, show later */\n\
 .sidebar {\n\
     display: none;\n\
@@ -620,8 +621,8 @@ body {\n\
     background-color: #428bca;\n\
 }\n\
 /*\n\
-  * Main content\n\
-  */\n\
+ * Main content\n\
+ */\n\
 .main {\n\
     padding: 20px;\n\
 }\n\
@@ -635,8 +636,8 @@ body {\n\
     margin-top: 0;\n\
 }\n\
 /*\n\
-  * Placeholder dashboard ideas\n\
-  */\n\
+ * Placeholder dashboard ideas\n\
+ */\n\
 .placeholders {\n\
     margin-bottom: 30px;\n\
     text-align: center;\n\
@@ -651,11 +652,22 @@ body {\n\
     display: inline-block;\n\
     border-radius: 50%;\n\
 }\n\
+.theme-dropdown .dropdown-menu {\n\
+    position: static;\n\
+    display: block;\n\
+    margin-bottom: 20px;\n\
+}\n\
+.theme-showcase > p > .btn {\n\
+    margin: 5px 0;\n\
+}\n\
+/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/theme.css */\n\
+.theme-showcase .navbar .container {\n\
+    width: auto;\n\
+}\n\
 </style>\n\
 </head>\n\
 <body>\n\
-<!-- https://getbootstrap.com/docs/3.4/examples/dashboard/ -->\n\
-<!-- https://getbootstrap.com/docs/3.4/examples/theme/ -->\n\
+<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/index.html -->\n\
 <nav class="navbar navbar-inverse navbar-fixed-top">\n\
     <div class="container-fluid">\n\
         <div class="navbar-header">\n\
@@ -703,6 +715,7 @@ body {\n\
             </ul>\n\
         </div>\n\
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">\n\
+<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/index.html -->\n\
 <!-- Main jumbotron for a primary marketing message or call to action -->\n\
 <div class="jumbotron">\n\
     <h1>\n\
