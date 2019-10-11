@@ -3110,6 +3110,7 @@ if ( !assert(function( div ) {
 }
 
 return Sizzle;
+
 })( window );
 
 
@@ -8267,6 +8268,7 @@ jQuery.extend( jQuery.event, {
 
 		jQuery.event.trigger( e, null, elem );
 	}
+
 } );
 
 jQuery.fn.extend( {
@@ -10302,6 +10304,7 @@ if (typeof jQuery === 'undefined') {
       }
     }
   })
+
 }(jQuery);
 
 /* ========================================================================
@@ -10393,6 +10396,7 @@ if (typeof jQuery === 'undefined') {
   // ==============
 
   $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
+
 }(jQuery);
 
 /* ========================================================================
@@ -10514,6 +10518,7 @@ if (typeof jQuery === 'undefined') {
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
     })
+
 }(jQuery);
 
 /* ========================================================================
@@ -10756,6 +10761,7 @@ if (typeof jQuery === 'undefined') {
       Plugin.call($carousel, $carousel.data())
     })
   })
+
 }(jQuery);
 
 /* ========================================================================
@@ -10965,6 +10971,7 @@ if (typeof jQuery === 'undefined') {
 
     Plugin.call($target, option)
   })
+
 }(jQuery);
 
 /* ========================================================================
@@ -11126,6 +11133,7 @@ if (typeof jQuery === 'undefined') {
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
     .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
 }(jQuery);
 
 /* ========================================================================
@@ -11345,6 +11353,7 @@ if (typeof jQuery === 'undefined') {
           .one('bsTransitionEnd', callback)
           .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
         callback()
+
     } else if (!this.isShown && this.$backdrop) {
       this.$backdrop.removeClass('in')
 
@@ -11357,6 +11366,7 @@ if (typeof jQuery === 'undefined') {
           .one('bsTransitionEnd', callbackRemove)
           .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
         callbackRemove()
+
     } else if (callback) {
       callback()
     }
@@ -11478,6 +11488,7 @@ if (typeof jQuery === 'undefined') {
     })
     Plugin.call($target, option, this)
   })
+
 }(jQuery);
 
 /* ========================================================================
@@ -12015,6 +12026,7 @@ if (typeof jQuery === 'undefined') {
            placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 } :
            placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
         /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width }
+
   }
 
   Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
@@ -12153,6 +12165,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.tooltip = old
     return this
   }
+
 }(jQuery);
 
 /* ========================================================================
@@ -12272,6 +12285,7 @@ if (typeof jQuery === 'undefined') {
     $.fn.popover = old
     return this
   }
+
 }(jQuery);
 
 /* ========================================================================
@@ -12440,6 +12454,7 @@ if (typeof jQuery === 'undefined') {
       Plugin.call($spy, $spy.data())
     })
   })
+
 }(jQuery);
 
 /* ========================================================================
@@ -12591,6 +12606,7 @@ if (typeof jQuery === 'undefined') {
   $(document)
     .on('click.bs.tab.data-api', '[data-toggle="tab"]', clickHandler)
     .on('click.bs.tab.data-api', '[data-toggle="pill"]', clickHandler)
+
 }(jQuery);
 
 /* ========================================================================
@@ -12751,6 +12767,7 @@ if (typeof jQuery === 'undefined') {
       Plugin.call($spy, data)
     })
   })
+
 }(jQuery);
 
 
@@ -12901,6 +12918,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return this.api(true).$( sSelector, oOpts );
 		};
 
+
 		/**
 		 * Almost identical to $ in operation, but in this case returns the data for the matched
 		 * rows - as such, the jQuery selector used should match TR row nodes or TD/TH cell nodes
@@ -12954,6 +12972,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return this.api(true).rows( sSelector, oOpts ).data();
 		};
 
+
 		/**
 		 * Create a DataTables Api instance, with the currently selected tables for
 		 * the Api's context.
@@ -12971,6 +12990,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				) :
 				new _Api( this );
 		};
+
 
 		/**
 		 * Add a single new row or multiple rows of data to the table. Please note
@@ -13026,6 +13046,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return rows.flatten().toArray();
 		};
 
+
 		/**
 		 * This function will make DataTables recalculate the column sizes, based on the data
 		 * contained in the table and the sizes applied to the columns (in the DOM, CSS or
@@ -13062,6 +13083,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		};
 
+
 		/**
 		 * Quickly and simply clear a table
 		 *  @param {bool} [bRedraw=true] redraw the table or not
@@ -13084,6 +13106,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				api.draw();
 			}
 		};
+
 
 		/**
 		 * The exact opposite of 'opening' a row, this function will close any rows which
@@ -13113,6 +13136,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		{
 			this.api( true ).row( nTr ).child.hide();
 		};
+
 
 		/**
 		 * Remove a row for the table
@@ -13152,6 +13176,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return data;
 		};
 
+
 		/**
 		 * Restore the table to it's original state in the DOM by removing all of DataTables
 		 * enhancements, alterations to the DOM structure of the table and event listeners.
@@ -13170,6 +13195,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		{
 			this.api( true ).destroy( remove );
 		};
+
 
 		/**
 		 * Redraw the table
@@ -13191,6 +13217,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			// into account the new data, but can hold position.
 			this.api( true ).draw( complete );
 		};
+
 
 		/**
 		 * Filter the input based on data
@@ -13224,6 +13251,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 			api.draw();
 		};
+
 
 		/**
 		 * Get the data for the whole table, an individual row or an individual cell based on the
@@ -13277,6 +13305,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return api.data().toArray();
 		};
 
+
 		/**
 		 * Get an array of the TR nodes that are used in the table's body. Note that you will
 		 * typically want to use the '$' API method in preference to this as it is more
@@ -13303,6 +13332,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				api.row( iRow ).node() :
 				api.rows().nodes().flatten().toArray();
 		};
+
 
 		/**
 		 * Get the array indexes of a particular cell from it's DOM element
@@ -13352,6 +13382,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return null;
 		};
 
+
 		/**
 		 * Check to see if a row is 'open' or not.
 		 *  @param {node} nTr the table row to check
@@ -13379,6 +13410,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		{
 			return this.api( true ).row( nTr ).child.isShown();
 		};
+
 
 		/**
 		 * This function will place a new row directly after a row which is currently
@@ -13419,6 +13451,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				.child()[0];
 		};
 
+
 		/**
 		 * Change the pagination - provides the internal logic for pagination in a simple API
 		 * function. With this function you can have a DataTables table go to the next,
@@ -13443,6 +13476,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				api.draw(false);
 			}
 		};
+
 
 		/**
 		 * Show a particular column
@@ -13469,6 +13503,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		};
 
+
 		/**
 		 * Get the settings for a particular table for external manipulation
 		 *  @returns {object} DataTables settings object. See
@@ -13490,6 +13525,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return _fnSettingsFromNode( this[_ext.iApiIndex] );
 		};
 
+
 		/**
 		 * Sort the table by a particular column
 		 *  @param {int} iCol the data index to sort on. Note that this will not match the
@@ -13509,6 +13545,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		{
 			this.api( true ).order( aaSort ).draw();
 		};
+
 
 		/**
 		 * Attach a sort listener to an element for a given column
@@ -13530,6 +13567,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		{
 			this.api( true ).order.listener( nNode, iColumn, fnCallback );
 		};
+
 
 		/**
 		 * Update a table cell or row - this method will accept either a single value to
@@ -13574,6 +13612,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return 0;
 		};
 
+
 		/**
 		 * Provide a common method for plug-ins to check the version of DataTables being used, in order
 		 * to ensure compatibility.
@@ -13592,6 +13631,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		this.fnVersionCheck = _ext.fnVersionCheck;
+
 
 		var _that = this;
 		var emptyInit = options === undefined;
@@ -13624,6 +13664,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			var bInitHandedOff = false;
 			var defaults = DataTable.defaults;
 			var $this = $(this);
+
 
 			/* Sanity check */
 			if ( this.nodeName.toLowerCase() != 'table' )
@@ -13726,6 +13767,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			// options defined from defaults and instance options.
 			oInit = _fnExtend( $.extend( true, {}, defaults ), oInit );
 
+
 			// Map the initialisation options onto the settings object
 			_fnMap( oSettings.oFeatures, oInit, [
 				"bPaginate",
@@ -13796,6 +13838,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 			$.extend( oClasses, DataTable.ext.classes, oInit.oClasses );
 			$this.addClass( oClasses.sTable );
+
 
 			if ( oSettings.iInitDisplayStart === undefined )
 			{
@@ -13970,6 +14013,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 					}
 				}, 'sc' );
 
+
 				/*
 				 * Final init
 				 * Cache the header, body and footer as required, creating them if needed
@@ -14051,6 +14095,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return this;
 	};
 
+
 	/*
 	 * It is useful to have variables which are scoped locally so only the
 	 * DataTables functions can access them and they don't leak into global space.
@@ -14059,6 +14104,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	 * by DataTables as private variables here. This also ensures that there is no
 	 * clashing of variable names and that they can easily referenced for reuse.
 	 */
+
 
 	// Defined else where
 	//  _selector_run
@@ -14096,9 +14142,11 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	//   standards as thousands separators.
 	var _re_formatted_numeric = /[',$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi;
 
+
 	var _empty = function ( d ) {
 		return !d || d === true || d === '-' ? true : false;
 	};
+
 
 	var _intVal = function ( s ) {
 		var integer = parseInt( s, 10 );
@@ -14116,6 +14164,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			num.replace( /\./g, '' ).replace( _re_dic[ decimalPoint ], '.' ) :
 			num;
 	};
+
 
 	var _isNumber = function ( d, decimalPoint, formatted ) {
 		var strType = typeof d === 'string';
@@ -14138,10 +14187,12 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return !isNaN( parseFloat(d) ) && isFinite( d );
 	};
 
+
 	// A string without HTML in it can be considered to be HTML still
 	var _isHtml = function ( d ) {
 		return _empty( d ) || typeof d === 'string';
 	};
+
 
 	var _htmlNumeric = function ( d, decimalPoint, formatted ) {
 		if ( _empty( d ) ) {
@@ -14155,6 +14206,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				true :
 				null;
 	};
+
 
 	var _pluck = function ( a, prop, prop2 ) {
 		var out = [];
@@ -14179,6 +14231,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return out;
 	};
+
 
 	// Basically the same as _pluck, but rather than looping over `a` we use `order`
 	// as the indexes to pick from `a`
@@ -14205,6 +14258,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return out;
 	};
 
+
 	var _range = function ( len, start )
 	{
 		var out = [];
@@ -14226,6 +14280,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return out;
 	};
 
+
 	var _removeEmpty = function ( a )
 	{
 		var out = [];
@@ -14239,9 +14294,11 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return out;
 	};
 
+
 	var _stripHtml = function ( d ) {
 		return d.replace( _re_html, '' );
 	};
+
 
 	/**
 	 * Determine if all values in the array are unique. This means we can short
@@ -14270,6 +14327,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return true;
 	};
+
 
 	/**
 	 * Find the unique elements in a source array.
@@ -14309,6 +14367,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return out;
 	};
+
 
 	/**
 	 * DataTables utility methods
@@ -14356,6 +14415,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			};
 		},
 
+
 		/**
 		 * Escape a string such that it can be used in a regular expression
 		 *
@@ -14402,6 +14462,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		o._hungarianMap = map;
 	}
 
+
 	/**
 	 * Convert from camel case parameters to Hungarian, based on a Hungarian map
 	 * created by _fnHungarianMap.
@@ -14443,6 +14504,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		} );
 	}
+
 
 	/**
 	 * Language compatibility - when certain options are given, and others aren't, we
@@ -14493,6 +14555,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Map one parameter onto another
 	 *  @param {object} o Object to map
@@ -14504,6 +14567,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			o[ old ] = o[ knew ];
 		}
 	};
+
 
 	/**
 	 * Provide backwards compatibility for the main DT options. Note that the new
@@ -14545,6 +14609,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Provide backwards compatibility for column options. Note that the new options
 	 * are mapped onto the old parameters, so this is an external interface change
@@ -14564,6 +14629,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			init.aDataSort = [ dataSort ];
 		}
 	}
+
 
 	/**
 	 * Browser feature detection for capabilities, quirks
@@ -14643,6 +14709,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		settings.oScroll.iBarWidth = DataTable.__browser.barWidth;
 	}
 
+
 	/**
 	 * Array.prototype reduce[Right] method, used for browsers which don't support
 	 * JS 1.6. Done this way to reduce code size, since we iterate either way
@@ -14706,6 +14773,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		// Use the default column options function to initialise classes etc
 		_fnColumnOptions( oSettings, iCol, $(nTh).data() );
 	}
+
 
 	/**
 	 * Apply options for a column
@@ -14838,6 +14906,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Adjust the table column widths for new data. Note: you would probably want to
 	 * do a redraw after calling this function!
@@ -14867,6 +14936,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		_fnCallbackFire( settings, null, 'column-sizing', [settings] );
 	}
 
+
 	/**
 	 * Covert the index of a visible column to the index in the data array (take account
 	 * of hidden columns)
@@ -14884,6 +14954,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			null;
 	}
 
+
 	/**
 	 * Covert the index of an index in the data array and convert it to the visible
 	 *   column index (take account of hidden columns)
@@ -14899,6 +14970,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return iPos !== -1 ? iPos : null;
 	}
+
 
 	/**
 	 * Get the number of visible columns
@@ -14920,6 +14992,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return vis;
 	}
 
+
 	/**
 	 * Get an array of column indexes that match a given property
 	 *  @param {object} oSettings dataTables settings object
@@ -14940,6 +15013,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return a;
 	}
+
 
 	/**
 	 * Calculate the 'type' of a column
@@ -15004,6 +15078,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		}
 	}
+
 
 	/**
 	 * Take the column definitions and static columns arrays and calculate how
@@ -15135,6 +15210,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return iRow;
 	}
 
+
 	/**
 	 * Add one or more TR elements to the table. Generally we'd expect to
 	 * use this for reading data from a DOM sourced table, but it could be
@@ -15160,6 +15236,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	}
 
+
 	/**
 	 * Take a TR element and convert it to an index in aoData
 	 *  @param {object} oSettings dataTables settings object
@@ -15171,6 +15248,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	{
 		return (n._DT_RowIndex!==undefined) ? n._DT_RowIndex : null;
 	}
+
 
 	/**
 	 * Take a TD element and convert it into a column data index (not the visible index)
@@ -15184,6 +15262,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	{
 		return $.inArray( n, oSettings.aoData[ iRow ].anCells );
 	}
+
 
 	/**
 	 * Get the data for a given cell from the internal cache, taking into account data mapping
@@ -15233,6 +15312,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return cellData;
 	}
 
+
 	/**
 	 * Set the value for a specific cell, into the internal data cache
 	 *  @param {object} settings dataTables settings object
@@ -15253,6 +15333,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}  );
 	}
 
+
 	// Private variable that is used to match action syntax in the data property object
 	var __reArray = /\[.*?\]$/;
 	var __reFn = /\(\)$/;
@@ -15268,6 +15349,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return s.replace(/\\\./g, '.');
 		} );
 	}
+
 
 	/**
 	 * Return a function that can be used to get data from a source object, taking
@@ -15393,6 +15475,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Return a function that can be used to set data from a source object, taking
 	 * into account the ability to use nested objects as a source
@@ -15512,6 +15595,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Return an array with the full table data
 	 *  @param {object} oSettings dataTables settings object
@@ -15522,6 +15606,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	{
 		return _pluck( settings.aoData, '_aData' );
 	}
+
 
 	/**
 	 * Nuke the table
@@ -15535,6 +15620,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		settings.aiDisplay.length = 0;
 		settings.aIds = {};
 	}
+
 
 	 /**
 	 * Take an array of integers (index array) and remove a target integer (value - not
@@ -15564,6 +15650,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			a.splice( iTargetIndex, 1 );
 		}
 	}
+
 
 	/**
 	 * Mark cached data as invalid such that a re-read of the data will occur when
@@ -15640,6 +15727,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			_fnRowAttributes( settings, row );
 		}
 	}
+
 
 	/**
 	 * Build a data source object from an HTML row, reading the contents of the
@@ -15843,6 +15931,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		row.nTr.setAttribute( 'role', 'row' );
 	}
 
+
 	/**
 	 * Add attributes to a row based on the special `DT_*` parameters in a data
 	 * source object.
@@ -15883,6 +15972,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		}
 	}
+
 
 	/**
 	 * Create the HTML header for the table
@@ -15960,6 +16050,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		}
 	}
+
 
 	/**
 	 * Draw the header (or footer) element based on the column visibility states. The
@@ -16065,6 +16156,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		}
 	}
+
 
 	/**
 	 * Insert the required TR nodes into the table for display
@@ -16204,6 +16296,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		oSettings.bDrawing = false;
 	}
 
+
 	/**
 	 * Redraw the table - taking account of the various features which are enabled
 	 *  @param {object} oSettings dataTables settings object
@@ -16242,6 +16335,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		settings._drawHold = false;
 	}
+
 
 	/**
 	 * Add the options to the page HTML for the table
@@ -16394,6 +16488,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		oSettings.nHolding = null;
 	}
 
+
 	/**
 	 * Use the DOM source to create up an array of header cells. The idea here is to
 	 * create a layout grid (array) of rows x columns, which contains a reference
@@ -16468,6 +16563,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		}
 	}
+
 
 	/**
 	 * Get an array of unique th elements, one for each column
@@ -16640,6 +16736,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Update the table using an Ajax call
 	 *  @param {object} settings dataTables settings object
@@ -16664,6 +16761,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 		return true;
 	}
+
 
 	/**
 	 * Build up the parameters in an object needed for a server-side processing
@@ -16772,6 +16870,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return legacy ? data : d;
 	}
 
+
 	/**
 	 * Data the data from the server (nuking the old) and redraw the table
 	 *  @param {object} oSettings dataTables settings object
@@ -16823,6 +16922,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		settings.bAjaxDataGet = true;
 		_fnProcessingDisplay( settings, false );
 	}
+
 
 	/**
 	 * Get the data from the JSON data source to use for drawing a table. Using
@@ -16935,6 +17035,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return filter[0];
 	}
 
+
 	/**
 	 * Filter the table using both the global filter and column based filtering
 	 *  @param {object} oSettings dataTables settings object
@@ -16989,6 +17090,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		_fnCallbackFire( oSettings, null, 'search', [oSettings] );
 	}
 
+
 	/**
 	 * Apply custom filtering functions
 	 *  @param {object} oSettings dataTables settings object
@@ -17019,6 +17121,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			$.merge( displayRows, rows );
 		}
 	}
+
 
 	/**
 	 * Filter the table on a per-column basis
@@ -17051,6 +17154,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		settings.aiDisplay = out;
 	}
+
 
 	/**
 	 * Filter the data table based on user input and draw the table
@@ -17107,6 +17211,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Build a regular expression object suitable for searching a table
 	 *  @param {string} sSearch string to search for
@@ -17144,6 +17249,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return new RegExp( search, caseInsensitive ? 'i' : '' );
 	}
+
 
 	/**
 	 * Escape a string such that it can be used in a regular expression
@@ -17222,6 +17328,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return wasInvalidated;
 	}
 
+
 	/**
 	 * Convert from the internal Hungarian notation to camelCase for external
 	 * interaction
@@ -17292,6 +17399,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return n[0];
 	}
 
+
 	/**
 	 * Update the information elements in the display
 	 *  @param {object} settings dataTables settings object
@@ -17333,6 +17441,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		$(nodes).html( out );
 	}
+
 
 	function _fnInfoMacros ( settings, str )
 	{
@@ -17437,6 +17546,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Draw the table for the first time, adding all required features
 	 *  @param {object} oSettings dataTables settings object
@@ -17458,6 +17568,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		_fnCallbackFire( settings, 'aoInitComplete', 'init', [settings, json] );
 	}
 
+
 	function _fnLengthChange ( settings, val )
 	{
 		var len = parseInt( val, 10 );
@@ -17468,6 +17579,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		// Fire length change event
 		_fnCallbackFire( settings, null, 'length', [settings, len] );
 	}
+
 
 	/**
 	 * Generate the node required for user display length changing
@@ -17592,6 +17704,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return node;
 	}
 
+
 	/**
 	 * Alter the display settings to change the page
 	 *  @param {object} settings DataTables settings object
@@ -17683,6 +17796,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			.html( settings.oLanguage.sProcessing )
 			.insertBefore( settings.nTable )[0];
 	}
+
 
 	/**
 	 * Display or hide the processing indicator
@@ -17940,6 +18054,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		headerSrcEls = headerCopy.find('tr');
 		headerCopy.find('th, td').removeAttr('tabindex');
 
+
 		/*
 		 * 2. Take live measurements from the DOM - do not alter the DOM itself!
 		 */
@@ -18030,6 +18145,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			$(footerSrcEls).height(0);
 		}
 
+
 		/*
 		 * 3. Apply the measurements
 		 */
@@ -18089,6 +18205,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		if ( footer ) {
 			settings.nScrollFoot.style.width = _fnStringToCss( correction );
 		}
+
 
 		/*
 		 * 4. Clean up
@@ -18175,6 +18292,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 
 	var __re_html_remove = /<.*?>/g;
+
 
 	/**
 	 * Calculate the width of columns for the table
@@ -18400,6 +18518,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Throttle the calls to a function. Arguments and context are maintained for
 	 * the throttled function
@@ -18409,6 +18528,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	 *  @memberof DataTable#oApi
 	 */
 	var _fnThrottle = DataTable.util.throttle;
+
 
 	/**
 	 * Convert a CSS unit width to pixels (e.g. 2em)
@@ -18433,6 +18553,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return val;
 	}
 
+
 	/**
 	 * Get the widest node
 	 *  @param {object} settings dataTables settings object
@@ -18452,6 +18573,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			$('<td/>').html( _fnGetCellData( settings, idx, colIdx, 'display' ) )[0] :
 			data.anCells[ colIdx ];
 	}
+
 
 	/**
 	 * Get the maximum strlen for each data column
@@ -18477,6 +18599,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return maxIdx;
 	}
+
 
 	/**
 	 * Append a CSS unit (only if required) to a string
@@ -18701,6 +18824,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		oSettings.bSorted = true;
 	}
 
+
 	function _fnSortAria ( settings )
 	{
 		var label;
@@ -18744,6 +18868,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			th.setAttribute('aria-label', label);
 		}
 	}
+
 
 	/**
 	 * Function to run on user sort request
@@ -18830,6 +18955,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * Attach a sort handler (click) to a node
 	 *  @param {object} settings dataTables settings object
@@ -18869,6 +18995,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	}
 
+
 	/**
 	 * Set the sorting classes on table's body, Note: it is safe to call this function
 	 * when bSort and bSortClasses are false
@@ -18904,6 +19031,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		settings.aLastSort = sort;
 	}
+
 
 	// Get the data to sort a column, be it from cache, fresh (populating the
 	// cache), or from a sort formatter
@@ -18977,6 +19105,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		settings.oSavedState = state;
 		settings.fnStateSaveCallback.call( settings.oInstance, settings, state );
 	}
+
 
 	/**
 	 * Attempt to load a saved table state
@@ -19080,6 +19209,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		// otherwise, wait for the loaded callback to be executed
 	}
 
+
 	/**
 	 * Return the settings object for a particular table
 	 *  @param {node} table table we are using as a dataTable
@@ -19095,6 +19225,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			settings[ idx ] :
 			null;
 	}
+
 
 	/**
 	 * Log an error message
@@ -19138,6 +19269,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	}
 
+
 	/**
 	 * See if a property is defined on one object, if so assign it to the other object
 	 *  @param {object} ret target object
@@ -19169,6 +19301,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			ret[mappedName] = src[name];
 		}
 	}
+
 
 	/**
 	 * Extend objects - very similar to jQuery.extend, but deep copy objects, and
@@ -19213,6 +19346,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return out;
 	}
 
+
 	/**
 	 * Bind an event handers to allow a click or return key to activate the callback.
 	 * This is good for accessibility since a return on the keyboard will have the
@@ -19241,6 +19375,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				} );
 	}
 
+
 	/**
 	 * Register a callback function. Easily allows a callback function to be added to
 	 * an array store of callback functions that can then all be called together.
@@ -19260,6 +19395,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			} );
 		}
 	}
+
 
 	/**
 	 * Fire callback functions and trigger events. Note that the loop over the
@@ -19296,6 +19432,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return ret;
 	}
 
+
 	function _fnLengthOverflow ( settings )
 	{
 		var
@@ -19320,6 +19457,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		settings._iDisplayStart = start;
 	}
 
+
 	function _fnRenderer( settings, type )
 	{
 		var renderer = settings.renderer;
@@ -19340,6 +19478,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return host._;
 	}
 
+
 	/**
 	 * Detect the data source being used for the table. Used to simplify the code
 	 * a little (ajax) and to make it compress a little smaller.
@@ -19358,6 +19497,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 		return 'dom';
 	}
+
 
 
 
@@ -19399,6 +19539,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	 */
 	var __apiStruct = [];
 
+
 	/**
 	 * `Array.prototype` reference.
 	 *
@@ -19406,6 +19547,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	 * @ignore
 	 */
 	var __arrayProto = Array.prototype;
+
 
 	/**
 	 * Abstraction for `context` parameter of the `Api` constructor to allow it to
@@ -19466,6 +19608,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			} ).toArray();
 		}
 	};
+
 
 	/**
 	 * DataTables API class - used to control and interface with  one or more
@@ -19572,14 +19715,18 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return this.count() !== 0;
 		},
 
+
 		concat:  __arrayProto.concat,
 
+
 		context: [], // array of table settings objects
+
 
 		count: function ()
 		{
 			return this.flatten().length;
 		},
+
 
 		each: function ( fn )
 		{
@@ -19590,6 +19737,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return this;
 		},
 
+
 		eq: function ( idx )
 		{
 			var ctx = this.context;
@@ -19598,6 +19746,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				new _Api( ctx[idx], this[idx] ) :
 				null;
 		},
+
 
 		filter: function ( fn )
 		{
@@ -19618,13 +19767,16 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return new _Api( this.context, a );
 		},
 
+
 		flatten: function ()
 		{
 			var a = [];
 			return new _Api( this.context, a.concat.apply( a, this.toArray() ) );
 		},
 
+
 		join:    __arrayProto.join,
+
 
 		indexOf: __arrayProto.indexOf || function (obj, start)
 		{
@@ -19707,13 +19859,16 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return this;
 		},
 
+
 		lastIndexOf: __arrayProto.lastIndexOf || function (obj, start)
 		{
 			// Bit cheeky...
 			return this.indexOf.apply( this.toArray.reverse(), arguments );
 		},
 
+
 		length:  0,
+
 
 		map: function ( fn )
 		{
@@ -19732,6 +19887,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return new _Api( this.context, a );
 		},
 
+
 		pluck: function ( prop )
 		{
 			return this.map( function ( el ) {
@@ -19741,7 +19897,9 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		pop:     __arrayProto.pop,
 
+
 		push:    __arrayProto.push,
+
 
 		// Does not return an API instance
 		reduce: __arrayProto.reduce || function ( fn, init )
@@ -19749,48 +19907,61 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return _fnReduce( this, fn, init, 0, this.length, 1 );
 		},
 
+
 		reduceRight: __arrayProto.reduceRight || function ( fn, init )
 		{
 			return _fnReduce( this, fn, init, this.length-1, -1, -1 );
 		},
 
+
 		reverse: __arrayProto.reverse,
+
 
 		// Object with rows, columns and opts
 		selector: null,
 
+
 		shift:   __arrayProto.shift,
+
 
 		slice: function () {
 			return new _Api( this.context, this );
 		},
 
+
 		sort:    __arrayProto.sort, // ? name - order?
 
+
 		splice:  __arrayProto.splice,
+
 
 		toArray: function ()
 		{
 			return __arrayProto.slice.call( this );
 		},
 
+
 		to$: function ()
 		{
 			return $( this );
 		},
+
 
 		toJQuery: function ()
 		{
 			return $( this );
 		},
 
+
 		unique: function ()
 		{
 			return new _Api( this.context, _unique(this) );
 		},
 
+
 		unshift: __arrayProto.unshift
 	} );
+
 
 	_Api.extend = function ( scope, obj, ext )
 	{
@@ -19830,6 +20001,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	};
 
+
 	// @todo - Is there need for an augment function?
 	// _Api.augment = function ( inst, name )
 	// {
@@ -19838,6 +20010,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 	// 	_Api.extend( inst, obj );
 	// };
+
 
 	//     [
 	//       {
@@ -19914,6 +20087,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	};
 
+
 	_Api.registerPlural = _api_registerPlural = function ( pluralName, singularName, val ) {
 		_Api.register( pluralName, val );
 
@@ -19938,6 +20112,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return ret;
 		} );
 	};
+
 
 	/**
 	 * Selector for HTML tables. Apply the given selector to the give array of
@@ -19990,6 +20165,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			this;
 	} );
 
+
 	_api_register( 'table()', function ( selector ) {
 		var tables = this.tables( selector );
 		var ctx = tables.context;
@@ -20000,11 +20176,13 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			tables;
 	} );
 
+
 	_api_registerPlural( 'tables().nodes()', 'table().node()' , function () {
 		return this.iterator( 'table', function ( ctx ) {
 			return ctx.nTable;
 		}, 1 );
 	} );
+
 
 	_api_registerPlural( 'tables().body()', 'table().body()' , function () {
 		return this.iterator( 'table', function ( ctx ) {
@@ -20012,17 +20190,20 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}, 1 );
 	} );
 
+
 	_api_registerPlural( 'tables().header()', 'table().header()' , function () {
 		return this.iterator( 'table', function ( ctx ) {
 			return ctx.nTHead;
 		}, 1 );
 	} );
 
+
 	_api_registerPlural( 'tables().footer()', 'table().footer()' , function () {
 		return this.iterator( 'table', function ( ctx ) {
 			return ctx.nTFoot;
 		}, 1 );
 	} );
+
 
 	_api_registerPlural( 'tables().containers()', 'table().container()' , function () {
 		return this.iterator( 'table', function ( ctx ) {
@@ -20084,6 +20265,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	} );
 
+
 	/**
 	 * Paging information for the first table in the current context.
 	 *
@@ -20125,6 +20307,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			"serverSide":     _fnDataSource( settings ) === 'ssp'
 		};
 	} );
+
 
 	/**
 	 * Get the current page length.
@@ -20192,6 +20375,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	};
 
+
 	/**
 	 * Get the JSON response from the last Ajax request that DataTables made to the
 	 * server. Note that this returns the JSON from the first table in the current
@@ -20209,6 +20393,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		// else return undefined;
 	} );
 
+
 	/**
 	 * Get the data submitted in the last Ajax request
 	 */
@@ -20221,6 +20406,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		// else return undefined;
 	} );
+
 
 	/**
 	 * Reload tables from the Ajax data source. Note that this function will
@@ -20236,6 +20422,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			__reload( settings, resetPaging===false, callback );
 		} );
 	} );
+
 
 	/**
 	 * Get the current Ajax URL. Note that this returns the URL from the first
@@ -20280,6 +20467,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	} );
 
+
 	/**
 	 * Load data from the newly set Ajax URL. Note that this method is only
 	 * available when `ajax.url()` is used to set a URL. Additionally, this method
@@ -20296,6 +20484,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			__reload( ctx, resetPaging===false, callback );
 		} );
 	} );
+
 
 
 
@@ -20338,6 +20527,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return _unique( out );
 	};
 
+
 	var _selector_opts = function ( opts )
 	{
 		if ( ! opts ) {
@@ -20356,6 +20546,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			page: 'all'
 		}, opts );
 	};
+
 
 	var _selector_first = function ( inst )
 	{
@@ -20377,6 +20568,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		inst.length = 0;
 		return inst;
 	};
+
 
 	var _selector_row_indexes = function ( settings, opts )
 	{
@@ -20448,6 +20640,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return a;
 	};
+
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 * Rows
@@ -20557,6 +20750,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return _selector_run( 'row', selector, run, settings, opts );
 	};
+
 
 	_api_register( 'rows()', function ( selector, opts ) {
 		// argument shifting
@@ -20685,6 +20879,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return this;
 	} );
 
+
 	_api_register( 'rows.add()', function ( rows ) {
 		var newRows = this.iterator( 'table', function ( settings ) {
 				var row, i, ien;
@@ -20714,12 +20909,15 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 
 
+
+
 	/**
 	 *
 	 */
 	_api_register( 'row()', function ( selector, opts ) {
 		return _selector_first( this.rows( selector, opts ) );
 	} );
+
 
 	_api_register( 'row().data()', function ( data ) {
 		var ctx = this.context;
@@ -20746,6 +20944,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return this;
 	} );
 
+
 	_api_register( 'row().node()', function () {
 		var ctx = this.context;
 
@@ -20753,6 +20952,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			ctx[0].aoData[ this[0] ].nTr || null :
 			null;
 	} );
+
 
 	_api_register( 'row.add()', function ( row ) {
 		// Allow a jQuery object to be passed in - only a single row is added from
@@ -20818,6 +21018,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	};
 
+
 	var __details_remove = function ( api, idx )
 	{
 		var ctx = api.context;
@@ -20833,6 +21034,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		}
 	};
+
 
 	var __details_display = function ( api, show ) {
 		var ctx = api.context;
@@ -20854,6 +21056,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		}
 	};
+
 
 	var __details_events = function ( settings )
 	{
@@ -20951,6 +21154,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return this;
 	} );
 
+
 	_api_register( [
 		_child_obj+'.show()',
 		_child_mth+'.show()' // only when `child()` was called with parameters (without
@@ -20958,6 +21162,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		__details_display( this, true );
 		return this;
 	} );
+
 
 	_api_register( [
 		_child_obj+'.hide()',
@@ -20967,6 +21172,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return this;
 	} );
 
+
 	_api_register( [
 		_child_obj+'.remove()',
 		_child_mth+'.remove()' // only when `child()` was called with parameters (without
@@ -20974,6 +21180,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		__details_remove( this );
 		return this;
 	} );
+
 
 	_api_register( _child_obj+'.isShown()', function () {
 		var ctx = this.context;
@@ -21003,6 +21210,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 	var __re_column_selector = /^([^:]+):(name|visIdx|visible)$/;
 
+
 	// r1 and r2 are redundant - but it means that the parameters match for the
 	// iterator callback in columns().data()
 	var __columnData = function ( settings, column, r1, r2, rows ) {
@@ -21012,6 +21220,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 		return a;
 	};
+
 
 	var __column_selector = function ( settings, selector, opts )
 	{
@@ -21109,6 +21318,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return _selector_run( 'column', selector, run, settings, opts );
 	};
 
+
 	var __setColumnVis = function ( settings, column, vis ) {
 		var
 			cols = settings.aoColumns,
@@ -21160,6 +21370,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		_fnSaveState( settings );
 	};
+
 
 	_api_register( 'columns()', function ( selector, opts ) {
 		// argument shifting
@@ -21360,6 +21571,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 
 
+
 	_api_register( 'cells()', function ( rowSelector, columnSelector, opts ) {
 		// Argument shifting
 		if ( $.isPlainObject( rowSelector ) ) {
@@ -21417,6 +21629,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return cells;
 	} );
 
+
 	_api_registerPlural( 'cells().nodes()', 'cell().node()', function () {
 		return this.iterator( 'cell', function ( settings, row, column ) {
 			var data = settings.aoData[ row ];
@@ -21427,11 +21640,13 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}, 1 );
 	} );
 
+
 	_api_register( 'cells().data()', function () {
 		return this.iterator( 'cell', function ( settings, row, column ) {
 			return _fnGetCellData( settings, row, column );
 		}, 1 );
 	} );
+
 
 	_api_registerPlural( 'cells().cache()', 'cell().cache()', function ( type ) {
 		type = type === 'search' ? '_aFilterData' : '_aSortData';
@@ -21441,11 +21656,13 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}, 1 );
 	} );
 
+
 	_api_registerPlural( 'cells().render()', 'cell().render()', function ( type ) {
 		return this.iterator( 'cell', function ( settings, row, column ) {
 			return _fnGetCellData( settings, row, column, type );
 		}, 1 );
 	} );
+
 
 	_api_registerPlural( 'cells().indexes()', 'cell().index()', function () {
 		return this.iterator( 'cell', function ( settings, row, column ) {
@@ -21456,6 +21673,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			};
 		}, 1 );
 	} );
+
 
 	_api_registerPlural( 'cells().invalidate()', 'cell().invalidate()', function ( src ) {
 		return this.iterator( 'cell', function ( settings, row, column ) {
@@ -21468,6 +21686,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	_api_register( 'cell()', function ( rowSelector, columnSelector, opts ) {
 		return _selector_first( this.cells( rowSelector, columnSelector, opts ) );
 	} );
+
 
 	_api_register( 'cell().data()', function ( data ) {
 		var ctx = this.context;
@@ -21543,6 +21762,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	} );
 
+
 	/**
 	 * Attach a sort listener to an element for a given column
 	 *
@@ -21558,6 +21778,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			_fnSortAttachListener( settings, node, column, callback );
 		} );
 	} );
+
 
 	_api_register( 'order.fixed()', function ( set ) {
 		if ( ! set ) {
@@ -21575,6 +21796,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			settings.aaSortingFixed = $.extend( true, {}, set );
 		} );
 	} );
+
 
 	// Order by the selected column(s)
 	_api_register( [
@@ -21621,6 +21843,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	} );
 
+
 	_api_registerPlural(
 		'columns().search()',
 		'column().search()',
@@ -21660,6 +21883,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			null;
 	} );
 
+
 	_api_register( 'state.clear()', function () {
 		return this.iterator( 'table', function ( settings ) {
 			// Save an empty object
@@ -21667,11 +21891,13 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	} );
 
+
 	_api_register( 'state.loaded()', function () {
 		return this.context.length ?
 			this.context[0].oLoadedState :
 			null;
 	} );
+
 
 	_api_register( 'state.save()', function () {
 		return this.iterator( 'table', function ( settings ) {
@@ -21718,6 +21944,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return true;
 	};
 
+
 	/**
 	 * Check if a `<table>` node is a DataTable table already or not.
 	 *
@@ -21753,6 +21980,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 
 		return is;
 	};
+
 
 	/**
 	 * Get all DataTable tables that have been initialised - optionally you can
@@ -21790,6 +22018,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			a;
 	};
 
+
 	/**
 	 * Convert from camel case parameters to Hungarian notation. This is made public
 	 * for the extensions to provide the same ability as DataTables core to accept
@@ -21821,6 +22050,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		) );
 	} );
 
+
 	// jQuery functions to operate on the tables
 	$.each( [ 'on', 'one', 'off' ], function (i, key) {
 		_api_register( key+'()', function ( /* event, handler */ ) {
@@ -21839,26 +22069,31 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	} );
 
+
 	_api_register( 'clear()', function () {
 		return this.iterator( 'table', function ( settings ) {
 			_fnClearTable( settings );
 		} );
 	} );
 
+
 	_api_register( 'settings()', function () {
 		return new _Api( this.context, this.context );
 	} );
+
 
 	_api_register( 'init()', function () {
 		var ctx = this.context;
 		return ctx.length ? ctx[0].oInit : null;
 	} );
 
+
 	_api_register( 'data()', function () {
 		return this.iterator( 'table', function ( settings ) {
 			return _pluck( settings.aoData, '_aData' );
 		} ).flatten();
 	} );
+
 
 	_api_register( 'destroy()', function ( remove ) {
 		remove = remove || false;
@@ -21955,6 +22190,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		} );
 	} );
 
+
 	// Add the `every()` method for rows, columns and cells in a compact form
 	$.each( [ 'column', 'row', 'cell' ], function ( i, type ) {
 		_api_register( type+'s().every()', function ( fn ) {
@@ -21983,6 +22219,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			} );
 		} );
 	} );
+
 
 	// i18n method for extensions to be able to use the language object from the
 	// DataTable
@@ -22073,6 +22310,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bSmart": true
 	};
+
 
 
 
@@ -22173,6 +22411,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"idx": -1
 	};
+
 
 	/**
 	 * Template object for the column information object in DataTables. This object
@@ -22418,6 +22657,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		"sWidthOrig": null
 	};
 
+
 	/*
 	 * Developer note: The properties of the object below are given in Hungarian
 	 * notation, that was used as the interface for DataTables prior to v1.10, however
@@ -22501,6 +22741,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"aaData": null,
 
+
 		/**
 		 * If ordering is enabled, then DataTables will perform a first pass sort on
 		 * initialisation. You can define which column(s) the sort is performed
@@ -22530,6 +22771,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"aaSorting": [[0,'asc']],
 
+
 		/**
 		 * This parameter is basically identical to the `sorting` parameter, but
 		 * cannot be overridden by user interaction with the table. What this means
@@ -22551,6 +22793,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } )
 		 */
 		"aaSortingFixed": [],
+
 
 		/**
 		 * DataTables can be instructed to load data to display in the table from a
@@ -22708,6 +22951,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"ajax": null,
 
+
 		/**
 		 * This parameter allows you to readily specify the entries in the length drop
 		 * down menu that DataTables shows when pagination is enabled. It can be
@@ -22732,6 +22976,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"aLengthMenu": [ 10, 25, 50, 100 ],
+
 
 		/**
 		 * The `columns` option in the initialisation parameter allows you to define
@@ -22768,6 +23013,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"aoColumnDefs": null,
 
+
 		/**
 		 * Basically the same as `search`, this parameter defines the individual column
 		 * filtering state at initialisation time. The array must be of the same size
@@ -22794,6 +23040,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"aoSearchCols": [],
 
+
 		/**
 		 * An array of CSS classes that should be applied to displayed rows. This
 		 * array may be of any length, and DataTables will apply each class
@@ -22814,6 +23061,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"asStripeClasses": null,
 
+
 		/**
 		 * Enable or disable automatic column width calculation. This can be disabled
 		 * as an optimisation (it takes some time to calculate the widths) if the
@@ -22832,6 +23080,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bAutoWidth": true,
+
 
 		/**
 		 * Deferred rendering can provide DataTables with a huge speed boost when you
@@ -22854,6 +23103,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bDeferRender": false,
+
 
 		/**
 		 * Replace a DataTable which matches the given selector and replace it with
@@ -22882,6 +23132,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bDestroy": false,
 
+
 		/**
 		 * Enable or disable filtering of data. Filtering in DataTables is "smart" in
 		 * that it allows the end user to input multiple words (space separated) and
@@ -22905,6 +23156,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bFilter": true,
 
+
 		/**
 		 * Enable or disable the table information display. This shows information
 		 * about the data that is currently visible on the page, including information
@@ -22924,6 +23176,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bInfo": true,
 
+
 		/**
 		 * Allows the end user to select the size of a formatted page from a select
 		 * menu (sizes are 10, 25, 50 and 100). Requires pagination (`paginate`).
@@ -22942,6 +23195,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bLengthChange": true,
 
+
 		/**
 		 * Enable or disable pagination.
 		 *  @type boolean
@@ -22958,6 +23212,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bPaginate": true,
+
 
 		/**
 		 * Enable or disable the display of a 'processing' indicator when the table is
@@ -22978,6 +23233,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bProcessing": false,
+
 
 		/**
 		 * Retrieve the DataTables object for the given selector. Note that if the
@@ -23016,6 +23272,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bRetrieve": false,
 
+
 		/**
 		 * When vertical (y) scrolling is enabled, DataTables will force the height of
 		 * the table's viewport to the given height at all times (useful for layout).
@@ -23039,6 +23296,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bScrollCollapse": false,
 
+
 		/**
 		 * Configure DataTables to use server-side processing. Note that the
 		 * `ajax` parameter must also be given in order to give DataTables a
@@ -23060,6 +23318,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bServerSide": false,
 
+
 		/**
 		 * Enable or disable sorting of columns. Sorting of individual columns can be
 		 * disabled by the `sortable` option for each column.
@@ -23077,6 +23336,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bSort": true,
+
 
 		/**
 		 * Enable or display DataTables' ability to sort multiple columns at the
@@ -23097,6 +23357,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bSortMulti": true,
 
+
 		/**
 		 * Allows control over whether DataTables should use the top (true) unique
 		 * cell that is found for a single column, or the bottom (false - default).
@@ -23115,6 +23376,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bSortCellsTop": false,
+
 
 		/**
 		 * Enable or disable the addition of the classes `sorting\_1`, `sorting\_2` and
@@ -23136,6 +23398,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bSortClasses": true,
+
 
 		/**
 		 * Enable or disable state saving. When enabled HTML5 `localStorage` will be
@@ -23160,6 +23423,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bStateSave": false,
+
 
 		/**
 		 * This function is called when a TR element is created (and all TD child
@@ -23188,6 +23452,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"fnCreatedRow": null,
 
+
 		/**
 		 * This function is called on every 'draw' event, and allows you to
 		 * dynamically modify any aspect you want about the created DOM.
@@ -23207,6 +23472,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"fnDrawCallback": null,
+
 
 		/**
 		 * Identical to fnHeaderCallback() but for the table footer this function
@@ -23234,6 +23500,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } )
 		 */
 		"fnFooterCallback": null,
+
 
 		/**
 		 * When rendering large numbers in the information element for the table
@@ -23269,6 +23536,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			);
 		},
 
+
 		/**
 		 * This function is called on every 'draw' event, and allows you to
 		 * dynamically modify the header row. This can be used to calculate and
@@ -23296,6 +23564,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } )
 		 */
 		"fnHeaderCallback": null,
+
 
 		/**
 		 * The information element can be used to convey information about the current
@@ -23326,6 +23595,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"fnInfoCallback": null,
 
+
 		/**
 		 * Called when the table has been initialised. Normally DataTables will
 		 * initialise sequentially and there will be no need for this function,
@@ -23349,6 +23619,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } )
 		 */
 		"fnInitComplete": null,
+
 
 		/**
 		 * Called at the very start of each table draw and can be used to cancel the
@@ -23374,6 +23645,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"fnPreDrawCallback": null,
+
 
 		/**
 		 * This function allows you to 'post process' each row after it have been
@@ -23403,6 +23675,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"fnRowCallback": null,
 
+
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
 		 * superseded by that provided through `ajax`, which should be used instead.
@@ -23427,6 +23700,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"fnServerData": null,
+
 
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
@@ -23453,6 +23727,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"fnServerParams": null,
+
 
 		/**
 		 * Load the table state. With this function you can define from where, and how, the
@@ -23494,6 +23769,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			} catch (e) {}
 		},
 
+
 		/**
 		 * Callback which allows modification of the saved state prior to loading that state.
 		 * This callback is called when the table is loading state from the stored data, but
@@ -23531,6 +23807,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"fnStateLoadParams": null,
 
+
 		/**
 		 * Callback that is called when the state has been loaded from the state saving method
 		 * and the DataTables settings object has been modified as a result of the loaded state.
@@ -23553,6 +23830,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"fnStateLoaded": null,
+
 
 		/**
 		 * Save the table state. This function allows you to define where and how the state
@@ -23592,6 +23870,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			} catch (e) {}
 		},
 
+
 		/**
 		 * Callback which allows modification of the state to be saved. Called when the table
 		 * has changed state a new state save is required. This method allows modification of
@@ -23618,6 +23897,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"fnStateSaveParams": null,
 
+
 		/**
 		 * Duration for which the saved state information is considered valid. After this period
 		 * has elapsed the state will be returned to the default.
@@ -23636,6 +23916,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } )
 		 */
 		"iStateDuration": 7200,
+
 
 		/**
 		 * When enabled DataTables will not make a request to the server for the first
@@ -23680,6 +23961,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"iDeferLoading": null,
 
+
 		/**
 		 * Number of rows to display on a single page when using pagination. If
 		 * feature enabled (`lengthChange`) then the end user will be able to override
@@ -23698,6 +23980,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } )
 		 */
 		"iDisplayLength": 10,
+
 
 		/**
 		 * Define the starting point for data display when using DataTables with
@@ -23718,6 +24001,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } )
 		 */
 		"iDisplayStart": 0,
+
 
 		/**
 		 * By default DataTables allows keyboard navigation of the table (sorting, paging,
@@ -23741,6 +24025,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"iTabIndex": 0,
 
+
 		/**
 		 * Classes that DataTables assigns to the various components and features
 		 * that it adds to the HTML table. This allows classes to be configured
@@ -23750,6 +24035,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *  @name DataTable.defaults.classes
 		 */
 		"oClasses": {},
+
 
 		/**
 		 * All strings that DataTables uses in the user interface that it creates
@@ -23843,6 +24129,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				 */
 				"sFirst": "First",
 
+
 				/**
 				 * Text to use when using the 'full_numbers' type of pagination for the
 				 * button to take the user to the last page.
@@ -23865,6 +24152,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				 */
 				"sLast": "Last",
 
+
 				/**
 				 * Text to use for the 'next' pagination button (to take the user to the
 				 * next page).
@@ -23886,6 +24174,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 				 *    } );
 				 */
 				"sNext": "Next",
+
 
 				/**
 				 * Text to use for the 'previous' pagination button (to take the user to
@@ -23932,6 +24221,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sEmptyTable": "No data available in table",
 
+
 			/**
 			 * This string gives information to the end user about the information
 			 * that is current on display on the page. The following tokens can be
@@ -23963,6 +24253,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
 
+
 			/**
 			 * Display information string for when the table is empty. Typically the
 			 * format of this string should match `info`.
@@ -23982,6 +24273,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 *    } );
 			 */
 			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+
 
 			/**
 			 * When a user filters the information in a table, this string is appended
@@ -24004,6 +24296,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sInfoFiltered": "(filtered from _MAX_ total entries)",
 
+
 			/**
 			 * If can be useful to append extra information to the info string at times,
 			 * and this variable does exactly that. This information will be appended to
@@ -24025,6 +24318,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 *    } );
 			 */
 			"sInfoPostFix": "",
+
 
 			/**
 			 * This decimal place operator is a little different from the other
@@ -24056,6 +24350,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sDecimal": "",
 
+
 			/**
 			 * DataTables has a build in number formatter (`formatNumber`) which is
 			 * used to format large numbers that are used in the table information.
@@ -24077,6 +24372,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 *    } );
 			 */
 			"sThousands": ",",
+
 
 			/**
 			 * Detail the action that will be taken when the drop down menu for the
@@ -24118,6 +24414,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sLengthMenu": "Show _MENU_ entries",
 
+
 			/**
 			 * When using Ajax sourced data and during the first draw when DataTables is
 			 * gathering the data, this message is shown in an empty row in the table to
@@ -24141,6 +24438,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sLoadingRecords": "Loading...",
 
+
 			/**
 			 * Text which is displayed when the table is processing a user action
 			 * (usually a sort command or similar).
@@ -24160,6 +24458,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 *    } );
 			 */
 			"sProcessing": "Processing...",
+
 
 			/**
 			 * Details the actions that will be taken when the user types into the
@@ -24195,6 +24494,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sSearch": "Search:",
 
+
 			/**
 			 * Assign a `placeholder` attribute to the search `input` element
 			 *  @type string
@@ -24204,6 +24504,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 *  @name DataTable.defaults.language.searchPlaceholder
 			 */
 			"sSearchPlaceholder": "",
+
 
 			/**
 			 * All of the language information can be stored in a file on the
@@ -24229,6 +24530,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sUrl": "",
 
+
 			/**
 			 * Text shown inside the table records when the is no information to be
 			 * displayed after filtering. `emptyTable` is shown when there is simply no
@@ -24250,6 +24552,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			"sZeroRecords": "No matching records found"
 		},
+
 
 		/**
 		 * This parameter allows you to have define the global filtering state at
@@ -24274,6 +24577,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"oSearch": $.extend( {}, DataTable.models.oSearch ),
 
+
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
 		 * superseded by that provided through `ajax`, which should be used instead.
@@ -24294,6 +24598,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sAjaxDataProp": "data",
 
+
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
 		 * superseded by that provided through `ajax`, which should be used instead.
@@ -24311,6 +24616,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"sAjaxSource": null,
+
 
 		/**
 		 * This initialisation variable allows you to specify exactly where in the
@@ -24365,6 +24671,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sDom": "lfrtip",
 
+
 		/**
 		 * Search delay option. This will throttle full table searches that use the
 		 * DataTables provided search input element (it does not effect calls to
@@ -24383,6 +24690,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } )
 		 */
 		"searchDelay": null,
+
 
 		/**
 		 * DataTables features six different built-in options for the buttons to
@@ -24411,6 +24719,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sPaginationType": "simple_numbers",
 
+
 		/**
 		 * Enable horizontal scrolling. When a table is too wide to fit into a
 		 * certain layout, or you have a large number of columns in the table, you
@@ -24435,6 +24744,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sScrollX": "",
 
+
 		/**
 		 * This property can be used to force a DataTable to use more width than it
 		 * might otherwise do when x-scrolling is enabled. For example if you have a
@@ -24457,6 +24767,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"sScrollXInner": "",
+
 
 		/**
 		 * Enable vertical scrolling. Vertical scrolling will constrain the DataTable
@@ -24481,6 +24792,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sScrollY": "",
 
+
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
 		 * superseded by that provided through `ajax`, which should be used instead.
@@ -24498,6 +24810,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sServerMethod": "GET",
 
+
 		/**
 		 * DataTables makes use of renderers when displaying HTML elements for
 		 * a table. These renderers can be added or modified by plug-ins to
@@ -24514,6 +24827,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *
 		 */
 		"renderer": null,
+
 
 		/**
 		 * Set the data property name that DataTables should use to get a row's id
@@ -24581,6 +24895,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		"aDataSort": null,
 		"iDataSort": -1,
 
+
 		/**
 		 * You can control the default ordering direction, and even alter the
 		 * behaviour of the sort handler (i.e. only allow ascending ordering etc)
@@ -24619,6 +24934,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"asSorting": [ 'asc', 'desc' ],
 
+
 		/**
 		 * Enable or disable filtering on the data in this column.
 		 *  @type boolean
@@ -24650,6 +24966,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"bSearchable": true,
+
 
 		/**
 		 * Enable or disable ordering on this column.
@@ -24683,6 +25000,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bSortable": true,
 
+
 		/**
 		 * Enable or disable the display of this column.
 		 *  @type boolean
@@ -24715,6 +25033,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"bVisible": true,
 
+
 		/**
 		 * Developer definable function that is called whenever a cell is created (Ajax source,
 		 * etc) or processed for input (DOM source). This can be used as a compliment to mRender
@@ -24746,6 +25065,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"fnCreatedCell": null,
 
+
 		/**
 		 * This parameter has been replaced by `data` in DataTables to ensure naming
 		 * consistency. `dataProp` can still be used, as there is backwards
@@ -24753,6 +25073,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 * recommended that you use `data` in preference to `dataProp`.
 		 *  @name DataTable.defaults.column.dataProp
 		 */
+
 
 		/**
 		 * This property can be used to read data from any data source property,
@@ -24925,6 +25246,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"mData": null,
 
+
 		/**
 		 * This property is the rendering partner to `data` and it is suggested that
 		 * when you want to manipulate data for display (including filtering,
@@ -25046,6 +25368,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"mRender": null,
 
+
 		/**
 		 * Change the cell type created for the column - either TD cells or TH cells. This
 		 * can be useful as TH cells have semantic meaning in the table body, allowing them
@@ -25068,6 +25391,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"sCellType": "td",
+
 
 		/**
 		 * Class to give to each cell in this column.
@@ -25136,6 +25460,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sContentPadding": "",
 
+
 		/**
 		 * Allows a default value to be given for a column's data, and will be used
 		 * whenever a null data source is encountered (this can be because `data`
@@ -25177,6 +25502,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"sDefaultContent": null,
+
 
 		/**
 		 * This parameter is only used in DataTables' server-side processing. It can
@@ -25221,6 +25547,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sName": "",
 
+
 		/**
 		 * Defines a data source type for the ordering which can be used to read
 		 * real-time information from the table (updating the internally cached
@@ -25262,6 +25589,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"sSortDataType": "std",
 
+
 		/**
 		 * The title of this column.
 		 *  @type string
@@ -25296,6 +25624,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"sTitle": null,
+
 
 		/**
 		 * The type allows you to specify how the data for this column will be
@@ -25336,6 +25665,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		"sType": null,
+
 
 		/**
 		 * Defining the width of the column, this parameter may take any CSS value
@@ -25519,6 +25849,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			"bStateSave": null
 		},
 
+
 		/**
 		 * Scrolling settings for a table.
 		 *  @namespace
@@ -25622,7 +25953,9 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			"barWidth": 0
 		},
 
+
 		"ajax": null,
+
 
 		/**
 		 * Array referencing the nodes which are used for the features. The
@@ -25805,6 +26138,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *  @default []
 		 */
 		"aoInitComplete": [],
+
 
 		/**
 		 * Callbacks for modifying the settings to be stored for state saving, prior to
@@ -26175,6 +26509,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		"aoDestroyCallback": [],
 
+
 		/**
 		 * Get the number of records in the current record set, before filtering
 		 *  @type function
@@ -26295,6 +26630,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	 *  @extends DataTable.models.ext
 	 */
 
+
 	/**
 	 * DataTables extensions
 	 *
@@ -26319,6 +26655,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		buttons: {},
 
+
 		/**
 		 * Element class names
 		 *
@@ -26327,12 +26664,14 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		classes: {},
 
+
 		/**
 		 * DataTables build type (expanded by the download builder)
 		 *
 		 *  @type string
 		 */
 		builder: "-source-",
+
 
 		/**
 		 * Error reporting.
@@ -26344,6 +26683,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *  @default alert
 		 */
 		errMode: "alert",
+
 
 		/**
 		 * Feature plug-ins.
@@ -26383,6 +26723,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    } );
 		 */
 		feature: [],
+
 
 		/**
 		 * Row searching.
@@ -26444,6 +26785,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		search: [],
 
+
 		/**
 		 * Selector extensions
 		 *
@@ -26474,6 +26816,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			row: []
 		},
 
+
 		/**
 		 * Internal functions, exposed for used in plug-ins.
 		 *
@@ -26485,6 +26828,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *  @default {}
 		 */
 		internal: {},
+
 
 		/**
 		 * Legacy configuration options. Enable and disable legacy options that
@@ -26502,6 +26846,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			ajax: null
 		},
+
 
 		/**
 		 * Pagination plug-in methods.
@@ -26550,10 +26895,12 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		pager: {},
 
+
 		renderer: {
 			pageButton: {},
 			header: {}
 		},
+
 
 		/**
 		 * Ordering plug-ins - custom data source
@@ -26596,6 +26943,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 *    }
 		 */
 		order: {},
+
 
 		/**
 		 * Type based plug-ins.
@@ -26650,6 +26998,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 */
 			detect: [],
 
+
 			/**
 			 * Type based search formatting.
 			 *
@@ -26687,6 +27036,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			 *    }
 			 */
 			search: {},
+
 
 			/**
 			 * Type based ordering.
@@ -26763,6 +27113,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		_unique: 0,
 
+
 		//
 		// Depreciated
 		// The following properties are retained for backwards compatiblity only.
@@ -26777,12 +27128,14 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		fnVersionCheck: DataTable.fnVersionCheck,
 
+
 		/**
 		 * Index for what 'this' index API functions should use
 		 *  @type int
 		 *  @deprecated Since v1.10
 		 */
 		iApiIndex: 0,
+
 
 		/**
 		 * jQuery UI class container
@@ -26791,6 +27144,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		oJUIClasses: {},
 
+
 		/**
 		 * Software version
 		 *  @type string
@@ -26798,6 +27152,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		 */
 		sVersion: DataTable.version
 	};
+
 
 	//
 	// Backwards compatibility. Alias to pre 1.10 Hungarian notation counter parts
@@ -26813,6 +27168,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		oStdClasses:  _ext.classes,
 		oPagination:  _ext.pager
 	} );
+
 
 	$.extend( DataTable.ext.classes, {
 		"sTable": "dataTable",
@@ -26877,6 +27233,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		"sJUIFooter": ""
 	} );
 
+
 	var extPagination = DataTable.ext.pager;
 
 	function _numbers ( page, pages ) {
@@ -26911,6 +27268,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return numbers;
 	}
 
+
 	$.extend( extPagination, {
 		simple: function ( page, pages ) {
 			return [ 'previous', 'next' ];
@@ -26942,6 +27300,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		// Number of number buttons (including ellipsis) to show. _Must be odd!_
 		numbers_length: 7
 	} );
+
 
 	$.extend( true, DataTable.ext.renderer, {
 		pageButton: {
@@ -27116,6 +27475,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 	// html formatted numbers by `_addNumericSort()` when we know what the decimal
 	// place is
 
+
 	$.extend( DataTable.ext.type.search, {
 		html: function ( data ) {
 			return _empty(data) ?
@@ -27163,6 +27523,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		return d * 1;
 	};
 
+
 	// Add the numeric 'deformatting' functions for sorting and search. This is done
 	// in a function to provide an easy ability for the language options to add
 	// additional methods if a non-period decimal place is used.
@@ -27200,6 +27561,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			}
 		);
 	}
+
 
 	// Default sort methods
 	$.extend( _ext.type.order, {
@@ -27242,8 +27604,10 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	} );
 
+
 	// Numeric sorting types - order doesn't matter here
 	_addNumericSort( '' );
+
 
 	$.extend( true, DataTable.ext.renderer, {
 		header: {
@@ -27401,10 +27765,12 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		}
 	};
 
+
 	/*
 	 * This is really a good bit rubbish this method of exposing the internal methods
 	 * publicly... - To be fixed in 2.0 using methods on the prototype
 	 */
+
 
 	/**
 	 * Create a wrapper function for exporting an internal functions to an external API.
@@ -27421,6 +27787,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 			return DataTable.ext.internal[fn].apply( this, args );
 		};
 	}
+
 
 	/**
 	 * Reference to internal functions for use by plug-in developers. Note that
@@ -27523,6 +27890,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.19/media/js/jquery.dataT
 		                                // in 1.10, so this dead-end function is
 		                                // added to prevent errors
 	} );
+
 
 	// jQuery access
 	$.fn.dataTable = DataTable;
@@ -34791,6 +35159,7 @@ var platform = helpers$1.extend({
 	 * @param {function} listener - The listener function to remove from the event target.
 	 */
 	removeEventListener: function() {}
+
 }, implementation);
 
 core_defaults._set('global', {
@@ -45628,6 +45997,7 @@ var moment = createCommonjsModule(function (module, exports) {
     };
 
     return hooks;
+
 })));
 });
 
@@ -46988,6 +47358,7 @@ core_controller.helpers.each(
 );
 
 return src;
+
 })));
 
 
