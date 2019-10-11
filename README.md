@@ -1,5 +1,5 @@
 # bootstrap-lite
-this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a working web-demo
+this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo
 
 # live web demo
 - [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app)
@@ -41,8 +41,8 @@ this zero-dependency package will provide 1) a rolled-up css (includes glyphicon
 
 
 # cdn download
-- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.0.rollup.min.css](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.0.rollup.min.css)
-- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.0.rollup.min.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.0.rollup.min.js)
+- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.1.rollup.min.css](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.1.rollup.min.css)
+- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.1.rollup.min.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.1.rollup.min.js)
 
 
 
@@ -557,7 +557,7 @@ local.assetsDict["/assets.index.template.html"] = '\
 <meta name="viewport" content="width=device-width, initial-scale=1">\n\
 <!-- "assets.utility2.template.html" -->\n\
 <title>{{env.npm_package_name}} ({{env.npm_package_version}})</title>\n\
-<link href="assets.bootstrap-v3.4.0.rollup.min.css" rel="stylesheet">\n\
+<link href="assets.bootstrap-v3.4.1.rollup.min.css" rel="stylesheet">\n\
 <style>\n\
 /*\n\
   * Base structure\n\
@@ -1404,7 +1404,7 @@ body {\n\
 <!-- Bootstrap core JavaScript\n\
 ================================================== -->\n\
 <!-- Placed at the end of the document so the pages load faster -->\n\
-<script src="assets.bootstrap-v3.4.0.rollup.min.js"></script>\n\
+<script src="assets.bootstrap-v3.4.1.rollup.min.js"></script>\n\
 </body>\n\
 </html>\n\
 ';
@@ -1515,9 +1515,9 @@ local.http.createServer(function (req, res) {
 # package.json
 ```json
 {
-    "assetsList": "assets.bootstrap-v3.4.0.rollup.min.css assets.bootstrap-v3.4.0.rollup.min.js",
+    "assetsList": "assets.bootstrap-v3.4.1.rollup.min.css assets.bootstrap-v3.4.1.rollup.min.js",
     "author": "kai zhu <kaizhu256@gmail.com>",
-    "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a working web-demo",
+    "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo",
     "devDependencies": {
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
         "utility2": "kaizhu256/node-utility2#alpha"

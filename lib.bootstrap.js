@@ -2,7 +2,7 @@
 /*
  * lib.bootstrap.js (2019.8.24)
  * https://github.com/kaizhu256/node-bootstrap-lite
- * this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a working web-demo
+ * this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo
  *
  */
 
@@ -420,8 +420,8 @@ if (local.isBrowser) {
 // init assets
 local.assetsDict = local.assetsDict || {};
 [
-    "assets.bootstrap-v3.4.0.rollup.min.css",
-    "assets.bootstrap-v3.4.0.rollup.min.js"
+    "assets.bootstrap-v3.4.1.rollup.min.css",
+    "assets.bootstrap-v3.4.1.rollup.min.js"
 ].forEach(function (file) {
     if (globalThis.utility2_rollup) {
         return;

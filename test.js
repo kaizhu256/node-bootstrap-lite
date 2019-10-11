@@ -411,11 +411,11 @@ local.testCase_buildApp_default = function (option, onError) {
     option = {
         assetsList: [
             {
-                file: "/assets.bootstrap-v3.4.0.rollup.min.css",
-                url: "/assets.bootstrap-v3.4.0.rollup.min.css"
+                file: "/assets.bootstrap-v3.4.1.rollup.min.css",
+                url: "/assets.bootstrap-v3.4.1.rollup.min.css"
             }, {
-                file: "/assets.bootstrap-v3.4.0.rollup.min.js",
-                url: "/assets.bootstrap-v3.4.0.rollup.min.js"
+                file: "/assets.bootstrap-v3.4.1.rollup.min.js",
+                url: "/assets.bootstrap-v3.4.1.rollup.min.js"
             }
         ]
     };
