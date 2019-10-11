@@ -415,11 +415,11 @@ local.bootstrap = local;
 
 /* validateLineSortedReset */
 // run browser js-env code - init-function
-/* jslint ignore:start */
-(function () {
+local.identity(function () {
 if (!local.isBrowser) {
     return;
 }
+/* jslint ignore:start */
 let define;
 let exports;
 let module;
@@ -3110,7 +3110,6 @@ if ( !assert(function( div ) {
 }
 
 return Sizzle;
-
 })( window );
 
 
@@ -8268,7 +8267,6 @@ jQuery.extend( jQuery.event, {
 
 		jQuery.event.trigger( e, null, elem );
 	}
-
 } );
 
 jQuery.fn.extend( {
@@ -10304,7 +10302,6 @@ if (typeof jQuery === 'undefined') {
       }
     }
   })
-
 }(jQuery);
 
 /* ========================================================================
@@ -10396,7 +10393,6 @@ if (typeof jQuery === 'undefined') {
   // ==============
 
   $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
-
 }(jQuery);
 
 /* ========================================================================
@@ -10518,7 +10514,6 @@ if (typeof jQuery === 'undefined') {
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
     })
-
 }(jQuery);
 
 /* ========================================================================
@@ -10761,7 +10756,6 @@ if (typeof jQuery === 'undefined') {
       Plugin.call($carousel, $carousel.data())
     })
   })
-
 }(jQuery);
 
 /* ========================================================================
@@ -10971,7 +10965,6 @@ if (typeof jQuery === 'undefined') {
 
     Plugin.call($target, option)
   })
-
 }(jQuery);
 
 /* ========================================================================
@@ -11133,7 +11126,6 @@ if (typeof jQuery === 'undefined') {
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
     .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
-
 }(jQuery);
 
 /* ========================================================================
@@ -11353,7 +11345,6 @@ if (typeof jQuery === 'undefined') {
           .one('bsTransitionEnd', callback)
           .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
         callback()
-
     } else if (!this.isShown && this.$backdrop) {
       this.$backdrop.removeClass('in')
 
@@ -11366,7 +11357,6 @@ if (typeof jQuery === 'undefined') {
           .one('bsTransitionEnd', callbackRemove)
           .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
         callbackRemove()
-
     } else if (callback) {
       callback()
     }
@@ -11488,7 +11478,6 @@ if (typeof jQuery === 'undefined') {
     })
     Plugin.call($target, option, this)
   })
-
 }(jQuery);
 
 /* ========================================================================
@@ -12026,7 +12015,6 @@ if (typeof jQuery === 'undefined') {
            placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 } :
            placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
         /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width }
-
   }
 
   Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
@@ -12165,7 +12153,6 @@ if (typeof jQuery === 'undefined') {
     $.fn.tooltip = old
     return this
   }
-
 }(jQuery);
 
 /* ========================================================================
@@ -12285,7 +12272,6 @@ if (typeof jQuery === 'undefined') {
     $.fn.popover = old
     return this
   }
-
 }(jQuery);
 
 /* ========================================================================
@@ -12454,7 +12440,6 @@ if (typeof jQuery === 'undefined') {
       Plugin.call($spy, $spy.data())
     })
   })
-
 }(jQuery);
 
 /* ========================================================================
@@ -12606,7 +12591,6 @@ if (typeof jQuery === 'undefined') {
   $(document)
     .on('click.bs.tab.data-api', '[data-toggle="tab"]', clickHandler)
     .on('click.bs.tab.data-api', '[data-toggle="pill"]', clickHandler)
-
 }(jQuery);
 
 /* ========================================================================
@@ -12767,7 +12751,6 @@ if (typeof jQuery === 'undefined') {
       Plugin.call($spy, data)
     })
   })
-
 }(jQuery);
 
 
@@ -34808,7 +34791,6 @@ var platform = helpers$1.extend({
 	 * @param {function} listener - The listener function to remove from the event target.
 	 */
 	removeEventListener: function() {}
-
 }, implementation);
 
 core_defaults._set('global', {
@@ -45646,7 +45628,6 @@ var moment = createCommonjsModule(function (module, exports) {
     };
 
     return hooks;
-
 })));
 });
 
@@ -47007,7 +46988,6 @@ core_controller.helpers.each(
 );
 
 return src;
-
 })));
 
 
@@ -47015,8 +46995,8 @@ return src;
 /*
 file none
 */
-}.bind(globalThis)());
 /* jslint ignore:end */
+}).call(globalThis);
 
 
 
