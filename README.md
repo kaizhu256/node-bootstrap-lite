@@ -724,23 +724,23 @@ body {\n\
     utility2-comment -->\n\
 </div>\n\
 <h1 class="page-header">Dashboard</h1>\n\
-<div class="placeholders row">\n\
-    <div class="col-sm-3 col-xs-6 placeholder">\n\
+<div class="row placeholders">\n\
+    <div class="col-xs-6 col-sm-3 placeholder">\n\
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">\n\
         <h4>Label</h4>\n\
         <span class="text-muted">Something else</span>\n\
     </div>\n\
-    <div class="col-sm-3 col-xs-6 placeholder">\n\
+    <div class="col-xs-6 col-sm-3 placeholder">\n\
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">\n\
         <h4>Label</h4>\n\
         <span class="text-muted">Something else</span>\n\
     </div>\n\
-    <div class="col-sm-3 col-xs-6 placeholder">\n\
+    <div class="col-xs-6 col-sm-3 placeholder">\n\
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">\n\
         <h4>Label</h4>\n\
         <span class="text-muted">Something else</span>\n\
     </div>\n\
-    <div class="col-sm-3 col-xs-6 placeholder">\n\
+    <div class="col-xs-6 col-sm-3 placeholder">\n\
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">\n\
         <h4>Label</h4>\n\
         <span class="text-muted">Something else</span>\n\
@@ -878,12 +878,12 @@ body {\n\
     <h1>Buttons</h1>\n\
 </div>\n\
 <p>\n\
-    <button type="button" class="btn btn-default btn-lg">Default</button>\n\
+    <button type="button" class="btn btn-lg btn-default">Default</button>\n\
     <button type="button" class="btn btn-lg btn-primary">Primary</button>\n\
     <button type="button" class="btn btn-lg btn-success">Success</button>\n\
-    <button type="button" class="btn btn-info btn-lg">Info</button>\n\
+    <button type="button" class="btn btn-lg btn-info">Info</button>\n\
     <button type="button" class="btn btn-lg btn-warning">Warning</button>\n\
-    <button type="button" class="btn btn-danger btn-lg">Danger</button>\n\
+    <button type="button" class="btn btn-lg btn-danger">Danger</button>\n\
     <button type="button" class="btn btn-lg btn-link">Link</button>\n\
 </p>\n\
 <p>\n\
@@ -896,22 +896,22 @@ body {\n\
     <button type="button" class="btn btn-link">Link</button>\n\
 </p>\n\
 <p>\n\
-    <button type="button" class="btn btn-default btn-sm">Default</button>\n\
-    <button type="button" class="btn btn-primary btn-sm">Primary</button>\n\
+    <button type="button" class="btn btn-sm btn-default">Default</button>\n\
+    <button type="button" class="btn btn-sm btn-primary">Primary</button>\n\
     <button type="button" class="btn btn-sm btn-success">Success</button>\n\
-    <button type="button" class="btn btn-info btn-sm">Info</button>\n\
+    <button type="button" class="btn btn-sm btn-info">Info</button>\n\
     <button type="button" class="btn btn-sm btn-warning">Warning</button>\n\
-    <button type="button" class="btn btn-danger btn-sm">Danger</button>\n\
-    <button type="button" class="btn btn-link btn-sm">Link</button>\n\
+    <button type="button" class="btn btn-sm btn-danger">Danger</button>\n\
+    <button type="button" class="btn btn-sm btn-link">Link</button>\n\
 </p>\n\
 <p>\n\
-    <button type="button" class="btn btn-default btn-xs">Default</button>\n\
-    <button type="button" class="btn btn-primary btn-xs">Primary</button>\n\
-    <button type="button" class="btn btn-success btn-xs">Success</button>\n\
-    <button type="button" class="btn btn-info btn-xs">Info</button>\n\
-    <button type="button" class="btn btn-warning btn-xs">Warning</button>\n\
-    <button type="button" class="btn btn-danger btn-xs">Danger</button>\n\
-    <button type="button" class="btn btn-link btn-xs">Link</button>\n\
+    <button type="button" class="btn btn-xs btn-default">Default</button>\n\
+    <button type="button" class="btn btn-xs btn-primary">Primary</button>\n\
+    <button type="button" class="btn btn-xs btn-success">Success</button>\n\
+    <button type="button" class="btn btn-xs btn-info">Info</button>\n\
+    <button type="button" class="btn btn-xs btn-warning">Warning</button>\n\
+    <button type="button" class="btn btn-xs btn-danger">Danger</button>\n\
+    <button type="button" class="btn btn-xs btn-link">Link</button>\n\
 </p>\n\
 <div class="page-header">\n\
     <h1>Tables</h1>\n\
