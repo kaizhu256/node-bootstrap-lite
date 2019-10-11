@@ -415,11 +415,14 @@ local.bootstrap = local;
 
 /* validateLineSortedReset */
 // run browser js-env code - init-function
+/* jslint ignore:start */
 (function () {
 if (!local.isBrowser) {
     return;
 }
-/* jslint ignore:start */
+let define;
+let exports;
+let module;
 /*
 repo https://github.com/jquery/jquery/tree/2.2.4
 committed 2016-05-20T17:23:46Z
@@ -46970,8 +46973,8 @@ return src;
 /*
 file none
 */
+}.bind(globalThis)());
 /* jslint ignore:end */
-}());
 
 
 

@@ -1405,7 +1405,7 @@ body {\n\
 <!-- Bootstrap core JavaScript\n\
 ================================================== -->\n\
 <!-- Placed at the end of the document so the pages load faster -->\n\
-<script src="assets.bootstrap-v3.4.1.rollup.min.js"></script>\n\
+<script src="assets.bootstrap.js"></script>\n\
 </body>\n\
 </html>\n\
 ';
