@@ -61,6 +61,7 @@ this zero-dependency package will provide 1) a rolled-up css (includes glyphicon
 
 #### changelog 2019.8.24
 - npm publish 2019.8.24
+- rename file assets.bootstrap-v3.4.1.rollup.min.xxx to lib.bootstrap.xxx
 - add alias chartjs-lite datatable-lite
 - add assets for jquery.datatables-v1.10.19, chartjs-v2.8.0
 - update to bootstrap v3.4.1
