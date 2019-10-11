@@ -653,12 +653,12 @@ body {\n\
 }\n\
 </style>\n\
 </head>\n\
-<!-- http://getbootstrap.com/docs/3.3/examples/dashboard/ -->\n\
 <body>\n\
-<nav class="navbar navbar-fixed-top navbar-inverse">\n\
+<!-- https://getbootstrap.com/docs/3.4/examples/dashboard/ -->\n\
+<nav class="navbar navbar-inverse navbar-fixed-top">\n\
     <div class="container-fluid">\n\
         <div class="navbar-header">\n\
-            <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">\n\
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">\n\
                 <span class="sr-only">Toggle navigation</span>\n\
                 <span class="icon-bar"></span>\n\
                 <span class="icon-bar"></span>\n\
@@ -666,7 +666,7 @@ body {\n\
             </button>\n\
             <a class="navbar-brand" href="#">Project name</a>\n\
         </div>\n\
-        <div id="navbar" class="collapse navbar-collapse">\n\
+        <div id="navbar" class="navbar-collapse collapse">\n\
             <ul class="nav navbar-nav navbar-right">\n\
                 <li><a href="#">Dashboard</a></li>\n\
                 <li><a href="#">Settings</a></li>\n\
