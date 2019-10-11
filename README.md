@@ -703,9 +703,6 @@ body {\n\
             </ul>\n\
         </div>\n\
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">\n\
-\n\
-\n\
-\n\
 <!-- Main jumbotron for a primary marketing message or call to action -->\n\
 <div class="jumbotron">\n\
     <h1>\n\
