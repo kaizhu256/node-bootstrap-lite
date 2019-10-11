@@ -1054,7 +1054,7 @@ body {\n\
 <div class="page-header">\n\
     <h1>Thumbnails</h1>\n\
 </div>\n\
-<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzIwMHgyMDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjUzMTZiODJmOSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2NTMxNmI4MmY5Ij48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc0LjA0Njg3NSIgeT0iMTA0LjM5Njg3NSI+MjAweDIwMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true">\n\
+<img data-src="holder.js/200x200" class="img-thumbnail" alt="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera">\n\
 <div class="page-header">\n\
     <h1>Labels</h1>\n\
 </div>\n\
@@ -1128,8 +1128,8 @@ body {\n\
 <div class="page-header">\n\
     <h1>Dropdown menus</h1>\n\
 </div>\n\
-<div class="clearfix dropdown theme-dropdown">\n\
-    <a id="dropdownMenu1" href="#" class="dropdown-toggle sr-only" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\n\
+<div class="dropdown theme-dropdown clearfix">\n\
+    <a id="dropdownMenu1" href="#" class="sr-only dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\n\
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">\n\
         <li class="active"><a href="#">Action</a></li>\n\
         <li><a href="#">Another action</a></li>\n\
@@ -1157,7 +1157,7 @@ body {\n\
 <nav class="navbar navbar-default">\n\
     <div class="container">\n\
         <div class="navbar-header">\n\
-            <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">\n\
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">\n\
                 <span class="sr-only">Toggle navigation</span>\n\
                 <span class="icon-bar"></span>\n\
                 <span class="icon-bar"></span>\n\
@@ -1165,11 +1165,11 @@ body {\n\
             </button>\n\
             <a class="navbar-brand" href="#">Project name</a>\n\
         </div>\n\
-        <div class="collapse navbar-collapse">\n\
+        <div class="navbar-collapse collapse">\n\
             <ul class="nav navbar-nav">\n\
                 <li class="active"><a href="#">Home</a></li>\n\
-                <li><a href="#about">About</a></li>\n\
-                <li><a href="#contact">Contact</a></li>\n\
+                <li><a href="#">About</a></li>\n\
+                <li><a href="#">Contact</a></li>\n\
                 <li class="dropdown">\n\
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\n\
                     <ul class="dropdown-menu">\n\
@@ -1189,7 +1189,7 @@ body {\n\
 <nav class="navbar navbar-inverse">\n\
     <div class="container">\n\
         <div class="navbar-header">\n\
-            <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">\n\
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">\n\
                 <span class="sr-only">Toggle navigation</span>\n\
                 <span class="icon-bar"></span>\n\
                 <span class="icon-bar"></span>\n\
@@ -1197,11 +1197,11 @@ body {\n\
             </button>\n\
             <a class="navbar-brand" href="#">Project name</a>\n\
         </div>\n\
-        <div class="collapse navbar-collapse">\n\
+        <div class="navbar-collapse collapse">\n\
             <ul class="nav navbar-nav">\n\
                 <li class="active"><a href="#">Home</a></li>\n\
-                <li><a href="#about">About</a></li>\n\
-                <li><a href="#contact">Contact</a></li>\n\
+                <li><a href="#">About</a></li>\n\
+                <li><a href="#">Contact</a></li>\n\
                 <li class="dropdown">\n\
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\n\
                     <ul class="dropdown-menu">\n\
@@ -1274,7 +1274,7 @@ body {\n\
     </div><!-- /.col-sm-4 -->\n\
     <div class="col-sm-4">\n\
         <div class="list-group">\n\
-            <a href="#" class="active list-group-item">\n\
+            <a href="#" class="list-group-item active">\n\
                 Cras justo odio\n\
             </a>\n\
             <a href="#" class="list-group-item">Dapibus ac facilisis in</a>\n\
@@ -1285,7 +1285,492 @@ body {\n\
     </div><!-- /.col-sm-4 -->\n\
     <div class="col-sm-4">\n\
         <div class="list-group">\n\
-            <a href="#" class="active list-group-item">\n\
+            <a href="#" class="list-group-item active">\n\
+                <h4 class="list-group-item-heading">List group item heading</h4>\n\
+                <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n\
+            </a>\n\
+            <a href="#" class="list-group-item">\n\
+                <h4 class="list-group-item-heading">List group item heading</h4>\n\
+                <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n\
+            </a>\n\
+            <a href="#" class="list-group-item">\n\
+                <h4 class="list-group-item-heading">List group item heading</h4>\n\
+                <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n\
+            </a>\n\
+        </div>\n\
+    </div><!-- /.col-sm-4 -->\n\
+</div>\n\
+<div class="page-header">\n\
+    <h1>Panels</h1>\n\
+</div>\n\
+<div class="row">\n\
+    <div class="col-sm-4">\n\
+        <div class="panel panel-default">\n\
+            <div class="panel-heading">\n\
+                <h3 class="panel-title">Panel title</h3>\n\
+            </div>\n\
+            <div class="panel-body">\n\
+                Panel content\n\
+            </div>\n\
+        </div>\n\
+        <div class="panel panel-primary">\n\
+            <div class="panel-heading">\n\
+                <h3 class="panel-title">Panel title</h3>\n\
+            </div>\n\
+            <div class="panel-body">\n\
+                Panel content\n\
+            </div>\n\
+        </div>\n\
+    </div><!-- /.col-sm-4 -->\n\
+    <div class="col-sm-4">\n\
+        <div class="panel panel-success">\n\
+            <div class="panel-heading">\n\
+                <h3 class="panel-title">Panel title</h3>\n\
+            </div>\n\
+            <div class="panel-body">\n\
+                Panel content\n\
+            </div>\n\
+        </div>\n\
+        <div class="panel panel-info">\n\
+            <div class="panel-heading">\n\
+                <h3 class="panel-title">Panel title</h3>\n\
+            </div>\n\
+            <div class="panel-body">\n\
+                Panel content\n\
+            </div>\n\
+        </div>\n\
+    </div><!-- /.col-sm-4 -->\n\
+    <div class="col-sm-4">\n\
+        <div class="panel panel-warning">\n\
+            <div class="panel-heading">\n\
+                <h3 class="panel-title">Panel title</h3>\n\
+            </div>\n\
+            <div class="panel-body">\n\
+                Panel content\n\
+            </div>\n\
+        </div>\n\
+        <div class="panel panel-danger">\n\
+            <div class="panel-heading">\n\
+                <h3 class="panel-title">Panel title</h3>\n\
+            </div>\n\
+            <div class="panel-body">\n\
+                Panel content\n\
+            </div>\n\
+        </div>\n\
+    </div><!-- /.col-sm-4 -->\n\
+</div>\n\
+<div class="page-header">\n\
+    <h1>Buttons</h1>\n\
+</div>\n\
+<p>\n\
+    <button type="button" class="btn btn-lg btn-default">Default</button>\n\
+    <button type="button" class="btn btn-lg btn-primary">Primary</button>\n\
+    <button type="button" class="btn btn-lg btn-success">Success</button>\n\
+    <button type="button" class="btn btn-lg btn-info">Info</button>\n\
+    <button type="button" class="btn btn-lg btn-warning">Warning</button>\n\
+    <button type="button" class="btn btn-lg btn-danger">Danger</button>\n\
+    <button type="button" class="btn btn-lg btn-link">Link</button>\n\
+</p>\n\
+<p>\n\
+    <button type="button" class="btn btn-default">Default</button>\n\
+    <button type="button" class="btn btn-primary">Primary</button>\n\
+    <button type="button" class="btn btn-success">Success</button>\n\
+    <button type="button" class="btn btn-info">Info</button>\n\
+    <button type="button" class="btn btn-warning">Warning</button>\n\
+    <button type="button" class="btn btn-danger">Danger</button>\n\
+    <button type="button" class="btn btn-link">Link</button>\n\
+</p>\n\
+<p>\n\
+    <button type="button" class="btn btn-sm btn-default">Default</button>\n\
+    <button type="button" class="btn btn-sm btn-primary">Primary</button>\n\
+    <button type="button" class="btn btn-sm btn-success">Success</button>\n\
+    <button type="button" class="btn btn-sm btn-info">Info</button>\n\
+    <button type="button" class="btn btn-sm btn-warning">Warning</button>\n\
+    <button type="button" class="btn btn-sm btn-danger">Danger</button>\n\
+    <button type="button" class="btn btn-sm btn-link">Link</button>\n\
+</p>\n\
+<p>\n\
+    <button type="button" class="btn btn-xs btn-default">Default</button>\n\
+    <button type="button" class="btn btn-xs btn-primary">Primary</button>\n\
+    <button type="button" class="btn btn-xs btn-success">Success</button>\n\
+    <button type="button" class="btn btn-xs btn-info">Info</button>\n\
+    <button type="button" class="btn btn-xs btn-warning">Warning</button>\n\
+    <button type="button" class="btn btn-xs btn-danger">Danger</button>\n\
+    <button type="button" class="btn btn-xs btn-link">Link</button>\n\
+</p>\n\
+<div class="page-header">\n\
+    <h1>Tables</h1>\n\
+</div>\n\
+<div class="row">\n\
+    <div class="col-md-6">\n\
+        <table class="table">\n\
+            <thead>\n\
+                <tr>\n\
+                    <th>#</th>\n\
+                    <th>First Name</th>\n\
+                    <th>Last Name</th>\n\
+                    <th>Username</th>\n\
+                </tr>\n\
+            </thead>\n\
+            <tbody>\n\
+                <tr>\n\
+                    <td>1</td>\n\
+                    <td>Mark</td>\n\
+                    <td>Otto</td>\n\
+                    <td>@mdo</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>2</td>\n\
+                    <td>Jacob</td>\n\
+                    <td>Thornton</td>\n\
+                    <td>@fat</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>3</td>\n\
+                    <td>Larry</td>\n\
+                    <td>the Bird</td>\n\
+                    <td>@twitter</td>\n\
+                </tr>\n\
+            </tbody>\n\
+        </table>\n\
+    </div>\n\
+    <div class="col-md-6">\n\
+        <table class="table table-striped">\n\
+            <thead>\n\
+                <tr>\n\
+                    <th>#</th>\n\
+                    <th>First Name</th>\n\
+                    <th>Last Name</th>\n\
+                    <th>Username</th>\n\
+                </tr>\n\
+            </thead>\n\
+            <tbody>\n\
+                <tr>\n\
+                    <td>1</td>\n\
+                    <td>Mark</td>\n\
+                    <td>Otto</td>\n\
+                    <td>@mdo</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>2</td>\n\
+                    <td>Jacob</td>\n\
+                    <td>Thornton</td>\n\
+                    <td>@fat</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>3</td>\n\
+                    <td>Larry</td>\n\
+                    <td>the Bird</td>\n\
+                    <td>@twitter</td>\n\
+                </tr>\n\
+            </tbody>\n\
+        </table>\n\
+    </div>\n\
+</div>\n\
+<div class="row">\n\
+    <div class="col-md-6">\n\
+        <table class="table table-bordered">\n\
+            <thead>\n\
+                <tr>\n\
+                    <th>#</th>\n\
+                    <th>First Name</th>\n\
+                    <th>Last Name</th>\n\
+                    <th>Username</th>\n\
+                </tr>\n\
+            </thead>\n\
+            <tbody>\n\
+                <tr>\n\
+                    <td rowspan="2">1</td>\n\
+                    <td>Mark</td>\n\
+                    <td>Otto</td>\n\
+                    <td>@mdo</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>Mark</td>\n\
+                    <td>Otto</td>\n\
+                    <td>@TwBootstrap</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>2</td>\n\
+                    <td>Jacob</td>\n\
+                    <td>Thornton</td>\n\
+                    <td>@fat</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>3</td>\n\
+                    <td colspan="2">Larry the Bird</td>\n\
+                    <td>@twitter</td>\n\
+                </tr>\n\
+            </tbody>\n\
+        </table>\n\
+    </div>\n\
+    <div class="col-md-6">\n\
+        <table class="table table-condensed">\n\
+            <thead>\n\
+                <tr>\n\
+                    <th>#</th>\n\
+                    <th>First Name</th>\n\
+                    <th>Last Name</th>\n\
+                    <th>Username</th>\n\
+                </tr>\n\
+            </thead>\n\
+            <tbody>\n\
+                <tr>\n\
+                    <td>1</td>\n\
+                    <td>Mark</td>\n\
+                    <td>Otto</td>\n\
+                    <td>@mdo</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>2</td>\n\
+                    <td>Jacob</td>\n\
+                    <td>Thornton</td>\n\
+                    <td>@fat</td>\n\
+                </tr>\n\
+                <tr>\n\
+                    <td>3</td>\n\
+                    <td colspan="2">Larry the Bird</td>\n\
+                    <td>@twitter</td>\n\
+                </tr>\n\
+            </tbody>\n\
+        </table>\n\
+    </div>\n\
+</div>\n\
+<div class="page-header">\n\
+    <h1>Thumbnails</h1>\n\
+</div>\n\
+<img data-src="holder.js/200x200" class="img-thumbnail" alt="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera">\n\
+<div class="page-header">\n\
+    <h1>Labels</h1>\n\
+</div>\n\
+<h1>\n\
+    <span class="label label-default">Default</span>\n\
+    <span class="label label-primary">Primary</span>\n\
+    <span class="label label-success">Success</span>\n\
+    <span class="label label-info">Info</span>\n\
+    <span class="label label-warning">Warning</span>\n\
+    <span class="label label-danger">Danger</span>\n\
+</h1>\n\
+<h2>\n\
+    <span class="label label-default">Default</span>\n\
+    <span class="label label-primary">Primary</span>\n\
+    <span class="label label-success">Success</span>\n\
+    <span class="label label-info">Info</span>\n\
+    <span class="label label-warning">Warning</span>\n\
+    <span class="label label-danger">Danger</span>\n\
+</h2>\n\
+<h3>\n\
+    <span class="label label-default">Default</span>\n\
+    <span class="label label-primary">Primary</span>\n\
+    <span class="label label-success">Success</span>\n\
+    <span class="label label-info">Info</span>\n\
+    <span class="label label-warning">Warning</span>\n\
+    <span class="label label-danger">Danger</span>\n\
+</h3>\n\
+<h4>\n\
+    <span class="label label-default">Default</span>\n\
+    <span class="label label-primary">Primary</span>\n\
+    <span class="label label-success">Success</span>\n\
+    <span class="label label-info">Info</span>\n\
+    <span class="label label-warning">Warning</span>\n\
+    <span class="label label-danger">Danger</span>\n\
+</h4>\n\
+<h5>\n\
+    <span class="label label-default">Default</span>\n\
+    <span class="label label-primary">Primary</span>\n\
+    <span class="label label-success">Success</span>\n\
+    <span class="label label-info">Info</span>\n\
+    <span class="label label-warning">Warning</span>\n\
+    <span class="label label-danger">Danger</span>\n\
+</h5>\n\
+<h6>\n\
+    <span class="label label-default">Default</span>\n\
+    <span class="label label-primary">Primary</span>\n\
+    <span class="label label-success">Success</span>\n\
+    <span class="label label-info">Info</span>\n\
+    <span class="label label-warning">Warning</span>\n\
+    <span class="label label-danger">Danger</span>\n\
+</h6>\n\
+<p>\n\
+    <span class="label label-default">Default</span>\n\
+    <span class="label label-primary">Primary</span>\n\
+    <span class="label label-success">Success</span>\n\
+    <span class="label label-info">Info</span>\n\
+    <span class="label label-warning">Warning</span>\n\
+    <span class="label label-danger">Danger</span>\n\
+</p>\n\
+<div class="page-header">\n\
+    <h1>Badges</h1>\n\
+</div>\n\
+<p>\n\
+    <a href="#">Inbox <span class="badge">42</span></a>\n\
+</p>\n\
+<ul class="nav nav-pills" role="tablist">\n\
+    <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>\n\
+    <li role="presentation"><a href="#">Profile</a></li>\n\
+    <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>\n\
+</ul>\n\
+<div class="page-header">\n\
+    <h1>Dropdown menus</h1>\n\
+</div>\n\
+<div class="dropdown theme-dropdown clearfix">\n\
+    <a id="dropdownMenu1" href="#" class="sr-only dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\n\
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">\n\
+        <li class="active"><a href="#">Action</a></li>\n\
+        <li><a href="#">Another action</a></li>\n\
+        <li><a href="#">Something else here</a></li>\n\
+        <li role="separator" class="divider"></li>\n\
+        <li><a href="#">Separated link</a></li>\n\
+    </ul>\n\
+</div>\n\
+<div class="page-header">\n\
+    <h1>Navs</h1>\n\
+</div>\n\
+<ul class="nav nav-tabs" role="tablist">\n\
+    <li role="presentation" class="active"><a href="#">Home</a></li>\n\
+    <li role="presentation"><a href="#">Profile</a></li>\n\
+    <li role="presentation"><a href="#">Messages</a></li>\n\
+</ul>\n\
+<ul class="nav nav-pills" role="tablist">\n\
+    <li role="presentation" class="active"><a href="#">Home</a></li>\n\
+    <li role="presentation"><a href="#">Profile</a></li>\n\
+    <li role="presentation"><a href="#">Messages</a></li>\n\
+</ul>\n\
+<div class="page-header">\n\
+    <h1>Navbars</h1>\n\
+</div>\n\
+<nav class="navbar navbar-default">\n\
+    <div class="container">\n\
+        <div class="navbar-header">\n\
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">\n\
+                <span class="sr-only">Toggle navigation</span>\n\
+                <span class="icon-bar"></span>\n\
+                <span class="icon-bar"></span>\n\
+                <span class="icon-bar"></span>\n\
+            </button>\n\
+            <a class="navbar-brand" href="#">Project name</a>\n\
+        </div>\n\
+        <div class="navbar-collapse collapse">\n\
+            <ul class="nav navbar-nav">\n\
+                <li class="active"><a href="#">Home</a></li>\n\
+                <li><a href="#">About</a></li>\n\
+                <li><a href="#">Contact</a></li>\n\
+                <li class="dropdown">\n\
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\n\
+                    <ul class="dropdown-menu">\n\
+                        <li><a href="#">Action</a></li>\n\
+                        <li><a href="#">Another action</a></li>\n\
+                        <li><a href="#">Something else here</a></li>\n\
+                        <li role="separator" class="divider"></li>\n\
+                        <li class="dropdown-header">Nav header</li>\n\
+                        <li><a href="#">Separated link</a></li>\n\
+                        <li><a href="#">One more separated link</a></li>\n\
+                    </ul>\n\
+                </li>\n\
+            </ul>\n\
+        </div><!--/.nav-collapse -->\n\
+    </div>\n\
+</nav>\n\
+<nav class="navbar navbar-inverse">\n\
+    <div class="container">\n\
+        <div class="navbar-header">\n\
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">\n\
+                <span class="sr-only">Toggle navigation</span>\n\
+                <span class="icon-bar"></span>\n\
+                <span class="icon-bar"></span>\n\
+                <span class="icon-bar"></span>\n\
+            </button>\n\
+            <a class="navbar-brand" href="#">Project name</a>\n\
+        </div>\n\
+        <div class="navbar-collapse collapse">\n\
+            <ul class="nav navbar-nav">\n\
+                <li class="active"><a href="#">Home</a></li>\n\
+                <li><a href="#">About</a></li>\n\
+                <li><a href="#">Contact</a></li>\n\
+                <li class="dropdown">\n\
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\n\
+                    <ul class="dropdown-menu">\n\
+                        <li><a href="#">Action</a></li>\n\
+                        <li><a href="#">Another action</a></li>\n\
+                        <li><a href="#">Something else here</a></li>\n\
+                        <li role="separator" class="divider"></li>\n\
+                        <li class="dropdown-header">Nav header</li>\n\
+                        <li><a href="#">Separated link</a></li>\n\
+                        <li><a href="#">One more separated link</a></li>\n\
+                    </ul>\n\
+                </li>\n\
+            </ul>\n\
+        </div><!--/.nav-collapse -->\n\
+    </div>\n\
+</nav>\n\
+<div class="page-header">\n\
+    <h1>Alerts</h1>\n\
+</div>\n\
+<div class="alert alert-success" role="alert">\n\
+    <strong>Well done!</strong> You successfully read this important alert message.\n\
+</div>\n\
+<div class="alert alert-info" role="alert">\n\
+    <strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.\n\
+</div>\n\
+<div class="alert alert-warning" role="alert">\n\
+    <strong>Warning!</strong> Best check yo self, you\'re not looking too good.\n\
+</div>\n\
+<div class="alert alert-danger" role="alert">\n\
+    <strong>Oh snap!</strong> Change a few things up and try submitting again.\n\
+</div>\n\
+<div class="page-header">\n\
+    <h1>Progress bars</h1>\n\
+</div>\n\
+<div class="progress">\n\
+    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60% Complete</span></div>\n\
+</div>\n\
+<div class="progress">\n\
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"><span class="sr-only">40% Complete (success)</span></div>\n\
+</div>\n\
+<div class="progress">\n\
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"><span class="sr-only">20% Complete</span></div>\n\
+</div>\n\
+<div class="progress">\n\
+    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"><span class="sr-only">60% Complete (warning)</span></div>\n\
+</div>\n\
+<div class="progress">\n\
+    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"><span class="sr-only">80% Complete (danger)</span></div>\n\
+</div>\n\
+<div class="progress">\n\
+    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"><span class="sr-only">60% Complete</span></div>\n\
+</div>\n\
+<div class="progress">\n\
+    <div class="progress-bar progress-bar-success" style="width: 35%"><span class="sr-only">35% Complete (success)</span></div>\n\
+    <div class="progress-bar progress-bar-warning" style="width: 20%"><span class="sr-only">20% Complete (warning)</span></div>\n\
+    <div class="progress-bar progress-bar-danger" style="width: 10%"><span class="sr-only">10% Complete (danger)</span></div>\n\
+</div>\n\
+<div class="page-header">\n\
+    <h1>List groups</h1>\n\
+</div>\n\
+<div class="row">\n\
+    <div class="col-sm-4">\n\
+        <ul class="list-group">\n\
+            <li class="list-group-item">Cras justo odio</li>\n\
+            <li class="list-group-item">Dapibus ac facilisis in</li>\n\
+            <li class="list-group-item">Morbi leo risus</li>\n\
+            <li class="list-group-item">Porta ac consectetur ac</li>\n\
+            <li class="list-group-item">Vestibulum at eros</li>\n\
+        </ul>\n\
+    </div><!-- /.col-sm-4 -->\n\
+    <div class="col-sm-4">\n\
+        <div class="list-group">\n\
+            <a href="#" class="list-group-item active">\n\
+                Cras justo odio\n\
+            </a>\n\
+            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>\n\
+            <a href="#" class="list-group-item">Morbi leo risus</a>\n\
+            <a href="#" class="list-group-item">Porta ac consectetur ac</a>\n\
+            <a href="#" class="list-group-item">Vestibulum at eros</a>\n\
+        </div>\n\
+    </div><!-- /.col-sm-4 -->\n\
+    <div class="col-sm-4">\n\
+        <div class="list-group">\n\
+            <a href="#" class="list-group-item active">\n\
                 <h4 class="list-group-item-heading">List group item heading</h4>\n\
                 <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n\
             </a>\n\
@@ -1371,32 +1856,29 @@ body {\n\
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">\n\
     <ol class="carousel-indicators">\n\
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>\n\
-        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>\n\
-        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>\n\
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>\n\
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>\n\
     </ol>\n\
     <div class="carousel-inner" role="listbox">\n\
-        <div class="active item">\n\
-            <img data-src="holder.js/1140x500/auto/#777:#555/text:First slide" alt="First slide [1140x500]" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTE0MCIgaGVpZ2h0PSI1MDAiIHZpZXdCb3g9IjAgMCAxMTQwIDUwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvMTE0MHg1MDAvYXV0by8jNzc3OiM1NTUvdGV4dDpGaXJzdCBzbGlkZQpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE2NTMwY2ZjZGFlIHRleHQgeyBmaWxsOiM1NTU7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NTdwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTY1MzBjZmNkYWUiPjxyZWN0IHdpZHRoPSIxMTQwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyIvPjxnPjx0ZXh0IHg9IjM5MC41MDc4MTI1IiB5PSIyNzUuMzk2ODc1Ij5GaXJzdCBzbGlkZTwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true">\n\
+        <div class="item active">\n\
+            <img data-src="holder.js/1140x500/auto/#777:#555/text:First slide" alt="First slide">\n\
         </div>\n\
         <div class="item">\n\
-            <img data-src="holder.js/1140x500/auto/#666:#444/text:Second slide" alt="Second slide [1140x500]" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTE0MCIgaGVpZ2h0PSI1MDAiIHZpZXdCb3g9IjAgMCAxMTQwIDUwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvMTE0MHg1MDAvYXV0by8jNjY2OiM0NDQvdGV4dDpTZWNvbmQgc2xpZGUKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjUzMGNmNzAxOSB0ZXh0IHsgZmlsbDojNDQ0O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjU3cHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2NTMwY2Y3MDE5Ij48cmVjdCB3aWR0aD0iMTE0MCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiM2NjYiLz48Zz48dGV4dCB4PSIzMzUuNjAxNTYyNSIgeT0iMjc1LjM5Njg3NSI+U2Vjb25kIHNsaWRlPC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true">\n\
+            <img data-src="holder.js/1140x500/auto/#666:#444/text:Second slide" alt="Second slide">\n\
         </div>\n\
         <div class="item">\n\
-            <img data-src="holder.js/1140x500/auto/#555:#333/text:Third slide" alt="Third slide [1140x500]" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTE0MCIgaGVpZ2h0PSI1MDAiIHZpZXdCb3g9IjAgMCAxMTQwIDUwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvMTE0MHg1MDAvYXV0by8jNTU1OiMzMzMvdGV4dDpUaGlyZCBzbGlkZQpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE2NTMwY2ZjYzFjIHRleHQgeyBmaWxsOiMzMzM7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NTdwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTY1MzBjZmNjMWMiPjxyZWN0IHdpZHRoPSIxMTQwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjxnPjx0ZXh0IHg9IjM3Ny44NjcxODc1IiB5PSIyNzUuMzk2ODc1Ij5UaGlyZCBzbGlkZTwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true">\n\
+            <img data-src="holder.js/1140x500/auto/#555:#333/text:Third slide" alt="Third slide">\n\
         </div>\n\
     </div>\n\
-    <a class="carousel-control left" href="#carousel-example-generic" role="button" data-slide="prev">\n\
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">\n\
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>\n\
         <span class="sr-only">Previous</span>\n\
     </a>\n\
-    <a class="carousel-control right" href="#carousel-example-generic" role="button" data-slide="next">\n\
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">\n\
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>\n\
         <span class="sr-only">Next</span>\n\
     </a>\n\
 </div>\n\
-\n\
-\n\
-\n\
         </div>\n\
     </div>\n\
 </div>\n\
