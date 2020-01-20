@@ -1,9 +1,7 @@
 {
-    "assetsList": "assets.bootstrap-v3.4.0.rollup.min.css assets.bootstrap-v3.4.0.rollup.min.js",
     "author": "kai zhu <kaizhu256@gmail.com>",
-    "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a working web-demo",
+    "description": "this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo",
     "devDependencies": {
-        "electron-lite": "kaizhu256/node-electron-lite#alpha",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
     "engines": {
@@ -35,5 +33,5 @@
         "test": "./npm_scripts.sh",
         "utility2": "./npm_scripts.sh"
     },
-    "version": "2019.1.30"
+    "version": "2020.1.20"
 }
