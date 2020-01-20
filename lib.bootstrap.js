@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * lib.bootstrap.js (2019.8.24)
+ * lib.bootstrap.js (2020.1.20)
  * https://github.com/kaizhu256/node-bootstrap-lite
  * this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo
  *

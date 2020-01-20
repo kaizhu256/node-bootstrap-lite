@@ -59,8 +59,8 @@ this zero-dependency package will provide 1) a rolled-up css (includes glyphicon
 - improve apidoc with jquery-plugin documentation
 - none
 
-#### changelog 2019.8.24
-- npm publish 2019.8.24
+#### changelog 2020.1.20
+- npm publish 2020.1.20
 - rename file assets.bootstrap-v3.4.1.rollup.min.xxx to lib.bootstrap.xxx
 - add alias chartjs-lite datatable-lite
 - add assets for jquery.datatables-v1.10.19, chartjs-v2.8.0
@@ -2530,7 +2530,7 @@ local.http.createServer(function (req, res) {
         "test": "./npm_scripts.sh",
         "utility2": "./npm_scripts.sh"
     },
-    "version": "2019.8.24"
+    "version": "2020.1.20"
 }
 ```
 
