@@ -1,9 +1,9 @@
-<svg height="12926" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="12926" fill="#555" width="720"></rect>
+<svg height="12958" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="12958" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
 <tspan x="10" y="26"></tspan>
 
-<tspan x="10" y="42">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-01-20T21:42:24.013Z - npm-testing /tmp/npmTe\</tspan>
+<tspan x="10" y="42">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-01-20T21:59:18.261Z - npm-testing /tmp/npmTe\</tspan>
 <tspan x="10" y="58">stPublished/node_modules/bootstrap-lite</tspan>
 
 <tspan x="10" y="74"></tspan>
@@ -74,9 +74,9 @@
 <tspan x="10" y="666">    at Object.local.jslintAndPrint (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modul\</tspan>
 <tspan x="10" y="682">es/utility2/lib.jslint.js:16814:38)</tspan>
 
-<tspan x="10" y="698">http-server listening on port 43465</tspan>
+<tspan x="10" y="698">http-server listening on port 44259</tspan>
 
-<tspan x="10" y="714">testRunDefault - 13 ms - [node test-case 1 of 7 passed] - testCase_buildApidoc_default</tspan>
+<tspan x="10" y="714">testRunDefault - 5 ms - [node test-case 1 of 7 passed] - testCase_buildApidoc_default</tspan>
 
 <tspan x="10" y="730">jslint /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md.&lt;```javascript&gt;.js</tspan>
 
@@ -141,70 +141,70 @@
 <tspan x="10" y="1306">    at Object.local.jslintAndPrint (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modul\</tspan>
 <tspan x="10" y="1322">es/utility2/lib.jslint.js:16949:18)</tspan>
 
-<tspan x="10" y="1338">testRunDefault - 75 ms - [node test-case 2 of 7 passed] - testCase_buildLib_default</tspan>
+<tspan x="10" y="1338">testRunDefault - 43 ms - [node test-case 2 of 7 passed] - testCase_buildLib_default</tspan>
 
-<tspan x="10" y="1354">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md.autofix.old	2020-01-20 21:42:24.\</tspan>
-<tspan x="10" y="1370">551539976 +0000</tspan>
+<tspan x="10" y="1354">testRunDefault - 59 ms - [node test-case 3 of 7 passed] - testCase_buildReadme_default</tspan>
 
-<tspan x="10" y="1386">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md	2020-01-20 21:42:24.547539976 +0\</tspan>
-<tspan x="10" y="1402">000</tspan>
+<tspan x="10" y="1370">testRunDefault - 60 ms - [node test-case 4 of 7 passed] - testCase_buildTest_default</tspan>
 
-<tspan x="10" y="1418">@@ -1181,8 +1181,7 @@</tspan>
+<tspan x="10" y="1386">testRunDefault - 60 ms - [node test-case 5 of 7 passed] - testCase_nop_default</tspan>
 
-<tspan x="10" y="1434"> ).replace((/^#!\//), "// ");</tspan>
+<tspan x="10" y="1402">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md.autofix.old	2020-01-20 21:59:18.\</tspan>
+<tspan x="10" y="1418">844845497 +0000</tspan>
 
-<tspan x="10" y="1450"> /* jslint ignore:end */</tspan>
+<tspan x="10" y="1434">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md	2020-01-20 21:59:18.844845497 +0\</tspan>
+<tspan x="10" y="1450">000</tspan>
 
-<tspan x="10" y="1466"> /* validateLineSortedReset */</tspan>
+<tspan x="10" y="1466">@@ -1181,8 +1181,7 @@</tspan>
 
-<tspan x="10" y="1482">-local.assetsDict["/"] = local.assetsDict["/assets.index.template.html"]</tspan>
+<tspan x="10" y="1482"> ).replace((/^#!\//), "// ");</tspan>
 
-<tspan x="10" y="1498">-.replace((</tspan>
+<tspan x="10" y="1498"> /* jslint ignore:end */</tspan>
 
-<tspan x="10" y="1514">+local.assetsDict["/"] = local.assetsDict["/assets.index.template.html"].replace((</tspan>
+<tspan x="10" y="1514"> /* validateLineSortedReset */</tspan>
 
-<tspan x="10" y="1530">     /\{\{env\.(\w+?)\}\}/g</tspan>
+<tspan x="10" y="1530">-local.assetsDict["/"] = local.assetsDict["/assets.index.template.html"]</tspan>
 
-<tspan x="10" y="1546"> ), function (match0, match1) {</tspan>
+<tspan x="10" y="1546">-.replace((</tspan>
 
-<tspan x="10" y="1562">     switch (match1) {</tspan>
+<tspan x="10" y="1562">+local.assetsDict["/"] = local.assetsDict["/assets.index.template.html"].replace((</tspan>
 
-<tspan x="10" y="1578">@@ -1231,9 +1230,6 @@</tspan>
+<tspan x="10" y="1578">     /\{\{env\.(\w+?)\}\}/g</tspan>
 
-<tspan x="10" y="1594">     response.end();</tspan>
+<tspan x="10" y="1594"> ), function (match0, match1) {</tspan>
 
-<tspan x="10" y="1610"> }).listen(process.env.PORT);</tspan>
+<tspan x="10" y="1610">     switch (match1) {</tspan>
 
-<tspan x="10" y="1626"> }());</tspan>
+<tspan x="10" y="1626">@@ -1231,9 +1230,6 @@</tspan>
 
-<tspan x="10" y="1642">-</tspan>
+<tspan x="10" y="1642">     response.end();</tspan>
 
-<tspan x="10" y="1658">-</tspan>
+<tspan x="10" y="1658"> }).listen(process.env.PORT);</tspan>
 
-<tspan x="10" y="1674">-</tspan>
+<tspan x="10" y="1674"> }());</tspan>
 
-<tspan x="10" y="1690"> }());</tspan>
+<tspan x="10" y="1690">-</tspan>
 
-<tspan x="10" y="1706"> ```</tspan>
+<tspan x="10" y="1706">-</tspan>
 
-<tspan x="10" y="1722"> </tspan>
+<tspan x="10" y="1722">-</tspan>
 
-<tspan x="10" y="1738">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/READM\</tspan>
-<tspan x="10" y="1754">E.md</tspan>
+<tspan x="10" y="1738"> }());</tspan>
 
-<tspan x="10" y="1770">jslint - 142ms /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md</tspan>
+<tspan x="10" y="1754"> ```</tspan>
 
-<tspan x="10" y="1786">testRunDefault - 110 ms - [node test-case 3 of 7 passed] - testCase_buildReadme_default</tspan>
+<tspan x="10" y="1770"> </tspan>
 
-<tspan x="10" y="1802">testRunDefault - 112 ms - [node test-case 4 of 7 passed] - testCase_buildTest_default</tspan>
+<tspan x="10" y="1786">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/READM\</tspan>
+<tspan x="10" y="1802">E.md</tspan>
 
-<tspan x="10" y="1818">testRunDefault - 113 ms - [node test-case 5 of 7 passed] - testCase_nop_default</tspan>
+<tspan x="10" y="1818">jslint - 198ms /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md</tspan>
 
 <tspan x="10" y="1834">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js.autofix.old	2020-01-20 21\</tspan>
-<tspan x="10" y="1850">:42:24.663539976 +0000</tspan>
+<tspan x="10" y="1850">:59:19.016845497 +0000</tspan>
 
-<tspan x="10" y="1866">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js	2020-01-20 21:42:24.66353\</tspan>
-<tspan x="10" y="1882">9976 +0000</tspan>
+<tspan x="10" y="1866">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js	2020-01-20 21:59:19.01684\</tspan>
+<tspan x="10" y="1882">5497 +0000</tspan>
 
 <tspan x="10" y="1898">@@ -9,91 +9,302 @@</tspan>
 
@@ -1009,548 +1009,551 @@
 <tspan x="10" y="8298">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.b\</tspan>
 <tspan x="10" y="8314">ootstrap.js</tspan>
 
-<tspan x="10" y="8330">jslint - 106ms /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js</tspan>
+<tspan x="10" y="8330">jslint - 195ms /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js</tspan>
 
 <tspan x="10" y="8346">jslint - 1ms /tmp/npmTestPublished/node_modules/bootstrap-lite/npm_scripts.sh</tspan>
 
-<tspan x="10" y="8362">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json.autofix.old	2020-01-20 21:42:\</tspan>
-<tspan x="10" y="8378">24.723539976 +0000</tspan>
+<tspan x="10" y="8362">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js.autofix.old	2020-01-20 21:59:19.23\</tspan>
+<tspan x="10" y="8378">6845497 +0000</tspan>
 
-<tspan x="10" y="8394">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json	2020-01-20 21:42:24.723539976\</tspan>
-<tspan x="10" y="8410"> +0000</tspan>
+<tspan x="10" y="8394">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js	2020-01-20 21:59:19.236845497 +000\</tspan>
+<tspan x="10" y="8410">0</tspan>
 
-<tspan x="10" y="8426">@@ -1,71 +1,71 @@</tspan>
+<tspan x="10" y="8426">@@ -172,13 +172,15 @@</tspan>
 
-<tspan x="10" y="8442"> {</tspan>
+<tspan x="10" y="8442">     local.testCase_buildLib_default(option, local.onErrorThrow);</tspan>
 
-<tspan x="10" y="8458">-  "_from": "bootstrap-lite",</tspan>
+<tspan x="10" y="8458">     local.testCase_buildTest_default(option, local.onErrorThrow);</tspan>
 
-<tspan x="10" y="8474">-  "_id": "bootstrap-lite@2019.1.30",</tspan>
+<tspan x="10" y="8474">     option = {</tspan>
 
-<tspan x="10" y="8490">-  "_inBundle": false,</tspan>
+<tspan x="10" y="8490">-        assetsList: [{</tspan>
 
-<tspan x="10" y="8506">-  "_integrity": "sha512-t3F6+b5OLY0tUJ4qYYzwrjKc8QPdZZM7nphNHvYQYoUNnnVtZi6H7dcb+ajBdHLVU6fufW0\</tspan>
-<tspan x="10" y="8522">5rgJj2k5d00qpvA==",</tspan>
+<tspan x="10" y="8506">-            file: "/assets.bootstrap-v3.4.0.rollup.min.css",</tspan>
 
-<tspan x="10" y="8538">-  "_location": "/bootstrap-lite",</tspan>
+<tspan x="10" y="8522">-            url: "/assets.bootstrap-v3.4.0.rollup.min.css"</tspan>
 
-<tspan x="10" y="8554">-  "_phantomChildren": {},</tspan>
+<tspan x="10" y="8538">-        }, {</tspan>
 
-<tspan x="10" y="8570">-  "_requested": {</tspan>
+<tspan x="10" y="8554">-            file: "/assets.bootstrap-v3.4.0.rollup.min.js",</tspan>
 
-<tspan x="10" y="8586">-    "type": "tag",</tspan>
+<tspan x="10" y="8570">-            url: "/assets.bootstrap-v3.4.0.rollup.min.js"</tspan>
 
-<tspan x="10" y="8602">-    "registry": true,</tspan>
+<tspan x="10" y="8586">-        }]</tspan>
 
-<tspan x="10" y="8618">-    "raw": "bootstrap-lite",</tspan>
+<tspan x="10" y="8602">+        assetsList: [</tspan>
 
-<tspan x="10" y="8634">+    "_from": "bootstrap-lite",</tspan>
+<tspan x="10" y="8618">+            {</tspan>
 
-<tspan x="10" y="8650">+    "_id": "bootstrap-lite@2019.1.30",</tspan>
+<tspan x="10" y="8634">+                file: "/assets.bootstrap-v3.4.0.rollup.min.css",</tspan>
 
-<tspan x="10" y="8666">+    "_inBundle": false,</tspan>
+<tspan x="10" y="8650">+                url: "/assets.bootstrap-v3.4.0.rollup.min.css"</tspan>
 
-<tspan x="10" y="8682">+    "_integrity": "sha512-t3F6+b5OLY0tUJ4qYYzwrjKc8QPdZZM7nphNHvYQYoUNnnVtZi6H7dcb+ajBdHLVU6fuf\</tspan>
-<tspan x="10" y="8698">W05rgJj2k5d00qpvA==",</tspan>
+<tspan x="10" y="8666">+            }, {</tspan>
 
-<tspan x="10" y="8714">+    "_location": "/bootstrap-lite",</tspan>
+<tspan x="10" y="8682">+                file: "/assets.bootstrap-v3.4.0.rollup.min.js",</tspan>
 
-<tspan x="10" y="8730">+    "_phantomChildren": {},</tspan>
+<tspan x="10" y="8698">+                url: "/assets.bootstrap-v3.4.0.rollup.min.js"</tspan>
 
-<tspan x="10" y="8746">+    "_requested": {</tspan>
+<tspan x="10" y="8714">+            }</tspan>
 
-<tspan x="10" y="8762">+        "escapedName": "bootstrap-lite",</tspan>
+<tspan x="10" y="8730">+        ]</tspan>
 
-<tspan x="10" y="8778">+        "fetchSpec": "latest",</tspan>
+<tspan x="10" y="8746">     };</tspan>
 
-<tspan x="10" y="8794">+        "name": "bootstrap-lite",</tspan>
+<tspan x="10" y="8762">     local.buildApp(option, onError);</tspan>
 
-<tspan x="10" y="8810">+        "raw": "bootstrap-lite",</tspan>
+<tspan x="10" y="8778"> };</tspan>
 
-<tspan x="10" y="8826">+        "rawSpec": "",</tspan>
+<tspan x="10" y="8794">@@ -194,9 +196,11 @@</tspan>
 
-<tspan x="10" y="8842">+        "registry": true,</tspan>
+<tspan x="10" y="8810">     option = {};</tspan>
 
-<tspan x="10" y="8858">+        "saveSpec": null,</tspan>
+<tspan x="10" y="8826">     option.customize = function () {</tspan>
 
-<tspan x="10" y="8874">+        "type": "tag"</tspan>
+<tspan x="10" y="8842">         // search-and-replace - customize dataTo</tspan>
 
-<tspan x="10" y="8890">+    },</tspan>
+<tspan x="10" y="8858">-        [(</tspan>
 
-<tspan x="10" y="8906">+    "_requiredBy_": [</tspan>
+<tspan x="10" y="8874">-            /\n\/\* jslint ignore:start \*\/\nlocal.assetsDict\["\/assets.index.template.html"\\</tspan>
+<tspan x="10" y="8890">] = '\\\n[\S\s]*?\n\/\* jslint ignore:end \*\/\n/</tspan>
 
-<tspan x="10" y="8922">+        "#USER",</tspan>
+<tspan x="10" y="8906">-        )].forEach(function (rgx) {</tspan>
 
-<tspan x="10" y="8938">+        "/"</tspan>
+<tspan x="10" y="8922">+        [</tspan>
 
-<tspan x="10" y="8954">+    ],</tspan>
+<tspan x="10" y="8938">+            (</tspan>
 
-<tspan x="10" y="8970">+    "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2019.1.30.tgz",</tspan>
+<tspan x="10" y="8954">+                /\n\/\* jslint ignore:start \*\/\nlocal.assetsDict\["\/assets.index.template.ht\</tspan>
+<tspan x="10" y="8970">ml"\] = '\\\n[\S\s]*?\n\/\* jslint ignore:end \*\/\n/</tspan>
 
-<tspan x="10" y="8986">+    "_shasum": "dd076017abe5fa1be7e22f966ec6ce418cc015b6",</tspan>
+<tspan x="10" y="8986">+            )</tspan>
 
-<tspan x="10" y="9002">+    "_spec": "bootstrap-lite",</tspan>
+<tspan x="10" y="9002">+        ].forEach(function (rgx) {</tspan>
 
-<tspan x="10" y="9018">+    "_where": "/tmp/npmTestPublished",</tspan>
+<tspan x="10" y="9018">             option.dataFrom.replace(rgx, function (match0) {</tspan>
 
-<tspan x="10" y="9034">+    "assetsList": "assets.bootstrap-v3.4.0.rollup.min.css assets.bootstrap-v3.4.0.rollup.min.js\</tspan>
-<tspan x="10" y="9050">",</tspan>
+<tspan x="10" y="9034">                 option.dataTo = option.dataTo.replace(rgx, match0);</tspan>
 
-<tspan x="10" y="9066">+    "author": {</tspan>
+<tspan x="10" y="9050">             });</tspan>
 
-<tspan x="10" y="9082">+        "email": "kaizhu256@gmail.com",</tspan>
+<tspan x="10" y="9066">@@ -205,7 +209,4 @@</tspan>
 
-<tspan x="10" y="9098">+        "name": "kai zhu"</tspan>
+<tspan x="10" y="9082">     local.buildReadme(option, onError);</tspan>
 
-<tspan x="10" y="9114">+    },</tspan>
+<tspan x="10" y="9098"> };</tspan>
 
-<tspan x="10" y="9130">+    "bugs": {</tspan>
+<tspan x="10" y="9114"> }());</tspan>
 
-<tspan x="10" y="9146">+        "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
+<tspan x="10" y="9130">-</tspan>
 
-<tspan x="10" y="9162">+    },</tspan>
+<tspan x="10" y="9146">-</tspan>
 
-<tspan x="10" y="9178">+    "bundleDependencies": false,</tspan>
+<tspan x="10" y="9162">-</tspan>
 
-<tspan x="10" y="9194">+    "deprecated": false,</tspan>
+<tspan x="10" y="9178"> }());</tspan>
 
-<tspan x="10" y="9210">+    "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyp\</tspan>
-<tspan x="10" y="9226">hicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a\</tspan>
-<tspan x="10" y="9242"> working web-demo",</tspan>
+<tspan x="10" y="9194">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/test.\</tspan>
+<tspan x="10" y="9210">js</tspan>
 
-<tspan x="10" y="9258">+    "devDependencies": {</tspan>
+<tspan x="10" y="9226">jslint /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
 
-<tspan x="10" y="9274">+        "electron-lite": "github:kaizhu256/node-electron-lite#alpha",</tspan>
+<tspan x="10" y="9242">  1 Unexpected '.'. // line 153, column 53</tspan>
 
-<tspan x="10" y="9290">+        "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
+<tspan x="10" y="9258">    local = (globalThis.utility2 || require("utility2")).requireReadme();</tspan>
 
-<tspan x="10" y="9306">+    },</tspan>
+<tspan x="10" y="9274">{</tspan>
 
-<tspan x="10" y="9322">+    "engines": {</tspan>
+<tspan x="10" y="9290">    "name": "JSLintError",</tspan>
 
-<tspan x="10" y="9338">+        "node": "&gt;=10.0"</tspan>
+<tspan x="10" y="9306">    "column": 53,</tspan>
 
-<tspan x="10" y="9354">+    },</tspan>
+<tspan x="10" y="9322">    "line": 153,</tspan>
 
-<tspan x="10" y="9370">+    "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
+<tspan x="10" y="9338">    "code": "unexpected_a",</tspan>
 
-<tspan x="10" y="9386">+    "keywords": [],</tspan>
+<tspan x="10" y="9354">    "a": ".",</tspan>
 
-<tspan x="10" y="9402">+    "license": "MIT",</tspan>
+<tspan x="10" y="9370">    "b": null,</tspan>
 
-<tspan x="10" y="9418">+    "main": "lib.bootstrap.js",</tspan>
+<tspan x="10" y="9386">    "message": "Unexpected '.'.",</tspan>
 
-<tspan x="10" y="9434">     "name": "bootstrap-lite",</tspan>
+<tspan x="10" y="9402">    "source": "local = (globalThis.utility2 || require(\"utility2\")).requireReadme();",</tspan>
 
-<tspan x="10" y="9450">-    "escapedName": "bootstrap-lite",</tspan>
+<tspan x="10" y="9418">    "ignore": null,</tspan>
 
-<tspan x="10" y="9466">-    "rawSpec": "",</tspan>
+<tspan x="10" y="9434">    "evidence": "local = (globalThis.utility2 || require(\"utility2\")).requireReadme();"</tspan>
 
-<tspan x="10" y="9482">-    "saveSpec": null,</tspan>
+<tspan x="10" y="9450">}</tspan>
 
-<tspan x="10" y="9498">-    "fetchSpec": "latest"</tspan>
+<tspan x="10" y="9466">Error</tspan>
 
-<tspan x="10" y="9514">-  },</tspan>
+<tspan x="10" y="9482">    at warn_at_extra (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/li\</tspan>
+<tspan x="10" y="9498">b.jslint.js:16680:42)</tspan>
 
-<tspan x="10" y="9530">-  "_requiredBy_": [</tspan>
+<tspan x="10" y="9514">    at warn_at (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jsli\</tspan>
+<tspan x="10" y="9530">nt.js:11961:12)</tspan>
 
-<tspan x="10" y="9546">-    "#USER",</tspan>
+<tspan x="10" y="9546">    at warn (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jslint.\</tspan>
+<tspan x="10" y="9562">js:11983:29)</tspan>
 
-<tspan x="10" y="9562">-    "/"</tspan>
+<tspan x="10" y="9578">    at left_check (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.j\</tspan>
+<tspan x="10" y="9594">slint.js:13642:9)</tspan>
 
-<tspan x="10" y="9578">-  ],</tspan>
+<tspan x="10" y="9610">    at /tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jslint.js:140\</tspan>
+<tspan x="10" y="9626">17:9</tspan>
 
-<tspan x="10" y="9594">-  "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2019.1.30.tgz",</tspan>
+<tspan x="10" y="9642">    at Object.the_symbol.led (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/uti\</tspan>
+<tspan x="10" y="9658">lity2/lib.jslint.js:13729:20)</tspan>
 
-<tspan x="10" y="9610">-  "_shasum": "dd076017abe5fa1be7e22f966ec6ce418cc015b6",</tspan>
+<tspan x="10" y="9674">    at right (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jslint\</tspan>
+<tspan x="10" y="9690">.js:13328:31)</tspan>
 
-<tspan x="10" y="9626">-  "_spec": "bootstrap-lite",</tspan>
+<tspan x="10" y="9706">    at expression (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.j\</tspan>
+<tspan x="10" y="9722">slint.js:13331:6)</tspan>
 
-<tspan x="10" y="9642">-  "_where": "/tmp/npmTestPublished",</tspan>
+<tspan x="10" y="9738">    at Object.the_symbol.led (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/uti\</tspan>
+<tspan x="10" y="9754">lity2/lib.jslint.js:13676:17)</tspan>
 
-<tspan x="10" y="9658">-  "assetsList": "assets.bootstrap-v3.4.0.rollup.min.css assets.bootstrap-v3.4.0.rollup.min.js",</tspan>
+<tspan x="10" y="9770">    at right (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jslint\</tspan>
+<tspan x="10" y="9786">.js:13328:31)</tspan>
 
-<tspan x="10" y="9674">-  "author": {</tspan>
+<tspan x="10" y="9802">jslint - 192ms /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
 
-<tspan x="10" y="9690">-    "name": "kai zhu",</tspan>
+<tspan x="10" y="9818">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json.autofix.old	2020-01-20 21:59:\</tspan>
+<tspan x="10" y="9834">19.276845497 +0000</tspan>
 
-<tspan x="10" y="9706">-    "email": "kaizhu256@gmail.com"</tspan>
+<tspan x="10" y="9850">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json	2020-01-20 21:59:19.276845497\</tspan>
+<tspan x="10" y="9866"> +0000</tspan>
 
-<tspan x="10" y="9722">-  },</tspan>
+<tspan x="10" y="9882">@@ -1,71 +1,71 @@</tspan>
 
-<tspan x="10" y="9738">-  "bugs": {</tspan>
+<tspan x="10" y="9898"> {</tspan>
 
-<tspan x="10" y="9754">-    "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
+<tspan x="10" y="9914">-  "_from": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="9770">-  },</tspan>
+<tspan x="10" y="9930">-  "_id": "bootstrap-lite@2019.1.30",</tspan>
 
-<tspan x="10" y="9786">-  "bundleDependencies": false,</tspan>
+<tspan x="10" y="9946">-  "_inBundle": false,</tspan>
 
-<tspan x="10" y="9802">-  "deprecated": false,</tspan>
+<tspan x="10" y="9962">-  "_integrity": "sha512-t3F6+b5OLY0tUJ4qYYzwrjKc8QPdZZM7nphNHvYQYoUNnnVtZi6H7dcb+ajBdHLVU6fufW0\</tspan>
+<tspan x="10" y="9978">5rgJj2k5d00qpvA==",</tspan>
 
-<tspan x="10" y="9818">-  "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyphi\</tspan>
-<tspan x="10" y="9834">cons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a w\</tspan>
-<tspan x="10" y="9850">orking web-demo",</tspan>
+<tspan x="10" y="9994">-  "_location": "/bootstrap-lite",</tspan>
 
-<tspan x="10" y="9866">-  "devDependencies": {</tspan>
+<tspan x="10" y="10010">-  "_phantomChildren": {},</tspan>
 
-<tspan x="10" y="9882">-    "electron-lite": "github:kaizhu256/node-electron-lite#alpha",</tspan>
+<tspan x="10" y="10026">-  "_requested": {</tspan>
 
-<tspan x="10" y="9898">-    "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
+<tspan x="10" y="10042">-    "type": "tag",</tspan>
 
-<tspan x="10" y="9914">-  },</tspan>
+<tspan x="10" y="10058">-    "registry": true,</tspan>
 
-<tspan x="10" y="9930">-  "engines": {</tspan>
+<tspan x="10" y="10074">-    "raw": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="9946">-    "node": "&gt;=10.0"</tspan>
+<tspan x="10" y="10090">+    "_from": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="9962">-  },</tspan>
+<tspan x="10" y="10106">+    "_id": "bootstrap-lite@2019.1.30",</tspan>
 
-<tspan x="10" y="9978">-  "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
+<tspan x="10" y="10122">+    "_inBundle": false,</tspan>
 
-<tspan x="10" y="9994">-  "keywords": [],</tspan>
+<tspan x="10" y="10138">+    "_integrity": "sha512-t3F6+b5OLY0tUJ4qYYzwrjKc8QPdZZM7nphNHvYQYoUNnnVtZi6H7dcb+ajBdHLVU6fuf\</tspan>
+<tspan x="10" y="10154">W05rgJj2k5d00qpvA==",</tspan>
 
-<tspan x="10" y="10010">-  "license": "MIT",</tspan>
+<tspan x="10" y="10170">+    "_location": "/bootstrap-lite",</tspan>
 
-<tspan x="10" y="10026">-  "main": "lib.bootstrap.js",</tspan>
+<tspan x="10" y="10186">+    "_phantomChildren": {},</tspan>
 
-<tspan x="10" y="10042">-  "name": "bootstrap-lite",</tspan>
+<tspan x="10" y="10202">+    "_requested": {</tspan>
 
-<tspan x="10" y="10058">-  "nameAliasPublish": "bootstrap-classic bootstrap3-lite",</tspan>
+<tspan x="10" y="10218">+        "escapedName": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="10074">-  "nameLib": "bootstrap",</tspan>
+<tspan x="10" y="10234">+        "fetchSpec": "latest",</tspan>
 
-<tspan x="10" y="10090">-  "nameOriginal": "bootstrap-lite",</tspan>
+<tspan x="10" y="10250">+        "name": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="10106">-  "os": [</tspan>
+<tspan x="10" y="10266">+        "raw": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="10122">-    "darwin",</tspan>
+<tspan x="10" y="10282">+        "rawSpec": "",</tspan>
 
-<tspan x="10" y="10138">-    "linux"</tspan>
+<tspan x="10" y="10298">+        "registry": true,</tspan>
 
-<tspan x="10" y="10154">-  ],</tspan>
+<tspan x="10" y="10314">+        "saveSpec": null,</tspan>
 
-<tspan x="10" y="10170">-  "repository": {</tspan>
+<tspan x="10" y="10330">+        "type": "tag"</tspan>
 
-<tspan x="10" y="10186">-    "type": "git",</tspan>
+<tspan x="10" y="10346">+    },</tspan>
 
-<tspan x="10" y="10202">-    "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
+<tspan x="10" y="10362">+    "_requiredBy_": [</tspan>
 
-<tspan x="10" y="10218">-  },</tspan>
+<tspan x="10" y="10378">+        "#USER",</tspan>
 
-<tspan x="10" y="10234">-  "scripts": {</tspan>
+<tspan x="10" y="10394">+        "/"</tspan>
 
-<tspan x="10" y="10250">-    "build-ci": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10410">+    ],</tspan>
 
-<tspan x="10" y="10266">-    "env": "env",</tspan>
+<tspan x="10" y="10426">+    "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2019.1.30.tgz",</tspan>
 
-<tspan x="10" y="10282">-    "eval": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10442">+    "_shasum": "dd076017abe5fa1be7e22f966ec6ce418cc015b6",</tspan>
 
-<tspan x="10" y="10298">-    "heroku-postbuild": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10458">+    "_spec": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="10314">-    "postinstall": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10474">+    "_where": "/tmp/npmTestPublished",</tspan>
 
-<tspan x="10" y="10330">-    "start": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10490">+    "assetsList": "assets.bootstrap-v3.4.0.rollup.min.css assets.bootstrap-v3.4.0.rollup.min.js\</tspan>
+<tspan x="10" y="10506">",</tspan>
 
-<tspan x="10" y="10346">-    "test": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10522">+    "author": {</tspan>
 
-<tspan x="10" y="10362">-    "utility2": "./npm_scripts.sh"</tspan>
+<tspan x="10" y="10538">+        "email": "kaizhu256@gmail.com",</tspan>
 
-<tspan x="10" y="10378">-  },</tspan>
-
-<tspan x="10" y="10394">-  "version": "2019.1.30"</tspan>
-
-<tspan x="10" y="10410">+    "nameAliasPublish": "bootstrap-classic bootstrap3-lite",</tspan>
-
-<tspan x="10" y="10426">+    "nameLib": "bootstrap",</tspan>
-
-<tspan x="10" y="10442">+    "nameOriginal": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="10458">+    "os": [</tspan>
-
-<tspan x="10" y="10474">+        "darwin",</tspan>
-
-<tspan x="10" y="10490">+        "linux"</tspan>
-
-<tspan x="10" y="10506">+    ],</tspan>
-
-<tspan x="10" y="10522">+    "repository": {</tspan>
-
-<tspan x="10" y="10538">+        "type": "git",</tspan>
-
-<tspan x="10" y="10554">+        "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
+<tspan x="10" y="10554">+        "name": "kai zhu"</tspan>
 
 <tspan x="10" y="10570">+    },</tspan>
 
-<tspan x="10" y="10586">+    "scripts": {</tspan>
+<tspan x="10" y="10586">+    "bugs": {</tspan>
 
-<tspan x="10" y="10602">+        "build-ci": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10602">+        "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
 
-<tspan x="10" y="10618">+        "env": "env",</tspan>
+<tspan x="10" y="10618">+    },</tspan>
 
-<tspan x="10" y="10634">+        "eval": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10634">+    "bundleDependencies": false,</tspan>
 
-<tspan x="10" y="10650">+        "heroku-postbuild": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10650">+    "deprecated": false,</tspan>
 
-<tspan x="10" y="10666">+        "postinstall": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10666">+    "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyp\</tspan>
+<tspan x="10" y="10682">hicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a\</tspan>
+<tspan x="10" y="10698"> working web-demo",</tspan>
 
-<tspan x="10" y="10682">+        "start": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10714">+    "devDependencies": {</tspan>
 
-<tspan x="10" y="10698">+        "test": "./npm_scripts.sh",</tspan>
+<tspan x="10" y="10730">+        "electron-lite": "github:kaizhu256/node-electron-lite#alpha",</tspan>
 
-<tspan x="10" y="10714">+        "utility2": "./npm_scripts.sh"</tspan>
+<tspan x="10" y="10746">+        "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
 
-<tspan x="10" y="10730">+    },</tspan>
+<tspan x="10" y="10762">+    },</tspan>
 
-<tspan x="10" y="10746">+    "version": "2019.1.30"</tspan>
+<tspan x="10" y="10778">+    "engines": {</tspan>
 
-<tspan x="10" y="10762"> }</tspan>
+<tspan x="10" y="10794">+        "node": "&gt;=10.0"</tspan>
 
-<tspan x="10" y="10778">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/packa\</tspan>
-<tspan x="10" y="10794">ge.json</tspan>
+<tspan x="10" y="10810">+    },</tspan>
 
-<tspan x="10" y="10810">jslint - 88ms /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json</tspan>
+<tspan x="10" y="10826">+    "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
 
-<tspan x="10" y="10826">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js.autofix.old	2020-01-20 21:42:24.91\</tspan>
-<tspan x="10" y="10842">5539976 +0000</tspan>
+<tspan x="10" y="10842">+    "keywords": [],</tspan>
 
-<tspan x="10" y="10858">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js	2020-01-20 21:42:24.915539976 +000\</tspan>
-<tspan x="10" y="10874">0</tspan>
+<tspan x="10" y="10858">+    "license": "MIT",</tspan>
 
-<tspan x="10" y="10890">@@ -172,13 +172,15 @@</tspan>
+<tspan x="10" y="10874">+    "main": "lib.bootstrap.js",</tspan>
 
-<tspan x="10" y="10906">     local.testCase_buildLib_default(option, local.onErrorThrow);</tspan>
+<tspan x="10" y="10890">     "name": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="10922">     local.testCase_buildTest_default(option, local.onErrorThrow);</tspan>
+<tspan x="10" y="10906">-    "escapedName": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="10938">     option = {</tspan>
+<tspan x="10" y="10922">-    "rawSpec": "",</tspan>
 
-<tspan x="10" y="10954">-        assetsList: [{</tspan>
+<tspan x="10" y="10938">-    "saveSpec": null,</tspan>
 
-<tspan x="10" y="10970">-            file: "/assets.bootstrap-v3.4.0.rollup.min.css",</tspan>
+<tspan x="10" y="10954">-    "fetchSpec": "latest"</tspan>
 
-<tspan x="10" y="10986">-            url: "/assets.bootstrap-v3.4.0.rollup.min.css"</tspan>
+<tspan x="10" y="10970">-  },</tspan>
 
-<tspan x="10" y="11002">-        }, {</tspan>
+<tspan x="10" y="10986">-  "_requiredBy_": [</tspan>
 
-<tspan x="10" y="11018">-            file: "/assets.bootstrap-v3.4.0.rollup.min.js",</tspan>
+<tspan x="10" y="11002">-    "#USER",</tspan>
 
-<tspan x="10" y="11034">-            url: "/assets.bootstrap-v3.4.0.rollup.min.js"</tspan>
+<tspan x="10" y="11018">-    "/"</tspan>
 
-<tspan x="10" y="11050">-        }]</tspan>
+<tspan x="10" y="11034">-  ],</tspan>
 
-<tspan x="10" y="11066">+        assetsList: [</tspan>
+<tspan x="10" y="11050">-  "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2019.1.30.tgz",</tspan>
 
-<tspan x="10" y="11082">+            {</tspan>
+<tspan x="10" y="11066">-  "_shasum": "dd076017abe5fa1be7e22f966ec6ce418cc015b6",</tspan>
 
-<tspan x="10" y="11098">+                file: "/assets.bootstrap-v3.4.0.rollup.min.css",</tspan>
+<tspan x="10" y="11082">-  "_spec": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="11114">+                url: "/assets.bootstrap-v3.4.0.rollup.min.css"</tspan>
+<tspan x="10" y="11098">-  "_where": "/tmp/npmTestPublished",</tspan>
 
-<tspan x="10" y="11130">+            }, {</tspan>
+<tspan x="10" y="11114">-  "assetsList": "assets.bootstrap-v3.4.0.rollup.min.css assets.bootstrap-v3.4.0.rollup.min.js",</tspan>
 
-<tspan x="10" y="11146">+                file: "/assets.bootstrap-v3.4.0.rollup.min.js",</tspan>
+<tspan x="10" y="11130">-  "author": {</tspan>
 
-<tspan x="10" y="11162">+                url: "/assets.bootstrap-v3.4.0.rollup.min.js"</tspan>
+<tspan x="10" y="11146">-    "name": "kai zhu",</tspan>
 
-<tspan x="10" y="11178">+            }</tspan>
+<tspan x="10" y="11162">-    "email": "kaizhu256@gmail.com"</tspan>
 
-<tspan x="10" y="11194">+        ]</tspan>
+<tspan x="10" y="11178">-  },</tspan>
 
-<tspan x="10" y="11210">     };</tspan>
+<tspan x="10" y="11194">-  "bugs": {</tspan>
 
-<tspan x="10" y="11226">     local.buildApp(option, onError);</tspan>
+<tspan x="10" y="11210">-    "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
 
-<tspan x="10" y="11242"> };</tspan>
+<tspan x="10" y="11226">-  },</tspan>
 
-<tspan x="10" y="11258">@@ -194,9 +196,11 @@</tspan>
+<tspan x="10" y="11242">-  "bundleDependencies": false,</tspan>
 
-<tspan x="10" y="11274">     option = {};</tspan>
+<tspan x="10" y="11258">-  "deprecated": false,</tspan>
 
-<tspan x="10" y="11290">     option.customize = function () {</tspan>
+<tspan x="10" y="11274">-  "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyphi\</tspan>
+<tspan x="10" y="11290">cons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.0), with a w\</tspan>
+<tspan x="10" y="11306">orking web-demo",</tspan>
 
-<tspan x="10" y="11306">         // search-and-replace - customize dataTo</tspan>
+<tspan x="10" y="11322">-  "devDependencies": {</tspan>
 
-<tspan x="10" y="11322">-        [(</tspan>
+<tspan x="10" y="11338">-    "electron-lite": "github:kaizhu256/node-electron-lite#alpha",</tspan>
 
-<tspan x="10" y="11338">-            /\n\/\* jslint ignore:start \*\/\nlocal.assetsDict\["\/assets.index.template.html"\\</tspan>
-<tspan x="10" y="11354">] = '\\\n[\S\s]*?\n\/\* jslint ignore:end \*\/\n/</tspan>
+<tspan x="10" y="11354">-    "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
 
-<tspan x="10" y="11370">-        )].forEach(function (rgx) {</tspan>
+<tspan x="10" y="11370">-  },</tspan>
 
-<tspan x="10" y="11386">+        [</tspan>
+<tspan x="10" y="11386">-  "engines": {</tspan>
 
-<tspan x="10" y="11402">+            (</tspan>
+<tspan x="10" y="11402">-    "node": "&gt;=10.0"</tspan>
 
-<tspan x="10" y="11418">+                /\n\/\* jslint ignore:start \*\/\nlocal.assetsDict\["\/assets.index.template.ht\</tspan>
-<tspan x="10" y="11434">ml"\] = '\\\n[\S\s]*?\n\/\* jslint ignore:end \*\/\n/</tspan>
+<tspan x="10" y="11418">-  },</tspan>
 
-<tspan x="10" y="11450">+            )</tspan>
+<tspan x="10" y="11434">-  "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
 
-<tspan x="10" y="11466">+        ].forEach(function (rgx) {</tspan>
+<tspan x="10" y="11450">-  "keywords": [],</tspan>
 
-<tspan x="10" y="11482">             option.dataFrom.replace(rgx, function (match0) {</tspan>
+<tspan x="10" y="11466">-  "license": "MIT",</tspan>
 
-<tspan x="10" y="11498">                 option.dataTo = option.dataTo.replace(rgx, match0);</tspan>
+<tspan x="10" y="11482">-  "main": "lib.bootstrap.js",</tspan>
 
-<tspan x="10" y="11514">             });</tspan>
+<tspan x="10" y="11498">-  "name": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="11530">@@ -205,7 +209,4 @@</tspan>
+<tspan x="10" y="11514">-  "nameAliasPublish": "bootstrap-classic bootstrap3-lite",</tspan>
 
-<tspan x="10" y="11546">     local.buildReadme(option, onError);</tspan>
+<tspan x="10" y="11530">-  "nameLib": "bootstrap",</tspan>
 
-<tspan x="10" y="11562"> };</tspan>
+<tspan x="10" y="11546">-  "nameOriginal": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="11578"> }());</tspan>
+<tspan x="10" y="11562">-  "os": [</tspan>
 
-<tspan x="10" y="11594">-</tspan>
+<tspan x="10" y="11578">-    "darwin",</tspan>
 
-<tspan x="10" y="11610">-</tspan>
+<tspan x="10" y="11594">-    "linux"</tspan>
 
-<tspan x="10" y="11626">-</tspan>
+<tspan x="10" y="11610">-  ],</tspan>
 
-<tspan x="10" y="11642"> }());</tspan>
+<tspan x="10" y="11626">-  "repository": {</tspan>
 
-<tspan x="10" y="11658">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/test.\</tspan>
-<tspan x="10" y="11674">js</tspan>
+<tspan x="10" y="11642">-    "type": "git",</tspan>
 
-<tspan x="10" y="11690">jslint /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
+<tspan x="10" y="11658">-    "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
 
-<tspan x="10" y="11706">  1 Unexpected '.'. // line 153, column 53</tspan>
+<tspan x="10" y="11674">-  },</tspan>
 
-<tspan x="10" y="11722">    local = (globalThis.utility2 || require("utility2")).requireReadme();</tspan>
+<tspan x="10" y="11690">-  "scripts": {</tspan>
 
-<tspan x="10" y="11738">{</tspan>
+<tspan x="10" y="11706">-    "build-ci": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="11754">    "name": "JSLintError",</tspan>
+<tspan x="10" y="11722">-    "env": "env",</tspan>
 
-<tspan x="10" y="11770">    "column": 53,</tspan>
+<tspan x="10" y="11738">-    "eval": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="11786">    "line": 153,</tspan>
+<tspan x="10" y="11754">-    "heroku-postbuild": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="11802">    "code": "unexpected_a",</tspan>
+<tspan x="10" y="11770">-    "postinstall": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="11818">    "a": ".",</tspan>
+<tspan x="10" y="11786">-    "start": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="11834">    "b": null,</tspan>
+<tspan x="10" y="11802">-    "test": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="11850">    "message": "Unexpected '.'.",</tspan>
+<tspan x="10" y="11818">-    "utility2": "./npm_scripts.sh"</tspan>
 
-<tspan x="10" y="11866">    "source": "local = (globalThis.utility2 || require(\"utility2\")).requireReadme();",</tspan>
+<tspan x="10" y="11834">-  },</tspan>
 
-<tspan x="10" y="11882">    "ignore": null,</tspan>
+<tspan x="10" y="11850">-  "version": "2019.1.30"</tspan>
 
-<tspan x="10" y="11898">    "evidence": "local = (globalThis.utility2 || require(\"utility2\")).requireReadme();"</tspan>
+<tspan x="10" y="11866">+    "nameAliasPublish": "bootstrap-classic bootstrap3-lite",</tspan>
 
-<tspan x="10" y="11914">}</tspan>
+<tspan x="10" y="11882">+    "nameLib": "bootstrap",</tspan>
 
-<tspan x="10" y="11930">Error</tspan>
+<tspan x="10" y="11898">+    "nameOriginal": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="11946">    at warn_at_extra (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/li\</tspan>
-<tspan x="10" y="11962">b.jslint.js:16680:42)</tspan>
+<tspan x="10" y="11914">+    "os": [</tspan>
 
-<tspan x="10" y="11978">    at warn_at (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jsli\</tspan>
-<tspan x="10" y="11994">nt.js:11961:12)</tspan>
+<tspan x="10" y="11930">+        "darwin",</tspan>
 
-<tspan x="10" y="12010">    at warn (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jslint.\</tspan>
-<tspan x="10" y="12026">js:11983:29)</tspan>
+<tspan x="10" y="11946">+        "linux"</tspan>
 
-<tspan x="10" y="12042">    at left_check (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.j\</tspan>
-<tspan x="10" y="12058">slint.js:13642:9)</tspan>
+<tspan x="10" y="11962">+    ],</tspan>
 
-<tspan x="10" y="12074">    at /tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jslint.js:140\</tspan>
-<tspan x="10" y="12090">17:9</tspan>
+<tspan x="10" y="11978">+    "repository": {</tspan>
 
-<tspan x="10" y="12106">    at Object.the_symbol.led (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/uti\</tspan>
-<tspan x="10" y="12122">lity2/lib.jslint.js:13729:20)</tspan>
+<tspan x="10" y="11994">+        "type": "git",</tspan>
 
-<tspan x="10" y="12138">    at right (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jslint\</tspan>
-<tspan x="10" y="12154">.js:13328:31)</tspan>
+<tspan x="10" y="12010">+        "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
 
-<tspan x="10" y="12170">    at expression (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.j\</tspan>
-<tspan x="10" y="12186">slint.js:13331:6)</tspan>
+<tspan x="10" y="12026">+    },</tspan>
 
-<tspan x="10" y="12202">    at Object.the_symbol.led (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/uti\</tspan>
-<tspan x="10" y="12218">lity2/lib.jslint.js:13676:17)</tspan>
+<tspan x="10" y="12042">+    "scripts": {</tspan>
 
-<tspan x="10" y="12234">    at right (/tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/utility2/lib.jslint\</tspan>
-<tspan x="10" y="12250">.js:13328:31)</tspan>
+<tspan x="10" y="12058">+        "build-ci": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="12266">jslint - 184ms /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
+<tspan x="10" y="12074">+        "env": "env",</tspan>
+
+<tspan x="10" y="12090">+        "eval": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="12106">+        "heroku-postbuild": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="12122">+        "postinstall": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="12138">+        "start": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="12154">+        "test": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="12170">+        "utility2": "./npm_scripts.sh"</tspan>
+
+<tspan x="10" y="12186">+    },</tspan>
+
+<tspan x="10" y="12202">+    "version": "2019.1.30"</tspan>
+
+<tspan x="10" y="12218"> }</tspan>
+
+<tspan x="10" y="12234">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/packa\</tspan>
+<tspan x="10" y="12250">ge.json</tspan>
+
+<tspan x="10" y="12266">jslint - 20ms /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json</tspan>
 
 <tspan x="10" y="12282"></tspan>
 
-<tspan x="10" y="12298">DevTools listening on ws://127.0.0.1:46541/devtools/browser/499c97c2-4f3f-4f2f-85d1-94c0216ff747</tspan>
+<tspan x="10" y="12298">DevTools listening on ws://127.0.0.1:45991/devtools/browser/769ad8ca-f467-42f9-9c7c-3318a6316130</tspan>
 
-<tspan x="10" y="12314">[0120/214225.184284:ERROR:command_buffer_proxy_impl.cc(124)] ContextResult::kTransientFailure: F\</tspan>
+<tspan x="10" y="12314">[0120/215919.587194:ERROR:command_buffer_proxy_impl.cc(124)] ContextResult::kTransientFailure: F\</tspan>
 <tspan x="10" y="12330">ailed to send GpuChannelMsg_CreateCommandBuffer.</tspan>
 
-<tspan x="10" y="12346">[0120/214225.184161:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
+<tspan x="10" y="12346">[0120/215919.587079:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
 <tspan x="10" y="12362">th unconsumed attachments: 0/1</tspan>
 
-<tspan x="10" y="12378">[0120/214225.187941:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
+<tspan x="10" y="12378">[0120/215919.589998:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
 <tspan x="10" y="12394">th unconsumed attachments: 0/1</tspan>
 
-<tspan x="10" y="12410">[0120/214225.187970:ERROR:command_buffer_proxy_impl.cc(124)] ContextResult::kTransientFailure: F\</tspan>
+<tspan x="10" y="12410">[0120/215919.594954:ERROR:command_buffer_proxy_impl.cc(124)] ContextResult::kTransientFailure: F\</tspan>
 <tspan x="10" y="12426">ailed to send GpuChannelMsg_CreateCommandBuffer.</tspan>
 
-<tspan x="10" y="12442">http-server listening on port 61224</tspan>
+<tspan x="10" y="12442">[0120/215919.594926:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
+<tspan x="10" y="12458">th unconsumed attachments: 0/1</tspan>
 
-<tspan x="10" y="12458">testRunDefault - 1141 ms - [node test-case 6 of 7 passed] - testCase_webpage_default</tspan>
+<tspan x="10" y="12474">http-server listening on port 63086</tspan>
 
-<tspan x="10" y="12474">testRunDefault - 5779 ms - [node test-case 7 of 7 passed] - testCase_buildApp_default</tspan>
+<tspan x="10" y="12490">testRunDefault - 1365 ms - [node test-case 6 of 7 passed] - testCase_webpage_default</tspan>
 
-<tspan x="10" y="12490">-----------------------|-----------|-----------|-----------|-----------|</tspan>
-
-<tspan x="10" y="12506">File                   |   % Stmts |% Branches |   % Funcs |   % Lines |</tspan>
+<tspan x="10" y="12506">testRunDefault - 5805 ms - [node test-case 7 of 7 passed] - testCase_buildApp_default</tspan>
 
 <tspan x="10" y="12522">-----------------------|-----------|-----------|-----------|-----------|</tspan>
 
-<tspan x="10" y="12538">   bootstrap-lite/     |     98.59 |      98.5 |       100 |     98.59 |</tspan>
+<tspan x="10" y="12538">File                   |   % Stmts |% Branches |   % Funcs |   % Lines |</tspan>
 
-<tspan x="10" y="12554">      example.js       |       100 |       100 |       100 |       100 |</tspan>
+<tspan x="10" y="12554">-----------------------|-----------|-----------|-----------|-----------|</tspan>
 
-<tspan x="10" y="12570">      lib.bootstrap.js |       100 |       100 |       100 |       100 |</tspan>
+<tspan x="10" y="12570">   bootstrap-lite/     |     98.59 |      98.5 |       100 |     98.59 |</tspan>
 
-<tspan x="10" y="12586">      test.js          |      95.6 |     93.94 |       100 |      95.6 |</tspan>
+<tspan x="10" y="12586">      example.js       |       100 |       100 |       100 |       100 |</tspan>
 
-<tspan x="10" y="12602">-----------------------|-----------|-----------|-----------|-----------|</tspan>
+<tspan x="10" y="12602">      lib.bootstrap.js |       100 |       100 |       100 |       100 |</tspan>
 
-<tspan x="10" y="12618">All files              |     98.59 |      98.5 |       100 |     98.59 |</tspan>
+<tspan x="10" y="12618">      test.js          |      95.6 |     93.94 |       100 |      95.6 |</tspan>
 
 <tspan x="10" y="12634">-----------------------|-----------|-----------|-----------|-----------|</tspan>
 
-<tspan x="10" y="12650"></tspan>
+<tspan x="10" y="12650">All files              |     98.59 |      98.5 |       100 |     98.59 |</tspan>
 
-<tspan x="10" y="12666">created coverage file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/coverage.html/\</tspan>
-<tspan x="10" y="12682">index.html</tspan>
+<tspan x="10" y="12666">-----------------------|-----------|-----------|-----------|-----------|</tspan>
 
-<tspan x="10" y="12698"></tspan>
+<tspan x="10" y="12682"></tspan>
 
-<tspan x="10" y="12714">-------------------------------------------------------</tspan>
+<tspan x="10" y="12698">created coverage file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/coverage.html/\</tspan>
+<tspan x="10" y="12714">index.html</tspan>
 
-<tspan x="10" y="12730">| test-report - npmTestPublished - node - linux v13.6.0 - 2020-01-20T21:42:24.159Z</tspan>
+<tspan x="10" y="12730"></tspan>
 
-<tspan x="10" y="12746">|    5780 ms            0 failed        7 passed      |</tspan>
+<tspan x="10" y="12746">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="12762">-------------------------------------------------------</tspan>
+<tspan x="10" y="12762">| test-report - npmTestPublished - node - linux v13.6.0 - 2020-01-20T21:59:18.407Z</tspan>
 
-<tspan x="10" y="12778"></tspan>
+<tspan x="10" y="12778">|    5806 ms            0 failed        7 passed      |</tspan>
 
-<tspan x="10" y="12794">created test-report file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-report\</tspan>
-<tspan x="10" y="12810">.html</tspan>
+<tspan x="10" y="12794">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="12826"></tspan>
+<tspan x="10" y="12810"></tspan>
 
-<tspan x="10" y="12842"></tspan>
+<tspan x="10" y="12826">created test-report file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-report\</tspan>
+<tspan x="10" y="12842">.html</tspan>
 
-<tspan x="10" y="12858">npmTestPublished - 0 failed tests</tspan>
+<tspan x="10" y="12858"></tspan>
 
 <tspan x="10" y="12874"></tspan>
 
-<tspan x="10" y="12890"></tspan>
+<tspan x="10" y="12890">npmTestPublished - 0 failed tests</tspan>
 
-<tspan x="10" y="12906">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-01-20T21:42:30.439Z - EXIT_CODE - 0</tspan>
+<tspan x="10" y="12906"></tspan>
+
+<tspan x="10" y="12922"></tspan>
+
+<tspan x="10" y="12938">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-01-20T21:59:24.731Z - EXIT_CODE - 0</tspan>
 
 </text>
 </svg>

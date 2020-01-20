@@ -80787,12 +80787,19 @@ if (local.isBrowser) {\n\
 }\n\
 // init assets\n\
 local.assetsDict = local.assetsDict || {};\n\
-if (!globalThis.utility2_rollup) {\n\
+if (globalThis.utility2_rollup) {\n\
     local.assetsDict[\n\
-        \"assets.bootstrap-v3.4.1.rollup.css\"\n\
+        \"/assets.bootstrap-v3.4.1.rollup.css\"\n\
+    ] = local.assetsDict[\"/assets.bootstrap.css\"];\n\
+    local.assetsDict[\n\
+        \"/assets.bootstrap-v3.4.1.rollup.js\"\n\
+    ] = local.assetsDict[\"/assets.bootstrap.js\"];\n\
+} else {\n\
+    local.assetsDict[\n\
+        \"/assets.bootstrap-v3.4.1.rollup.css\"\n\
     ] = local.fs.readFileSync(__dirname + \"/lib.bootstrap.css\");\n\
     local.assetsDict[\n\
-        \"assets.bootstrap-v3.4.1.rollup.js\"\n\
+        \"/assets.bootstrap-v3.4.1.rollup.js\"\n\
     ] = local.fs.readFileSync(__dirname + \"/lib.bootstrap.js\");\n\
 }\n\
 }());\n\
@@ -93575,12 +93582,19 @@ if (local.isBrowser) {
 }
 // init assets
 local.assetsDict = local.assetsDict || {};
-if (!globalThis.utility2_rollup) {
+if (globalThis.utility2_rollup) {
     local.assetsDict[
-        "assets.bootstrap-v3.4.1.rollup.css"
+        "/assets.bootstrap-v3.4.1.rollup.css"
+    ] = local.assetsDict["/assets.bootstrap.css"];
+    local.assetsDict[
+        "/assets.bootstrap-v3.4.1.rollup.js"
+    ] = local.assetsDict["/assets.bootstrap.js"];
+} else {
+    local.assetsDict[
+        "/assets.bootstrap-v3.4.1.rollup.css"
     ] = local.fs.readFileSync(__dirname + "/lib.bootstrap.css");
     local.assetsDict[
-        "assets.bootstrap-v3.4.1.rollup.js"
+        "/assets.bootstrap-v3.4.1.rollup.js"
     ] = local.fs.readFileSync(__dirname + "/lib.bootstrap.js");
 }
 }());

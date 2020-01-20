@@ -12770,12 +12770,19 @@ if (local.isBrowser) {
 }
 // init assets
 local.assetsDict = local.assetsDict || {};
-if (!globalThis.utility2_rollup) {
+if (globalThis.utility2_rollup) {
     local.assetsDict[
-        "assets.bootstrap-v3.4.1.rollup.css"
+        "/assets.bootstrap-v3.4.1.rollup.css"
+    ] = local.assetsDict["/assets.bootstrap.css"];
+    local.assetsDict[
+        "/assets.bootstrap-v3.4.1.rollup.js"
+    ] = local.assetsDict["/assets.bootstrap.js"];
+} else {
+    local.assetsDict[
+        "/assets.bootstrap-v3.4.1.rollup.css"
     ] = local.fs.readFileSync(__dirname + "/lib.bootstrap.css");
     local.assetsDict[
-        "assets.bootstrap-v3.4.1.rollup.js"
+        "/assets.bootstrap-v3.4.1.rollup.js"
     ] = local.fs.readFileSync(__dirname + "/lib.bootstrap.js");
 }
 }());
