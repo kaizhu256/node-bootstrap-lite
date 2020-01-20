@@ -16,106 +16,80 @@
     box-sizing: border-box;
 }
 /* csslint ignore:end */
-@keyframes uiAnimateShake {
-    0%, 50% {
-        transform: translateX(10px);
-    }
-    25%, 75% {
-        transform: translateX(-10px);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
 @keyframes uiAnimateSpin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
 }
 a {
     overflow-wrap: break-word;
 }
 body {
-    background: #eef;
+    background: #f7f7f7;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
     margin: 0 40px;
 }
 body > div,
-body > form > div,
-body > form > input,
-body > form > pre,
-body > form > textarea,
-body > form > .button,
 body > input,
 body > pre,
-body > textarea,
-body > .button {
+body > .button,
+body > .textarea {
     margin-bottom: 20px;
+    margin-top: 0;
 }
-body > form > input,
-body > form > .button,
 body > input,
 body > .button {
     width: 20rem;
 }
-body > form > textarea,
-body > textarea {
-    height: 10rem;
-    width: 100%;
-}
-body > textarea[readonly] {
+body > .readonly {
     background: #ddd;
+}
+body > .textarea {
+    height: 10rem;
+    resize: vertical;
+    width: 100%;
 }
 code,
 pre,
-textarea {
+.textarea {
     font-family: Consolas, Menlo, monospace;
-    font-size: small;
+    font-size: smaller;
 }
 pre {
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }
-textarea {
-    overflow: auto;
-    white-space: pre;
-}
 .button {
-    background-color: #fff;
-    border: 1px solid;
-    border-bottom-color: rgb(186, 186, 186);
-    border-left-color: rgb(209, 209, 209);
-    border-radius: 4px;
-    border-right-color: rgb(209, 209, 209);
-    border-top-color: rgb(216, 216, 216);
-    color: #00d;
+    background: #ddd;
+    border: 1px solid #999;
+    color: #000;
     cursor: pointer;
     display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: normal;
-    margin: 0;
-    padding: 2px 7px 3px 7px;
+    padding: 2px 5px;
     text-align: center;
-    text-decoration: underline;
+    text-decoration: none;
+}
+.button:hover {
+    background: #bbb;
 }
 .colorError {
     color: #d00;
 }
-.uiAnimateShake {
-    animation-duration: 500ms;
-    animation-name: uiAnimateShake;
+.textarea {
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 0;
+    cursor: auto;
+    overflow: auto;
+    padding: 2px;
 }
 .uiAnimateSlide {
     overflow-y: hidden;
     transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;
-}
-.utility2FooterDiv {
-    text-align: center;
 }
 .zeroPixel {
     border: 0;
@@ -200,9 +174,9 @@ textarea {
     text-align: center;
     width: 5rem;
 }
-.swggUiContainer .responseBody,
-.swggUiContainer .responseHeaders,
-.swggUiContainer .responseStatusCode {
+.swggUiContainer .resBody,
+.swggUiContainer .resHeaders,
+.swggUiContainer .resStatusCode {
     font-weight: bold;
 }
 .swggUiContainer .schemaP pre,
@@ -448,21 +422,21 @@ textarea {
 /* validateLineSortedReset */
 /* @media */
 @media screen and (max-width: 640px) {
-    .swggUiContainer .operation {
-        font-size: small;
-    }
-    .swggUiContainer .resource > .thead > .td {
-        flex: 1;
-    }
-    .swggUiContainer > .thead {
-        display: block;
-        padding: 0;
-    }
-    .swggUiContainer > .thead > .td {
-        display: block;
-        margin: 0;
-        width: 100%;
-    }
+.swggUiContainer .operation {
+    font-size: small;
+}
+.swggUiContainer .resource > .thead > .td {
+    flex: 1;
+}
+.swggUiContainer > .thead {
+    display: block;
+    padding: 0;
+}
+.swggUiContainer > .thead > .td {
+    display: block;
+    margin: 0;
+    width: 100%;
+}
 }
 /* validateLineSortedReset */
 /* hover */
@@ -476,7 +450,7 @@ textarea {
     background: #bbf;
 }
 /* validateLineSortedReset */
-/* error */
+/* err */
 .swggUiContainer button.hasError,
 .swggUiContainer pre.hasError,
 .swggUiContainer textarea.hasError {
@@ -489,10 +463,7 @@ textarea {
 </style>
 </head>
 <body>
-<div id="ajaxProgressDiv1" style="background: #d00; height: 2px; left: 0; margin: 0; padding: 0; position: fixed; top: 0; transition: background 500ms, width 1500ms; width: 0%; z-index: 1;"></div>
 <div class="uiAnimateSpin" style="animation: uiAnimateSpin 2s linear infinite; border: 5px solid #999; border-radius: 50%; border-top: 5px solid #7d7; display: none; height: 25px; vertical-align: middle; width: 25px;"></div>
-<a class="zeroPixel" download="db.persistence.json" href="" id="dbExportA1"></a>
-<input class="zeroPixel" data-onevent="onEventDomDb" data-onevent-db="dbImportInput" type="file">
 <script>
 /* jslint utility2:true */
 // init domOnEventWindowOnloadTimeElapsed
@@ -501,7 +472,10 @@ textarea {
  * this function will measure and print time-elapsed for window.onload
  */
     "use strict";
-    if (window.domOnEventWindowOnloadTimeElapsed) {
+    if (!(
+        typeof window === "object" && window && window.document
+        && typeof document.addEventListener === "function"
+    ) || window.domOnEventWindowOnloadTimeElapsed) {
         return;
     }
     window.domOnEventWindowOnloadTimeElapsed = Date.now() + 100;
@@ -521,88 +495,197 @@ textarea {
 
 
 
+// init domOnEventAjaxProgressUpdate
+(function () {
+/*
+ * this function will display incrementing ajax-progress-bar
+ */
+    "use strict";
+    let opt;
+    if (!(
+        typeof window === "object" && window && window.document
+        && typeof document.addEventListener === "function"
+    ) || window.domOnEventAjaxProgressUpdate) {
+        return;
+    }
+    window.domOnEventAjaxProgressUpdate = function (gotoState, onError) {
+        gotoState = (gotoState | 0) + 1;
+        switch (gotoState) {
+        // ajaxProgress - show
+        case 1:
+            // init timerInterval and timerTimeout
+            opt.timerInterval = (
+                opt.timerInterval || setInterval(opt, 2000, 1, onError)
+            );
+            opt.timerTimeout = (
+                opt.timerTimeout || setTimeout(opt, 30000, 2, onError)
+            );
+            // show ajaxProgress
+            if (opt.width !== -1) {
+                opt.style.background = opt.background;
+            }
+            setTimeout(opt, 50, gotoState, onError);
+            break;
+        // ajaxProgress - increment
+        case 2:
+            // show ajaxProgress
+            if (opt.width === -1) {
+                return;
+            }
+            opt.style.background = opt.background;
+            // reset ajaxProgress if it goes too high
+            if ((opt.style.width.slice(0, -1) | 0) > 95) {
+                opt.width = 0;
+            }
+            // this algorithm will indefinitely increment ajaxProgress
+            // with successively smaller increments without reaching 100%
+            opt.width += 1;
+            opt.style.width = Math.max(
+                100 - 75 * Math.exp(-0.125 * opt.width),
+                opt.style.width.slice(0, -1) | 0
+            ) + "%";
+            if (!opt.cnt) {
+                setTimeout(opt, 0, gotoState, onError);
+            }
+            break;
+        // ajaxProgress - 100%
+        case 3:
+            opt.width = -1;
+            opt.style.width = "100%";
+            setTimeout(opt, 1000, gotoState, onError);
+            break;
+        // ajaxProgress - hide
+        case 4:
+            // cleanup timerInterval and timerTimeout
+            clearInterval(opt.timerInterval);
+            opt.timerInterval = null;
+            clearTimeout(opt.timerTimeout);
+            opt.timerTimeout = null;
+            // hide ajaxProgress
+            opt.style.background = "transparent";
+            if (onError) {
+                onError();
+            }
+            setTimeout(opt, 250, gotoState);
+            break;
+        // ajaxProgress - reset
+        default:
+            // reset ajaxProgress
+            opt.cnt = 0;
+            opt.width = 0;
+            opt.style.width = "0%";
+        }
+    };
+    opt = window.domOnEventAjaxProgressUpdate;
+    opt.end = function (onError) {
+        opt.cnt = 0;
+        window.domOnEventAjaxProgressUpdate(2, onError);
+    };
+    opt.elem = document.getElementById("domElementAjaxProgress1");
+    if (!opt.elem) {
+        opt.elem = document.createElement("div");
+        setTimeout(function () {
+            document.body.insertBefore(opt.elem, document.body.firstChild);
+        });
+    }
+    opt.elem.id = "domElementAjaxProgress1";
+    opt.style = opt.elem.style;
+    // init style
+    Object.entries({
+        background: "#d00",
+        height: "2px",
+        left: "0",
+        margin: "0",
+        padding: "0",
+        position: "fixed",
+        top: "0",
+        transition: "background 250ms, width 750ms",
+        width: "0%",
+        "z-index": "1"
+    }).forEach(function (entry) {
+        opt.style[entry[0]] = opt.style[entry[0]] || entry[1];
+    });
+    // init state
+    opt.background = opt.style.background;
+    opt.cnt = 0;
+    opt.width = 0;
+}());
+
+
+
 // init domOnEventDelegateDict
 (function () {
 /*
- * this function will handle delegated dom-event
- * example usage:
+ * this function will handle delegated dom-evt
  */
     "use strict";
-    var timerTimeoutDict;
-    if (window.domOnEventDelegateDict) {
+    let debounce;
+    let timerTimeout;
+    debounce = function () {
+        return setTimeout(function () {
+            timerTimeout = undefined;
+        }, 30);
+    };
+    if (!(
+        typeof window === "object" && window && window.document
+        && typeof document.addEventListener === "function"
+    ) || window.domOnEventDelegateDict) {
         return;
     }
     window.domOnEventDelegateDict = {};
-    timerTimeoutDict = {};
-    window.domOnEventDelegateDict.domOnEventDelegate = function (event) {
-        event.targetOnEvent = event.target.closest(
-            "[data-onevent]"
-        );
+    window.domOnEventDelegateDict.domOnEventDelegate = function (evt) {
+        evt.targetOnEvent = evt.target.closest("[data-onevent]");
         if (
-            !event.targetOnEvent
-            || event.targetOnEvent.dataset.onevent === "domOnEventNop"
-            || event.target.closest(
-                ".disabled, [readonly]"
-            )
+            !evt.targetOnEvent
+            || evt.targetOnEvent.dataset.onevent === "domOnEventNop"
+            || evt.target.closest(".disabled,.readonly")
         ) {
             return;
         }
-        // rate-limit high-frequency-event
-        switch (event.type) {
-        case "keydown":
-        case "keyup":
-            // filter non-input keyboard-event
-            if (!event.target.closest(
-                "input, option, select, textarea"
-            )) {
-                return;
-            }
-            if (timerTimeoutDict[event.type] !== true) {
-                timerTimeoutDict[event.type] = (
-                    timerTimeoutDict[event.type]
-                    || setTimeout(function () {
-                        timerTimeoutDict[event.type] = true;
-                        window.domOnEventDelegateDict.domOnEventDelegate(
-                            event
-                        );
-                    }, 50)
-                );
-                return;
-            }
-            timerTimeoutDict[event.type] = null;
-            break;
+        // filter evt-change
+        switch (evt.type !== "change" && evt.target.type) {
+        case "checkbox":
+        case "file":
+        case "select-one":
+        case "radio":
+            return;
         }
-        switch (event.targetOnEvent.tagName) {
+        // filter evt-keyup
+        switch (evt.type) {
+        case "keyup":
+            if (!timerTimeout && (
+                evt.target.tagName === "INPUT"
+                || evt.target.tagName === "TEXTAREA"
+            )) {
+                timerTimeout = debounce();
+                if (evt.target.dataset.valueOld !== evt.target.value) {
+                    evt.target.dataset.valueOld = evt.target.value;
+                    break;
+                }
+            }
+            return;
+        }
+        switch (evt.targetOnEvent.tagName) {
         case "BUTTON":
         case "FORM":
-            event.preventDefault();
+            evt.preventDefault();
             break;
         }
-        // reset output
-        if (event.targetOnEvent.dataset.oneventResetOutput) {
-            Array.from(document.querySelectorAll(
-                ".onevent-reset-output"
-            )).forEach(function (element) {
-                switch (element.tagName) {
-                case "INPUT":
-                case "TEXTAREA":
-                    element.value = "";
-                    break;
-                default:
-                    element.innerHTML = "";
-                }
-            });
+        evt.stopPropagation();
+        // handle domOnEventClickTarget
+        if (evt.targetOnEvent.dataset.onevent === "domOnEventClickTarget") {
+            document.querySelector(
+                evt.targetOnEvent.dataset.clickTarget
+            ).click();
+            return;
         }
-        event.stopPropagation();
-        window.domOnEventDelegateDict[event.targetOnEvent.dataset.onevent](
-            event
-        );
+        window.domOnEventDelegateDict[evt.targetOnEvent.dataset.onevent](evt);
     };
-    // init event-handling
+    // handle evt
     [
         "change",
         "click",
-        "keydown",
+        "keyup",
         "submit"
     ].forEach(function (eventType) {
         document.addEventListener(
@@ -614,90 +697,35 @@ textarea {
 
 
 
-// init timerIntervalAjaxProgressUpdate
-(function () {
-/*
- * this function will increment ajax-progress-bar
- * until webpage has loaded
- */
-    "use strict";
-    var ajaxProgressDiv1;
-    var ajaxProgressState;
-    var ajaxProgressUpdate;
-    if (
-        window.timerIntervalAjaxProgressUpdate
-        || !document.querySelector(
-            "#ajaxProgressDiv1"
-        )
-    ) {
-        return;
-    }
-    ajaxProgressDiv1 = document.querySelector(
-        "#ajaxProgressDiv1"
-    );
-    setTimeout(function () {
-        ajaxProgressDiv1.style.width = "25%";
-    });
-    ajaxProgressState = 0;
-    ajaxProgressUpdate = (
-        window.local
-        && window.local.ajaxProgressUpdate
-    ) || function () {
-        ajaxProgressDiv1.style.width = "100%";
-        setTimeout(function () {
-            ajaxProgressDiv1.style.background = "transparent";
-            setTimeout(function () {
-                ajaxProgressDiv1.style.width = "0%";
-            }, 500);
-        }, 1000);
-    };
-    window.timerIntervalAjaxProgressUpdate = setInterval(function () {
-        ajaxProgressState += 1;
-        ajaxProgressDiv1.style.width = Math.max(
-            100 - 75 * Math.exp(-0.125 * ajaxProgressState),
-            ajaxProgressDiv1.style.width.slice(0, -1) | 0
-        ) + "%";
-    }, 1000);
-    window.addEventListener("load", function () {
-        clearInterval(window.timerIntervalAjaxProgressUpdate);
-        ajaxProgressUpdate();
-    });
-}());
-
-
-
 // init domOnEventSelectAllWithinPre
 (function () {
 /*
- * this function will limit select-all within <pre tabIndex="0"> elements
+ * this function will limit select-all within <pre tabIndex="0"> elem
  * https://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
  */
     "use strict";
-    if (window.domOnEventSelectAllWithinPre) {
+    if (!(
+        typeof window === "object" && window && window.document
+        && typeof document.addEventListener === "function"
+    ) || window.domOnEventSelectAllWithinPre) {
         return;
     }
-    window.domOnEventSelectAllWithinPre = function (event) {
-        var range;
-        var selection;
+    window.domOnEventSelectAllWithinPre = function (evt) {
+        let range;
+        let selection;
         if (
-            event
-            && event.key === "a"
-            && (event.ctrlKey || event.metaKey)
-            && event.target.closest(
-                "pre"
-            )
+            evt && (evt.ctrlKey || evt.metaKey) && evt.key === "a"
+            && evt.target.closest("pre")
         ) {
             range = document.createRange();
-            range.selectNodeContents(event.target.closest(
-                "pre"
-            ));
+            range.selectNodeContents(evt.target.closest("pre"));
             selection = window.getSelection();
             selection.removeAllRanges();
             selection.addRange(range);
-            event.preventDefault();
+            evt.preventDefault();
         }
     };
-    // init event-handling
+    // handle evt
     document.addEventListener(
         "keydown",
         window.domOnEventSelectAllWithinPre
@@ -724,7 +752,7 @@ textarea {
     <button class="button eventDelegateClick td td4" data-onevent="onEventUiReload">explore</button>
     <button
         class="button eventDelegateClick td td5" data-onevent="onEventUiReload"
-        id="swggApiKeyClearButton1"
+        id="buttonSwggApiKeyClear1"
     >
         clear api-keys
     </button>
@@ -743,9 +771,12 @@ textarea {
     <div class="uiAnimateSpin" style="animation: uiAnimateSpin 2s linear infinite; border: 5px solid #999; border-radius: 50%; border-top: 5px solid #7d7; display: inline-block; height: 25px; vertical-align: middle; width: 25px;"></div>
 </div>
 <ol class="reset resourceList" style="list-style-type: upper-roman;"></ol>
-<div class="utility2FooterDiv">
-    [ this document was created with
-    <a href="https://github.com/kaizhu256/node-swgg" target="_blank">swgg</a>
+<div style="text-align: center;">
+    [
+    this document was created with
+    <a
+        href="https://github.com/kaizhu256/node-swgg" target="_blank"
+    >swgg</a>
     ]
 </div>
 <!-- </div> -->
@@ -759,10 +790,10 @@ textarea {
  * with class=".domOnEventMediaHotkeysInit"
  */
     "use strict";
-    var currentTarget;
-    var identity;
-    var input;
-    var onEvent;
+    let currentTarget;
+    let identity;
+    let input;
+    let onEvent;
     if (window.domOnEventMediaHotkeys) {
         return;
     }
@@ -772,55 +803,57 @@ textarea {
      */
         return value;
     };
-    window.domOnEventMediaHotkeys = function (event) {
-        var media;
-        if (event === "init") {
-            Array.from(document.querySelectorAll(
+    window.domOnEventMediaHotkeys = function (evt) {
+        let media;
+        if (evt === "init") {
+            document.querySelectorAll(
                 ".domOnEventMediaHotkeysInit"
-            )).forEach(function (media) {
+            ).forEach(function (media) {
                 media.classList.remove("domOnEventMediaHotkeysInit");
                 media.classList.add("domOnEventMediaHotkeys");
-                ["play", "pause", "seeking"].forEach(function (event) {
-                    media.addEventListener(event, onEvent);
+                [
+                    "play", "pause", "seeking"
+                ].forEach(function (evt) {
+                    media.addEventListener(evt, onEvent);
                 });
             });
             return;
         }
-        if (event.currentTarget.classList.contains("domOnEventMediaHotkeys")) {
-            currentTarget = event.currentTarget;
+        if (evt.currentTarget.classList.contains("domOnEventMediaHotkeys")) {
+            currentTarget = evt.currentTarget;
             input.focus();
             return;
         }
         media = currentTarget;
         try {
-            switch (event.key || event.type) {
+            switch (evt.key || evt.type) {
             case ",":
             case ".":
                 media.currentTime += (
-                    event.key === "," && identity(-0.03125)
+                    evt.key === "," && identity(-0.03125)
                 ) || 0.03125;
                 break;
             case "<":
             case ">":
                 media.playbackRate *= (
-                    event.key === "<" && identity(0.5)
+                    evt.key === "<" && identity(0.5)
                 ) || 2;
                 break;
             case "ArrowDown":
             case "ArrowUp":
                 media.volume += (
-                    event.key === "ArrowDown" && identity(-0.05)
+                    evt.key === "ArrowDown" && identity(-0.05)
                 ) || 0.05;
                 break;
             case "ArrowLeft":
             case "ArrowRight":
                 media.currentTime += (
-                    event.key === "ArrowLeft" && identity(-5)
+                    evt.key === "ArrowLeft" && identity(-5)
                 ) || 5;
                 break;
             case "j":
             case "l":
-                media.currentTime += (event.key === "j" && identity(-10)) || 10;
+                media.currentTime += (evt.key === "j" && identity(-10)) || 10;
                 break;
             case "k":
             case " ":
@@ -834,14 +867,14 @@ textarea {
                 media.muted = !media.muted;
                 break;
             default:
-                if (event.key >= 0) {
-                    media.currentTime = 0.1 * event.key * media.duration;
+                if (evt.key >= 0) {
+                    media.currentTime = 0.1 * evt.key * media.duration;
                     break;
                 }
                 return;
             }
         } catch (ignore) {}
-        event.preventDefault();
+        evt.preventDefault();
     };
     onEvent = window.domOnEventMediaHotkeys;
     input = document.createElement("button");
