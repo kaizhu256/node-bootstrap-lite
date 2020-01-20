@@ -2013,7 +2013,6 @@ local.http.createServer(function (req, res) {
     "author": "kai zhu <kaizhu256@gmail.com>",
     "description": "this zero-dependency package will provide 1) a rolled-up css (includes glyphicons and theme), and 2) a rolled-up js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo",
     "devDependencies": {
-        "electron-lite": "kaizhu256/node-electron-lite#alpha",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
     "engines": {
