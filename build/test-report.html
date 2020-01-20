@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- "" -->
+<title>test-report</title>
+<style>
+/* jslint utility2:true */
+/*csslint
+*/
+/* csslint ignore:start */
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+/* csslint ignore:end */
+@keyframes uiAnimateSpin {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
+a {
+    overflow-wrap: break-word;
+}
+body {
+    background: #f7f7f7;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    margin: 0 40px;
+}
+body > div,
+body > input,
+body > pre,
+body > .button,
+body > .textarea {
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+body > input,
+body > .button {
+    width: 20rem;
+}
+body > .readonly {
+    background: #ddd;
+}
+body > .textarea {
+    height: 10rem;
+    resize: vertical;
+    width: 100%;
+}
+code,
+pre,
+.textarea {
+    font-family: Consolas, Menlo, monospace;
+    font-size: smaller;
+}
+pre {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+.button {
+    background: #ddd;
+    border: 1px solid #999;
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+}
+.button:hover {
+    background: #bbb;
+}
+.colorError {
+    color: #d00;
+}
+.textarea {
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 0;
+    cursor: auto;
+    overflow: auto;
+    padding: 2px;
+}
+.uiAnimateSlide {
+    overflow-y: hidden;
+    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;
+}
+.zeroPixel {
+    border: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    width: 0;
+}
+/* jslint utility2:true */
+/*csslint
+*/
+.testReportDiv img {
+    border: 1px solid #999;
+    margin: 5px 0 5px 0;
+    max-height: 256px;
+    max-width: 512px;
+}
+.testReportDiv pre {
+    background: #fdd;
+    border-top: 1px solid #999;
+    margin-bottom: 0;
+    padding: 10px;
+}
+.testReportDiv span {
+    display: inline-block;
+    width: 120px;
+}
+.testReportDiv table {
+    border-top: 1px solid #999;
+    text-align: left;
+    width: 100%;
+}
+.testReportDiv table > tbody > tr:nth-child(odd) {
+    background: #bfb;
+}
+.testReportDiv .displayNone {
+    display: none;
+}
+.testReportDiv .footer {
+    text-align: center;
+}
+.testReportDiv .platform {
+    background: #fff;
+    border: 1px solid #999;
+    margin-bottom: 20px;
+    padding: 0 10px 10px 10px;
+    text-align: left;
+}
+.testReportDiv .summary {
+    background: #bfb;
+}
+.testReportDiv .testFailed {
+    background: #f99;
+}
+.testReportDiv .testPending {
+    background: #99f;
+}
+</style>
+</head>
+<body>
+<div class="uiAnimateSpin" style="animation: uiAnimateSpin 2s linear infinite; border: 5px solid #999; border-radius: 50%; border-top: 5px solid #7d7; display: none; height: 25px; vertical-align: middle; width: 25px;"></div>
+<script>
+/* jslint utility2:true */
+// init domOnEventWindowOnloadTimeElapsed
+(function () {
+/*
+ * this function will measure and print time-elapsed for window.onload
+ */
+    "use strict";
+    if (!(
+        typeof window === "object" && window && window.document
+        && typeof document.addEventListener === "function"
+    ) || window.domOnEventWindowOnloadTimeElapsed) {
+        return;
+    }
+    window.domOnEventWindowOnloadTimeElapsed = Date.now() + 100;
+    window.addEventListener("load", function () {
+        setTimeout(function () {
+            window.domOnEventWindowOnloadTimeElapsed = (
+                Date.now()
+                - window.domOnEventWindowOnloadTimeElapsed
+            );
+            console.error(
+                "domOnEventWindowOnloadTimeElapsed = "
+                + window.domOnEventWindowOnloadTimeElapsed
+            );
+        }, 100);
+    });
+}());
+
+
+
+// init domOnEventAjaxProgressUpdate
+(function () {
+/*
+ * this function will display incrementing ajax-progress-bar
+ */
+    "use strict";
+    let opt;
+    if (!(
+        typeof window === "object" && window && window.document
+        && typeof document.addEventListener === "function"
+    ) || window.domOnEventAjaxProgressUpdate) {
+        return;
+    }
+    window.domOnEventAjaxProgressUpdate = function (gotoState, onError) {
+        gotoState = (gotoState | 0) + 1;
+        switch (gotoState) {
+        // ajaxProgress - show
+        case 1:
+            // init timerInterval and timerTimeout
+            opt.timerInterval = (
+                opt.timerInterval || setInterval(opt, 2000, 1, onError)
+            );
+            opt.timerTimeout = (
+                opt.timerTimeout || setTimeout(opt, 30000, 2, onError)
+            );
+            // show ajaxProgress
+            if (opt.width !== -1) {
+                opt.style.background = opt.background;
+            }
+            setTimeout(opt, 50, gotoState, onError);
+            break;
+        // ajaxProgress - increment
+        case 2:
+            // show ajaxProgress
+            if (opt.width === -1) {
+                return;
+            }
+            opt.style.background = opt.background;
+            // reset ajaxProgress if it goes too high
+            if ((opt.style.width.slice(0, -1) | 0) > 95) {
+                opt.width = 0;
+            }
+            // this algorithm will indefinitely increment ajaxProgress
+            // with successively smaller increments without reaching 100%
+            opt.width += 1;
+            opt.style.width = Math.max(
+                100 - 75 * Math.exp(-0.125 * opt.width),
+                opt.style.width.slice(0, -1) | 0
+            ) + "%";
+            if (!opt.cnt) {
+                setTimeout(opt, 0, gotoState, onError);
+            }
+            break;
+        // ajaxProgress - 100%
+        case 3:
+            opt.width = -1;
+            opt.style.width = "100%";
+            setTimeout(opt, 1000, gotoState, onError);
+            break;
+        // ajaxProgress - hide
+        case 4:
+            // cleanup timerInterval and timerTimeout
+            clearInterval(opt.timerInterval);
+            opt.timerInterval = null;
+            clearTimeout(opt.timerTimeout);
+            opt.timerTimeout = null;
+            // hide ajaxProgress
+            opt.style.background = "transparent";
+            if (onError) {
+                onError();
+            }
+            setTimeout(opt, 250, gotoState);
+            break;
+        // ajaxProgress - reset
+        default:
+            // reset ajaxProgress
+            opt.cnt = 0;
+            opt.width = 0;
+            opt.style.width = "0%";
+        }
+    };
+    opt = window.domOnEventAjaxProgressUpdate;
+    opt.end = function (onError) {
+        opt.cnt = 0;
+        window.domOnEventAjaxProgressUpdate(2, onError);
+    };
+    opt.elem = document.getElementById("domElementAjaxProgress1");
+    if (!opt.elem) {
+        opt.elem = document.createElement("div");
+        setTimeout(function () {
+            document.body.insertBefore(opt.elem, document.body.firstChild);
+        });
+    }
+    opt.elem.id = "domElementAjaxProgress1";
+    opt.style = opt.elem.style;
+    // init style
+    Object.entries({
+        background: "#d00",
+        height: "2px",
+        left: "0",
+        margin: "0",
+        padding: "0",
+        position: "fixed",
+        top: "0",
+        transition: "background 250ms, width 750ms",
+        width: "0%",
+        "z-index": "1"
+    }).forEach(function (entry) {
+        opt.style[entry[0]] = opt.style[entry[0]] || entry[1];
+    });
+    // init state
+    opt.background = opt.style.background;
+    opt.cnt = 0;
+    opt.width = 0;
+}());
+
+
+
+// init domOnEventDelegateDict
+(function () {
+/*
+ * this function will handle delegated dom-evt
+ */
+    "use strict";
+    let debounce;
+    let timerTimeout;
+    debounce = function () {
+        return setTimeout(function () {
+            timerTimeout = undefined;
+        }, 30);
+    };
+    if (!(
+        typeof window === "object" && window && window.document
+        && typeof document.addEventListener === "function"
+    ) || window.domOnEventDelegateDict) {
+        return;
+    }
+    window.domOnEventDelegateDict = {};
+    window.domOnEventDelegateDict.domOnEventDelegate = function (evt) {
+        evt.targetOnEvent = evt.target.closest("[data-onevent]");
+        if (
+            !evt.targetOnEvent
+            || evt.targetOnEvent.dataset.onevent === "domOnEventNop"
+            || evt.target.closest(".disabled,.readonly")
+        ) {
+            return;
+        }
+        // filter evt-change
+        switch (evt.type !== "change" && evt.target.type) {
+        case "checkbox":
+        case "file":
+        case "select-one":
+        case "radio":
+            return;
+        }
+        // filter evt-keyup
+        switch (evt.type) {
+        case "keyup":
+            if (!timerTimeout && (
+                evt.target.tagName === "INPUT"
+                || evt.target.tagName === "TEXTAREA"
+            )) {
+                timerTimeout = debounce();
+                if (evt.target.dataset.valueOld !== evt.target.value) {
+                    evt.target.dataset.valueOld = evt.target.value;
+                    break;
+                }
+            }
+            return;
+        }
+        switch (evt.targetOnEvent.tagName) {
+        case "BUTTON":
+        case "FORM":
+            evt.preventDefault();
+            break;
+        }
+        evt.stopPropagation();
+        // handle domOnEventClickTarget
+        if (evt.targetOnEvent.dataset.onevent === "domOnEventClickTarget") {
+            document.querySelector(
+                evt.targetOnEvent.dataset.clickTarget
+            ).click();
+            return;
+        }
+        window.domOnEventDelegateDict[evt.targetOnEvent.dataset.onevent](evt);
+    };
+    // handle evt
+    [
+        "change",
+        "click",
+        "keyup",
+        "submit"
+    ].forEach(function (eventType) {
+        document.addEventListener(
+            eventType,
+            window.domOnEventDelegateDict.domOnEventDelegate
+        );
+    });
+}());
+
+
+
+// init domOnEventSelectAllWithinPre
+(function () {
+/*
+ * this function will limit select-all within <pre tabIndex="0"> elem
+ * https://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
+ */
+    "use strict";
+    if (!(
+        typeof window === "object" && window && window.document
+        && typeof document.addEventListener === "function"
+    ) || window.domOnEventSelectAllWithinPre) {
+        return;
+    }
+    window.domOnEventSelectAllWithinPre = function (evt) {
+        let range;
+        let selection;
+        if (
+            evt && (evt.ctrlKey || evt.metaKey) && evt.key === "a"
+            && evt.target.closest("pre")
+        ) {
+            range = document.createRange();
+            range.selectNodeContents(evt.target.closest("pre"));
+            selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            evt.preventDefault();
+        }
+    };
+    // handle evt
+    document.addEventListener(
+        "keydown",
+        window.domOnEventSelectAllWithinPre
+    );
+}());
+</script>
+<div class="testReportDiv">
+<h1>test-report for
+    <a
+        
+        href="https://github.com/kaizhu256/node-bootstrap-lite"
+        
+    >
+        bootstrap-lite (2020.1.20)
+    </a>
+</h1>
+<div class="platform summary">
+<h2>summary</h2>
+<h4>
+    <span>version</span>-
+        2020.1.20<br>
+    <span>test date</span>- 2020-01-20T21:41:58.443Z<br>
+    <span>commit info</span>-
+        
+        7d4e7fa2f140d5c0ae32d5a7d7e0740531a8d355 - <br>
+        
+</h4>
+<table>
+<thead>
+    <tr>
+        <th>total time-elapsed</th>
+        <th>total tests failed</th>
+        <th>total tests passed</th>
+        <th>total tests pending</th>
+    </tr>
+</thead>
+<tbody><tr>
+    <td>107317 ms</td>
+    <td class="testPassed">0</td>
+    <td>15</td>
+    <td>0</td>
+</tr></tbody>
+</table>
+</div>
+
+<div class="platform">
+<h4>
+    1. buildApidoc - node - linux v13.6.0 - 2020-01-20T21:41:01.727Z<br>
+    
+    
+    <span>time-elapsed</span>- 58063 ms<br>
+    <span>tests failed</span>- 0<br>
+    <span>tests passed</span>- 1<br>
+    <span>tests pending</span>- 0<br>
+</h4>
+<table>
+<thead><tr>
+    <th>#</th>
+    <th>time-elapsed</th>
+    <th>status</th>
+    <th>test-case</th>
+</tr></thead>
+<tbody>
+
+<tr>
+    <td>1</td>
+    <td>7927 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildApp_default</td>
+</tr>
+
+</tbody>
+</table>
+<pre class="displayNone" tabIndex="0">
+
+</pre>
+</div>
+
+<div class="platform">
+<h4>
+    2. npmTest - node - linux v13.6.0 - 2020-01-20T21:40:52.391Z<br>
+    
+    
+    <span>time-elapsed</span>- 65623 ms<br>
+    <span>tests failed</span>- 0<br>
+    <span>tests passed</span>- 7<br>
+    <span>tests pending</span>- 0<br>
+</h4>
+<table>
+<thead><tr>
+    <th>#</th>
+    <th>time-elapsed</th>
+    <th>status</th>
+    <th>test-case</th>
+</tr></thead>
+<tbody>
+
+<tr>
+    <td>2</td>
+    <td>1 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildApidoc_default</td>
+</tr>
+
+<tr>
+    <td>3</td>
+    <td>5928 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildApp_default</td>
+</tr>
+
+<tr>
+    <td>4</td>
+    <td>2 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildLib_default</td>
+</tr>
+
+<tr>
+    <td>5</td>
+    <td>9 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildReadme_default</td>
+</tr>
+
+<tr>
+    <td>6</td>
+    <td>0 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildTest_default</td>
+</tr>
+
+<tr>
+    <td>7</td>
+    <td>1 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_nop_default</td>
+</tr>
+
+<tr>
+    <td>8</td>
+    <td>1552 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_webpage_default</td>
+</tr>
+
+</tbody>
+</table>
+<pre class="displayNone" tabIndex="0">
+
+</pre>
+</div>
+
+<div class="platform">
+<h4>
+    3. npmTestPublished - node - linux v13.6.0 - 2020-01-20T21:40:12.278Z<br>
+    
+    
+    <span>time-elapsed</span>- 107317 ms<br>
+    <span>tests failed</span>- 0<br>
+    <span>tests passed</span>- 7<br>
+    <span>tests pending</span>- 0<br>
+</h4>
+<table>
+<thead><tr>
+    <th>#</th>
+    <th>time-elapsed</th>
+    <th>status</th>
+    <th>test-case</th>
+</tr></thead>
+<tbody>
+
+<tr>
+    <td>9</td>
+    <td>1 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildApidoc_default</td>
+</tr>
+
+<tr>
+    <td>10</td>
+    <td>6218 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildApp_default</td>
+</tr>
+
+<tr>
+    <td>11</td>
+    <td>1 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildLib_default</td>
+</tr>
+
+<tr>
+    <td>12</td>
+    <td>68 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildReadme_default</td>
+</tr>
+
+<tr>
+    <td>13</td>
+    <td>1 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_buildTest_default</td>
+</tr>
+
+<tr>
+    <td>14</td>
+    <td>0 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_nop_default</td>
+</tr>
+
+<tr>
+    <td>15</td>
+    <td>1436 ms</td>
+    <td class="testPassed">passed</td>
+    <td>testCase_webpage_default</td>
+</tr>
+
+</tbody>
+</table>
+<pre class="displayNone" tabIndex="0">
+
+</pre>
+</div>
+
+<div class="footer">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body>
+</html>
