@@ -558,7 +558,7 @@ local.assetsDict["/assets.index.template.html"] = '\
 <meta name="viewport" content="width=device-width, initial-scale=1">\n\
 <!-- "assets.utility2.template.html" -->\n\
 <title>{{env.npm_package_name}} ({{env.npm_package_version}})</title>\n\
-<link href="assets.bootstrap.css" rel="stylesheet">\n\
+<link href="assets.bootstrap-v3.4.1.rollup.min.css" rel="stylesheet">\n\
 <style>\n\
 /* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/dashboard.css */\n\
 /*\n\
