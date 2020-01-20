@@ -12772,10 +12772,10 @@ if (local.isBrowser) {
 local.assetsDict = local.assetsDict || {};
 if (!globalThis.utility2_rollup) {
     local.assetsDict[
-        "assets.bootstrap-v3.4.1.rollup.min.css"
+        "assets.bootstrap-v3.4.1.rollup.css"
     ] = local.fs.readFileSync(__dirname + "/lib.bootstrap.css");
     local.assetsDict[
-        "assets.bootstrap-v3.4.1.rollup.min.js"
+        "assets.bootstrap-v3.4.1.rollup.js"
     ] = local.fs.readFileSync(__dirname + "/lib.bootstrap.js");
 }
 }());

@@ -414,10 +414,10 @@ local.testCase_buildApp_default = function (option, onError) {
                 file: "/assets.bootstrap.css",
                 url: "/assets.bootstrap.css"
             }, {
-                file: "/assets.bootstrap-v3.4.1.rollup.min.css",
+                file: "/assets.bootstrap-v3.4.1.rollup.css",
                 url: "/assets.bootstrap.css"
             }, {
-                file: "/assets.bootstrap-v3.4.1.rollup.min.js",
+                file: "/assets.bootstrap-v3.4.1.rollup.js",
                 url: "/assets.bootstrap.js"
             }
         ]
