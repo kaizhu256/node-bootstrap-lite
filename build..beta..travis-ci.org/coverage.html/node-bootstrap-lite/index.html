@@ -47,7 +47,7 @@
 .x-istanbul .cover-empty,
 .x-istanbul .cover-fill {
     background: white;
-    border: 1px solid #444;
+    border: 1px solid #999;
     display: inline-block;
     height: 12px;
 }
@@ -57,7 +57,7 @@
 }
 .x-istanbul .cover-fill {
     background: #ccc;
-    border-right: 1px solid #444;
+    border-right: 1px solid #999;
 }
 .x-istanbul .cover-full {
     border-right: none !important;
@@ -97,8 +97,8 @@
     text-decoration: none;
 }
 .x-istanbul .coverage .line-coverage {
-    border-left: 1px solid #666;
-    border-right: 1px solid #666;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
     color: #777 !important;
     text-align: right;
 }
@@ -113,7 +113,7 @@
     width: 100%
 }
 .x-istanbul .coverage-summary td {
-    border: 1px solid #666;
+    border: 1px solid #999;
     margin: 0;
     padding: 5px;
     white-space: nowrap;
@@ -143,7 +143,7 @@
     padding: 20px;
 }
 .x-istanbul .footer {
-    border-top: 1px solid #666;
+    border-top: 1px solid #999;
 }
 .x-istanbul .fstat-no {
     background: #ffc520;
@@ -154,7 +154,7 @@
     color: #111 !important;
 }
 .x-istanbul .header {
-    border-bottom: 1px solid #666;
+    border-bottom: 1px solid #999;
     top: 0;
     width: 100%;
 }
@@ -176,7 +176,7 @@
 }
 .x-istanbul .metric {
     background: white;
-    border: 1px solid #333;
+    border: 1px solid #999;
     display: inline-block;
     padding: .3em;
 }
@@ -229,7 +229,7 @@
 }
 .x-istanbul .tableHeader td {
     background: #fff;
-    border: 1px solid #666;
+    border: 1px solid #999;
     padding: 5px;
 }
 .x-istanbul .tableHeader th {
@@ -249,27 +249,37 @@
     if (window.domOnEventSelectAllWithinPre) {
         return;
     }
-    window.domOnEventSelectAllWithinPre = function (event) {
+    window.domOnEventSelectAllWithinPre = function (evt) {
         var range;
         var selection;
-        if (event &&
-                event.key === "a" &&
-                (event.ctrlKey || event.metaKey) &&
-                event.target.closest("pre")) {
+        if (
+            evt
+            && evt.key === "a"
+            && (evt.ctrlKey || evt.metaKey)
+            && evt.target.closest(
+                "pre"
+            )
+        ) {
             range = document.createRange();
-            range.selectNodeContents(event.target.closest("pre"));
+            range.selectNodeContents(evt.target.closest(
+                "pre"
+            ));
             selection = window.getSelection();
             selection.removeAllRanges();
             selection.addRange(range);
-            event.preventDefault();
+            evt.preventDefault();
         }
     };
-    document.addEventListener("keydown", window.domOnEventSelectAllWithinPre);
+    // handle evt
+    document.addEventListener(
+        "keydown",
+        window.domOnEventSelectAllWithinPre
+    );
 }());
 </script>
 <div class="header high">
     <h1 style="font-weight: bold;">
-        <a href="https://github.com/kaizhu256/node-bootstrap-lite">bootstrap-lite (2019.1.30)</a>
+        <a href="https://github.com/kaizhu256/node-bootstrap-lite">bootstrap-lite (2020.1.20)</a>
     </h1>
     <h1>Code coverage report for <span class="entity">node-bootstrap-lite/</span></h1>
     <table class="tableHeader">
@@ -283,11 +293,11 @@
     </tr>
     </thead>
     <tbody>
-        <td>branches: 84<br>statements: 84<br>functions: 22</td>
-        <td>100%<br>(283 / 283)</td>
-        <td>100%<br>(133 / 133)</td>
-        <td>100%<br>(45 / 45)</td>
-        <td>100%<br>(283 / 283)</td>
+        <td>statements: 5381<br>branches: 5072<br>functions: 1036</td>
+        <td>100%<br>(5677 / 5677)</td>
+        <td>100%<br>(5114 / 5114)</td>
+        <td>100%<br>(1053 / 1053)</td>
+        <td>100%<br>(4873 / 4873)</td>
     </tbody>
     </table>
     <div class="path"><a href="../index.html">All files</a> &#187; node-bootstrap-lite/</div>
@@ -305,34 +315,26 @@
 </tr>
 </thead>
 <tbody><tr>
-	<td class="file high" data-value="example.js"><a href="example.js.html"><div>example.js</div><span class="cover-fill cover-full" style="width: 100px;"></span><span class="cover-empty" style="width:0px;"></span></a></td>
-	<td data-value="100" class="pct high">100%<br>(111 / 111)</td>
-	<td data-value="100" class="pct high">100%<br>(63 / 63)</td>
-	<td data-value="100" class="pct high">100%<br>(16 / 16)</td>
-	<td data-value="100" class="pct high">100%<br>(111 / 111)</td>
-	</tr>
-
-<tr>
 	<td class="file high" data-value="lib.bootstrap.js"><a href="lib.bootstrap.js.html"><div>lib.bootstrap.js</div><span class="cover-fill cover-full" style="width: 100px;"></span><span class="cover-empty" style="width:0px;"></span></a></td>
-	<td data-value="100" class="pct high">100%<br>(81 / 81)</td>
-	<td data-value="100" class="pct high">100%<br>(37 / 37)</td>
-	<td data-value="100" class="pct high">100%<br>(12 / 12)</td>
-	<td data-value="100" class="pct high">100%<br>(81 / 81)</td>
+	<td data-value="100" class="pct high">100%<br>(5464 / 5464)</td>
+	<td data-value="100" class="pct high">100%<br>(5015 / 5015)</td>
+	<td data-value="100" class="pct high">100%<br>(1024 / 1024)</td>
+	<td data-value="100" class="pct high">100%<br>(4660 / 4660)</td>
 	</tr>
 
 <tr>
 	<td class="file high" data-value="test.js"><a href="test.js.html"><div>test.js</div><span class="cover-fill cover-full" style="width: 100px;"></span><span class="cover-empty" style="width:0px;"></span></a></td>
-	<td data-value="100" class="pct high">100%<br>(91 / 91)</td>
-	<td data-value="100" class="pct high">100%<br>(33 / 33)</td>
-	<td data-value="100" class="pct high">100%<br>(17 / 17)</td>
-	<td data-value="100" class="pct high">100%<br>(91 / 91)</td>
+	<td data-value="100" class="pct high">100%<br>(213 / 213)</td>
+	<td data-value="100" class="pct high">100%<br>(99 / 99)</td>
+	<td data-value="100" class="pct high">100%<br>(29 / 29)</td>
+	<td data-value="100" class="pct high">100%<br>(213 / 213)</td>
 	</tr>
 
 </tbody>
 </table>
 </div></div>
 <div class="footer">
-    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Wed, 30 Jan 2019 16:39:22 GMT</div>
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Mon, 20 Jan 2020 23:38:05 GMT</div>
 </div>
 </body>
 </html>
