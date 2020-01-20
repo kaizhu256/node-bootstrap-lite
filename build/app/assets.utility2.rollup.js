@@ -51191,6 +51191,9 @@ local.buildApp = function (opt, onError) {
                 file: "/LICENSE",
                 url: "/LICENSE"
             }, {
+                file: "/assets." + local.env.npm_package_nameLib + ".css",
+                url: "/assets." + local.env.npm_package_nameLib + ".css"
+            }, {
                 file: "/assets." + local.env.npm_package_nameLib + ".html",
                 url: "/index.html"
             }, {
@@ -53710,6 +53713,7 @@ local.requireReadme = function () {
         "/assets.utility2.rollup.js",
         "/assets.utility2.rollup.start.js",
         "local.stateInit",
+        "/assets.my_app.css",
         "/assets.my_app.js",
         "/assets.example.js",
         "/assets.test.js",
@@ -53741,6 +53745,22 @@ instruction\n\
     /utility2_rollup/g
 ), "utility2_app");
 /* jslint ignore:end */
+        case "/assets.my_app.css":
+            // handle large string-replace
+            tmp = "/assets." + local.env.npm_package_nameLib + ".css";
+            code = local.assetsDict["/assets.utility2.rollup.content.js"].split(
+                "/* utility2.rollup.js content */"
+            );
+            code.splice(
+                1,
+                0,
+                "local.assetsDict[\"" + tmp + "\"] = "
+                + JSON.stringify(local.assetsDict[tmp]).replace((
+                    /\n/g
+                ), "\\n\\\n")
+            );
+            code = code.join("");
+            break;
         case "/assets.my_app.js":
             // handle large string-replace
             tmp = "/assets." + local.env.npm_package_nameLib + ".js";
