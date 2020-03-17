@@ -1,0 +1,126 @@
+<svg height="1070" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="1070" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26"></tspan>
+
+<tspan x="10" y="42">[MODE_BUILD=buildApidoc] - 2019-01-30T16:39:23.919Z - npm-testing /home/travis/build/kaizhu256/n\</tspan>
+<tspan x="10" y="58">ode-bootstrap-lite</tspan>
+
+<tspan x="10" y="74"></tspan>
+
+<tspan x="10" y="90"></tspan>
+
+<tspan x="10" y="106">buildApidoc - merged test-report from file /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/\</tspan>
+<tspan x="10" y="122">build/test-report.json</tspan>
+
+<tspan x="10" y="138">&gt; http-server listening on port 54143</tspan>
+
+<tspan x="10" y="154">db - dropping database ...</tspan>
+
+<tspan x="10" y="170">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/package.json</tspan>
+
+<tspan x="10" y="186">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/.gitignore</tspan>
+
+<tspan x="10" y="202">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/lib.bootstrap.js</tspan>
+
+<tspan x="10" y="218">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/LICENSE</tspan>
+
+<tspan x="10" y="234">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/npm_scripts.sh</tspan>
+
+<tspan x="10" y="250">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/package.json</tspan>
+
+<tspan x="10" y="266">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/package-lock.json</tspan>
+
+<tspan x="10" y="282">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/README.md</tspan>
+
+<tspan x="10" y="298">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/test.js</tspan>
+
+<tspan x="10" y="314">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/.travis.yml</tspan>
+
+<tspan x="10" y="330">apidocCreate - requiring /home/travis/build/kaizhu256/node-bootstrap-lite ...</tspan>
+
+<tspan x="10" y="346">apidocCreate - ... required /home/travis/build/kaizhu256/node-bootstrap-lite</tspan>
+
+<tspan x="10" y="362"></tspan>
+
+<tspan x="10" y="378">buildApidoc - merged test-report from file /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/\</tspan>
+<tspan x="10" y="394">build/test-report.json</tspan>
+
+<tspan x="10" y="410">created apidoc file /home/travis/build/kaizhu256/node-bootstrap-lite/apidoc.html</tspan>
+
+<tspan x="10" y="426"></tspan>
+
+<tspan x="10" y="442">testRunDefault - 185 ms - [node test-case 1 of 1 passed] - testCase_buildApidoc_default</tspan>
+
+<tspan x="10" y="458">jslint - 46ms /home/travis/build/kaizhu256/node-bootstrap-lite/lib.bootstrap.js</tspan>
+
+<tspan x="10" y="474">jslint - 2ms /home/travis/build/kaizhu256/node-bootstrap-lite/npm_scripts.sh</tspan>
+
+<tspan x="10" y="490">jslint - 1ms /home/travis/build/kaizhu256/node-bootstrap-lite/package.json</tspan>
+
+<tspan x="10" y="506">jslint - 38ms /home/travis/build/kaizhu256/node-bootstrap-lite/test.js</tspan>
+
+<tspan x="10" y="522">jslint - 72ms /home/travis/build/kaizhu256/node-bootstrap-lite/README.md</tspan>
+
+<tspan x="10" y="538"></tspan>
+
+<tspan x="10" y="554">buildApidoc - merged test-report from file /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/\</tspan>
+<tspan x="10" y="570">build/test-report.json</tspan>
+
+<tspan x="10" y="586"></tspan>
+
+<tspan x="10" y="602">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="618">| test-report - buildApidoc - node - linux v11.8.0 - 2019-01-30T16:39:24.107Z</tspan>
+
+<tspan x="10" y="634">|     186 ms            0 failed        1 passed      |</tspan>
+
+<tspan x="10" y="650">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="666">| test-report - npmTest - browser - /assets.utility2.base.html - Mozilla/5.0 (X11; Linux x86_64)\</tspan>
+<tspan x="10" y="682"> AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Electron/2.0.16 Safari/537.36 - 201\</tspan>
+<tspan x="10" y="698">9-01-30T16:39:15.712Z</tspan>
+
+<tspan x="10" y="714">|    1006 ms            0 failed        3 passed      |</tspan>
+
+<tspan x="10" y="730">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="746">| test-report - npmTest - node - linux v11.8.0 - 2019-01-30T16:39:14.015Z</tspan>
+
+<tspan x="10" y="762">|    7183 ms            0 failed        7 passed      |</tspan>
+
+<tspan x="10" y="778">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="794">| test-report - npmTestPublished - browser - /assets.utility2.base.html - Mozilla/5.0 (X11; Linu\</tspan>
+<tspan x="10" y="810">x x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Electron/2.0.16 Safari/537\</tspan>
+<tspan x="10" y="826">.36 - 2019-01-30T16:38:17.447Z</tspan>
+
+<tspan x="10" y="842">|    1005 ms            0 failed        3 passed      |</tspan>
+
+<tspan x="10" y="858">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="874">| test-report - npmTestPublished - node - linux v11.8.0 - 2019-01-30T16:38:15.035Z</tspan>
+
+<tspan x="10" y="890">|    7960 ms            0 failed        7 passed      |</tspan>
+
+<tspan x="10" y="906">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="922"></tspan>
+
+<tspan x="10" y="938">created test-report file /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/build/test-report.\</tspan>
+<tspan x="10" y="954">html</tspan>
+
+<tspan x="10" y="970"></tspan>
+
+<tspan x="10" y="986"></tspan>
+
+<tspan x="10" y="1002">buildApidoc - 0 failed tests</tspan>
+
+<tspan x="10" y="1018"></tspan>
+
+<tspan x="10" y="1034"></tspan>
+
+<tspan x="10" y="1050">[MODE_BUILD=buildApidoc] - 2019-01-30T16:39:25.721Z - EXIT_CODE - 0</tspan>
+
+</text>
+</svg>

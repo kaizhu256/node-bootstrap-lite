@@ -1,0 +1,254 @@
+<svg height="2446" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="2446" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26"></tspan>
+
+<tspan x="10" y="42">[MODE_BUILD=npmTestPublished] - 2019-01-30T16:38:14.804Z - npm-testing /tmp/npmTestPublished/nod\</tspan>
+<tspan x="10" y="58">e_modules/bootstrap-lite</tspan>
+
+<tspan x="10" y="74"></tspan>
+
+<tspan x="10" y="90"></tspan>
+
+<tspan x="10" y="106">covering $ /home/travis/.nvm/versions/node/v11.8.0/bin/node /tmp/npmTestPublished/node_modules/b\</tspan>
+<tspan x="10" y="122">ootstrap-lite/test.js</tspan>
+
+<tspan x="10" y="138">&gt; http-server listening on port 57009</tspan>
+
+<tspan x="10" y="154">db - dropping database ...</tspan>
+
+<tspan x="10" y="170">jslint - 84ms /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js</tspan>
+
+<tspan x="10" y="186">jslint - 1ms /tmp/npmTestPublished/node_modules/bootstrap-lite/npm_scripts.sh</tspan>
+
+<tspan x="10" y="202">jslint - 0ms /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json</tspan>
+
+<tspan x="10" y="218">jslint - 59ms /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
+
+<tspan x="10" y="234">testRunDefault - 154 ms - [node test-case 1 of 7 passed] - testCase_buildApidoc_default</tspan>
+
+<tspan x="10" y="250">testRunDefault - 200 ms - [node test-case 2 of 7 passed] - testCase_buildLib_default</tspan>
+
+<tspan x="10" y="266">testRunDefault - 219 ms - [node test-case 3 of 7 passed] - testCase_buildReadme_default</tspan>
+
+<tspan x="10" y="282">testRunDefault - 219 ms - [node test-case 4 of 7 passed] - testCase_buildTest_default</tspan>
+
+<tspan x="10" y="298">testRunDefault - 220 ms - [node test-case 5 of 7 passed] - testCase_nop_default</tspan>
+
+<tspan x="10" y="314">jslint - 174ms /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md</tspan>
+
+<tspan x="10" y="330">http-server listening on port 65026</tspan>
+
+<tspan x="10" y="346">Xlib:  extension "RANDR" missing on display ":99.0".</tspan>
+
+<tspan x="10" y="362">[5509:0130/163816.816633:ERROR:bus.cc(395)] Failed to connect to the bus: Could not parse server\</tspan>
+<tspan x="10" y="378"> address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")</tspan>
+
+<tspan x="10" y="394">[5509:0130/163816.826226:ERROR:bus.cc(395)] Failed to connect to the bus: Could not parse server\</tspan>
+<tspan x="10" y="410"> address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")</tspan>
+
+<tspan x="10" y="426">[5570:0130/163816.975968:ERROR:sandbox_linux.cc(344)] InitializeSandbox() called with multiple t\</tspan>
+<tspan x="10" y="442">hreads in process gpu-process.</tspan>
+
+<tspan x="10" y="458">[5509:0130/163817.192130:INFO:CONSOLE(188)] "%cElectron Security Warning (Insecure Content-Secur\</tspan>
+<tspan x="10" y="474">ity-Policy)", source: /tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/electron-li\</tspan>
+<tspan x="10" y="490">te/external/resources/electron.asar/renderer/security-warnings.js (188)</tspan>
+
+<tspan x="10" y="506">[5509:0130/163817.201413:INFO:CONSOLE(188)] "%cElectron Security Warning (Insecure Content-Secur\</tspan>
+<tspan x="10" y="522">ity-Policy)", source: /tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/electron-li\</tspan>
+<tspan x="10" y="538">te/external/resources/electron.asar/renderer/security-warnings.js (188)</tspan>
+
+<tspan x="10" y="554">[5509:0130/163817.988563:INFO:CONSOLE(8)] "Uncaught TypeError: Cannot read property 'isBrowser' \</tspan>
+<tspan x="10" y="570">of undefined", source: http://127.0.0.1:57009/assets.example.js (8)</tspan>
+
+<tspan x="10" y="586">[5509:0130/163817.996931:INFO:CONSOLE(3216)] "db - dropping database ...", source: http://127.0.\</tspan>
+<tspan x="10" y="602">0.1:57009/assets.utility2.rollup.js (3216)</tspan>
+
+<tspan x="10" y="618">[5509:0130/163818.019279:INFO:CONSOLE(128)] "%cElectron Security Warning (Insecure Resources)", \</tspan>
+<tspan x="10" y="634">source: /tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/electron-lite/external/re\</tspan>
+<tspan x="10" y="650">sources/electron.asar/renderer/security-warnings.js (128)</tspan>
+
+<tspan x="10" y="666">[5509:0130/163818.020456:INFO:CONSOLE(8)] "Uncaught TypeError: Cannot read property 'isBrowser' \</tspan>
+<tspan x="10" y="682">of undefined", source: http://127.0.0.1:57009/assets.example.js (8)</tspan>
+
+<tspan x="10" y="698">[5509:0130/163818.027418:INFO:CONSOLE(3216)] "db - dropping database ...", source: http://127.0.\</tspan>
+<tspan x="10" y="714">0.1:57009/assets.utility2.rollup.js (3216)</tspan>
+
+<tspan x="10" y="730">[5509:0130/163818.041348:INFO:CONSOLE(188)] "%cElectron Security Warning (Insecure Content-Secur\</tspan>
+<tspan x="10" y="746">ity-Policy)", source: /tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/electron-li\</tspan>
+<tspan x="10" y="762">te/external/resources/electron.asar/renderer/security-warnings.js (188)</tspan>
+
+<tspan x="10" y="778">[5509:0130/163818.048005:INFO:CONSOLE(128)] "%cElectron Security Warning (Insecure Resources)", \</tspan>
+<tspan x="10" y="794">source: /tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/electron-lite/external/re\</tspan>
+<tspan x="10" y="810">sources/electron.asar/renderer/security-warnings.js (128)</tspan>
+
+<tspan x="10" y="826">[5509:0130/163818.049053:INFO:CONSOLE(188)] "%cElectron Security Warning (Insecure Content-Secur\</tspan>
+<tspan x="10" y="842">ity-Policy)", source: /tmp/npmTestPublished/node_modules/bootstrap-lite/node_modules/electron-li\</tspan>
+<tspan x="10" y="858">te/external/resources/electron.asar/renderer/security-warnings.js (188)</tspan>
+
+<tspan x="10" y="874">[5509:0130/163818.108414:INFO:CONSOLE(484)] "domOnEventWindowOnloadTimeElapsed = 558", source: /\</tspan>
+<tspan x="10" y="890">tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/electron.1689fa017640.d0cf0b1952aac.html (4\</tspan>
+<tspan x="10" y="906">84)</tspan>
+
+<tspan x="10" y="922">[5509:0130/163818.133580:INFO:CONSOLE(484)] "domOnEventWindowOnloadTimeElapsed = 595", source: /\</tspan>
+<tspan x="10" y="938">tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/electron.1689fa017640.d0cf0b1952aac.html (4\</tspan>
+<tspan x="10" y="954">84)</tspan>
+
+<tspan x="10" y="970">[5509:0130/163818.222313:WARNING:quota_manager.cc(1629)] No storage quota provided in QuotaSetti\</tspan>
+<tspan x="10" y="986">ngs.</tspan>
+
+<tspan x="10" y="1002">[5509:0130/163818.232720:INFO:CONSOLE(26839)] "testRunDefault - 7 ms - [browser test-case 1 of 3\</tspan>
+<tspan x="10" y="1018"> passed] - testCase_buildApp_default", source: http://127.0.0.1:57009/assets.utility2.rollup.js \</tspan>
+<tspan x="10" y="1034">(26839)</tspan>
+
+<tspan x="10" y="1050">[5509:0130/163818.234314:INFO:CONSOLE(26839)] "testRunDefault - 8 ms - [browser test-case 2 of 3\</tspan>
+<tspan x="10" y="1066"> passed] - testCase_buildReadme_default", source: http://127.0.0.1:57009/assets.utility2.rollup.\</tspan>
+<tspan x="10" y="1082">js (26839)</tspan>
+
+<tspan x="10" y="1098">[5509:0130/163818.235658:INFO:CONSOLE(26839)] "testRunDefault - 9 ms - [browser test-case 3 of 3\</tspan>
+<tspan x="10" y="1114"> passed] - testCase_nop_default", source: http://127.0.0.1:57009/assets.utility2.rollup.js (2683\</tspan>
+<tspan x="10" y="1130">9)</tspan>
+
+<tspan x="10" y="1146">[5509:0130/163818.238457:INFO:CONSOLE(26839)] "testRunDefault - 11 ms - [browser test-case 1 of \</tspan>
+<tspan x="10" y="1162">3 passed] - testCase_buildApp_default", source: http://127.0.0.1:57009/assets.utility2.rollup.js\</tspan>
+<tspan x="10" y="1178"> (26839)</tspan>
+
+<tspan x="10" y="1194">[5509:0130/163818.241110:INFO:CONSOLE(26839)] "testRunDefault - 13 ms - [browser test-case 2 of \</tspan>
+<tspan x="10" y="1210">3 passed] - testCase_buildReadme_default", source: http://127.0.0.1:57009/assets.utility2.rollup\</tspan>
+<tspan x="10" y="1226">.js (26839)</tspan>
+
+<tspan x="10" y="1242">[5509:0130/163818.242610:INFO:CONSOLE(26839)] "testRunDefault - 15 ms - [browser test-case 3 of \</tspan>
+<tspan x="10" y="1258">3 passed] - testCase_nop_default", source: http://127.0.0.1:57009/assets.utility2.rollup.js (268\</tspan>
+<tspan x="10" y="1274">39)</tspan>
+
+<tspan x="10" y="1290">[5509:0130/163819.241431:INFO:CONSOLE(8359)] "----------|-----------|-----------|-----------|---\</tspan>
+<tspan x="10" y="1306">--------|</tspan>
+
+<tspan x="10" y="1322">File      |   % Stmts |% Branches |   % Funcs |   % Lines |</tspan>
+
+<tspan x="10" y="1338">----------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="1354">----------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="1370">All files |       100 |       100 |       100 |       100 |</tspan>
+
+<tspan x="10" y="1386">----------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="1402">", source: http://127.0.0.1:57009/assets.utility2.rollup.js (8359)</tspan>
+
+<tspan x="10" y="1418">[5509:0130/163819.246433:INFO:CONSOLE(5984)] "created coverage file /tmp/build/coverage.html/ind\</tspan>
+<tspan x="10" y="1434">ex.html", source: http://127.0.0.1:57009/assets.utility2.rollup.js (5984)</tspan>
+
+<tspan x="10" y="1450">[5509:0130/163819.265064:INFO:CONSOLE(8359)] "----------|-----------|-----------|-----------|---\</tspan>
+<tspan x="10" y="1466">--------|</tspan>
+
+<tspan x="10" y="1482">File      |   % Stmts |% Branches |   % Funcs |   % Lines |</tspan>
+
+<tspan x="10" y="1498">----------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="1514">----------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="1530">All files |       100 |       100 |       100 |       100 |</tspan>
+
+<tspan x="10" y="1546">----------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="1562">", source: http://127.0.0.1:57009/assets.utility2.rollup.js (8359)</tspan>
+
+<tspan x="10" y="1578">[5509:0130/163819.265246:INFO:CONSOLE(5984)] "created coverage file /tmp/build/coverage.html/ind\</tspan>
+<tspan x="10" y="1594">ex.html", source: http://127.0.0.1:57009/assets.utility2.rollup.js (5984)</tspan>
+
+<tspan x="10" y="1610">testRunDefault - 5014 ms - testCase pending - testCase_buildApp_default, testCase_webpage_defaul\</tspan>
+<tspan x="10" y="1626">t ...</tspan>
+
+<tspan x="10" y="1642">testRunDefault - 5724 ms - [node test-case 6 of 7 passed] - testCase_buildApp_default</tspan>
+
+<tspan x="10" y="1658">[5509:0130/163823.009834:INFO:CONSOLE(135)] "null", source: fs.js (135)</tspan>
+
+<tspan x="10" y="1674">[5509:0130/163823.277872:INFO:CONSOLE(135)] "Error: ENOENT: no such file or directory, rename '/\</tspan>
+<tspan x="10" y="1690">tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/electron.1689fa017640.d0cf0b1952aac.html' -\</tspan>
+<tspan x="10" y="1706">&gt; '/tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/electron.html'", source: fs.js (135)</tspan>
+
+<tspan x="10" y="1722"></tspan>
+
+<tspan x="10" y="1738">browserTest - created screenshot file /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/build\</tspan>
+<tspan x="10" y="1754">/screenshot.npmTestPublished.browser.%2F.png</tspan>
+
+<tspan x="10" y="1770"></tspan>
+
+<tspan x="10" y="1786">browserTest - created screenshot file /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/build\</tspan>
+<tspan x="10" y="1802">/screenshot.npmTestPublished.browser.%2F.html</tspan>
+
+<tspan x="10" y="1818"></tspan>
+
+<tspan x="10" y="1834">browserTest - created screenshot file /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/build\</tspan>
+<tspan x="10" y="1850">/screenshot.npmTestPublished.browser.%2F.png</tspan>
+
+<tspan x="10" y="1866"></tspan>
+
+<tspan x="10" y="1882">browserTest - created screenshot file /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/build\</tspan>
+<tspan x="10" y="1898">/screenshot.npmTestPublished.browser.%2F.html</tspan>
+
+<tspan x="10" y="1914">testRunDefault - 7952 ms - [node test-case 7 of 7 passed] - testCase_webpage_default</tspan>
+
+<tspan x="10" y="1930">-----------------------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="1946">File                   |   % Stmts |% Branches |   % Funcs |   % Lines |</tspan>
+
+<tspan x="10" y="1962">-----------------------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="1978">   bootstrap-lite/     |       100 |       100 |       100 |       100 |</tspan>
+
+<tspan x="10" y="1994">      example.js       |       100 |       100 |       100 |       100 |</tspan>
+
+<tspan x="10" y="2010">      lib.bootstrap.js |       100 |       100 |       100 |       100 |</tspan>
+
+<tspan x="10" y="2026">      test.js          |       100 |       100 |       100 |       100 |</tspan>
+
+<tspan x="10" y="2042">-----------------------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="2058">All files              |       100 |       100 |       100 |       100 |</tspan>
+
+<tspan x="10" y="2074">-----------------------|-----------|-----------|-----------|-----------|</tspan>
+
+<tspan x="10" y="2090"></tspan>
+
+<tspan x="10" y="2106">created coverage file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/coverage.html/\</tspan>
+<tspan x="10" y="2122">index.html</tspan>
+
+<tspan x="10" y="2138"></tspan>
+
+<tspan x="10" y="2154">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="2170">| test-report - npmTestPublished - browser - /assets.utility2.base.html - Mozilla/5.0 (X11; Linu\</tspan>
+<tspan x="10" y="2186">x x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Electron/2.0.16 Safari/537\</tspan>
+<tspan x="10" y="2202">.36 - 2019-01-30T16:38:17.447Z</tspan>
+
+<tspan x="10" y="2218">|    1005 ms            0 failed        3 passed      |</tspan>
+
+<tspan x="10" y="2234">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="2250">| test-report - npmTestPublished - node - linux v11.8.0 - 2019-01-30T16:38:15.035Z</tspan>
+
+<tspan x="10" y="2266">|    7960 ms            0 failed        7 passed      |</tspan>
+
+<tspan x="10" y="2282">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="2298"></tspan>
+
+<tspan x="10" y="2314">created test-report file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-report\</tspan>
+<tspan x="10" y="2330">.html</tspan>
+
+<tspan x="10" y="2346"></tspan>
+
+<tspan x="10" y="2362"></tspan>
+
+<tspan x="10" y="2378">npmTestPublished - 0 failed tests</tspan>
+
+<tspan x="10" y="2394"></tspan>
+
+<tspan x="10" y="2410"></tspan>
+
+<tspan x="10" y="2426">[MODE_BUILD=npmTestPublished] - 2019-01-30T16:38:25.386Z - EXIT_CODE - 0</tspan>
+
+</text>
+</svg>
