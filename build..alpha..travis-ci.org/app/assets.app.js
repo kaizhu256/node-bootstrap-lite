@@ -11,9 +11,9 @@ this zero-dependency package will provide a rolled-up .css (includes font/glyphi
 
 instruction
     1. save this script as assets.app.js
-    2. run the shell-command:
+    2. run shell-command:
         $ PORT=8081 node assets.app.js
-    3. open a browser to http://127.0.0.1:8081 and play with the web-demo
+    3. open a browser to http://127.0.0.1:8081 and play with web-demo
     4. edit this script to suit your needs
 */
 /* utility2.rollup.js begin */
@@ -23,8 +23,6 @@ instruction
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -40,162 +38,17 @@ instruction
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -208,34 +61,32 @@ instruction
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -258,6 +109,7 @@ instruction
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -276,6 +128,7 @@ instruction
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -388,9 +241,7 @@ instruction
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -424,8 +275,6 @@ instruction
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -441,162 +290,17 @@ instruction
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -609,34 +313,32 @@ instruction
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -659,6 +361,7 @@ instruction
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -677,6 +380,7 @@ instruction
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -789,9 +493,7 @@ instruction
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -828,8 +530,6 @@ instruction
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -845,162 +545,17 @@ instruction
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -1013,34 +568,32 @@ instruction
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -1063,6 +616,7 @@ instruction
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -1081,6 +635,7 @@ instruction
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -1193,9 +748,7 @@ instruction
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -1230,7 +783,7 @@ local.apidoc = local;
 /* validateLineSortedReset */
 local.cliRun = function (opt) {
 /*
- * this function will run the cli with given <opt>
+ * this function will run cli with given <opt>
  */
     local.cliDict._eval = local.cliDict._eval || function () {
     /*
@@ -1248,8 +801,8 @@ local.cliRun = function (opt) {
         let commandList;
         let file;
         let packageJson;
-        let text;
-        let textDict;
+        let str;
+        let strDict;
         commandList = [
             {
                 argList: "<arg2>  ...",
@@ -1274,23 +827,23 @@ local.cliRun = function (opt) {
         opt.rgxComment = opt.rgxComment || (
             /\)\u0020\{\n(?:|\u0020{4})\/\*\n(?:\u0020|\u0020{5})\*((?:\u0020<[^>]*?>|\u0020\.\.\.)*?)\n(?:\u0020|\u0020{5})\*\u0020(will\u0020.*?\S)\n(?:\u0020|\u0020{5})\*\/\n(?:\u0020{4}|\u0020{8})\S/
         );
-        textDict = {};
+        strDict = {};
         Object.keys(local.cliDict).sort().forEach(function (key, ii) {
             if (key[0] === "_" && key !== "_default") {
                 return;
             }
-            text = String(local.cliDict[key]);
+            str = String(local.cliDict[key]);
             if (key === "_default") {
                 key = "";
             }
-            textDict[text] = textDict[text] || (ii + 2);
-            ii = textDict[text];
+            strDict[str] = strDict[str] || (ii + 2);
+            ii = strDict[str];
             if (commandList[ii]) {
                 commandList[ii].command.push(key);
                 return;
             }
             try {
-                commandList[ii] = opt.rgxComment.exec(text);
+                commandList[ii] = opt.rgxComment.exec(str);
                 commandList[ii] = {
                     argList: local.coalesce(commandList[ii][1], "").trim(),
                     command: [
@@ -1304,7 +857,7 @@ local.cliRun = function (opt) {
                     + key
                     + ":\nnew RegExp("
                     + JSON.stringify(opt.rgxComment.source)
-                    + ").exec(" + JSON.stringify(text).replace((
+                    + ").exec(" + JSON.stringify(str).replace((
                         /\\\\/g
                     ), "\u0000").replace((
                         /\\n/g
@@ -1314,9 +867,9 @@ local.cliRun = function (opt) {
                 ));
             }
         });
-        text = "";
-        text += packageJson.name + " (" + packageJson.version + ")\n\n";
-        text += commandList.filter(function (elem) {
+        str = "";
+        str += packageJson.name + " (" + packageJson.version + ")\n\n";
+        str += commandList.filter(function (elem) {
             return elem;
         }).map(function (elem, ii) {
             elem.command = elem.command.filter(function (elem) {
@@ -1343,7 +896,7 @@ local.cliRun = function (opt) {
                 + elem.argList.join("  ")
             );
         }).join("\n\n");
-        console.log(text);
+        console.log(str);
     };
     local.cliDict["--eval"] = local.cliDict["--eval"] || local.cliDict._eval;
     local.cliDict["--help"] = local.cliDict["--help"] || local.cliDict._help;
@@ -1469,17 +1022,17 @@ local.stringHtmlSafe = function (str) {
  * https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html
  */
     return str.replace((
-        /&/g
+        /&/gu
     ), "&amp;").replace((
-        /"/g
+        /"/gu
     ), "&quot;").replace((
-        /'/g
+        /'/gu
     ), "&apos;").replace((
-        /</g
+        /</gu
     ), "&lt;").replace((
-        />/g
+        />/gu
     ), "&gt;").replace((
-        /&amp;(amp;|apos;|gt;|lt;|quot;)/ig
+        /&amp;(amp;|apos;|gt;|lt;|quot;)/igu
     ), "&$1");
 };
 
@@ -1576,7 +1129,7 @@ local.templateApidocHtml = '\
     </h2>\n\
     <ul>\n\
     <li>description and source-code<pre class="apidocCodePre">{{source truncate 4096}}</pre></li>\n\
-    <li>example usage<pre class="apidocCodePre">{{example}}</pre></li>\n\
+    <li>example use<pre class="apidocCodePre">{{example}}</pre></li>\n\
     </ul>\n\
     {{/if source}}\n\
     {{/each elemList}}\n\
@@ -1769,17 +1322,17 @@ local.templateRender = function (template, dict, opt, ii) {
             // default to htmlSafe
             if (!notHtmlSafe) {
                 val = val.replace((
-                    /&/g
+                    /&/gu
                 ), "&amp;").replace((
-                    /"/g
+                    /"/gu
                 ), "&quot;").replace((
-                    /'/g
+                    /'/gu
                 ), "&apos;").replace((
-                    /</g
+                    /</gu
                 ), "&lt;").replace((
-                    />/g
+                    />/gu
                 ), "&gt;").replace((
-                    /&amp;(amp;|apos;|gt;|lt;|quot;)/ig
+                    /&amp;(amp;|apos;|gt;|lt;|quot;)/igu
                 ), "&$1");
             }
             markdownToHtml = (
@@ -1788,7 +1341,7 @@ local.templateRender = function (template, dict, opt, ii) {
             );
             if (markdownToHtml) {
                 val = markdownToHtml(val).replace((
-                    /&amp;(amp;|apos;|gt;|lt;|quot;)/ig
+                    /&amp;(amp;|apos;|gt;|lt;|quot;)/igu
                 ), "&$1");
             }
             return val;
@@ -1936,13 +1489,13 @@ local.apidocCreate = function (opt) {
         }, console.error);
         return result;
     };
-    trimStart = function (text) {
+    trimStart = function (str) {
     /*
-     * this function will normalize whitespace before <text>
+     * this function will normalize whitespace before <str>
      */
         let whitespace;
         whitespace = "";
-        text.trim().replace((
+        str.trim().replace((
             /^\u0020*/gm
         ), function (match0) {
             if (!whitespace || match0.length < whitespace.length) {
@@ -1950,16 +1503,16 @@ local.apidocCreate = function (opt) {
             }
             return "";
         });
-        text = text.replace(new RegExp("^" + whitespace, "gm"), "");
+        str = str.replace(new RegExp("^" + whitespace, "gm"), "");
         // enforce 128 character column limit
-        text = text.replace((
+        str = str.replace((
             /^.{128}[^\\\n]+/gm
         ), function (match0) {
             return match0.replace((
                 /(.{128}(?:\b|\w+))/g
             ), "$1\n").trimEnd();
         });
-        return text;
+        return str;
     };
     // init opt
     opt.dir = local.moduleDirname(
@@ -2072,8 +1625,8 @@ vendor\\)s\\{0,1\\}\\(\\b\\|_\\)\
     // handle case where module is a function
     if (typeof moduleMain === "function") {
         (function () {
-            let text;
-            text = toString(moduleMain);
+            let str;
+            str = toString(moduleMain);
             tmp = function () {
                 return;
             };
@@ -2083,7 +1636,7 @@ vendor\\)s\\{0,1\\}\\(\\b\\|_\\)\
                 toString: {
                     get: function () {
                         return function () {
-                            return text;
+                            return str;
                         };
                     }
                 }
@@ -2407,8 +1960,6 @@ if (module === require.main && !globalThis.utility2_rollup) {
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -2424,162 +1975,17 @@ if (module === require.main && !globalThis.utility2_rollup) {
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -2592,34 +1998,32 @@ if (module === require.main && !globalThis.utility2_rollup) {
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -2642,6 +2046,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -2660,6 +2065,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -2772,9 +2178,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -2812,7 +2216,7 @@ local.ajax = function (opt, onError) {
  * this function will send an ajax-req
  * with given <opt>.url and callback <onError>
  * with err and timeout handling
- * example usage:
+ * example use:
     local.ajax({
         data: "hello world",
         header: {"x-header-hello": "world"},
@@ -3001,7 +2405,7 @@ local.ajax = function (opt, onError) {
     /*
      * this function will init xhr
      */
-        // init opt
+        // init <opt>
         Object.keys(opt).forEach(function (key) {
             if (key[0] !== "_") {
                 xhr[key] = opt[key];
@@ -3164,7 +2568,7 @@ local.ajax = function (opt, onError) {
 
 local.cliRun = function (opt) {
 /*
- * this function will run the cli with given <opt>
+ * this function will run cli with given <opt>
  */
     local.cliDict._eval = local.cliDict._eval || function () {
     /*
@@ -3182,8 +2586,8 @@ local.cliRun = function (opt) {
         let commandList;
         let file;
         let packageJson;
-        let text;
-        let textDict;
+        let str;
+        let strDict;
         commandList = [
             {
                 argList: "<arg2>  ...",
@@ -3208,23 +2612,23 @@ local.cliRun = function (opt) {
         opt.rgxComment = opt.rgxComment || (
             /\)\u0020\{\n(?:|\u0020{4})\/\*\n(?:\u0020|\u0020{5})\*((?:\u0020<[^>]*?>|\u0020\.\.\.)*?)\n(?:\u0020|\u0020{5})\*\u0020(will\u0020.*?\S)\n(?:\u0020|\u0020{5})\*\/\n(?:\u0020{4}|\u0020{8})\S/
         );
-        textDict = {};
+        strDict = {};
         Object.keys(local.cliDict).sort().forEach(function (key, ii) {
             if (key[0] === "_" && key !== "_default") {
                 return;
             }
-            text = String(local.cliDict[key]);
+            str = String(local.cliDict[key]);
             if (key === "_default") {
                 key = "";
             }
-            textDict[text] = textDict[text] || (ii + 2);
-            ii = textDict[text];
+            strDict[str] = strDict[str] || (ii + 2);
+            ii = strDict[str];
             if (commandList[ii]) {
                 commandList[ii].command.push(key);
                 return;
             }
             try {
-                commandList[ii] = opt.rgxComment.exec(text);
+                commandList[ii] = opt.rgxComment.exec(str);
                 commandList[ii] = {
                     argList: local.coalesce(commandList[ii][1], "").trim(),
                     command: [
@@ -3238,7 +2642,7 @@ local.cliRun = function (opt) {
                     + key
                     + ":\nnew RegExp("
                     + JSON.stringify(opt.rgxComment.source)
-                    + ").exec(" + JSON.stringify(text).replace((
+                    + ").exec(" + JSON.stringify(str).replace((
                         /\\\\/g
                     ), "\u0000").replace((
                         /\\n/g
@@ -3248,9 +2652,9 @@ local.cliRun = function (opt) {
                 ));
             }
         });
-        text = "";
-        text += packageJson.name + " (" + packageJson.version + ")\n\n";
-        text += commandList.filter(function (elem) {
+        str = "";
+        str += packageJson.name + " (" + packageJson.version + ")\n\n";
+        str += commandList.filter(function (elem) {
             return elem;
         }).map(function (elem, ii) {
             elem.command = elem.command.filter(function (elem) {
@@ -3277,7 +2681,7 @@ local.cliRun = function (opt) {
                 + elem.argList.join("  ")
             );
         }).join("\n\n");
-        console.log(text);
+        console.log(str);
     };
     local.cliDict["--eval"] = local.cliDict["--eval"] || local.cliDict._eval;
     local.cliDict["--help"] = local.cliDict["--help"] || local.cliDict._help;
@@ -3383,7 +2787,7 @@ local.onErrorWithStack = function (onError) {
         if (
             err
             && typeof err.stack === "string"
-            && err !== local.errDefault
+            && err !== local.errorDefault
             && String(err.stack).indexOf(stack.split("\n")[2]) < 0
         ) {
             err.stack += "\n" + stack;
@@ -3663,13 +3067,13 @@ local.githubCrudContentDelete = function (opt, onError) {
             // delete tree
             local.onParallelList({
                 list: data
-            }, function (option2, onParallel) {
+            }, function (opt2, onParallel) {
                 onParallel.cnt += 1;
                 // recurse
                 local.githubCrudContentDelete({
                     httpReq: opt.httpReq,
                     message: opt.message,
-                    url: option2.elem.url
+                    url: opt2.elem.url
                 }, onParallel);
             }, opt.gotoNext);
             break;
@@ -3848,12 +3252,12 @@ local.githubCrudContentTouchList = function (opt, onError) {
  */
     local.onParallelList({
         list: opt.urlList
-    }, function (option2, onParallel) {
+    }, function (opt2, onParallel) {
         onParallel.cnt += 1;
         local.githubCrudContentTouch({
             httpReq: opt.httpReq,
             message: opt.message,
-            url: option2.elem
+            url: opt2.elem
         }, onParallel);
     }, onError);
 };
@@ -3887,11 +3291,11 @@ local.githubCrudRepoCreateList = function (opt, onError) {
  */
     local.onParallelList({
         list: opt.urlList
-    }, function (option2, onParallel) {
+    }, function (opt2, onParallel) {
         onParallel.cnt += 1;
         local.githubCrudRepoCreate({
             httpReq: opt.httpReq,
-            url: option2.elem
+            url: opt2.elem
         }, onParallel);
     }, onError);
 };
@@ -3915,11 +3319,11 @@ local.githubCrudRepoDeleteList = function (opt, onError) {
  */
     local.onParallelList({
         list: opt.urlList
-    }, function (option2, onParallel) {
+    }, function (opt2, onParallel) {
         onParallel.cnt += 1;
         local.githubCrudRepoDelete({
             httpReq: opt.httpReq,
-            url: option2.elem
+            url: opt2.elem
         }, onParallel);
     }, onError);
 };
@@ -4049,8 +3453,6 @@ if (module === require.main && !globalThis.utility2_rollup) {
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -4066,162 +3468,17 @@ if (module === require.main && !globalThis.utility2_rollup) {
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -4234,34 +3491,32 @@ if (module === require.main && !globalThis.utility2_rollup) {
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -4284,6 +3539,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -4302,6 +3558,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -4414,9 +3671,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -4458,7 +3713,7 @@ if (!local.isBrowser) {
 
 local.cliRun = function (opt) {
 /*
- * this function will run the cli with given <opt>
+ * this function will run cli with given <opt>
  */
     local.cliDict._eval = local.cliDict._eval || function () {
     /*
@@ -4476,8 +3731,8 @@ local.cliRun = function (opt) {
         let commandList;
         let file;
         let packageJson;
-        let text;
-        let textDict;
+        let str;
+        let strDict;
         commandList = [
             {
                 argList: "<arg2>  ...",
@@ -4502,23 +3757,23 @@ local.cliRun = function (opt) {
         opt.rgxComment = opt.rgxComment || (
             /\)\u0020\{\n(?:|\u0020{4})\/\*\n(?:\u0020|\u0020{5})\*((?:\u0020<[^>]*?>|\u0020\.\.\.)*?)\n(?:\u0020|\u0020{5})\*\u0020(will\u0020.*?\S)\n(?:\u0020|\u0020{5})\*\/\n(?:\u0020{4}|\u0020{8})\S/
         );
-        textDict = {};
+        strDict = {};
         Object.keys(local.cliDict).sort().forEach(function (key, ii) {
             if (key[0] === "_" && key !== "_default") {
                 return;
             }
-            text = String(local.cliDict[key]);
+            str = String(local.cliDict[key]);
             if (key === "_default") {
                 key = "";
             }
-            textDict[text] = textDict[text] || (ii + 2);
-            ii = textDict[text];
+            strDict[str] = strDict[str] || (ii + 2);
+            ii = strDict[str];
             if (commandList[ii]) {
                 commandList[ii].command.push(key);
                 return;
             }
             try {
-                commandList[ii] = opt.rgxComment.exec(text);
+                commandList[ii] = opt.rgxComment.exec(str);
                 commandList[ii] = {
                     argList: local.coalesce(commandList[ii][1], "").trim(),
                     command: [
@@ -4532,7 +3787,7 @@ local.cliRun = function (opt) {
                     + key
                     + ":\nnew RegExp("
                     + JSON.stringify(opt.rgxComment.source)
-                    + ").exec(" + JSON.stringify(text).replace((
+                    + ").exec(" + JSON.stringify(str).replace((
                         /\\\\/g
                     ), "\u0000").replace((
                         /\\n/g
@@ -4542,9 +3797,9 @@ local.cliRun = function (opt) {
                 ));
             }
         });
-        text = "";
-        text += packageJson.name + " (" + packageJson.version + ")\n\n";
-        text += commandList.filter(function (elem) {
+        str = "";
+        str += packageJson.name + " (" + packageJson.version + ")\n\n";
+        str += commandList.filter(function (elem) {
             return elem;
         }).map(function (elem, ii) {
             elem.command = elem.command.filter(function (elem) {
@@ -4571,7 +3826,7 @@ local.cliRun = function (opt) {
                 + elem.argList.join("  ")
             );
         }).join("\n\n");
-        console.log(text);
+        console.log(str);
     };
     local.cliDict["--eval"] = local.cliDict["--eval"] || local.cliDict._eval;
     local.cliDict["--help"] = local.cliDict["--help"] || local.cliDict._help;
@@ -16750,9 +16005,9 @@ if (module === require.main && !globalThis.utility2_rollup) {
 /* script-begin /assets.utility2.lib.jslint.js */
 // usr/bin/env node
 /*
- * lib.jslint.js (2019.10.10)
+ * lib.jslint.js (2020.3.16)
  * https://github.com/kaizhu256/node-jslint-lite
- * this zero-dependency package will provide browser-compatible versions of jslint (v2019.8.3) and csslint (v1.0.5), with a working web-demo
+ * this zero-dependency package will provide browser-compatible versions of jslint (v2020.1.17) and csslint (v2018.2.25), with a working web-demo
  *
  */
 
@@ -16764,8 +16019,6 @@ if (module === require.main && !globalThis.utility2_rollup) {
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -16781,162 +16034,17 @@ if (module === require.main && !globalThis.utility2_rollup) {
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -16949,34 +16057,32 @@ if (module === require.main && !globalThis.utility2_rollup) {
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -16999,6 +16105,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -17017,6 +16124,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -17129,9 +16237,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -17166,7 +16272,7 @@ local.jslint = local;
 /* validateLineSortedReset */
 local.cliRun = function (opt) {
 /*
- * this function will run the cli with given <opt>
+ * this function will run cli with given <opt>
  */
     local.cliDict._eval = local.cliDict._eval || function () {
     /*
@@ -17184,8 +16290,8 @@ local.cliRun = function (opt) {
         let commandList;
         let file;
         let packageJson;
-        let text;
-        let textDict;
+        let str;
+        let strDict;
         commandList = [
             {
                 argList: "<arg2>  ...",
@@ -17210,23 +16316,23 @@ local.cliRun = function (opt) {
         opt.rgxComment = opt.rgxComment || (
             /\)\u0020\{\n(?:|\u0020{4})\/\*\n(?:\u0020|\u0020{5})\*((?:\u0020<[^>]*?>|\u0020\.\.\.)*?)\n(?:\u0020|\u0020{5})\*\u0020(will\u0020.*?\S)\n(?:\u0020|\u0020{5})\*\/\n(?:\u0020{4}|\u0020{8})\S/
         );
-        textDict = {};
+        strDict = {};
         Object.keys(local.cliDict).sort().forEach(function (key, ii) {
             if (key[0] === "_" && key !== "_default") {
                 return;
             }
-            text = String(local.cliDict[key]);
+            str = String(local.cliDict[key]);
             if (key === "_default") {
                 key = "";
             }
-            textDict[text] = textDict[text] || (ii + 2);
-            ii = textDict[text];
+            strDict[str] = strDict[str] || (ii + 2);
+            ii = strDict[str];
             if (commandList[ii]) {
                 commandList[ii].command.push(key);
                 return;
             }
             try {
-                commandList[ii] = opt.rgxComment.exec(text);
+                commandList[ii] = opt.rgxComment.exec(str);
                 commandList[ii] = {
                     argList: local.coalesce(commandList[ii][1], "").trim(),
                     command: [
@@ -17240,7 +16346,7 @@ local.cliRun = function (opt) {
                     + key
                     + ":\nnew RegExp("
                     + JSON.stringify(opt.rgxComment.source)
-                    + ").exec(" + JSON.stringify(text).replace((
+                    + ").exec(" + JSON.stringify(str).replace((
                         /\\\\/g
                     ), "\u0000").replace((
                         /\\n/g
@@ -17250,9 +16356,9 @@ local.cliRun = function (opt) {
                 ));
             }
         });
-        text = "";
-        text += packageJson.name + " (" + packageJson.version + ")\n\n";
-        text += commandList.filter(function (elem) {
+        str = "";
+        str += packageJson.name + " (" + packageJson.version + ")\n\n";
+        str += commandList.filter(function (elem) {
             return elem;
         }).map(function (elem, ii) {
             elem.command = elem.command.filter(function (elem) {
@@ -17279,7 +16385,7 @@ local.cliRun = function (opt) {
                 + elem.argList.join("  ")
             );
         }).join("\n\n");
-        console.log(text);
+        console.log(str);
     };
     local.cliDict["--eval"] = local.cliDict["--eval"] || local.cliDict._eval;
     local.cliDict["--help"] = local.cliDict["--help"] || local.cliDict._help;
@@ -17404,7 +16510,7 @@ local.onErrorWithStack = function (onError) {
         if (
             err
             && typeof err.stack === "string"
-            && err !== local.errDefault
+            && err !== local.errorDefault
             && String(err.stack).indexOf(stack.split("\n")[2]) < 0
         ) {
             err.stack += "\n" + stack;
@@ -17468,13 +16574,20 @@ local.onParallel = function (onError, onEach, onRetry) {
 /* istanbul ignore next */
 // run shared js-env code - function
 (function () {
-/*
-file https://github.com/CSSLint/csslint/blob/v1.0.5/dist/csslint.js
-*/
 /* jslint ignore:start */
+/*
+repo https://github.com/CSSLint/csslint/tree/e8aeeda06c928636e21428e09b1af93f66621209
+committed 2018-02-25T11:28:16Z
+*/
+
+
+
+/*
+file https://github.com/CSSLint/csslint/blob/e8aeeda06c928636e21428e09b1af93f66621209/dist/csslint.js
+*/
 /*!
-CSSLint v1.0.4
-Copyright (c) 2016 Nicole Sullivan and Nicholas C. Zakas. All rights reserved.
+CSSLint v1.0.5
+Copyright (c) 2017 Nicole Sullivan and Nicholas C. Zakas. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the 'Software'), to deal
@@ -24690,6 +23803,10 @@ return require('parserlib');
 var clone = (function() {
 'use strict';
 
+function _instanceof(obj, type) {
+  return type != null && obj instanceof type;
+}
+
 var nativeMap;
 try {
   nativeMap = Map;
@@ -24769,11 +23886,11 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
       return parent;
     }
 
-    if (parent instanceof nativeMap) {
+    if (_instanceof(parent, nativeMap)) {
       child = new nativeMap();
-    } else if (parent instanceof nativeSet) {
+    } else if (_instanceof(parent, nativeSet)) {
       child = new nativeSet();
-    } else if (parent instanceof nativePromise) {
+    } else if (_instanceof(parent, nativePromise)) {
       child = new nativePromise(function (resolve, reject) {
         parent.then(function(value) {
           resolve(_clone(value, depth - 1));
@@ -24792,7 +23909,7 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
       child = new Buffer(parent.length);
       parent.copy(child);
       return child;
-    } else if (parent instanceof Error) {
+    } else if (_instanceof(parent, Error)) {
       child = Object.create(parent);
     } else {
       if (typeof prototype == 'undefined') {
@@ -24815,28 +23932,18 @@ function clone(parent, circular, depth, prototype, includeNonEnumerable) {
       allChildren.push(child);
     }
 
-    if (parent instanceof nativeMap) {
-      var keyIterator = parent.keys();
-      while(true) {
-        var next = keyIterator.next();
-        if (next.done) {
-          break;
-        }
-        var keyChild = _clone(next.value, depth - 1);
-        var valueChild = _clone(parent.get(next.value), depth - 1);
+    if (_instanceof(parent, nativeMap)) {
+      parent.forEach(function(value, key) {
+        var keyChild = _clone(key, depth - 1);
+        var valueChild = _clone(value, depth - 1);
         child.set(keyChild, valueChild);
-      }
+      });
     }
-    if (parent instanceof nativeSet) {
-      var iterator = parent.keys();
-      while(true) {
-        var next = iterator.next();
-        if (next.done) {
-          break;
-        }
-        var entryChild = _clone(next.value, depth - 1);
+    if (_instanceof(parent, nativeSet)) {
+      parent.forEach(function(value) {
+        var entryChild = _clone(value, depth - 1);
         child.add(entryChild);
-      }
+      });
     }
 
     for (var i in parent) {
@@ -24963,7 +24070,7 @@ var CSSLint = (function() {
         embeddedRuleset = /\/\*\s*csslint([^\*]*)\*\//,
         api             = new parserlib.util.EventTarget();
 
-    api.version = "1.0.4";
+    api.version = "1.0.5";
 
     //-------------------------------------------------------------------------
     // Rule Management
@@ -25084,7 +24191,7 @@ var CSSLint = (function() {
      * @method format
      */
     api.format = function(results, filename, formatId, options) {
-        var formatter = this.getFormatter(formatId),
+        var formatter = api.getFormatter(formatId),
             result = null;
 
         if (formatter) {
@@ -25177,7 +24284,7 @@ var CSSLint = (function() {
         }
 
         if (!ruleset) {
-            ruleset = this.getRuleset();
+            ruleset = api.getRuleset();
         }
 
         if (embeddedRuleset.test(text)) {
@@ -25802,13 +24909,13 @@ CSSLint.addRule({
             "border-start-color"         : "webkit moz",
             "border-start-style"         : "webkit moz",
             "border-start-width"         : "webkit moz",
-            "box-align"                  : "webkit moz ms",
-            "box-direction"              : "webkit moz ms",
-            "box-flex"                   : "webkit moz ms",
-            "box-lines"                  : "webkit ms",
-            "box-ordinal-group"          : "webkit moz ms",
-            "box-orient"                 : "webkit moz ms",
-            "box-pack"                   : "webkit moz ms",
+            "box-align"                  : "webkit moz",
+            "box-direction"              : "webkit moz",
+            "box-flex"                   : "webkit moz",
+            "box-lines"                  : "webkit",
+            "box-ordinal-group"          : "webkit moz",
+            "box-orient"                 : "webkit moz",
+            "box-pack"                   : "webkit moz",
             "box-sizing"                 : "",
             "box-shadow"                 : "",
             "column-count"               : "webkit moz ms",
@@ -25818,6 +24925,12 @@ CSSLint.addRule({
             "column-rule-style"          : "webkit moz ms",
             "column-rule-width"          : "webkit moz ms",
             "column-width"               : "webkit moz ms",
+            "flex"                       : "webkit ms",
+            "flex-basis"                 : "webkit",
+            "flex-direction"             : "webkit ms",
+            "flex-flow"                  : "webkit",
+            "flex-grow"                  : "webkit",
+            "flex-shrink"                : "webkit",
             "hyphens"                    : "epub moz",
             "line-break"                 : "webkit ms",
             "margin-end"                 : "webkit moz",
@@ -26828,6 +25941,45 @@ CSSLint.addRule({
             }
         });
     }
+});
+
+CSSLint.addRule({
+  id: "performant-transitions",
+  name: "Allow only performant transisitons",
+  desc: "Only allow transitions that trigger compositing for performant, 60fps transformations.",
+  url: "",
+  browsers: "All",
+
+  init: function(parser, reporter){
+    "use strict";
+    var rule = this;
+
+    var transitionProperties = ["transition-property", "transition", "-webkit-transition", "-o-transition"];
+    var allowedTransitions = [/-webkit-transform/g, /-ms-transform/g, /transform/g, /opacity/g];
+
+    parser.addListener("property", function(event) {
+      var propertyName    = event.property.toString().toLowerCase(),
+          propertyValue           = event.value.toString(),
+          line            = event.line,
+          col             = event.col;
+
+      var values = propertyValue.split(",");
+      if (transitionProperties.indexOf(propertyName) !== -1) {
+        var reportValues = values.filter(function(value) {
+          var didMatch = [];
+          for (var i = 0; i < allowedTransitions.length; i++) {
+            if(value.match(allowedTransitions[i])) {
+              didMatch.push(i);
+            }
+          }
+          return didMatch.length === 0;
+        });
+        if(reportValues.length > 0) {
+            reporter.report("Unexpected transition property '"+reportValues.join(",").trim()+"'", line, col, rule);
+        }
+      }
+    });
+  }
 });
 
 /*
@@ -28148,19 +27300,33 @@ local.CSSLint = CSSLint;
 
 
 
-// hack-jslint - var
+let jslint0;
 let jslint_extra;
 let jslint_result;
 let line_ignore;
 let lines_extra;
+let next_line_extra;
+let warn_at_extra;
+var allowed_option; // jslint ignore:line
+var declared_globals; // jslint ignore:line
+var early_stop; // jslint ignore:line
+var lines; // jslint ignore:line
+var option; // jslint ignore:line
+jslint0 = undefined;
+local.nop(next_line_extra, warn_at_extra);
+/* jslint ignore:start */
 /*
-file https://github.com/douglascrockford/JSLint/blob/efefb7d4e22359b6fb1977d33712bcc2fda95f14/jslint.js
+repo https://github.com/douglascrockford/JSLint/tree/95c4e8a2cfd424d15e90745dbadadf3251533183
+committed 2020-01-17T22:36:41Z
 */
-/* jslint utility2:true */
-let next_line_extra = null;
-let warn_at_extra = null;
+
+
+
+/*
+file https://github.com/douglascrockford/JSLint/blob/95c4e8a2cfd424d15e90745dbadadf3251533183/jslint.js
+*/
 // jslint.js
-// 2019-08-03
+// 2020-01-17
 // Copyright (c) 2015 Douglas Crockford  (www.JSLint.com)
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28303,7 +27469,8 @@ function populate(array, object = empty(), value = true) {
     return object;
 }
 
-const allowed_option = {
+// hack-jslint - var
+var allowed_option = {
 
 // These are the options that are recognized in the option object or that may
 // appear in a /*jslint*/ directive. Most options will have a boolean value,
@@ -28312,8 +27479,9 @@ const allowed_option = {
 
     bitwise: true,
     browser: [
-        "caches", "clearInterval", "clearTimeout", "document", "DOMException",
-        "Element", "Event", "event", "FileReader", "FormData", "history",
+        "caches", "CharacterData", "clearInterval", "clearTimeout", "document",
+        "DocumentType", "DOMException", "Element", "Event", "event", "fetch",
+        "FileReader", "FontFace", "FormData", "history", "IntersectionObserver",
         "localStorage", "location", "MutationObserver", "name", "navigator",
         "screen", "sessionStorage", "setInterval", "setTimeout", "Storage",
         "TextDecoder", "TextEncoder", "URL", "window", "Worker",
@@ -28338,6 +27506,7 @@ const allowed_option = {
         "setImmediate", "setInterval", "setTimeout", "TextDecoder",
         "TextEncoder", "URL", "URLSearchParams", "__dirname", "__filename"
     ],
+    // hack-jslint - nomen
     nomen: true,
     single: true,
     this: true,
@@ -28364,10 +27533,10 @@ const opener = {
 
 // The open and close pairs.
 
-    "(": ")", // paren
-    "[": "]", // bracket
-    "{": "}", // brace
-    "${": "}" // mega
+    "(": ")",       // paren
+    "[": "]",       // bracket
+    "{": "}",       // brace
+    "${": "}"       // mega
 };
 
 // The relational operators.
@@ -28520,55 +27689,30 @@ const bundle = {
 // Regular expression literals:
 
 // supplant {variables}
-const rx_supplant = (
-    /\{([^{}]*)\}/g
-);
+const rx_supplant = /\{([^{}]*)\}/g;
 // carriage return, carriage return linefeed, or linefeed
-const rx_crlf = (
-    /\n|\r\n?/
-);
+const rx_crlf = /\n|\r\n?/;
 // unsafe characters that are silently deleted by one or more browsers
-const rx_unsafe = (
-    /[\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/
-);
+const rx_unsafe = /[\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/;
 // identifier
-const rx_identifier = (
-    /^([a-zA-Z_$][a-zA-Z0-9_$]*)$/
-);
-const rx_module = (
-    /^[a-zA-Z0-9_$:.@\-\/]+$/
-);
-const rx_bad_property = (
-    /^_|\$|Sync\$|_$/
-);
+const rx_identifier = /^([a-zA-Z_$][a-zA-Z0-9_$]*)$/;
+const rx_module = /^[a-zA-Z0-9_$:.@\-\/]+$/;
+const rx_bad_property = /^_|\$|Sync\$|_$/;
 // star slash
-const rx_star_slash = (
-    /\*\//
-);
+const rx_star_slash = /\*\//;
 // slash star
-const rx_slash_star = (
-    /\/\*/
-);
+const rx_slash_star = /\/\*/;
 // slash star or ending slash
-const rx_slash_star_or_slash = (
-    /\/\*|\/$/
-);
+const rx_slash_star_or_slash = /\/\*|\/$/;
 // uncompleted work comment
-const rx_todo = (
-    /\b(?:todo|TO\s?DO|HACK)\b/
-);
+const rx_todo = /\b(?:todo|TO\s?DO|HACK)\b/;
 // tab
-const rx_tab = (
-    /\t/g
-);
+const rx_tab = /\t/g;
 // directive
-const rx_directive = (
-    /^(jslint|property|global)\s+(.*)$/
-);
-const rx_directive_part = (
-    /^([a-zA-Z$_][a-zA-Z0-9$_]*)(?::\s*(true|false))?,?\s*(.*)$/
-);
+const rx_directive = /^(jslint|property|global)\s+(.*)$/;
+const rx_directive_part = /^([a-zA-Z$_][a-zA-Z0-9$_]*)(?::\s*(true|false))?,?\s*(.*)$/;
 // token (sorry it is so long)
+// hack-jslint - bigint
 const rx_token = (
     /^((\s+)|([a-zA-Z_$][a-zA-Z0-9_$]*)|[(){}\[\],:;'"~`]|\?\.?|=(?:==?|>)?|\.+|[*\/][*\/=]?|\+[=+]?|-[=\-]?|[\^%]=?|&[&=]?|\|[|=]?|>{1,3}=?|<<?=?|!(?:!|==?)?|(0n?|[1-9][0-9]*n?))(.*)$/
 );
@@ -28585,17 +27729,11 @@ const rx_bits = (
     /^([01]+n?)(.*)$/
 );
 // mega
-const rx_mega = (
-    /[`\\]|\$\{/
-);
+const rx_mega = /[`\\]|\$\{/;
 // JSON number
-const rx_JSON_number = (
-    /^-?\d+(?:\.\d*)?(?:e[\-+]?\d+)?$/i
-);
+const rx_JSON_number = /^-?\d+(?:\.\d*)?(?:e[\-+]?\d+)?$/i;
 // initial cap
-const rx_cap = (
-    /^[A-Z]/
-);
+const rx_cap = /^[A-Z]/;
 
 function is_letter(string) {
     return (
@@ -28615,36 +27753,40 @@ function supplant(string, object) {
     });
 }
 
-let anon; // The guessed name for anonymous functions.
-let block_stack; // The stack of blocks.
-let blockage; // The current block.
-let declared_globals; // The object containing the global declarations.
-let directive_mode; // true if directives are still allowed.
-let directives; // The directive comments.
-let early_stop; // true if JSLint cannot finish.
-let exports; // The exported names and values.
-let froms; // The array collecting all import-from strings.
-let fudge; // true if the natural numbers start with 1.
-let functionage; // The current function.
-let functions; // The array containing all of the functions.
-let global; // The global object; the outermost context.
-let json_mode; // true if parsing JSON.
-let lines; // The array containing source lines.
-let mega_mode; // true if currently parsing a megastring literal.
-let module_mode; // true if import or export was used.
-let next_token; // The next token to be examined in the parse.
-let option; // The options parameter.
-let property; // The object containing the tallied property names.
-let shebang; // true if a #! was seen on the first line.
-let stack; // The stack of functions.
-let syntax; // The object containing the parser.
-let tenure; // The predefined property registry.
-let token; // The current token being examined in the parse.
-let token_nr; // The number of the next token.
-let tokens; // The array of tokens.
-let tree; // The abstract parse tree.
-let var_mode; // "var" if using var; "let" if using let.
-let warnings; // The array collecting all generated warnings.
+let anon;               // The guessed name for anonymous functions.
+let blockage;           // The current block.
+let block_stack;        // The stack of blocks.
+// hack-jslint - var
+var declared_globals;   // The object containing the global declarations.
+let directives;         // The directive comments.
+let directive_mode;     // true if directives are still allowed.
+// hack-jslint - var
+var early_stop;         // true if JSLint cannot finish.
+let exports;            // The exported names and values.
+let froms;              // The array collecting all import-from strings.
+let fudge;              // true if the natural numbers start with 1.
+let functionage;        // The current function.
+let functions;          // The array containing all of the functions.
+let global;             // The global object; the outermost context.
+let json_mode;          // true if parsing JSON.
+// hack-jslint - var
+var lines;              // The array containing source lines.
+let mega_mode;          // true if currently parsing a megastring literal.
+let module_mode;        // true if import or export was used.
+let next_token;         // The next token to be examined in the parse.
+// hack-jslint - var
+var option;             // The options parameter.
+let property;           // The object containing the tallied property names.
+let shebang;            // true if a #! was seen on the first line.
+let stack;              // The stack of functions.
+let syntax;             // The object containing the parser.
+let token;              // The current token being examined in the parse.
+let token_nr;           // The number of the next token.
+let tokens;             // The array of tokens.
+let tenure;             // The predefined property registry.
+let tree;               // The abstract parse tree.
+let var_mode;           // "var" if using var; "let" if using let.
+let warnings;           // The array collecting all generated warnings.
 
 // Error reportage functions:
 
@@ -28687,8 +27829,7 @@ function warn_at(code, line, column, a, b, c, d) {
 // Report an error at some line and column of the program. The warning object
 // resembles an exception.
 
-    const warning = {
-        // ~~
+    const warning = {         // ~~
         name: "JSLintError",
         column,
         line,
@@ -28779,20 +27920,20 @@ function tokenize(source) {
     );
     tokens = [];
 
-    let char; // a popular character
-    let column = 0; // the column number of the next character
-    let first; // the first token
-    let from; // the starting column number of the token
-    let line = -1; // the line number of the next character
-    let nr = 0; // the next token number
-    let previous = global; // the previous token including comments
-    let prior = global; // the previous token excluding comments
-    let mega_from; // the starting column of megastring
-    let mega_line; // the starting line of megastring
-    let regexp_seen; // regular expression literal seen on this line
-    let snippet; // a piece of string
-    let source_line = ""; // the remaining line source string
-    let whole_line = ""; // the whole line source string
+    let char;                   // a popular character
+    let column = 0;             // the column number of the next character
+    let first;                  // the first token
+    let from;                   // the starting column number of the token
+    let line = -1;              // the line number of the next character
+    let nr = 0;                 // the next token number
+    let previous = global;      // the previous token including comments
+    let prior = global;         // the previous token excluding comments
+    let mega_from;              // the starting column of megastring
+    let mega_line;              // the starting line of megastring
+    let regexp_seen;            // regular expression literal seen on this line
+    let snippet;                // a piece of string
+    let source_line = "";       // the remaining line source string
+    let whole_line = "";        // the whole line source string
 
     if (lines[0].startsWith("#!")) {
         line = 0;
@@ -29252,7 +28393,7 @@ function tokenize(source) {
                     return true;
                 }
                 if (char === "\\") {
-                    escape("BbDdSsWw^${}[]():=!.-|*+?");
+                    escape("BbDdSsWw^${}[]():=!.|*+?");
                     return true;
                 }
                 if (
@@ -29784,6 +28925,7 @@ function survey(name) {
                 warn("unregistered_property_a", name);
             }
         } else {
+            // hack-jslint - nomen
             if (!option.nomen && name.identifier && rx_bad_property.test(id)) {
                 warn("bad_property_a", name);
             }
@@ -30428,9 +29570,7 @@ function assignment(id) {
             the_token.names = left;
             the_token.expression = right;
         } else {
-            the_token.expression = [
-                left, right
-            ];
+            the_token.expression = [left, right];
         }
         if (
             right.arity === "assignment"
@@ -30478,9 +29618,7 @@ function infix(id, bp, f) {
         if (f !== undefined) {
             return f(left);
         }
-        the_token.expression = [
-            left, expression(bp)
-        ];
+        the_token.expression = [left, expression(bp)];
         return the_token;
     };
     return the_symbol;
@@ -30494,9 +29632,7 @@ function infixr(id, bp) {
     the_symbol.led = function (left) {
         const the_token = token;
         the_token.arity = "binary";
-        the_token.expression = [
-            left, expression(bp - 1)
-        ];
+        the_token.expression = [left, expression(bp - 1)];
         return the_token;
     };
     return the_symbol;
@@ -30571,9 +29707,7 @@ function ternary(id1, id2) {
         advance(id2);
         token.arity = "ternary";
         the_token.arity = "ternary";
-        the_token.expression = [
-            left, second, expression(10)
-        ];
+        the_token.expression = [left, second, expression(10)];
         if (next_token.id !== ")") {
             warn("use_open", the_token);
         }
@@ -30706,9 +29840,7 @@ infix("(", 160, function (left) {
     if (functionage.arity === "statement" && left.identifier) {
         functionage.name.calls[left.id] = left;
     }
-    the_paren.expression = [
-        left
-    ];
+    the_paren.expression = [left];
     if (next_token.id !== ")") {
         (function next() {
             let ellipsis;
@@ -30825,9 +29957,7 @@ infix("[", 170, function (left) {
         }
     }
     left_check(left, the_token);
-    the_token.expression = [
-        left, the_subscript
-    ];
+    the_token.expression = [left, the_subscript];
     advance("]");
     return the_token;
 });
@@ -30858,9 +29988,7 @@ function do_tick() {
 infix("`", 160, function (left) {
     const the_tick = do_tick();
     left_check(left, the_tick);
-    the_tick.expression = [
-        left
-    ].concat(the_tick.expression);
+    the_tick.expression = [left].concat(the_tick.expression);
     return the_tick;
 });
 
@@ -30925,9 +30053,7 @@ prefix("void", function () {
 function parameter_list() {
     const list = [];
     let optional;
-    const signature = [
-        "("
-    ];
+    const signature = ["("];
     if (next_token.id !== ")" && next_token.id !== "(end)") {
         (function parameter() {
             let ellipsis = false;
@@ -31068,9 +30194,7 @@ function parameter_list() {
     }
     advance(")");
     signature.push(")");
-    return [
-        list, signature.join("")
-    ];
+    return [list, signature.join("")];
 }
 
 function do_function(the_function) {
@@ -31143,9 +30267,7 @@ function do_function(the_function) {
     advance("(");
     token.free = false;
     token.arity = "function";
-    [
-        functionage.parameters, functionage.signature
-    ] = parameter_list();
+    [functionage.parameters, functionage.signature] = parameter_list();
     functionage.parameters.forEach(function enroll_parameter(name) {
         if (name.identifier) {
             enroll(name, "parameter", false);
@@ -31249,12 +30371,8 @@ prefix("(", function () {
             }
             return stop("expected_identifier_a", the_value);
         }
-        the_paren.expression = [
-            the_value
-        ];
-        return fart([
-            the_paren.expression, "(" + the_value.id + ")"
-        ]);
+        the_paren.expression = [the_value];
+        return fart([the_paren.expression, "(" + the_value.id + ")"]);
     }
     return the_value;
 });
@@ -31321,7 +30439,7 @@ prefix("{", function () {
                     let the_colon = next_token;
                     advance(":");
                     value = expression(0);
-                    if (value.id === name.id) {
+                    if (value.id === name.id && value.id !== "function") {
                         warn("unexpected_a", the_colon, ": " + name.id);
                     }
                 }
@@ -32493,8 +31611,8 @@ postaction("binary", "||", function (thing) {
 postaction("binary", "=>", postaction_function);
 postaction("binary", "(", function (thing) {
     let left = thing.expression[0];
-    let arg;
     let the_new;
+    let arg;
     if (left.id === "new") {
         the_new = left;
         left = left.expression;
@@ -33086,7 +32204,7 @@ function whitage() {
 // The jslint function itself.
 
 // hack-jslint - jslint0
-const jslint0 = Object.freeze(function (
+jslint0 = Object.freeze(function (
     source = "",
     option_object = empty(),
     global_array = []
@@ -33198,7 +32316,7 @@ const jslint0 = Object.freeze(function (
     }
     return {
         directives,
-        edition: "2019-08-03",
+        edition: "2020-01-17",
         exports,
         froms,
         functions,
@@ -33223,6 +32341,7 @@ const jslint0 = Object.freeze(function (
         })
     };
 });
+/* jslint ignore:end */
 
 
 
@@ -33239,7 +32358,9 @@ jslint_extra = function (source, opt, global_array) {
     lines = (
         Array.isArray(source)
         ? source
-        : source.split(rx_crlf)
+        : source.split(
+            /\n|\r\n?/
+        )
     );
     lines_extra = lines.map(function () {
         return {};
@@ -34576,8 +33697,6 @@ if (module === require.main && !globalThis.utility2_rollup) {
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -34593,162 +33712,17 @@ if (module === require.main && !globalThis.utility2_rollup) {
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -34761,34 +33735,32 @@ if (module === require.main && !globalThis.utility2_rollup) {
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -34811,6 +33783,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -34829,6 +33802,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -34941,9 +33915,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -35207,8 +34179,6 @@ if (local.isBrowser) {
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -35224,162 +34194,17 @@ if (local.isBrowser) {
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -35392,34 +34217,32 @@ if (local.isBrowser) {
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -35442,6 +34265,7 @@ if (local.isBrowser) {
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -35460,6 +34284,7 @@ if (local.isBrowser) {
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -35572,9 +34397,7 @@ if (local.isBrowser) {
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -35609,7 +34432,7 @@ local.puppeteer = local;
 /* validateLineSortedReset */
 local.cliRun = function (opt) {
 /*
- * this function will run the cli with given <opt>
+ * this function will run cli with given <opt>
  */
     local.cliDict._eval = local.cliDict._eval || function () {
     /*
@@ -35627,8 +34450,8 @@ local.cliRun = function (opt) {
         let commandList;
         let file;
         let packageJson;
-        let text;
-        let textDict;
+        let str;
+        let strDict;
         commandList = [
             {
                 argList: "<arg2>  ...",
@@ -35653,23 +34476,23 @@ local.cliRun = function (opt) {
         opt.rgxComment = opt.rgxComment || (
             /\)\u0020\{\n(?:|\u0020{4})\/\*\n(?:\u0020|\u0020{5})\*((?:\u0020<[^>]*?>|\u0020\.\.\.)*?)\n(?:\u0020|\u0020{5})\*\u0020(will\u0020.*?\S)\n(?:\u0020|\u0020{5})\*\/\n(?:\u0020{4}|\u0020{8})\S/
         );
-        textDict = {};
+        strDict = {};
         Object.keys(local.cliDict).sort().forEach(function (key, ii) {
             if (key[0] === "_" && key !== "_default") {
                 return;
             }
-            text = String(local.cliDict[key]);
+            str = String(local.cliDict[key]);
             if (key === "_default") {
                 key = "";
             }
-            textDict[text] = textDict[text] || (ii + 2);
-            ii = textDict[text];
+            strDict[str] = strDict[str] || (ii + 2);
+            ii = strDict[str];
             if (commandList[ii]) {
                 commandList[ii].command.push(key);
                 return;
             }
             try {
-                commandList[ii] = opt.rgxComment.exec(text);
+                commandList[ii] = opt.rgxComment.exec(str);
                 commandList[ii] = {
                     argList: local.coalesce(commandList[ii][1], "").trim(),
                     command: [
@@ -35683,7 +34506,7 @@ local.cliRun = function (opt) {
                     + key
                     + ":\nnew RegExp("
                     + JSON.stringify(opt.rgxComment.source)
-                    + ").exec(" + JSON.stringify(text).replace((
+                    + ").exec(" + JSON.stringify(str).replace((
                         /\\\\/g
                     ), "\u0000").replace((
                         /\\n/g
@@ -35693,9 +34516,9 @@ local.cliRun = function (opt) {
                 ));
             }
         });
-        text = "";
-        text += packageJson.name + " (" + packageJson.version + ")\n\n";
-        text += commandList.filter(function (elem) {
+        str = "";
+        str += packageJson.name + " (" + packageJson.version + ")\n\n";
+        str += commandList.filter(function (elem) {
             return elem;
         }).map(function (elem, ii) {
             elem.command = elem.command.filter(function (elem) {
@@ -35722,7 +34545,7 @@ local.cliRun = function (opt) {
                 + elem.argList.join("  ")
             );
         }).join("\n\n");
-        console.log(text);
+        console.log(str);
     };
     local.cliDict["--eval"] = local.cliDict["--eval"] || local.cliDict._eval;
     local.cliDict["--help"] = local.cliDict["--help"] || local.cliDict._help;
@@ -35826,40 +34649,40 @@ let readline = require('readline');
 // let removeFolder = require('rimraf');
 let tls = require('tls');
 let url = require('url');
-let exports_GoogleChrome_puppeteer_index = {};
-let exports_GoogleChrome_puppeteer_lib_Accessibility = {};
-let exports_GoogleChrome_puppeteer_lib_Browser = {};
-let exports_GoogleChrome_puppeteer_lib_BrowserFetcher = {};
-let exports_GoogleChrome_puppeteer_lib_Connection = {};
-let exports_GoogleChrome_puppeteer_lib_Coverage = {};
-let exports_GoogleChrome_puppeteer_lib_DOMWorld = {};
-let exports_GoogleChrome_puppeteer_lib_DeviceDescriptors = {};
-let exports_GoogleChrome_puppeteer_lib_Dialog = {};
-let exports_GoogleChrome_puppeteer_lib_EmulationManager = {};
-let exports_GoogleChrome_puppeteer_lib_Errors = {};
-let exports_GoogleChrome_puppeteer_lib_Events = {};
-let exports_GoogleChrome_puppeteer_lib_ExecutionContext = {};
-let exports_GoogleChrome_puppeteer_lib_FrameManager = {};
-let exports_GoogleChrome_puppeteer_lib_Input = {};
-let exports_GoogleChrome_puppeteer_lib_JSHandle = {};
-let exports_GoogleChrome_puppeteer_lib_Launcher = {};
-let exports_GoogleChrome_puppeteer_lib_LifecycleWatcher = {};
-let exports_GoogleChrome_puppeteer_lib_Multimap = {};
-let exports_GoogleChrome_puppeteer_lib_NetworkManager = {};
-let exports_GoogleChrome_puppeteer_lib_Page = {};
-let exports_GoogleChrome_puppeteer_lib_PipeTransport = {};
-let exports_GoogleChrome_puppeteer_lib_Puppeteer = {};
-let exports_GoogleChrome_puppeteer_lib_Target = {};
-let exports_GoogleChrome_puppeteer_lib_TaskQueue = {};
-let exports_GoogleChrome_puppeteer_lib_TimeoutSettings = {};
-let exports_GoogleChrome_puppeteer_lib_Tracing = {};
-let exports_GoogleChrome_puppeteer_lib_USKeyboardLayout = {};
-let exports_GoogleChrome_puppeteer_lib_WebSocketTransport = {};
-let exports_GoogleChrome_puppeteer_lib_Worker = {};
-let exports_GoogleChrome_puppeteer_lib_api = {};
-let exports_GoogleChrome_puppeteer_lib_helper = {};
-let exports_GoogleChrome_puppeteer_node6_lib_Puppeteer = {};
-let exports_GoogleChrome_puppeteer_package_json = {};
+let exports_puppeteer_puppeteer_index = {};
+let exports_puppeteer_puppeteer_lib_Accessibility = {};
+let exports_puppeteer_puppeteer_lib_Browser = {};
+let exports_puppeteer_puppeteer_lib_BrowserFetcher = {};
+let exports_puppeteer_puppeteer_lib_Connection = {};
+let exports_puppeteer_puppeteer_lib_Coverage = {};
+let exports_puppeteer_puppeteer_lib_DOMWorld = {};
+let exports_puppeteer_puppeteer_lib_DeviceDescriptors = {};
+let exports_puppeteer_puppeteer_lib_Dialog = {};
+let exports_puppeteer_puppeteer_lib_EmulationManager = {};
+let exports_puppeteer_puppeteer_lib_Errors = {};
+let exports_puppeteer_puppeteer_lib_Events = {};
+let exports_puppeteer_puppeteer_lib_ExecutionContext = {};
+let exports_puppeteer_puppeteer_lib_FrameManager = {};
+let exports_puppeteer_puppeteer_lib_Input = {};
+let exports_puppeteer_puppeteer_lib_JSHandle = {};
+let exports_puppeteer_puppeteer_lib_Launcher = {};
+let exports_puppeteer_puppeteer_lib_LifecycleWatcher = {};
+let exports_puppeteer_puppeteer_lib_Multimap = {};
+let exports_puppeteer_puppeteer_lib_NetworkManager = {};
+let exports_puppeteer_puppeteer_lib_Page = {};
+let exports_puppeteer_puppeteer_lib_PipeTransport = {};
+let exports_puppeteer_puppeteer_lib_Puppeteer = {};
+let exports_puppeteer_puppeteer_lib_Target = {};
+let exports_puppeteer_puppeteer_lib_TaskQueue = {};
+let exports_puppeteer_puppeteer_lib_TimeoutSettings = {};
+let exports_puppeteer_puppeteer_lib_Tracing = {};
+let exports_puppeteer_puppeteer_lib_USKeyboardLayout = {};
+let exports_puppeteer_puppeteer_lib_WebSocketTransport = {};
+let exports_puppeteer_puppeteer_lib_Worker = {};
+let exports_puppeteer_puppeteer_lib_api = {};
+let exports_puppeteer_puppeteer_lib_helper = {};
+let exports_puppeteer_puppeteer_node6_lib_Puppeteer = {};
+let exports_puppeteer_puppeteer_package_json = {};
 let exports_websockets_ws_index = {};
 let exports_websockets_ws_lib_buffer_util = {};
 let exports_websockets_ws_lib_constants = {};
@@ -38721,15 +37544,15 @@ exports_websockets_ws_index = WebSocket;
 
 
 /*
-repo https://github.com/GoogleChrome/puppeteer/tree/v1.19.0
+repo https://github.com/puppeteer/puppeteer/tree/v1.19.0
 */
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/package.json
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/package.json
 */
-exports_GoogleChrome_puppeteer_package_json = {
+exports_puppeteer_puppeteer_package_json = {
   "name": "puppeteer",
   "version": "1.19.0",
   "description": "A high-level API to control headless Chrome over the DevTools Protocol",
@@ -38806,7 +37629,7 @@ exports_GoogleChrome_puppeteer_package_json = {
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/helper.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/helper.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -38823,7 +37646,7 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/helper.js
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// const {TimeoutError} = exports_GoogleChrome_puppeteer_lib_Errors;
+// const {TimeoutError} = exports_puppeteer_puppeteer_lib_Errors;
 // const debugError = require('debug')(`puppeteer:error`);
 // const fs = require('fs');
 
@@ -39080,17 +37903,17 @@ function assert(value, message) {
     throw new Error(message);
 }
 
-exports_GoogleChrome_puppeteer_lib_helper = {
+exports_puppeteer_puppeteer_lib_helper = {
   helper: Helper,
   assert,
   debugError
 };
-let helper = exports_GoogleChrome_puppeteer_lib_helper.helper;
+let helper = exports_puppeteer_puppeteer_lib_helper.helper;
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Accessibility.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Accessibility.js
 */
 /**
  * Copyright 2018 Google Inc. All rights reserved.
@@ -39512,12 +38335,12 @@ class AXNode {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Accessibility = {Accessibility};
+exports_puppeteer_puppeteer_lib_Accessibility = {Accessibility};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Browser.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Browser.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -39535,11 +38358,11 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Browser.js
  * limitations under the License.
  */
 
-// const { helper, assert } = exports_GoogleChrome_puppeteer_lib_helper;
-// const {Target} = exports_GoogleChrome_puppeteer_lib_Target;
+// const { helper, assert } = exports_puppeteer_puppeteer_lib_helper;
+// const {Target} = exports_puppeteer_puppeteer_lib_Target;
 // const EventEmitter = require('events');
-// const {TaskQueue} = exports_GoogleChrome_puppeteer_lib_TaskQueue;
-// const {Events} = exports_GoogleChrome_puppeteer_lib_Events;
+// const {TaskQueue} = exports_puppeteer_puppeteer_lib_TaskQueue;
+// const {Events} = exports_puppeteer_puppeteer_lib_Events;
 
 class Browser extends EventEmitter {
   /**
@@ -39901,12 +38724,12 @@ class BrowserContext extends EventEmitter {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Browser = {Browser, BrowserContext};
+exports_puppeteer_puppeteer_lib_Browser = {Browser, BrowserContext};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Connection.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Connection.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -39923,8 +38746,8 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Connection.js
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// const {assert} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {Events} = exports_GoogleChrome_puppeteer_lib_Events;
+// const {assert} = exports_puppeteer_puppeteer_lib_helper;
+// const {Events} = exports_puppeteer_puppeteer_lib_Events;
 // const debugProtocol = require('debug')('puppeteer:protocol');
 // const EventEmitter = require('events');
 
@@ -40149,12 +38972,12 @@ function rewriteError(error, message) {
   return error;
 }
 
-exports_GoogleChrome_puppeteer_lib_Connection = {Connection, CDPSession};
+exports_puppeteer_puppeteer_lib_Connection = {Connection, CDPSession};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Coverage.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Coverage.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -40172,9 +38995,9 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Coverage.js
  * limitations under the License.
  */
 
-// const {helper, debugError, assert} = exports_GoogleChrome_puppeteer_lib_helper;
+// const {helper, debugError, assert} = exports_puppeteer_puppeteer_lib_helper;
 
-// const {EVALUATION_SCRIPT_URL} = exports_GoogleChrome_puppeteer_lib_ExecutionContext;
+// const {EVALUATION_SCRIPT_URL} = exports_puppeteer_puppeteer_lib_ExecutionContext;
 
 /**
  * @typedef {Object} CoverageEntry
@@ -40221,7 +39044,7 @@ class Coverage {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Coverage = {Coverage};
+exports_puppeteer_puppeteer_lib_Coverage = {Coverage};
 
 class JSCoverage {
   /**
@@ -40472,7 +39295,7 @@ function convertToDisjointRanges(nestedRanges) {
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/DOMWorld.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/DOMWorld.js
 */
 /**
  * Copyright 2019 Google Inc. All rights reserved.
@@ -40491,9 +39314,9 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/DOMWorld.js
  */
 
 // const fs = require('fs');
-// const {helper, assert} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {LifecycleWatcher} = exports_GoogleChrome_puppeteer_lib_LifecycleWatcher;
-// const {TimeoutError} = exports_GoogleChrome_puppeteer_lib_Errors;
+// const {helper, assert} = exports_puppeteer_puppeteer_lib_helper;
+// const {LifecycleWatcher} = exports_puppeteer_puppeteer_lib_LifecycleWatcher;
+// const {TimeoutError} = exports_puppeteer_puppeteer_lib_Errors;
 const readFileAsync = helper.promisify(fs.readFile);
 
 /**
@@ -41192,12 +40015,12 @@ async function waitForPredicatePageFunction(predicateBody, polling, timeout, ...
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_DOMWorld = {DOMWorld};
+exports_puppeteer_puppeteer_lib_DOMWorld = {DOMWorld};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/DeviceDescriptors.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/DeviceDescriptors.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -41215,7 +40038,7 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/DeviceDescriptor
  * limitations under the License.
  */
 
-exports_GoogleChrome_puppeteer_lib_DeviceDescriptors = [
+exports_puppeteer_puppeteer_lib_DeviceDescriptors = [
   {
     'name': 'Blackberry PlayBook',
     'userAgent': 'Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML like Gecko) Version/7.2.1.0 Safari/536.2+',
@@ -42045,13 +40868,13 @@ exports_GoogleChrome_puppeteer_lib_DeviceDescriptors = [
     }
   }
 ];
-for (const device of exports_GoogleChrome_puppeteer_lib_DeviceDescriptors)
-  exports_GoogleChrome_puppeteer_lib_DeviceDescriptors[device.name] = device;
+for (const device of exports_puppeteer_puppeteer_lib_DeviceDescriptors)
+  exports_puppeteer_puppeteer_lib_DeviceDescriptors[device.name] = device;
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Dialog.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Dialog.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -42069,7 +40892,7 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Dialog.js
  * limitations under the License.
  */
 
-// const {assert} = exports_GoogleChrome_puppeteer_lib_helper;
+// const {assert} = exports_puppeteer_puppeteer_lib_helper;
 
 class Dialog {
   /**
@@ -42135,12 +40958,12 @@ Dialog.Type = {
   Prompt: 'prompt'
 };
 
-exports_GoogleChrome_puppeteer_lib_Dialog = {Dialog};
+exports_puppeteer_puppeteer_lib_Dialog = {Dialog};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/EmulationManager.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/EmulationManager.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -42195,12 +41018,12 @@ class EmulationManager {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_EmulationManager = {EmulationManager};
+exports_puppeteer_puppeteer_lib_EmulationManager = {EmulationManager};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Errors.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Errors.js
 */
 /**
  * Copyright 2018 Google Inc. All rights reserved.
@@ -42228,14 +41051,14 @@ class CustomError extends Error {
 
 class TimeoutError extends CustomError {}
 
-exports_GoogleChrome_puppeteer_lib_Errors = {
+exports_puppeteer_puppeteer_lib_Errors = {
   TimeoutError,
 };
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Events.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Events.js
 */
 /**
  * Copyright 2019 Google Inc. All rights reserved.
@@ -42316,12 +41139,12 @@ const Events = {
   },
 };
 
-exports_GoogleChrome_puppeteer_lib_Events = { Events };
+exports_puppeteer_puppeteer_lib_Events = { Events };
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/ExecutionContext.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/ExecutionContext.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -42339,8 +41162,8 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/ExecutionContext
  * limitations under the License.
  */
 
-// const {helper, assert} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {createJSHandle, JSHandle} = exports_GoogleChrome_puppeteer_lib_JSHandle;
+// const {helper, assert} = exports_puppeteer_puppeteer_lib_helper;
+// const {createJSHandle, JSHandle} = exports_puppeteer_puppeteer_lib_JSHandle;
 
 const EVALUATION_SCRIPT_URL = '__puppeteer_evaluation_script__';
 const SOURCE_URL_REGEX = /^[\040\t]*\/\/[@#] sourceURL=\s*(\S*?)\s*$/m;
@@ -42527,12 +41350,12 @@ class ExecutionContext {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_ExecutionContext = {ExecutionContext, EVALUATION_SCRIPT_URL};
+exports_puppeteer_puppeteer_lib_ExecutionContext = {ExecutionContext, EVALUATION_SCRIPT_URL};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/FrameManager.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/FrameManager.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -42551,12 +41374,12 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/FrameManager.js
  */
 
 // const EventEmitter = require('events');
-// const {helper, assert, debugError} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {Events} = exports_GoogleChrome_puppeteer_lib_Events;
-// const {ExecutionContext, EVALUATION_SCRIPT_URL} = exports_GoogleChrome_puppeteer_lib_ExecutionContext;
-// const {LifecycleWatcher} = exports_GoogleChrome_puppeteer_lib_LifecycleWatcher;
-// const {DOMWorld} = exports_GoogleChrome_puppeteer_lib_DOMWorld;
-// const {NetworkManager} = exports_GoogleChrome_puppeteer_lib_NetworkManager;
+// const {helper, assert, debugError} = exports_puppeteer_puppeteer_lib_helper;
+// const {Events} = exports_puppeteer_puppeteer_lib_Events;
+// const {ExecutionContext, EVALUATION_SCRIPT_URL} = exports_puppeteer_puppeteer_lib_ExecutionContext;
+// const {LifecycleWatcher} = exports_puppeteer_puppeteer_lib_LifecycleWatcher;
+// const {DOMWorld} = exports_puppeteer_puppeteer_lib_DOMWorld;
+// const {NetworkManager} = exports_puppeteer_puppeteer_lib_NetworkManager;
 
 const UTILITY_WORLD_NAME = '__puppeteer_utility_world__';
 
@@ -43251,12 +42074,12 @@ function assertNoLegacyNavigationOptions(options) {
   assert(options.waitUntil !== 'networkidle', 'ERROR: "networkidle" option is no longer supported. Use "networkidle2" instead');
 }
 
-exports_GoogleChrome_puppeteer_lib_FrameManager = {FrameManager, Frame};
+exports_puppeteer_puppeteer_lib_FrameManager = {FrameManager, Frame};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Input.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Input.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -43274,8 +42097,8 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Input.js
  * limitations under the License.
  */
 
-// const {assert} = exports_GoogleChrome_puppeteer_lib_helper;
-// const keyDefinitions = exports_GoogleChrome_puppeteer_lib_USKeyboardLayout;
+// const {assert} = exports_puppeteer_puppeteer_lib_helper;
+// const keyDefinitions = exports_puppeteer_puppeteer_lib_USKeyboardLayout;
 
 /**
  * @typedef {Object} KeyDescription
@@ -43570,12 +42393,12 @@ class Touchscreen {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Input = { Keyboard, Mouse, Touchscreen};
+exports_puppeteer_puppeteer_lib_Input = { Keyboard, Mouse, Touchscreen};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/JSHandle.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/JSHandle.js
 */
 /**
  * Copyright 2019 Google Inc. All rights reserved.
@@ -43593,7 +42416,7 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/JSHandle.js
  * limitations under the License.
  */
 
-// const {helper, assert, debugError} = exports_GoogleChrome_puppeteer_lib_helper;
+// const {helper, assert, debugError} = exports_puppeteer_puppeteer_lib_helper;
 // const path = require('path');
 
 function createJSHandle(context, remoteObject) {
@@ -44101,12 +42924,12 @@ function computeQuadArea(quad) {
  * @property {number} height
  */
 
-exports_GoogleChrome_puppeteer_lib_JSHandle = {createJSHandle, JSHandle, ElementHandle};
+exports_puppeteer_puppeteer_lib_JSHandle = {createJSHandle, JSHandle, ElementHandle};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Launcher.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Launcher.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -44130,15 +42953,15 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Launcher.js
 // const URL = require('url');
 // const removeFolder = require('rimraf');
 // const childProcess = require('child_process');
-// const BrowserFetcher = exports_GoogleChrome_puppeteer_lib_BrowserFetcher;
-// const {Connection} = exports_GoogleChrome_puppeteer_lib_Connection;
-// const {Browser} = exports_GoogleChrome_puppeteer_lib_Browser;
+// const BrowserFetcher = exports_puppeteer_puppeteer_lib_BrowserFetcher;
+// const {Connection} = exports_puppeteer_puppeteer_lib_Connection;
+// const {Browser} = exports_puppeteer_puppeteer_lib_Browser;
 // const readline = require('readline');
 // const fs = require('fs');
-// const {helper, assert, debugError} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {TimeoutError} = exports_GoogleChrome_puppeteer_lib_Errors;
-// const WebSocketTransport = exports_GoogleChrome_puppeteer_lib_WebSocketTransport;
-// const PipeTransport = exports_GoogleChrome_puppeteer_lib_PipeTransport;
+// const {helper, assert, debugError} = exports_puppeteer_puppeteer_lib_helper;
+// const {TimeoutError} = exports_puppeteer_puppeteer_lib_Errors;
+// const WebSocketTransport = exports_puppeteer_puppeteer_lib_WebSocketTransport;
+// const PipeTransport = exports_puppeteer_puppeteer_lib_PipeTransport;
 
 const mkdtempAsync = helper.promisify(fs.mkdtemp);
 const removeFolderAsync = helper.promisify(removeFolder);
@@ -44156,7 +42979,7 @@ const DEFAULT_ARGS = [
   '--disable-default-apps',
   '--disable-dev-shm-usage',
   '--disable-extensions',
-  // TODO: Support OOOPIF. @see https://github.com/GoogleChrome/puppeteer/issues/2548
+  // TODO: Support OOOPIF. @see https://github.com/puppeteer/puppeteer/issues/2548
   // BlinkGenPropertyTrees disabled due to crbug.com/937609
   '--disable-features=site-per-process,TranslateUI,BlinkGenPropertyTrees',
   '--disable-hang-monitor',
@@ -44459,7 +43282,7 @@ function waitForWSEndpoint(chromeProcess, timeout, preferredRevision) {
         'Failed to launch chrome!' + (error ? ' ' + error.message : ''),
         stderr,
         '',
-        'TROUBLESHOOTING: https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md',
+        'TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md',
         '',
       ].join('\n')));
     }
@@ -44550,12 +43373,12 @@ function getWSEndpoint(browserURL) {
  * @property {number=} slowMo
  */
 
-exports_GoogleChrome_puppeteer_lib_Launcher = Launcher;
+exports_puppeteer_puppeteer_lib_Launcher = Launcher;
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/LifecycleWatcher.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/LifecycleWatcher.js
 */
 /**
  * Copyright 2019 Google Inc. All rights reserved.
@@ -44573,9 +43396,9 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/LifecycleWatcher
  * limitations under the License.
  */
 
-// const {helper, assert} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {Events} = exports_GoogleChrome_puppeteer_lib_Events;
-// const {TimeoutError} = exports_GoogleChrome_puppeteer_lib_Errors;
+// const {helper, assert} = exports_puppeteer_puppeteer_lib_helper;
+// const {Events} = exports_puppeteer_puppeteer_lib_Events;
+// const {TimeoutError} = exports_puppeteer_puppeteer_lib_Errors;
 
 class LifecycleWatcher {
   /**
@@ -44754,12 +43577,12 @@ const puppeteerToProtocolLifecycle = {
   'networkidle2': 'networkAlmostIdle',
 };
 
-exports_GoogleChrome_puppeteer_lib_LifecycleWatcher = {LifecycleWatcher};
+exports_puppeteer_puppeteer_lib_LifecycleWatcher = {LifecycleWatcher};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Multimap.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Multimap.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -44896,12 +43719,12 @@ class Multimap {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Multimap = Multimap;
+exports_puppeteer_puppeteer_lib_Multimap = Multimap;
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/NetworkManager.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/NetworkManager.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -44919,8 +43742,8 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/NetworkManager.j
  * limitations under the License.
  */
 // const EventEmitter = require('events');
-// const {helper, assert, debugError} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {Events} = exports_GoogleChrome_puppeteer_lib_Events;
+// const {helper, assert, debugError} = exports_puppeteer_puppeteer_lib_helper;
+// const {Events} = exports_puppeteer_puppeteer_lib_Events;
 
 class NetworkManager extends EventEmitter {
   /**
@@ -45699,12 +44522,12 @@ const STATUS_TEXTS = {
   '511': 'Network Authentication Required',
 };
 
-exports_GoogleChrome_puppeteer_lib_NetworkManager = {Request, Response, NetworkManager, SecurityDetails};
+exports_puppeteer_puppeteer_lib_NetworkManager = {Request, Response, NetworkManager, SecurityDetails};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Page.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Page.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -45726,19 +44549,19 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Page.js
 // const path = require('path');
 // const EventEmitter = require('events');
 // const mime = require('mime');
-// const {Events} = exports_GoogleChrome_puppeteer_lib_Events;
-// const {Connection} = exports_GoogleChrome_puppeteer_lib_Connection;
-// const {Dialog} = exports_GoogleChrome_puppeteer_lib_Dialog;
-// const {EmulationManager} = exports_GoogleChrome_puppeteer_lib_EmulationManager;
-// const {FrameManager} = exports_GoogleChrome_puppeteer_lib_FrameManager;
-// const {Keyboard, Mouse, Touchscreen} = exports_GoogleChrome_puppeteer_lib_Input;
-// const Tracing = exports_GoogleChrome_puppeteer_lib_Tracing;
-// const {helper, debugError, assert} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {Coverage} = exports_GoogleChrome_puppeteer_lib_Coverage;
-// const {Worker} = exports_GoogleChrome_puppeteer_lib_Worker;
-// const {createJSHandle} = exports_GoogleChrome_puppeteer_lib_JSHandle;
-// const {Accessibility} = exports_GoogleChrome_puppeteer_lib_Accessibility;
-// const {TimeoutSettings} = exports_GoogleChrome_puppeteer_lib_TimeoutSettings;
+// const {Events} = exports_puppeteer_puppeteer_lib_Events;
+// const {Connection} = exports_puppeteer_puppeteer_lib_Connection;
+// const {Dialog} = exports_puppeteer_puppeteer_lib_Dialog;
+// const {EmulationManager} = exports_puppeteer_puppeteer_lib_EmulationManager;
+// const {FrameManager} = exports_puppeteer_puppeteer_lib_FrameManager;
+// const {Keyboard, Mouse, Touchscreen} = exports_puppeteer_puppeteer_lib_Input;
+// const Tracing = exports_puppeteer_puppeteer_lib_Tracing;
+// const {helper, debugError, assert} = exports_puppeteer_puppeteer_lib_helper;
+// const {Coverage} = exports_puppeteer_puppeteer_lib_Coverage;
+// const {Worker} = exports_puppeteer_puppeteer_lib_Worker;
+// const {createJSHandle} = exports_puppeteer_puppeteer_lib_JSHandle;
+// const {Accessibility} = exports_puppeteer_puppeteer_lib_Accessibility;
+// const {TimeoutSettings} = exports_puppeteer_puppeteer_lib_TimeoutSettings;
 const writeFileAsync = helper.promisify(fs.writeFile);
 
 class Page extends EventEmitter {
@@ -46250,7 +45073,7 @@ class Page extends EventEmitter {
       //   to the 'console'
       //   page event.
       //
-      // @see https://github.com/GoogleChrome/puppeteer/issues/3865
+      // @see https://github.com/puppeteer/puppeteer/issues/3865
       return;
     }
     const context = this._frameManager.executionContextById(event.executionContextId);
@@ -47054,12 +45877,12 @@ class FileChooser {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Page = {Page, ConsoleMessage, FileChooser};
+exports_puppeteer_puppeteer_lib_Page = {Page, ConsoleMessage, FileChooser};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/PipeTransport.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/PipeTransport.js
 */
 /**
  * Copyright 2018 Google Inc. All rights reserved.
@@ -47076,7 +45899,7 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/PipeTransport.js
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// const {helper, debugError} = exports_GoogleChrome_puppeteer_lib_helper;
+// const {helper, debugError} = exports_puppeteer_puppeteer_lib_helper;
 
 /**
  * @implements {!Puppeteer.ConnectionTransport}
@@ -47140,12 +45963,12 @@ class PipeTransport {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_PipeTransport = PipeTransport;
+exports_puppeteer_puppeteer_lib_PipeTransport = PipeTransport;
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Puppeteer.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Puppeteer.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -47162,12 +45985,12 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Puppeteer.js
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// const Launcher = exports_GoogleChrome_puppeteer_lib_Launcher;
-// const BrowserFetcher = exports_GoogleChrome_puppeteer_lib_BrowserFetcher;
-const Errors = exports_GoogleChrome_puppeteer_lib_Errors;
-const DeviceDescriptors = exports_GoogleChrome_puppeteer_lib_DeviceDescriptors;
+// const Launcher = exports_puppeteer_puppeteer_lib_Launcher;
+// const BrowserFetcher = exports_puppeteer_puppeteer_lib_BrowserFetcher;
+const Errors = exports_puppeteer_puppeteer_lib_Errors;
+const DeviceDescriptors = exports_puppeteer_puppeteer_lib_DeviceDescriptors;
 
-exports_GoogleChrome_puppeteer_lib_Puppeteer = class {
+exports_puppeteer_puppeteer_lib_Puppeteer = class {
   /**
    * @param {string} projectRoot
    * @param {string} preferredRevision
@@ -47235,7 +46058,7 @@ exports_GoogleChrome_puppeteer_lib_Puppeteer = class {
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Target.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Target.js
 */
 /**
  * Copyright 2019 Google Inc. All rights reserved.
@@ -47253,10 +46076,10 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Target.js
  * limitations under the License.
  */
 
-// const {Events} = exports_GoogleChrome_puppeteer_lib_Events;
-// const {Page} = exports_GoogleChrome_puppeteer_lib_Page;
-// const {Worker} = exports_GoogleChrome_puppeteer_lib_Worker;
-// const {Connection} = exports_GoogleChrome_puppeteer_lib_Connection;
+// const {Events} = exports_puppeteer_puppeteer_lib_Events;
+// const {Page} = exports_puppeteer_puppeteer_lib_Page;
+// const {Worker} = exports_puppeteer_puppeteer_lib_Worker;
+// const {Connection} = exports_puppeteer_puppeteer_lib_Connection;
 
 class Target {
   /**
@@ -47392,12 +46215,12 @@ class Target {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Target = {Target};
+exports_puppeteer_puppeteer_lib_Target = {Target};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/TaskQueue.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/TaskQueue.js
 */
 class TaskQueue {
   constructor() {
@@ -47415,12 +46238,12 @@ class TaskQueue {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_TaskQueue = {TaskQueue};
+exports_puppeteer_puppeteer_lib_TaskQueue = {TaskQueue};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/TimeoutSettings.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/TimeoutSettings.js
 */
 /**
  * Copyright 2019 Google Inc. All rights reserved.
@@ -47478,12 +46301,12 @@ class TimeoutSettings {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_TimeoutSettings = {TimeoutSettings};
+exports_puppeteer_puppeteer_lib_TimeoutSettings = {TimeoutSettings};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Tracing.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Tracing.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -47500,7 +46323,7 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Tracing.js
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// const {helper, assert} = exports_GoogleChrome_puppeteer_lib_helper;
+// const {helper, assert} = exports_puppeteer_puppeteer_lib_helper;
 
 class Tracing {
   /**
@@ -47556,12 +46379,12 @@ class Tracing {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Tracing = Tracing;
+exports_puppeteer_puppeteer_lib_Tracing = Tracing;
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/USKeyboardLayout.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/USKeyboardLayout.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -47594,7 +46417,7 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/USKeyboardLayout
 /**
  * @type {Object<string, KeyDefinition>}
  */
-exports_GoogleChrome_puppeteer_lib_USKeyboardLayout = {
+exports_puppeteer_puppeteer_lib_USKeyboardLayout = {
   '0': {'keyCode': 48, 'key': '0', 'code': 'Digit0'},
   '1': {'keyCode': 49, 'key': '1', 'code': 'Digit1'},
   '2': {'keyCode': 50, 'key': '2', 'code': 'Digit2'},
@@ -47855,7 +46678,7 @@ exports_GoogleChrome_puppeteer_lib_USKeyboardLayout = {
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/WebSocketTransport.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/WebSocketTransport.js
 */
 /**
  * Copyright 2018 Google Inc. All rights reserved.
@@ -47924,12 +46747,12 @@ class WebSocketTransport {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_WebSocketTransport = WebSocketTransport;
+exports_puppeteer_puppeteer_lib_WebSocketTransport = WebSocketTransport;
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Worker.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/Worker.js
 */
 /**
  * Copyright 2018 Google Inc. All rights reserved.
@@ -47947,9 +46770,9 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/Worker.js
  * limitations under the License.
  */
 // const EventEmitter = require('events');
-// const {debugError} = exports_GoogleChrome_puppeteer_lib_helper;
-// const {ExecutionContext} = exports_GoogleChrome_puppeteer_lib_ExecutionContext;
-// const {JSHandle} = exports_GoogleChrome_puppeteer_lib_JSHandle;
+// const {debugError} = exports_puppeteer_puppeteer_lib_helper;
+// const {ExecutionContext} = exports_puppeteer_puppeteer_lib_ExecutionContext;
+// const {JSHandle} = exports_puppeteer_puppeteer_lib_JSHandle;
 
 class Worker extends EventEmitter {
   /**
@@ -48010,12 +46833,12 @@ class Worker extends EventEmitter {
   }
 }
 
-exports_GoogleChrome_puppeteer_lib_Worker = {Worker};
+exports_puppeteer_puppeteer_lib_Worker = {Worker};
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/api.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/lib/api.js
 */
 /**
  * Copyright 2019 Google Inc. All rights reserved.
@@ -48033,38 +46856,38 @@ file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/lib/api.js
  * limitations under the License.
  */
 
-exports_GoogleChrome_puppeteer_lib_api = {
-  Accessibility: exports_GoogleChrome_puppeteer_lib_Accessibility.Accessibility,
-  Browser: exports_GoogleChrome_puppeteer_lib_Browser.Browser,
-  BrowserContext: exports_GoogleChrome_puppeteer_lib_Browser.BrowserContext,
-  BrowserFetcher: exports_GoogleChrome_puppeteer_lib_BrowserFetcher,
-  CDPSession: exports_GoogleChrome_puppeteer_lib_Connection.CDPSession,
-  ConsoleMessage: exports_GoogleChrome_puppeteer_lib_Page.ConsoleMessage,
-  Coverage: exports_GoogleChrome_puppeteer_lib_Coverage.Coverage,
-  Dialog: exports_GoogleChrome_puppeteer_lib_Dialog.Dialog,
-  ElementHandle: exports_GoogleChrome_puppeteer_lib_JSHandle.ElementHandle,
-  ExecutionContext: exports_GoogleChrome_puppeteer_lib_ExecutionContext.ExecutionContext,
-  FileChooser: exports_GoogleChrome_puppeteer_lib_Page.FileChooser,
-  Frame: exports_GoogleChrome_puppeteer_lib_FrameManager.Frame,
-  JSHandle: exports_GoogleChrome_puppeteer_lib_JSHandle.JSHandle,
-  Keyboard: exports_GoogleChrome_puppeteer_lib_Input.Keyboard,
-  Mouse: exports_GoogleChrome_puppeteer_lib_Input.Mouse,
-  Page: exports_GoogleChrome_puppeteer_lib_Page.Page,
-  Puppeteer: exports_GoogleChrome_puppeteer_lib_Puppeteer,
-  Request: exports_GoogleChrome_puppeteer_lib_NetworkManager.Request,
-  Response: exports_GoogleChrome_puppeteer_lib_NetworkManager.Response,
-  SecurityDetails: exports_GoogleChrome_puppeteer_lib_NetworkManager.SecurityDetails,
-  Target: exports_GoogleChrome_puppeteer_lib_Target.Target,
-  TimeoutError: exports_GoogleChrome_puppeteer_lib_Errors.TimeoutError,
-  Touchscreen: exports_GoogleChrome_puppeteer_lib_Input.Touchscreen,
-  Tracing: exports_GoogleChrome_puppeteer_lib_Tracing,
-  Worker: exports_GoogleChrome_puppeteer_lib_Worker.Worker,
+exports_puppeteer_puppeteer_lib_api = {
+  Accessibility: exports_puppeteer_puppeteer_lib_Accessibility.Accessibility,
+  Browser: exports_puppeteer_puppeteer_lib_Browser.Browser,
+  BrowserContext: exports_puppeteer_puppeteer_lib_Browser.BrowserContext,
+  BrowserFetcher: exports_puppeteer_puppeteer_lib_BrowserFetcher,
+  CDPSession: exports_puppeteer_puppeteer_lib_Connection.CDPSession,
+  ConsoleMessage: exports_puppeteer_puppeteer_lib_Page.ConsoleMessage,
+  Coverage: exports_puppeteer_puppeteer_lib_Coverage.Coverage,
+  Dialog: exports_puppeteer_puppeteer_lib_Dialog.Dialog,
+  ElementHandle: exports_puppeteer_puppeteer_lib_JSHandle.ElementHandle,
+  ExecutionContext: exports_puppeteer_puppeteer_lib_ExecutionContext.ExecutionContext,
+  FileChooser: exports_puppeteer_puppeteer_lib_Page.FileChooser,
+  Frame: exports_puppeteer_puppeteer_lib_FrameManager.Frame,
+  JSHandle: exports_puppeteer_puppeteer_lib_JSHandle.JSHandle,
+  Keyboard: exports_puppeteer_puppeteer_lib_Input.Keyboard,
+  Mouse: exports_puppeteer_puppeteer_lib_Input.Mouse,
+  Page: exports_puppeteer_puppeteer_lib_Page.Page,
+  Puppeteer: exports_puppeteer_puppeteer_lib_Puppeteer,
+  Request: exports_puppeteer_puppeteer_lib_NetworkManager.Request,
+  Response: exports_puppeteer_puppeteer_lib_NetworkManager.Response,
+  SecurityDetails: exports_puppeteer_puppeteer_lib_NetworkManager.SecurityDetails,
+  Target: exports_puppeteer_puppeteer_lib_Target.Target,
+  TimeoutError: exports_puppeteer_puppeteer_lib_Errors.TimeoutError,
+  Touchscreen: exports_puppeteer_puppeteer_lib_Input.Touchscreen,
+  Tracing: exports_puppeteer_puppeteer_lib_Tracing,
+  Worker: exports_puppeteer_puppeteer_lib_Worker.Worker,
 };
 
 
 
 /*
-file https://github.com/GoogleChrome/puppeteer/blob/v1.19.0/index.js
+file https://github.com/puppeteer/puppeteer/blob/v1.19.0/index.js
 */
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -48090,8 +46913,8 @@ try {
 }
 
 if (asyncawait) {
-//   const {helper} = exports_GoogleChrome_puppeteer_lib_helper;
-  const api = exports_GoogleChrome_puppeteer_lib_api;
+//   const {helper} = exports_puppeteer_puppeteer_lib_helper;
+  const api = exports_puppeteer_puppeteer_lib_api;
   for (const className in api) {
     // Puppeteer-web excludes certain classes from bundle, e.g. BrowserFetcher.
     if (typeof api[className] === 'function')
@@ -48100,49 +46923,49 @@ if (asyncawait) {
 }
 
 // If node does not support async await, use the compiled version.
-const Puppeteer = asyncawait ? exports_GoogleChrome_puppeteer_lib_Puppeteer : exports_GoogleChrome_puppeteer_node6_lib_Puppeteer;
-const packageJson = exports_GoogleChrome_puppeteer_package_json;
+const Puppeteer = asyncawait ? exports_puppeteer_puppeteer_lib_Puppeteer : exports_puppeteer_puppeteer_node6_lib_Puppeteer;
+const packageJson = exports_puppeteer_puppeteer_package_json;
 const preferredRevision = packageJson.puppeteer.chromium_revision;
 const isPuppeteerCore = packageJson.name === 'puppeteer-core';
 
-exports_GoogleChrome_puppeteer_index = new Puppeteer(__dirname, preferredRevision, isPuppeteerCore);
-// let Accessibility   = exports_GoogleChrome_puppeteer_lib_Accessibility.Accessibility;
-// let Browser         = exports_GoogleChrome_puppeteer_lib_Browser.Browser;
-let BrowserFetcher  = exports_GoogleChrome_puppeteer_lib_BrowserFetcher;
-// let Connection      = exports_GoogleChrome_puppeteer_lib_Connection.Connection;
-// let Coverage        = exports_GoogleChrome_puppeteer_lib_Coverage.Coverage;
-// let DOMWorld        = exports_GoogleChrome_puppeteer_lib_DOMWorld.DOMWorld;
-// let DeviceDescriptors = exports_GoogleChrome_puppeteer_lib_DeviceDescriptors;
-// let Dialog          = exports_GoogleChrome_puppeteer_lib_Dialog.Dialog;
-// let EmulationManager = exports_GoogleChrome_puppeteer_lib_EmulationManager.EmulationManager;
-// let TimeoutError    = exports_GoogleChrome_puppeteer_lib_Errors.TimeoutError;
-// let Errors          = exports_GoogleChrome_puppeteer_lib_Errors;
-// let Events          = exports_GoogleChrome_puppeteer_lib_Events.Events;
-// let EVALUATION_SCRIPT_URL = exports_GoogleChrome_puppeteer_lib_ExecutionContext.EVALUATION_SCRIPT_URL;
-// let ExecutionContext = exports_GoogleChrome_puppeteer_lib_ExecutionContext.ExecutionContext;
-// let FrameManager    = exports_GoogleChrome_puppeteer_lib_FrameManager.FrameManager;
-// let Keyboard        = exports_GoogleChrome_puppeteer_lib_Input.Keyboard;
-// let Mouse           = exports_GoogleChrome_puppeteer_lib_Input.Mouse;
-// let Touchscreen     = exports_GoogleChrome_puppeteer_lib_Input.Touchscreen;
-// let JSHandle        = exports_GoogleChrome_puppeteer_lib_JSHandle.JSHandle;
-// let createJSHandle  = exports_GoogleChrome_puppeteer_lib_JSHandle.createJSHandle;
-// let Launcher        = exports_GoogleChrome_puppeteer_lib_Launcher;
-// let LifecycleWatcher = exports_GoogleChrome_puppeteer_lib_LifecycleWatcher.LifecycleWatcher;
-// let NetworkManager  = exports_GoogleChrome_puppeteer_lib_NetworkManager.NetworkManager;
-// let Page            = exports_GoogleChrome_puppeteer_lib_Page.Page;
-// let PipeTransport   = exports_GoogleChrome_puppeteer_lib_PipeTransport;
-// let Target          = exports_GoogleChrome_puppeteer_lib_Target.Target;
-// let TaskQueue       = exports_GoogleChrome_puppeteer_lib_TaskQueue.TaskQueue;
-// let TimeoutSettings = exports_GoogleChrome_puppeteer_lib_TimeoutSettings.TimeoutSettings;
-// let Tracing         = exports_GoogleChrome_puppeteer_lib_Tracing;
-let keyDefinitions  = exports_GoogleChrome_puppeteer_lib_USKeyboardLayout;
-// let WebSocketTransport = exports_GoogleChrome_puppeteer_lib_WebSocketTransport;
-// let Worker          = exports_GoogleChrome_puppeteer_lib_Worker.Worker;
-let api             = exports_GoogleChrome_puppeteer_lib_api;
-// let assert          = exports_GoogleChrome_puppeteer_lib_helper.assert;
-// let debugError      = exports_GoogleChrome_puppeteer_lib_helper.debugError;
-// let helper          = exports_GoogleChrome_puppeteer_lib_helper.helper;
-// let packageJson     = exports_GoogleChrome_puppeteer_package_json;
+exports_puppeteer_puppeteer_index = new Puppeteer(__dirname, preferredRevision, isPuppeteerCore);
+// let Accessibility   = exports_puppeteer_puppeteer_lib_Accessibility.Accessibility;
+// let Browser         = exports_puppeteer_puppeteer_lib_Browser.Browser;
+let BrowserFetcher  = exports_puppeteer_puppeteer_lib_BrowserFetcher;
+// let Connection      = exports_puppeteer_puppeteer_lib_Connection.Connection;
+// let Coverage        = exports_puppeteer_puppeteer_lib_Coverage.Coverage;
+// let DOMWorld        = exports_puppeteer_puppeteer_lib_DOMWorld.DOMWorld;
+// let DeviceDescriptors = exports_puppeteer_puppeteer_lib_DeviceDescriptors;
+// let Dialog          = exports_puppeteer_puppeteer_lib_Dialog.Dialog;
+// let EmulationManager = exports_puppeteer_puppeteer_lib_EmulationManager.EmulationManager;
+// let TimeoutError    = exports_puppeteer_puppeteer_lib_Errors.TimeoutError;
+// let Errors          = exports_puppeteer_puppeteer_lib_Errors;
+// let Events          = exports_puppeteer_puppeteer_lib_Events.Events;
+// let EVALUATION_SCRIPT_URL = exports_puppeteer_puppeteer_lib_ExecutionContext.EVALUATION_SCRIPT_URL;
+// let ExecutionContext = exports_puppeteer_puppeteer_lib_ExecutionContext.ExecutionContext;
+// let FrameManager    = exports_puppeteer_puppeteer_lib_FrameManager.FrameManager;
+// let Keyboard        = exports_puppeteer_puppeteer_lib_Input.Keyboard;
+// let Mouse           = exports_puppeteer_puppeteer_lib_Input.Mouse;
+// let Touchscreen     = exports_puppeteer_puppeteer_lib_Input.Touchscreen;
+// let JSHandle        = exports_puppeteer_puppeteer_lib_JSHandle.JSHandle;
+// let createJSHandle  = exports_puppeteer_puppeteer_lib_JSHandle.createJSHandle;
+// let Launcher        = exports_puppeteer_puppeteer_lib_Launcher;
+// let LifecycleWatcher = exports_puppeteer_puppeteer_lib_LifecycleWatcher.LifecycleWatcher;
+// let NetworkManager  = exports_puppeteer_puppeteer_lib_NetworkManager.NetworkManager;
+// let Page            = exports_puppeteer_puppeteer_lib_Page.Page;
+// let PipeTransport   = exports_puppeteer_puppeteer_lib_PipeTransport;
+// let Target          = exports_puppeteer_puppeteer_lib_Target.Target;
+// let TaskQueue       = exports_puppeteer_puppeteer_lib_TaskQueue.TaskQueue;
+// let TimeoutSettings = exports_puppeteer_puppeteer_lib_TimeoutSettings.TimeoutSettings;
+// let Tracing         = exports_puppeteer_puppeteer_lib_Tracing;
+let keyDefinitions  = exports_puppeteer_puppeteer_lib_USKeyboardLayout;
+// let WebSocketTransport = exports_puppeteer_puppeteer_lib_WebSocketTransport;
+// let Worker          = exports_puppeteer_puppeteer_lib_Worker.Worker;
+let api             = exports_puppeteer_puppeteer_lib_api;
+// let assert          = exports_puppeteer_puppeteer_lib_helper.assert;
+// let debugError      = exports_puppeteer_puppeteer_lib_helper.debugError;
+// let helper          = exports_puppeteer_puppeteer_lib_helper.helper;
+// let packageJson     = exports_puppeteer_puppeteer_package_json;
 let applyMask       = exports_websockets_ws_lib_buffer_util.mask;
 // let concat          = exports_websockets_ws_lib_buffer_util.concat;
 // let mask            = exports_websockets_ws_lib_buffer_util.mask;
@@ -48163,8 +46986,8 @@ let PerMessageDeflate = exports_websockets_ws_lib_permessage_deflate;
 let isValidStatusCode = exports_websockets_ws_lib_validation.isValidStatusCode;
 let isValidUTF8     = exports_websockets_ws_lib_validation.isValidUTF8;
 // let WebSocket       = exports_websockets_ws_lib_websocket;
-local._puppeteer = exports_GoogleChrome_puppeteer_index;
-local.puppeteerApi = exports_GoogleChrome_puppeteer_lib_api;
+local._puppeteer = exports_puppeteer_puppeteer_index;
+local.puppeteerApi = exports_puppeteer_puppeteer_lib_api;
 local.puppeteerLaunch = local._puppeteer.launch.bind(local._puppeteer);
 local.nop(local.puppeteerLaunch);
 
@@ -48187,7 +47010,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
 /* script-begin /assets.utility2.js */
 // usr/bin/env node
 /*
- * lib.utility2.js (2020.1.21)
+ * lib.utility2.js (2020.2.18)
  * https://github.com/kaizhu256/node-utility2
  * this zero-dependency package will provide high-level functions to to build, test, and deploy webapps
  *
@@ -48201,8 +47024,6 @@ if (module === require.main && !globalThis.utility2_rollup) {
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -48218,162 +47039,17 @@ if (module === require.main && !globalThis.utility2_rollup) {
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -48386,34 +47062,32 @@ if (module === require.main && !globalThis.utility2_rollup) {
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -48436,6 +47110,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -48454,6 +47129,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -48566,9 +47242,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -48638,8 +47312,6 @@ local.assetsDict["/assets.utility2.header.js"] = '\
 /* jslint utility2:true */\n\
 (function (globalThis) {\n\
     "use strict";\n\
-    let ArrayPrototypeFlat;\n\
-    let TextXxcoder;\n\
     let consoleError;\n\
     let debugName;\n\
     let local;\n\
@@ -48655,162 +47327,17 @@ local.assetsDict["/assets.utility2.header.js"] = '\
          * and return <argList>[0]\n\
          */\n\
             consoleError("\\n\\n" + debugName);\n\
-            consoleError.apply(console, argList);\n\
+            consoleError(...argList);\n\
             consoleError("\\n");\n\
-            // return arg0 for inspection\n\
             return argList[0];\n\
         };\n\
     }\n\
-    // polyfill\n\
-    ArrayPrototypeFlat = function (depth) {\n\
-    /*\n\
-     * this function will polyfill Array.prototype.flat\n\
-     * https://github.com/jonathantneal/array-flat-polyfill\n\
-     */\n\
-        depth = (\n\
-            globalThis.isNaN(depth)\n\
-            ? 1\n\
-            : Number(depth)\n\
-        );\n\
-        if (!depth) {\n\
-            return Array.prototype.slice.call(this);\n\
-        }\n\
-        return Array.prototype.reduce.call(this, function (acc, cur) {\n\
-            if (Array.isArray(cur)) {\n\
-                // recurse\n\
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));\n\
-            } else {\n\
-                acc.push(cur);\n\
-            }\n\
-            return acc;\n\
-        }, []);\n\
-    };\n\
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;\n\
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(\n\
-        ...argList\n\
-    ) {\n\
-    /*\n\
-     * this function will polyfill Array.prototype.flatMap\n\
-     * https://github.com/jonathantneal/array-flat-polyfill\n\
-     */\n\
-        return this.map(...argList).flat();\n\
-    };\n\
     String.prototype.trimEnd = (\n\
         String.prototype.trimEnd || String.prototype.trimRight\n\
     );\n\
     String.prototype.trimStart = (\n\
         String.prototype.trimStart || String.prototype.trimLeft\n\
     );\n\
-    (function () {\n\
-        try {\n\
-            globalThis.TextDecoder = (\n\
-                globalThis.TextDecoder || require("util").TextDecoder\n\
-            );\n\
-            globalThis.TextEncoder = (\n\
-                globalThis.TextEncoder || require("util").TextEncoder\n\
-            );\n\
-        } catch (ignore) {}\n\
-    }());\n\
-    TextXxcoder = function () {\n\
-    /*\n\
-     * this function will polyfill TextDecoder/TextEncoder\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        return;\n\
-    };\n\
-    TextXxcoder.prototype.decode = function (octets) {\n\
-    /*\n\
-     * this function will polyfill TextDecoder.prototype.decode\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        let bytesNeeded;\n\
-        let codePoint;\n\
-        let ii;\n\
-        let kk;\n\
-        let octet;\n\
-        let string;\n\
-        string = "";\n\
-        ii = 0;\n\
-        while (ii < octets.length) {\n\
-            octet = octets[ii];\n\
-            bytesNeeded = 0;\n\
-            codePoint = 0;\n\
-            if (octet <= 0x7F) {\n\
-                bytesNeeded = 0;\n\
-                codePoint = octet & 0xFF;\n\
-            } else if (octet <= 0xDF) {\n\
-                bytesNeeded = 1;\n\
-                codePoint = octet & 0x1F;\n\
-            } else if (octet <= 0xEF) {\n\
-                bytesNeeded = 2;\n\
-                codePoint = octet & 0x0F;\n\
-            } else if (octet <= 0xF4) {\n\
-                bytesNeeded = 3;\n\
-                codePoint = octet & 0x07;\n\
-            }\n\
-            if (octets.length - ii - bytesNeeded > 0) {\n\
-                kk = 0;\n\
-                while (kk < bytesNeeded) {\n\
-                    octet = octets[ii + kk + 1];\n\
-                    codePoint = (codePoint << 6) | (octet & 0x3F);\n\
-                    kk += 1;\n\
-                }\n\
-            } else {\n\
-                codePoint = 0xFFFD;\n\
-                bytesNeeded = octets.length - ii;\n\
-            }\n\
-            string += String.fromCodePoint(codePoint);\n\
-            ii += bytesNeeded + 1;\n\
-        }\n\
-        return string;\n\
-    };\n\
-    TextXxcoder.prototype.encode = function (string) {\n\
-    /*\n\
-     * this function will polyfill TextEncoder.prototype.encode\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        let bits;\n\
-        let cc;\n\
-        let codePoint;\n\
-        let ii;\n\
-        let length;\n\
-        let octets;\n\
-        octets = [];\n\
-        length = string.length;\n\
-        ii = 0;\n\
-        while (ii < length) {\n\
-            codePoint = string.codePointAt(ii);\n\
-            cc = 0;\n\
-            bits = 0;\n\
-            if (codePoint <= 0x0000007F) {\n\
-                cc = 0;\n\
-                bits = 0x00;\n\
-            } else if (codePoint <= 0x000007FF) {\n\
-                cc = 6;\n\
-                bits = 0xC0;\n\
-            } else if (codePoint <= 0x0000FFFF) {\n\
-                cc = 12;\n\
-                bits = 0xE0;\n\
-            } else if (codePoint <= 0x001FFFFF) {\n\
-                cc = 18;\n\
-                bits = 0xF0;\n\
-            }\n\
-            octets.push(bits | (codePoint >> cc));\n\
-            cc -= 6;\n\
-            while (cc >= 0) {\n\
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));\n\
-                cc -= 6;\n\
-            }\n\
-            ii += (\n\
-                codePoint >= 0x10000\n\
-                ? 2\n\
-                : 1\n\
-            );\n\
-        }\n\
-        return octets;\n\
-    };\n\
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;\n\
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;\n\
     // init local\n\
     local = {};\n\
     local.local = local;\n\
@@ -48823,34 +47350,32 @@ local.assetsDict["/assets.utility2.header.js"] = '\
     );\n\
     // init isWebWorker\n\
     local.isWebWorker = (\n\
-        local.isBrowser && typeof globalThis.importScript === "function"\n\
+        local.isBrowser && typeof globalThis.importScripts === "function"\n\
     );\n\
     // init function\n\
-    local.assertOrThrow = function (passed, message) {\n\
+    local.assertOrThrow = function (passed, msg) {\n\
     /*\n\
-     * this function will throw err.<message> if <passed> is falsy\n\
+     * this function will throw err.<msg> if <passed> is falsy\n\
      */\n\
-        let err;\n\
         if (passed) {\n\
             return;\n\
         }\n\
-        err = (\n\
+        throw (\n\
             (\n\
-                message\n\
-                && typeof message.message === "string"\n\
-                && typeof message.stack === "string"\n\
+                msg\n\
+                && typeof msg.message === "string"\n\
+                && typeof msg.stack === "string"\n\
             )\n\
-            // if message is errObj, then leave as is\n\
-            ? message\n\
+            // if msg is err, then leave as is\n\
+            ? msg\n\
             : new Error(\n\
-                typeof message === "string"\n\
-                // if message is a string, then leave as is\n\
-                ? message\n\
-                // else JSON.stringify message\n\
-                : JSON.stringify(message, undefined, 4)\n\
+                typeof msg === "string"\n\
+                // if msg is a string, then leave as is\n\
+                ? msg\n\
+                // else JSON.stringify msg\n\
+                : JSON.stringify(msg, undefined, 4)\n\
             )\n\
         );\n\
-        throw err;\n\
     };\n\
     local.coalesce = function (...argList) {\n\
     /*\n\
@@ -48873,6 +47398,7 @@ local.assetsDict["/assets.utility2.header.js"] = '\
      * this function will sync "rm -rf" <dir>\n\
      */\n\
         let child_process;\n\
+        // do nothing if module does not exist\n\
         try {\n\
             child_process = require("child_process");\n\
         } catch (ignore) {\n\
@@ -48891,6 +47417,7 @@ local.assetsDict["/assets.utility2.header.js"] = '\
      * this function will sync write <data> to <file> with "mkdir -p"\n\
      */\n\
         let fs;\n\
+        // do nothing if module does not exist\n\
         try {\n\
             fs = require("fs");\n\
         } catch (ignore) {\n\
@@ -49003,9 +47530,7 @@ local.assetsDict["/assets.utility2.header.js"] = '\
         local.vm = require("vm");\n\
         local.zlib = require("zlib");\n\
     }\n\
-}((typeof globalThis === "object" && globalThis) || (function () {\n\
-    return Function("return this")(); // jslint ignore:line\n\
-}())));\n\
+}((typeof globalThis === "object" && globalThis) || window));\n\
 // assets.utility2.header.js - end\n\
 '
 
@@ -49029,6 +47554,10 @@ local.assetsDict["/assets.utility2.template.html"] = '\
 *:after,\n\
 *:before {\n\
     box-sizing: border-box;\n\
+}\n\
+.uiAnimateSlide {\n\
+    overflow-y: hidden;\n\
+    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;\n\
 }\n\
 /* csslint ignore:end */\n\
 @keyframes uiAnimateSpin {\n\
@@ -49102,10 +47631,6 @@ pre {\n\
     overflow: auto;\n\
     padding: 2px;\n\
 }\n\
-.uiAnimateSlide {\n\
-    overflow-y: hidden;\n\
-    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;\n\
-}\n\
 .zeroPixel {\n\
     border: 0;\n\
     height: 0;\n\
@@ -49155,10 +47680,23 @@ pre {\n\
  */\n\
     "use strict";\n\
     let opt;\n\
-    if (!(\n\
-        typeof window === "object" && window && window.document\n\
-        && typeof document.addEventListener === "function"\n\
-    ) || window.domOnEventAjaxProgressUpdate) {\n\
+    let styleBar0;\n\
+    let styleBar;\n\
+    let styleModal0;\n\
+    let styleModal;\n\
+    let timeStart;\n\
+    let timerInterval;\n\
+    let timerTimeout;\n\
+    let tmp;\n\
+    let width;\n\
+    try {\n\
+        if (\n\
+            window.domOnEventAjaxProgressUpdate\n\
+            || !document.getElementById("domElementAjaxProgressBar1").style\n\
+        ) {\n\
+            return;\n\
+        }\n\
+    } catch (ignore) {\n\
         return;\n\
     }\n\
     window.domOnEventAjaxProgressUpdate = function (gotoState, onError) {\n\
@@ -49166,56 +47704,68 @@ pre {\n\
         switch (gotoState) {\n\
         // ajaxProgress - show\n\
         case 1:\n\
-            // init timerInterval and timerTimeout\n\
-            opt.timerInterval = (\n\
-                opt.timerInterval || setInterval(opt, 2000, 1, onError)\n\
-            );\n\
-            opt.timerTimeout = (\n\
-                opt.timerTimeout || setTimeout(opt, 30000, 2, onError)\n\
-            );\n\
-            // show ajaxProgress\n\
-            if (opt.width !== -1) {\n\
-                opt.style.background = opt.background;\n\
+            // init <timerInterval> and <timerTimeout>\n\
+            if (!timerTimeout) {\n\
+                timeStart = Date.now();\n\
+                timerInterval = setInterval(opt, 2000, 1, onError);\n\
+                timerTimeout = setTimeout(opt, opt.timeout, 2, onError);\n\
+            }\n\
+            // show ajaxProgressBar\n\
+            if (width !== -1) {\n\
+                styleBar.background = styleBar0.background;\n\
             }\n\
             setTimeout(opt, 50, gotoState, onError);\n\
             break;\n\
         // ajaxProgress - increment\n\
         case 2:\n\
-            // show ajaxProgress\n\
-            if (opt.width === -1) {\n\
-                return;\n\
+            // show ajaxProgressBar\n\
+            if (width === -1) {\n\
+                break;\n\
             }\n\
-            opt.style.background = opt.background;\n\
-            // reset ajaxProgress if it goes too high\n\
-            if ((opt.style.width.slice(0, -1) | 0) > 95) {\n\
-                opt.width = 0;\n\
+            styleBar.background = styleBar0.background;\n\
+            // reset ajaxProgress if it reaches end\n\
+            if ((styleBar.width.slice(0, -1) | 0) > 95) {\n\
+                width = 0;\n\
             }\n\
             // this algorithm will indefinitely increment ajaxProgress\n\
             // with successively smaller increments without reaching 100%\n\
-            opt.width += 1;\n\
-            opt.style.width = Math.max(\n\
-                100 - 75 * Math.exp(-0.125 * opt.width),\n\
-                opt.style.width.slice(0, -1) | 0\n\
+            width += 1;\n\
+            styleBar.width = Math.max(\n\
+                100 - 75 * Math.exp(-0.125 * width),\n\
+                styleBar.width.slice(0, -1) | 0\n\
             ) + "%";\n\
+            // show ajaxProgressModal\n\
+            styleModal.height = "100%";\n\
+            styleModal.opacity = styleModal0.opacity;\n\
             if (!opt.cnt) {\n\
                 setTimeout(opt, 0, gotoState, onError);\n\
             }\n\
             break;\n\
         // ajaxProgress - 100%\n\
         case 3:\n\
-            opt.width = -1;\n\
-            opt.style.width = "100%";\n\
+            width = -1;\n\
+            styleBar.width = "100%";\n\
             setTimeout(opt, 1000, gotoState, onError);\n\
             break;\n\
         // ajaxProgress - hide\n\
         case 4:\n\
-            // cleanup timerInterval and timerTimeout\n\
-            clearInterval(opt.timerInterval);\n\
-            opt.timerInterval = null;\n\
-            clearTimeout(opt.timerTimeout);\n\
-            opt.timerTimeout = null;\n\
-            // hide ajaxProgress\n\
-            opt.style.background = "transparent";\n\
+            // debug timeElapsed\n\
+            tmp = Date.now();\n\
+            console.error(\n\
+                "domOnEventAjaxProgressUpdate - timeElapsed - "\n\
+                + (tmp - timeStart)\n\
+                + " ms"\n\
+            );\n\
+            // cleanup <timerInterval> and <timerTimeout>\n\
+            timeStart = tmp;\n\
+            clearInterval(timerInterval);\n\
+            timerInterval = null;\n\
+            clearTimeout(timerTimeout);\n\
+            timerTimeout = null;\n\
+            // hide ajaxProgressBar\n\
+            styleBar.background = "transparent";\n\
+            // hide ajaxProgressModal\n\
+            styleModal.opacity = "0";\n\
             if (onError) {\n\
                 onError();\n\
             }\n\
@@ -49223,10 +47773,10 @@ pre {\n\
             break;\n\
         // ajaxProgress - reset\n\
         default:\n\
-            // reset ajaxProgress\n\
             opt.cnt = 0;\n\
-            opt.width = 0;\n\
-            opt.style.width = "0%";\n\
+            width = 0;\n\
+            styleBar.width = "0%";\n\
+            styleModal.height = "0";\n\
         }\n\
     };\n\
     opt = window.domOnEventAjaxProgressUpdate;\n\
@@ -49234,16 +47784,9 @@ pre {\n\
         opt.cnt = 0;\n\
         window.domOnEventAjaxProgressUpdate(2, onError);\n\
     };\n\
-    opt.elem = document.getElementById("domElementAjaxProgress1");\n\
-    if (!opt.elem) {\n\
-        opt.elem = document.createElement("div");\n\
-        setTimeout(function () {\n\
-            document.body.insertBefore(opt.elem, document.body.firstChild);\n\
-        });\n\
-    }\n\
-    opt.elem.id = "domElementAjaxProgress1";\n\
-    opt.style = opt.elem.style;\n\
-    // init style\n\
+    // init <styleBar>\n\
+    styleBar = document.getElementById("domElementAjaxProgressBar1").style;\n\
+    styleBar0 = Object.assign({}, styleBar);\n\
     Object.entries({\n\
         background: "#d00",\n\
         height: "2px",\n\
@@ -49256,12 +47799,31 @@ pre {\n\
         width: "0%",\n\
         "z-index": "1"\n\
     }).forEach(function (entry) {\n\
-        opt.style[entry[0]] = opt.style[entry[0]] || entry[1];\n\
+        styleBar[entry[0]] = styleBar[entry[0]] || entry[1];\n\
+    });\n\
+    // init <styleModal>\n\
+    styleModal = document.getElementById("domElementAjaxProgressModal1") || {};\n\
+    styleModal = styleModal.style || {};\n\
+    styleModal0 = Object.assign({}, styleModal);\n\
+    Object.entries({\n\
+        height: "0",\n\
+        left: "0",\n\
+        margin: "0",\n\
+        padding: "0",\n\
+        position: "fixed",\n\
+        top: "0",\n\
+        transition: "opacity 125ms",\n\
+        width: "100%",\n\
+        "z-index": "1"\n\
+    }).forEach(function (entry) {\n\
+        styleModal[entry[0]] = styleModal[entry[0]] || entry[1];\n\
     });\n\
     // init state\n\
-    opt.background = opt.style.background;\n\
+    width = 0;\n\
     opt.cnt = 0;\n\
-    opt.width = 0;\n\
+    opt.timeout = 30000;\n\
+    // init ajaxProgress\n\
+    window.domOnEventAjaxProgressUpdate();\n\
 }());\n\
 \n\
 \n\
@@ -49514,7 +48076,7 @@ if (!local.isBrowser) {\n\
     }\n\
     fnc = console[key];\n\
     console[key] = function (...argList) {\n\
-        fnc.apply(console, argList);\n\
+        fnc(...argList);\n\
         // append text to #outputStdout1\n\
         elem.textContent += argList.map(function (arg) {\n\
             return (\n\
@@ -49733,12 +48295,12 @@ the greatest app in the world!\n\
 \n\
 [![swaggerdoc](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png)](https://kaizhu256.github.io/node-my-app-lite/build..beta..travis-ci.org/app/assets.swgg.html)\n\
 \n\
-#### todo\n\
-- none\n\
-\n\
 #### changelog 0.0.1\n\
 - npm publish 0.0.1\n\
 - update build\n\
+- none\n\
+\n\
+#### todo\n\
 - none\n\
 \n\
 #### this package requires\n\
@@ -49833,8 +48395,9 @@ PORT=8081 node ./assets.app.js\n\
         "utility2": "kaizhu256/node-utility2#alpha"\n\
     },\n\
     "engines": {\n\
-        "node": ">=10.0"\n\
+        "node": ">=12.0"\n\
     },\n\
+    "fileCount": 0,\n\
     "homepage": "https://github.com/kaizhu256/node-my-app-lite",\n\
     "keywords": [],\n\
     "license": "MIT",\n\
@@ -49875,7 +48438,7 @@ PORT=8081 node ./assets.app.js\n\
 ```shell\n\
 # build_ci.sh\n\
 \n\
-# this shell script will run the build for this package\n\
+# this shell script will run build-ci for this package\n\
 \n\
 shBuildCiAfter () {(set -e\n\
     # shDeployCustom\n\
@@ -50370,14 +48933,14 @@ local.FormData.prototype.read = function (onError) {
     result = [];
     local.onParallelList({
         list: this.entryList
-    }, function (option2, onParallel) {
+    }, function (opt2, onParallel) {
         let value;
-        value = option2.elem.value;
+        value = opt2.elem.value;
         if (!(value && value.constructor === local.Blob)) {
-            result[option2.ii] = [
+            result[opt2.ii] = [
                 (
                     boundary + "\r\nContent-Disposition: form-data; name=\""
-                    + option2.elem.name + "\"\r\n\r\n"
+                    + opt2.elem.name + "\"\r\n\r\n"
                 ), value, "\r\n"
             ];
             onParallel.cnt += 1;
@@ -50387,10 +48950,10 @@ local.FormData.prototype.read = function (onError) {
         // read from blob in parallel
         onParallel.cnt += 1;
         local.blobRead(value, function (err, data) {
-            result[option2.ii] = !err && [
+            result[opt2.ii] = !err && [
                 (
                     boundary + "\r\nContent-Disposition: form-data; name=\""
-                    + option2.elem.name + "\"" + (
+                    + opt2.elem.name + "\"" + (
                         (value && value.name)
                         // read param filename
                         ? "; filename=\"" + value.name + "\""
@@ -50768,7 +49331,7 @@ local.ajax = function (opt, onError) {
  * this function will send an ajax-req
  * with given <opt>.url and callback <onError>
  * with err and timeout handling
- * example usage:
+ * example use:
     local.ajax({
         data: "hello world",
         header: {"x-header-hello": "world"},
@@ -50957,7 +49520,7 @@ local.ajax = function (opt, onError) {
     /*
      * this function will init xhr
      */
-        // init opt
+        // init <opt>
         Object.keys(opt).forEach(function (key) {
             if (key[0] !== "_") {
                 xhr[key] = opt[key];
@@ -51655,28 +50218,28 @@ local.buildApp = function (opt, onError) {
                 )
             }
         ].concat(opt.assetsList)
-    }, function (option2, onParallel) {
-        option2 = option2.elem;
+    }, async function (opt2, onParallel) {
+        let xhr;
+        opt2 = opt2.elem;
         onParallel.cnt += 1;
-        local.ajax(option2, function (err, xhr) {
-            // handle err
-            local.assertOrThrow(!err, err);
-            // jslint file
-            local.jslintAndPrint(xhr.responseText, option2.file, {
-                conditional: true,
-                coverage: local.env.npm_config_mode_coverage
-            });
-            // handle err
-            local.assertOrThrow(
-                !local.jslint.jslintResult.errMsg,
-                local.jslint.jslintResult.errMsg
-            );
-            local.fsWriteFileWithMkdirpSync(
-                "tmp/build/app" + option2.file,
-                xhr.response
-            );
-            onParallel();
+        xhr = await local.httpFetch(local.serverLocalHost + opt2.url, {
+            responseType: "raw"
         });
+        // jslint file
+        local.jslintAndPrint(xhr.data.toString(), opt2.file, {
+            conditional: true,
+            coverage: local.env.npm_config_mode_coverage
+        });
+        // handle err
+        local.assertOrThrow(
+            !local.jslint.jslintResult.errMsg,
+            local.jslint.jslintResult.errMsg
+        );
+        local.fsWriteFileWithMkdirpSync(
+            "tmp/build/app" + opt2.file,
+            xhr.data
+        );
+        onParallel();
     }, function (err) {
         // handle err
         local.assertOrThrow(!err, err);
@@ -51717,8 +50280,7 @@ local.buildLib = function (opt, onError) {
             "utf8"
         ),
         dataTo: local.templateRenderMyApp(
-            local.assetsDict["/assets.my_app.template.js"],
-            opt
+            local.assetsDict["/assets.my_app.template.js"]
         )
     });
     // search-and-replace - customize dataTo
@@ -51780,8 +50342,7 @@ local.buildReadme = function (opt, onError) {
     });
     // render dataTo
     opt.dataTo = local.templateRenderMyApp(
-        local.assetsDict["/assets.readme.template.md"],
-        opt
+        local.assetsDict["/assets.readme.template.md"]
     );
     // init package.json
     opt.dataFrom.replace(opt.packageJsonRgx, function (match0, match1) {
@@ -51808,7 +50369,7 @@ local.buildReadme = function (opt, onError) {
             opt.packageJson,
             JSON.parse(local.templateRenderMyApp(opt.packageJsonRgx.exec(
                 local.assetsDict["/assets.readme.template.md"]
-            )[1], opt)),
+            )[1])),
             2
         );
         // avoid npm-installing that
@@ -51831,8 +50392,7 @@ local.buildReadme = function (opt, onError) {
         );
         // re-render dataTo
         opt.dataTo = local.templateRenderMyApp(
-            local.assetsDict["/assets.readme.template.md"],
-            opt
+            local.assetsDict["/assets.readme.template.md"]
         );
         opt.dataTo = opt.dataTo.replace(
             opt.packageJsonRgx,
@@ -51856,13 +50416,13 @@ local.buildReadme = function (opt, onError) {
         (
             /\n#\u0020live\u0020web\u0020demo\n[\S\s]*?\n\n\n\n/
         ),
-        // customize to-do
+        // customize changelog
         (
-            /\n####\u0020todo\n[\S\s]*?\n\n\n\n/
+            /\n####\u0020changelog\u0020[\S\s]*?\n\n\n\n/
         ),
-        // customize example.js - shared js-env code - init-before
+        // customize example.js - shared js\u002denv code - init-before
         (
-            /\nglobalThis\.local\u0020=\u0020local;\n[^`]*?\n\/\/\u0020run\u0020browser\u0020js\-env\u0020code\u0020-\u0020init-test\n/
+            /\nglobalThis\.local\u0020=\u0020local;\n[^`]*?\n\/\/\u0020run\u0020browser\u0020js\u002denv\u0020code\u0020-\u0020init-test\n/
         ),
         // customize example.js - html-body
         (
@@ -51946,7 +50506,7 @@ local.buildReadme = function (opt, onError) {
         [
             // customize example.sh
             (
-                /\n####\u0020changelog\u0020[\S\s]*\n#\u0020quickstart\u0020example.js\n/
+                /\n####\u0020changelog\u0020[\S\s]*?\n#\u0020quickstart\u0020example.js\n/
             ), (
                 opt.dataFrom.indexOf("\"assets.utility2.template.html\"") < 0
                 && local.identity(
@@ -52016,7 +50576,7 @@ local.buildReadme = function (opt, onError) {
         // customize screenshot
         opt.dataTo = opt.dataTo.replace(elem[1], "");
     });
-    opt.dataTo = local.templateRenderMyApp(opt.dataTo, opt);
+    opt.dataTo = local.templateRenderMyApp(opt.dataTo);
     // customize toc
     opt.toc = "\n# table of contents\n";
     opt.dataTo.replace((
@@ -52077,15 +50637,14 @@ local.buildTest = function (opt, onError) {
         customize: local.nop,
         dataFrom: local.fsReadFileOrEmptyStringSync("test.js", "utf8"),
         dataTo: local.templateRenderMyApp(
-            local.assetsDict["/assets.test.template.js"],
-            opt
+            local.assetsDict["/assets.test.template.js"]
         )
     });
     // search-and-replace - customize dataTo
     [
-        // customize shared js\-env code - function
+        // customize shared js\u002denv code - function
         (
-            /\n\}\(\)\);\n\n\n\n\/\/\u0020run\u0020shared\u0020js\-env\u0020code\u0020-\u0020function\n[\S\s]*?$/
+            /\n\}\(\)\);\n\n\n\n\/\/\u0020run\u0020shared\u0020js\u002denv\u0020code\u0020-\u0020function\n[\S\s]*?$/
         )
     ].forEach(function (rgx) {
         opt.dataTo = local.stringMerge(opt.dataTo, opt.dataFrom, rgx);
@@ -52114,7 +50673,7 @@ local.childProcessSpawnWithTimeout = function (command, args, opt) {
 /*
  * this function will run like child_process.spawn,
  * but with auto-timeout after timeout milliseconds
- * example usage:
+ * example use:
     let child = local.childProcessSpawnWithTimeout(
         "/bin/sh",
         ["-c", "echo hello world"],
@@ -52175,7 +50734,7 @@ local.childProcessSpawnWithUtility2 = function (script, onError) {
 
 local.cliRun = function (opt) {
 /*
- * this function will run the cli with given <opt>
+ * this function will run cli with given <opt>
  */
     local.cliDict._eval = local.cliDict._eval || function () {
     /*
@@ -52193,8 +50752,8 @@ local.cliRun = function (opt) {
         let commandList;
         let file;
         let packageJson;
-        let text;
-        let textDict;
+        let str;
+        let strDict;
         commandList = [
             {
                 argList: "<arg2>  ...",
@@ -52219,23 +50778,23 @@ local.cliRun = function (opt) {
         opt.rgxComment = opt.rgxComment || (
             /\)\u0020\{\n(?:|\u0020{4})\/\*\n(?:\u0020|\u0020{5})\*((?:\u0020<[^>]*?>|\u0020\.\.\.)*?)\n(?:\u0020|\u0020{5})\*\u0020(will\u0020.*?\S)\n(?:\u0020|\u0020{5})\*\/\n(?:\u0020{4}|\u0020{8})\S/
         );
-        textDict = {};
+        strDict = {};
         Object.keys(local.cliDict).sort().forEach(function (key, ii) {
             if (key[0] === "_" && key !== "_default") {
                 return;
             }
-            text = String(local.cliDict[key]);
+            str = String(local.cliDict[key]);
             if (key === "_default") {
                 key = "";
             }
-            textDict[text] = textDict[text] || (ii + 2);
-            ii = textDict[text];
+            strDict[str] = strDict[str] || (ii + 2);
+            ii = strDict[str];
             if (commandList[ii]) {
                 commandList[ii].command.push(key);
                 return;
             }
             try {
-                commandList[ii] = opt.rgxComment.exec(text);
+                commandList[ii] = opt.rgxComment.exec(str);
                 commandList[ii] = {
                     argList: local.coalesce(commandList[ii][1], "").trim(),
                     command: [
@@ -52249,7 +50808,7 @@ local.cliRun = function (opt) {
                     + key
                     + ":\nnew RegExp("
                     + JSON.stringify(opt.rgxComment.source)
-                    + ").exec(" + JSON.stringify(text).replace((
+                    + ").exec(" + JSON.stringify(str).replace((
                         /\\\\/g
                     ), "\u0000").replace((
                         /\\n/g
@@ -52259,9 +50818,9 @@ local.cliRun = function (opt) {
                 ));
             }
         });
-        text = "";
-        text += packageJson.name + " (" + packageJson.version + ")\n\n";
-        text += commandList.filter(function (elem) {
+        str = "";
+        str += packageJson.name + " (" + packageJson.version + ")\n\n";
+        str += commandList.filter(function (elem) {
             return elem;
         }).map(function (elem, ii) {
             elem.command = elem.command.filter(function (elem) {
@@ -52288,7 +50847,7 @@ local.cliRun = function (opt) {
                 + elem.argList.join("  ")
             );
         }).join("\n\n");
-        console.log(text);
+        console.log(str);
     };
     local.cliDict["--eval"] = local.cliDict["--eval"] || local.cliDict._eval;
     local.cliDict["--help"] = local.cliDict["--help"] || local.cliDict._help;
@@ -52384,7 +50943,7 @@ local.corsForwardProxyHostIfNeeded = function (xhr) {
 local.cryptoAesXxxCbcRawDecrypt = function (opt, onError) {
 /*
  * this function will aes-xxx-cbc decrypt with given <opt>
- * example usage:
+ * example use:
     data = new Uint8Array([1,2,3]);
     key = '0123456789abcdef0123456789abcdef';
     mode = undefined;
@@ -52460,7 +51019,7 @@ local.cryptoAesXxxCbcRawDecrypt = function (opt, onError) {
 local.cryptoAesXxxCbcRawEncrypt = function (opt, onError) {
 /*
  * this function will aes-xxx-cbc encrypt with given <opt>
- * example usage:
+ * example use:
     data = new Uint8Array([1,2,3]);
     key = '0123456789abcdef0123456789abcdef';
     mode = undefined;
@@ -52641,6 +51200,9 @@ local.domSelectOptionValue = function (elem) {
 /*
  * this function will return <elem>.options[<elem>.selectedIndex].value
  */
+    if (typeof elem === "string") {
+        elem = document.querySelector(elem);
+    }
     elem = elem && elem.options[elem.selectedIndex];
     return (elem && elem.value) || "";
 };
@@ -52678,18 +51240,6 @@ local.domStyleValidate = function () {
             "domStyleValidateUnmatched " + (list.length - ii) + ". " + elem
         );
     });
-};
-
-local.errorMessagePrepend = function (err, message) {
-/*
- * this function will prepend message to <err>.message and <err>.stack
- */
-    if (err === local.errDefault) {
-        return;
-    }
-    err.message = message + err.message;
-    err.stack = message + err.stack;
-    return err;
 };
 
 local.eventEmitterCreate = function (that = {}) {
@@ -52823,6 +51373,216 @@ local.gotoNext = function (opt, onError) {
     opt.gotoNextData = opt.gotoNext.bind(undefined, undefined);
     return opt;
 };
+
+local.httpFetch = function (url, opt) {
+/*
+ * this function will fetch <url> with given <opt>
+ * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+ * https://developer.mozilla.org/en-US/docs/Web/API/Response
+ */
+    let buf;
+    let cleanup;
+    let controller;
+    let debug;
+    let errStack;
+    let httpFetchProgressUpdate;
+    let isBrowser;
+    let isDebugged;
+    let isDone;
+    let nop;
+    let reject2;
+    let reject;
+    let request;
+    let resolve2;
+    let resolve;
+    let response;
+    let timeStart;
+    let timeout;
+    let timerTimeout;
+    // init function
+    cleanup = function () {
+        if (isDone) {
+            return true;
+        }
+        isDone = true;
+        // cleanup <timerTimeout>
+        clearTimeout(timerTimeout);
+        // decrement <httpFetchProgressUpdate>.cnt
+        httpFetchProgressUpdate.cnt = Math.max(
+            httpFetchProgressUpdate.cnt - 1,
+            0
+        );
+        httpFetchProgressUpdate();
+    };
+    debug = function () {
+        if (isDebugged) {
+            return;
+        }
+        isDebugged = true;
+        console.error("serverLog - " + JSON.stringify({
+            time: new Date(timeStart).toISOString(),
+            type: "httpFetchResponse",
+            method: opt.method,
+            url,
+            status: opt.status,
+            timeElapsed: Date.now() - timeStart,
+            // extra
+            responseContentLength: buf.byteLength
+        }) + "\n");
+    };
+    nop = function () {
+        return;
+    };
+    reject2 = function (err) {
+        if (cleanup()) {
+            return;
+        }
+        debug();
+        // append <errStack>
+        if (errStack) {
+            err.stack += "\n" + errStack;
+        }
+        Object.assign(err, opt);
+        reject(err);
+    };
+    resolve2 = async function (response) {
+        try {
+            if (isBrowser) {
+                Array.from(response.headers).forEach(function ([
+                    key, val
+                ]) {
+                    opt.responseHeaders[key.toLowerCase()] = val;
+                });
+                opt.status = response.status;
+                opt.ok = response.ok;
+                buf = new Uint8Array(
+                    await response.arrayBuffer()
+                );
+            } else {
+                // init responseproperties specified in
+                // https://fetch.spec.whatwg.org/#response-class
+                opt.responseHeaders = response.headers;
+                opt.status = response.statusCode;
+                opt.ok = 200 <= opt.status && opt.status <= 299;
+            }
+            switch (opt.responseType) {
+            case "json":
+                opt.data = JSON.parse(new TextDecoder().decode(buf));
+                break;
+            case "raw":
+                opt.data = buf;
+                break;
+            default:
+                opt.data = new TextDecoder().decode(buf);
+            }
+            if (opt.modeDebug) {
+                debug();
+            }
+            if (!opt.ok) {
+                reject2(new Error("httpFetch - status " + opt.status));
+                return;
+            }
+        } catch (err) {
+            reject2(err);
+            return;
+        }
+        cleanup();
+        resolve(opt);
+    };
+    // init httpFetchProgressUpdate
+    httpFetchProgressUpdate = globalThis.httpFetchProgressUpdate || nop;
+    httpFetchProgressUpdate.cnt |= 0;
+    httpFetchProgressUpdate.cnt += 1;
+    httpFetchProgressUpdate();
+    // init <opt>
+    opt = opt || {};
+    opt.abort = function (err) {
+        controller.abort();
+        request.destroy();
+        response.destroy();
+        reject2(err || new Error("httpFetch - abort"));
+    };
+    opt.method = opt.method || "GET";
+    opt.responseHeaders = {};
+    opt.status = 400;
+    // init var
+    buf = new Uint8Array(0);
+    controller = {
+        abort: nop,
+        destroy: nop
+    };
+    isBrowser = (
+        typeof globalThis.AbortController === "function"
+        && typeof globalThis.fetch === "function"
+    );
+    request = controller;
+    response = controller;
+    timeStart = Date.now();
+    timeout = opt.timeout || 30000;
+    // init timerTimeout
+    timerTimeout = setTimeout(function () {
+        opt.abort(new Error("httpFetch - timeout " + timeout + " ms"));
+    }, timeout);
+    // init promise
+    return Object.assign(new Promise(function (aa, bb) {
+        reject = bb;
+        resolve = aa;
+        // browser - fetch
+        if (isBrowser) {
+            controller = new globalThis.AbortController();
+            opt.signal = controller.signal;
+            globalThis.fetch(url, opt).then(resolve2).catch(reject2);
+            return;
+        }
+        // node - request
+        errStack = new Error().stack;
+        request = require(
+            url.indexOf("https:") === 0
+            ? "https"
+            : "http"
+        ).request(url, opt, function (aa) {
+            response = aa;
+            let bufList;
+            // handle err
+            response.on("error", reject2);
+            // handle stream
+            if (opt.responseType === "stream") {
+                resolve2(response);
+                return;
+            }
+            // read <buf>
+            bufList = [];
+            response.on("data", function (chunk) {
+                bufList.push(chunk);
+            });
+            response.on("end", function () {
+                buf = Buffer.concat(bufList);
+                resolve2(response);
+            });
+        });
+        request.on("error", reject2);
+        request.end(opt.body);
+    }), {
+        abort: opt.abort
+    });
+};
+
+//!! // test
+//!! (async function () {
+    //!! let opt;
+    //!! let url;
+    //!! url = (
+        //!! globalThis.window
+        //!! ? "/"
+        //!! : "http://example2394872.com"
+    //!! );
+    //!! opt = await local.httpFetch(url, {
+        //!! modeDebug: true,
+        //!! responseType: "json2",
+        //!! timeout: 5000
+    //!! });
+    //!! debugInline(opt);
+//!! }());
 
 local.isNullOrUndefined = function (val) {
 /*
@@ -53233,11 +51993,17 @@ local.middlewareFileServer = function (req, res, next) {
         next();
         return;
     }
-    // security - disable parent directory lookup
-    file = local.path.resolve("/", req.urlParsed.pathname).slice(1);
-    // replace trailing '/' with '/index.html'
+    // security - disable parent-directory lookup
+    file = local.path.resolve(
+        "/",
+        // preserve trailing "/"
+        req.urlParsed.pathname + "\u0000"
+    ).slice(0, -1).replace((
+        /^\/|^\w+?:\\+/m
+    ), "");
+    // replace trailing "/" with "/index.html"
     file = file.replace((
-        /\/$/
+        /[\/\\]$/
     ), "/index.html");
     local.fs.readFile(file, function (err, data) {
         // default to next
@@ -53304,7 +52070,7 @@ local.middlewareForwardProxy = function (req, res, next) {
         local.streamCleanup(opt.clientReq);
         next(err);
     };
-    // init opt
+    // init <opt>
     opt = local.urlParse(req.headers["forward-proxy-url"]);
     opt.method = req.method;
     opt.url = req.headers["forward-proxy-url"];
@@ -53447,7 +52213,7 @@ local.moduleDirname = function (module, pathList) {
 
 local.normalizeJwt = function (data) {
 /*
- * this function will normalize the jwt-data with registered-headers
+ * this function will normalize jwt-data with registered-headers
  * https://tools.ietf.org/html/rfc7519#section-4.1
  */
     let timeNow;
@@ -53612,7 +52378,7 @@ local.onErrorWithStack = function (onError) {
         if (
             err
             && typeof err.stack === "string"
-            && err !== local.errDefault
+            && err !== local.errorDefault
             && String(err.stack).indexOf(stack.split("\n")[2]) < 0
         ) {
             err.stack += "\n" + stack;
@@ -53628,7 +52394,7 @@ local.onErrorWithStack = function (onError) {
 
 local.onFileModifiedRestart = function (file) {
 /*
- * this function will watch the file, and if modified, then restart the process
+ * this function will watch <file>, and if modified, then restart process
  */
     if (
         local.env.npm_config_mode_auto_restart
@@ -53785,6 +52551,23 @@ local.profileSync = function (fnc) {
     fnc();
     // return difference in milliseconds between Date.now() and timeStart
     return Date.now() - timeStart;
+};
+
+local.promisify = function (fnc) {
+/*
+ * this function will promisify <fnc>
+ */
+    return function (...argList) {
+        return new Promise(function (resolve, reject) {
+            fnc(...argList, function (err, ...argList) {
+                if (err) {
+                    reject(err, ...argList);
+                    return;
+                }
+                resolve(...argList);
+            });
+        });
+    };
 };
 
 local.replStart = function () {
@@ -53960,7 +52743,7 @@ local.requireReadme = function () {
     });
     local.fs.readdirSync(process.cwd()).forEach(function (file) {
         file = process.cwd() + "/" + file;
-        // if the file is modified, then restart the process
+        // if <file> is modified, then restart process
         local.onFileModifiedRestart(file);
         switch (local.path.basename(file)) {
         // swagger-validate assets.swgg.swagger.json
@@ -54019,8 +52802,7 @@ local.requireReadme = function () {
     globalThis.utility2_moduleExports.globalThis = globalThis;
     // read code from README.md
     code = local.templateRenderMyApp(
-        local.assetsDict["/assets.example.template.js"],
-        {}
+        local.assetsDict["/assets.example.template.js"]
     );
     local.tryCatchOnError(function () {
         tmp = (
@@ -54148,9 +52930,9 @@ assets.app.js\n\
 \n\
 instruction\n\
     1. save this script as assets.app.js\n\
-    2. run the shell-command:\n\
+    2. run shell-command:\n\
         $ PORT=8081 node assets.app.js\n\
-    3. open a browser to http://127.0.0.1:8081 and play with the web-demo\n\
+    3. open a browser to http://127.0.0.1:8081 and play with web-demo\n\
     4. edit this script to suit your needs\n\
 */\n\
 ' + local.assetsDict["/assets.utility2.rollup.start.js"].replace((
@@ -54253,7 +53035,7 @@ local.semverCompare = function (aa, bb) {
  *  0 if aa = bb
  *  1 if aa > bb
  * https://semver.org/#spec-item-11
- * example usage:
+ * example use:
     semverCompare("2.2.2", "10.2.2"); // -1
     semverCompare("1.2.3", "1.2.3");  //  0
     semverCompare("10.2.2", "2.2.2"); //  1
@@ -54310,7 +53092,7 @@ local.semverCompare = function (aa, bb) {
 
 local.serverRespondCors = function (req, res) {
 /*
- * this function will enable cors for the req
+ * this function will enable cors for <req>
  * http://en.wikipedia.org/wiki/Cross-origin_resource_sharing
  */
     local.serverRespondHeadSet(req, res, undefined, local.jsonCopy({
@@ -54338,10 +53120,9 @@ local.serverRespondDefault = function (req, res, statusCode, err) {
     );
     if (err) {
         // debug statusCode / method / url
-        local.errorMessagePrepend(
-            err,
-            res.statusCode + " " + req.method + " " + req.url
-            + "\n"
+        err.message = (
+            res.statusCode + " " + req.method + " " + req.url + "\n"
+            + err.message
         );
         // print err.stack to stderr
         local.onErrorDefault(err);
@@ -54371,7 +53152,7 @@ local.serverRespondEcho = function (req, res) {
 
 local.serverRespondHeadSet = function (ignore, res, statusCode, headers) {
 /*
- * this function will set the <res> object's <statusCode> and <headers>
+ * this function will set <res> object's <statusCode> and <headers>
  */
     if (res.headersSent) {
         return;
@@ -54491,18 +53272,34 @@ local.stringHtmlSafe = function (str) {
  * https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html
  */
     return str.replace((
-        /&/g
+        /&/gu
     ), "&amp;").replace((
-        /"/g
+        /"/gu
     ), "&quot;").replace((
-        /'/g
+        /'/gu
     ), "&apos;").replace((
-        /</g
+        /</gu
     ), "&lt;").replace((
-        />/g
+        />/gu
     ), "&gt;").replace((
-        /&amp;(amp;|apos;|gt;|lt;|quot;)/ig
+        /&amp;(amp;|apos;|gt;|lt;|quot;)/igu
     ), "&$1");
+};
+
+local.stringLineCount = function (str, start, end) {
+/*
+ * this function will count the number of "\n" in <str>
+ * from <start> to <end>
+ */
+    let count;
+    count = 0;
+    while (true) {
+        start = str.indexOf("\n", start) + 1;
+        if (start === 0 || start >= end) {
+            return count;
+        }
+        count += 1;
+    }
 };
 
 local.stringMerge = function (str1, str2, rgx) {
@@ -54726,17 +53523,17 @@ local.templateRender = function (template, dict, opt, ii) {
             // default to htmlSafe
             if (!notHtmlSafe) {
                 val = val.replace((
-                    /&/g
+                    /&/gu
                 ), "&amp;").replace((
-                    /"/g
+                    /"/gu
                 ), "&quot;").replace((
-                    /'/g
+                    /'/gu
                 ), "&apos;").replace((
-                    /</g
+                    /</gu
                 ), "&lt;").replace((
-                    />/g
+                    />/gu
                 ), "&gt;").replace((
-                    /&amp;(amp;|apos;|gt;|lt;|quot;)/ig
+                    /&amp;(amp;|apos;|gt;|lt;|quot;)/igu
                 ), "&$1");
             }
             markdownToHtml = (
@@ -54745,7 +53542,7 @@ local.templateRender = function (template, dict, opt, ii) {
             );
             if (markdownToHtml) {
                 val = markdownToHtml(val).replace((
-                    /&amp;(amp;|apos;|gt;|lt;|quot;)/ig
+                    /&amp;(amp;|apos;|gt;|lt;|quot;)/igu
                 ), "&$1");
             }
             return val;
@@ -54759,50 +53556,54 @@ local.templateRender = function (template, dict, opt, ii) {
     });
 };
 
-local.templateRenderMyApp = function (template, opt) {
+local.templateRenderMyApp = function (template) {
 /*
- * this function will render my-app-lite template with given <opt>.packageJson
+ * this function will render my-app-lite template
  */
-    opt.packageJson = local.fsReadFileOrEmptyStringSync("package.json", "json");
-    local.objectSetDefault(opt.packageJson, {
-        nameLib: opt.packageJson.name.replace((
+    let githubRepo;
+    let packageJson;
+    try {
+        packageJson = JSON.parse(local.fs.readFileSync("package.json", "utf8"));
+    } catch (ignore) {
+        packageJson = {};
+    }
+    local.objectSetDefault(packageJson, {
+        nameLib: packageJson.name.replace((
             /\W/g
         ), "_"),
         repository: {
             url: (
-                "https://github.com/kaizhu256/node-"
-                + opt.packageJson.name
-                + ".git"
+                "https://github.com/kaizhu256/node-" + packageJson.name
             )
         }
     }, 2);
-    opt.githubRepo = opt.packageJson.repository.url.replace((
+    githubRepo = packageJson.repository.url.replace((
         /\.git$/
     ), "").split("/").slice(-2);
     template = template.replace((
         /kaizhu256(\.github\.io\/|%252F|\/)/g
-    ), opt.githubRepo[0] + ("$1"));
+    ), githubRepo[0] + ("$1"));
     template = template.replace((
         /node-my-app-lite/g
-    ), opt.githubRepo[1]);
+    ), githubRepo[1]);
     template = template.replace((
         /\bh1-my-app\b/g
     ), (
-        opt.packageJson.nameHeroku
-        || ("h1-" + opt.packageJson.nameLib.replace((
+        packageJson.nameHeroku
+        || ("h1-" + packageJson.nameLib.replace((
             /_/g
         ), "-"))
     ));
     template = template.replace((
         /my-app-lite/g
-    ), opt.packageJson.name);
+    ), packageJson.name);
     template = template.replace((
         /my_app/g
-    ), opt.packageJson.nameLib);
+    ), packageJson.nameLib);
     template = template.replace((
         /\{\{packageJson\.(\S+)\}\}/g
     ), function (ignore, match1) {
-        return opt.packageJson[match1];
+        return packageJson[match1];
     });
     return template;
 };
@@ -55700,6 +54501,7 @@ local.urlParse = function (url) {
             } else {
                 urlParsed.query[item[0]] = item[1];
             }
+            return "";
         });
         urlParsed.basename = urlParsed.pathname.replace((
             /^.*\//
@@ -55777,6 +54579,7 @@ local.contentTypeDict = {
     ".js": "application/javascript; charset=utf-8",
     ".json": "application/json; charset=utf-8",
     ".pdf": "application/pdf",
+    ".wasm": "application/wasm",
     ".xml": "application/xml; charset=utf-8",
     // image
     ".bmp": "image/bmp",
@@ -55812,7 +54615,7 @@ local.objectSetDefault(local.env, {
     npm_package_nameLib: "my_app",
     npm_package_version: "0.0.1"
 });
-local.errDefault = new Error("default-error");
+local.errorDefault = new Error("default-error");
 local.istanbulCoverageMerge = local.istanbul.coverageMerge || local.identity;
 // cbranch-no cstat-no fstat-no missing-if-branch
 local.istanbulCoverageReportCreate = (
@@ -55825,10 +54628,10 @@ local.istanbulInstrumentSync = local.istanbul.instrumentSync || local.identity;
 local.jslintAndPrint = local.jslint.jslintAndPrint || local.identity;
 local.puppeteerLaunch = local.puppeteer.puppeteerLaunch || local.identity;
 local.regexpCharsetEncodeUri = (
-    /\w!#\$%&'\(\)\*\+,\-\.\/:;=\?@~/
+    /\w!#\$%&'\(\)\*\+,-\.\/:;=\?@~/
 );
 local.regexpCharsetEncodeUriComponent = (
-    /\w!%'\(\)\*\-\.~/
+    /\w!%'\(\)\*-\.~/
 );
 // https://github.com/chjj/marked/blob/v0.3.7/lib/marked.js#L499
 local.regexpMatchUrl = (
@@ -56204,8 +55007,6 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -56221,162 +55022,17 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -56389,34 +55045,32 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -56439,6 +55093,7 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -56457,6 +55112,7 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -56569,9 +55225,7 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -58810,7 +57464,7 @@ local.apiUpdate = function (swaggerJson) {
             + "/*\n"
             + " * this function will run the api-call "
             + JSON.stringify(that._methodPath) + "\n"
-            + " * example usage:" + String(
+            + " * example use:" + String(
                 "\n"
                 + "swgg.apiDict["
                 + JSON.stringify(key.join("."))
@@ -59333,7 +57987,7 @@ local.middlewareCrudBuiltin = function (req, res, next) {
             case "crudErrorPatch":
             case "crudErrorPost":
             case "crudErrorPut":
-                opt.gotoNext(local.errDefault);
+                opt.gotoNext(local.errorDefault);
                 break;
             case "crudGetManyByQuery":
                 onParallel = local.onParallel(opt.gotoNext);
@@ -59596,7 +58250,7 @@ local.middlewareUserLogin = function (req, res, next) {
             switch (crud.crudType[0]) {
             // hack-coverage - test err handling-behavior
             case "crudErrorLogin":
-                opt.gotoNext(local.errDefault);
+                opt.gotoNext(local.errorDefault);
                 return;
             case "userLoginByPassword":
                 user.password = req.urlParsed.query.password;
@@ -60261,9 +58915,9 @@ local.serverRespondJsonapi = function (req, res, err, data, meta) {
         });
         if (err) {
             // debug statusCode / method / url
-            local.errorMessagePrepend(
-                err,
+            err.message = (
                 res.statusCode + " " + req.method + " " + req.url + "\n"
+                + err.message
             );
             // print err.stack to stderr
             local.onErrorDefault(err);
@@ -60455,10 +59109,10 @@ local.swaggerJsonFromAjax = function (swaggerJson, opt) {
     return swaggerJson;
 };
 
-local.swaggerJsonFromCurl = function (swaggerJson, text) {
+local.swaggerJsonFromCurl = function (swaggerJson, str) {
 /*
  * this function will update swaggerJson
- * with definitions and paths created from given curl-command-text
+ * with definitions and paths created from given curl-command-str
  */
     let arg;
     let argList;
@@ -60467,17 +59121,17 @@ local.swaggerJsonFromCurl = function (swaggerJson, text) {
     let quote;
     arg = "";
     argList = [];
-    doubleBackslash = local.stringUniqueKey(text);
+    doubleBackslash = local.stringUniqueKey(str);
     // parse doubleBackslash
-    text = text.replace((
+    str = str.replace((
         /\\\\/g
     ), doubleBackslash);
     // parse line-continuation
-    text = text.replace((
+    str = str.replace((
         /\\\n/g
     ), "");
     // parse quotes
-    text.replace((
+    str.replace((
         /(\s*?)(\S+)/g
     ), function (match0, line, word) {
         line = match0;
@@ -61794,14 +60448,14 @@ local.uiEventListenerDict.onEventInputValidateAndAjax = function (
     let errorDict;
     let jsonParse;
     let tmp;
-    jsonParse = function (text) {
+    jsonParse = function (str) {
     /*
-     * this function will try to JSON.parse(text)
+     * this function will try to JSON.parse(str)
      */
         return local.tryCatchOnError(function () {
-            return JSON.parse(text);
+            return JSON.parse(str);
         }, function () {
-            return text;
+            return str;
         });
     };
     // hack-jslint
@@ -62565,7 +61219,7 @@ local.uiRenderSchemaP = function (schemaP) {
     // init input - number
     } else if (schemaP.type === "integer" || schemaP.type === "number") {
         schemaP.isInputNumber = true;
-    // init input - text
+    // init input - str
     } else {
         schemaP.isInputText = true;
     }
@@ -62751,8 +61405,6 @@ instruction\n\
 /* jslint utility2:true */\n\
 (function (globalThis) {\n\
     \"use strict\";\n\
-    let ArrayPrototypeFlat;\n\
-    let TextXxcoder;\n\
     let consoleError;\n\
     let debugName;\n\
     let local;\n\
@@ -62768,162 +61420,17 @@ instruction\n\
          * and return <argList>[0]\n\
          */\n\
             consoleError(\"\\n\\n\" + debugName);\n\
-            consoleError.apply(console, argList);\n\
+            consoleError(...argList);\n\
             consoleError(\"\\n\");\n\
-            // return arg0 for inspection\n\
             return argList[0];\n\
         };\n\
     }\n\
-    // polyfill\n\
-    ArrayPrototypeFlat = function (depth) {\n\
-    /*\n\
-     * this function will polyfill Array.prototype.flat\n\
-     * https://github.com/jonathantneal/array-flat-polyfill\n\
-     */\n\
-        depth = (\n\
-            globalThis.isNaN(depth)\n\
-            ? 1\n\
-            : Number(depth)\n\
-        );\n\
-        if (!depth) {\n\
-            return Array.prototype.slice.call(this);\n\
-        }\n\
-        return Array.prototype.reduce.call(this, function (acc, cur) {\n\
-            if (Array.isArray(cur)) {\n\
-                // recurse\n\
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));\n\
-            } else {\n\
-                acc.push(cur);\n\
-            }\n\
-            return acc;\n\
-        }, []);\n\
-    };\n\
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;\n\
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(\n\
-        ...argList\n\
-    ) {\n\
-    /*\n\
-     * this function will polyfill Array.prototype.flatMap\n\
-     * https://github.com/jonathantneal/array-flat-polyfill\n\
-     */\n\
-        return this.map(...argList).flat();\n\
-    };\n\
     String.prototype.trimEnd = (\n\
         String.prototype.trimEnd || String.prototype.trimRight\n\
     );\n\
     String.prototype.trimStart = (\n\
         String.prototype.trimStart || String.prototype.trimLeft\n\
     );\n\
-    (function () {\n\
-        try {\n\
-            globalThis.TextDecoder = (\n\
-                globalThis.TextDecoder || require(\"util\").TextDecoder\n\
-            );\n\
-            globalThis.TextEncoder = (\n\
-                globalThis.TextEncoder || require(\"util\").TextEncoder\n\
-            );\n\
-        } catch (ignore) {}\n\
-    }());\n\
-    TextXxcoder = function () {\n\
-    /*\n\
-     * this function will polyfill TextDecoder/TextEncoder\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        return;\n\
-    };\n\
-    TextXxcoder.prototype.decode = function (octets) {\n\
-    /*\n\
-     * this function will polyfill TextDecoder.prototype.decode\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        let bytesNeeded;\n\
-        let codePoint;\n\
-        let ii;\n\
-        let kk;\n\
-        let octet;\n\
-        let string;\n\
-        string = \"\";\n\
-        ii = 0;\n\
-        while (ii < octets.length) {\n\
-            octet = octets[ii];\n\
-            bytesNeeded = 0;\n\
-            codePoint = 0;\n\
-            if (octet <= 0x7F) {\n\
-                bytesNeeded = 0;\n\
-                codePoint = octet & 0xFF;\n\
-            } else if (octet <= 0xDF) {\n\
-                bytesNeeded = 1;\n\
-                codePoint = octet & 0x1F;\n\
-            } else if (octet <= 0xEF) {\n\
-                bytesNeeded = 2;\n\
-                codePoint = octet & 0x0F;\n\
-            } else if (octet <= 0xF4) {\n\
-                bytesNeeded = 3;\n\
-                codePoint = octet & 0x07;\n\
-            }\n\
-            if (octets.length - ii - bytesNeeded > 0) {\n\
-                kk = 0;\n\
-                while (kk < bytesNeeded) {\n\
-                    octet = octets[ii + kk + 1];\n\
-                    codePoint = (codePoint << 6) | (octet & 0x3F);\n\
-                    kk += 1;\n\
-                }\n\
-            } else {\n\
-                codePoint = 0xFFFD;\n\
-                bytesNeeded = octets.length - ii;\n\
-            }\n\
-            string += String.fromCodePoint(codePoint);\n\
-            ii += bytesNeeded + 1;\n\
-        }\n\
-        return string;\n\
-    };\n\
-    TextXxcoder.prototype.encode = function (string) {\n\
-    /*\n\
-     * this function will polyfill TextEncoder.prototype.encode\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        let bits;\n\
-        let cc;\n\
-        let codePoint;\n\
-        let ii;\n\
-        let length;\n\
-        let octets;\n\
-        octets = [];\n\
-        length = string.length;\n\
-        ii = 0;\n\
-        while (ii < length) {\n\
-            codePoint = string.codePointAt(ii);\n\
-            cc = 0;\n\
-            bits = 0;\n\
-            if (codePoint <= 0x0000007F) {\n\
-                cc = 0;\n\
-                bits = 0x00;\n\
-            } else if (codePoint <= 0x000007FF) {\n\
-                cc = 6;\n\
-                bits = 0xC0;\n\
-            } else if (codePoint <= 0x0000FFFF) {\n\
-                cc = 12;\n\
-                bits = 0xE0;\n\
-            } else if (codePoint <= 0x001FFFFF) {\n\
-                cc = 18;\n\
-                bits = 0xF0;\n\
-            }\n\
-            octets.push(bits | (codePoint >> cc));\n\
-            cc -= 6;\n\
-            while (cc >= 0) {\n\
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));\n\
-                cc -= 6;\n\
-            }\n\
-            ii += (\n\
-                codePoint >= 0x10000\n\
-                ? 2\n\
-                : 1\n\
-            );\n\
-        }\n\
-        return octets;\n\
-    };\n\
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;\n\
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;\n\
     // init local\n\
     local = {};\n\
     local.local = local;\n\
@@ -62936,34 +61443,32 @@ instruction\n\
     );\n\
     // init isWebWorker\n\
     local.isWebWorker = (\n\
-        local.isBrowser && typeof globalThis.importScript === \"function\"\n\
+        local.isBrowser && typeof globalThis.importScripts === \"function\"\n\
     );\n\
     // init function\n\
-    local.assertOrThrow = function (passed, message) {\n\
+    local.assertOrThrow = function (passed, msg) {\n\
     /*\n\
-     * this function will throw err.<message> if <passed> is falsy\n\
+     * this function will throw err.<msg> if <passed> is falsy\n\
      */\n\
-        let err;\n\
         if (passed) {\n\
             return;\n\
         }\n\
-        err = (\n\
+        throw (\n\
             (\n\
-                message\n\
-                && typeof message.message === \"string\"\n\
-                && typeof message.stack === \"string\"\n\
+                msg\n\
+                && typeof msg.message === \"string\"\n\
+                && typeof msg.stack === \"string\"\n\
             )\n\
-            // if message is errObj, then leave as is\n\
-            ? message\n\
+            // if msg is err, then leave as is\n\
+            ? msg\n\
             : new Error(\n\
-                typeof message === \"string\"\n\
-                // if message is a string, then leave as is\n\
-                ? message\n\
-                // else JSON.stringify message\n\
-                : JSON.stringify(message, undefined, 4)\n\
+                typeof msg === \"string\"\n\
+                // if msg is a string, then leave as is\n\
+                ? msg\n\
+                // else JSON.stringify msg\n\
+                : JSON.stringify(msg, undefined, 4)\n\
             )\n\
         );\n\
-        throw err;\n\
     };\n\
     local.coalesce = function (...argList) {\n\
     /*\n\
@@ -62986,6 +61491,7 @@ instruction\n\
      * this function will sync \"rm -rf\" <dir>\n\
      */\n\
         let child_process;\n\
+        // do nothing if module does not exist\n\
         try {\n\
             child_process = require(\"child_process\");\n\
         } catch (ignore) {\n\
@@ -63004,6 +61510,7 @@ instruction\n\
      * this function will sync write <data> to <file> with \"mkdir -p\"\n\
      */\n\
         let fs;\n\
+        // do nothing if module does not exist\n\
         try {\n\
             fs = require(\"fs\");\n\
         } catch (ignore) {\n\
@@ -63116,9 +61623,7 @@ instruction\n\
         local.vm = require(\"vm\");\n\
         local.zlib = require(\"zlib\");\n\
     }\n\
-}((typeof globalThis === \"object\" && globalThis) || (function () {\n\
-    return Function(\"return this\")(); // jslint ignore:line\n\
-}())));\n\
+}((typeof globalThis === \"object\" && globalThis) || window));\n\
 // assets.utility2.header.js - end\n\
 \n\
 \n\
@@ -63234,7 +61739,7 @@ if (!local.isBrowser) {\n\
     }\n\
     fnc = console[key];\n\
     console[key] = function (...argList) {\n\
-        fnc.apply(console, argList);\n\
+        fnc(...argList);\n\
         // append text to #outputStdout1\n\
         elem.textContent += argList.map(function (arg) {\n\
             return (\n\
@@ -63295,6 +61800,10 @@ local.assetsDict[\"/assets.index.template.html\"] = '\\\n\
 *:after,\\n\\\n\
 *:before {\\n\\\n\
     box-sizing: border-box;\\n\\\n\
+}\\n\\\n\
+.uiAnimateSlide {\\n\\\n\
+    overflow-y: hidden;\\n\\\n\
+    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;\\n\\\n\
 }\\n\\\n\
 /* csslint ignore:end */\\n\\\n\
 @keyframes uiAnimateSpin {\\n\\\n\
@@ -63368,10 +61877,6 @@ pre {\\n\\\n\
     overflow: auto;\\n\\\n\
     padding: 2px;\\n\\\n\
 }\\n\\\n\
-.uiAnimateSlide {\\n\\\n\
-    overflow-y: hidden;\\n\\\n\
-    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;\\n\\\n\
-}\\n\\\n\
 .zeroPixel {\\n\\\n\
     border: 0;\\n\\\n\
     height: 0;\\n\\\n\
@@ -63421,10 +61926,23 @@ pre {\\n\\\n\
  */\\n\\\n\
     \"use strict\";\\n\\\n\
     let opt;\\n\\\n\
-    if (!(\\n\\\n\
-        typeof window === \"object\" && window && window.document\\n\\\n\
-        && typeof document.addEventListener === \"function\"\\n\\\n\
-    ) || window.domOnEventAjaxProgressUpdate) {\\n\\\n\
+    let styleBar0;\\n\\\n\
+    let styleBar;\\n\\\n\
+    let styleModal0;\\n\\\n\
+    let styleModal;\\n\\\n\
+    let timeStart;\\n\\\n\
+    let timerInterval;\\n\\\n\
+    let timerTimeout;\\n\\\n\
+    let tmp;\\n\\\n\
+    let width;\\n\\\n\
+    try {\\n\\\n\
+        if (\\n\\\n\
+            window.domOnEventAjaxProgressUpdate\\n\\\n\
+            || !document.getElementById(\"domElementAjaxProgressBar1\").style\\n\\\n\
+        ) {\\n\\\n\
+            return;\\n\\\n\
+        }\\n\\\n\
+    } catch (ignore) {\\n\\\n\
         return;\\n\\\n\
     }\\n\\\n\
     window.domOnEventAjaxProgressUpdate = function (gotoState, onError) {\\n\\\n\
@@ -63432,56 +61950,68 @@ pre {\\n\\\n\
         switch (gotoState) {\\n\\\n\
         // ajaxProgress - show\\n\\\n\
         case 1:\\n\\\n\
-            // init timerInterval and timerTimeout\\n\\\n\
-            opt.timerInterval = (\\n\\\n\
-                opt.timerInterval || setInterval(opt, 2000, 1, onError)\\n\\\n\
-            );\\n\\\n\
-            opt.timerTimeout = (\\n\\\n\
-                opt.timerTimeout || setTimeout(opt, 30000, 2, onError)\\n\\\n\
-            );\\n\\\n\
-            // show ajaxProgress\\n\\\n\
-            if (opt.width !== -1) {\\n\\\n\
-                opt.style.background = opt.background;\\n\\\n\
+            // init <timerInterval> and <timerTimeout>\\n\\\n\
+            if (!timerTimeout) {\\n\\\n\
+                timeStart = Date.now();\\n\\\n\
+                timerInterval = setInterval(opt, 2000, 1, onError);\\n\\\n\
+                timerTimeout = setTimeout(opt, opt.timeout, 2, onError);\\n\\\n\
+            }\\n\\\n\
+            // show ajaxProgressBar\\n\\\n\
+            if (width !== -1) {\\n\\\n\
+                styleBar.background = styleBar0.background;\\n\\\n\
             }\\n\\\n\
             setTimeout(opt, 50, gotoState, onError);\\n\\\n\
             break;\\n\\\n\
         // ajaxProgress - increment\\n\\\n\
         case 2:\\n\\\n\
-            // show ajaxProgress\\n\\\n\
-            if (opt.width === -1) {\\n\\\n\
-                return;\\n\\\n\
+            // show ajaxProgressBar\\n\\\n\
+            if (width === -1) {\\n\\\n\
+                break;\\n\\\n\
             }\\n\\\n\
-            opt.style.background = opt.background;\\n\\\n\
-            // reset ajaxProgress if it goes too high\\n\\\n\
-            if ((opt.style.width.slice(0, -1) | 0) > 95) {\\n\\\n\
-                opt.width = 0;\\n\\\n\
+            styleBar.background = styleBar0.background;\\n\\\n\
+            // reset ajaxProgress if it reaches end\\n\\\n\
+            if ((styleBar.width.slice(0, -1) | 0) > 95) {\\n\\\n\
+                width = 0;\\n\\\n\
             }\\n\\\n\
             // this algorithm will indefinitely increment ajaxProgress\\n\\\n\
             // with successively smaller increments without reaching 100%\\n\\\n\
-            opt.width += 1;\\n\\\n\
-            opt.style.width = Math.max(\\n\\\n\
-                100 - 75 * Math.exp(-0.125 * opt.width),\\n\\\n\
-                opt.style.width.slice(0, -1) | 0\\n\\\n\
+            width += 1;\\n\\\n\
+            styleBar.width = Math.max(\\n\\\n\
+                100 - 75 * Math.exp(-0.125 * width),\\n\\\n\
+                styleBar.width.slice(0, -1) | 0\\n\\\n\
             ) + \"%\";\\n\\\n\
+            // show ajaxProgressModal\\n\\\n\
+            styleModal.height = \"100%\";\\n\\\n\
+            styleModal.opacity = styleModal0.opacity;\\n\\\n\
             if (!opt.cnt) {\\n\\\n\
                 setTimeout(opt, 0, gotoState, onError);\\n\\\n\
             }\\n\\\n\
             break;\\n\\\n\
         // ajaxProgress - 100%\\n\\\n\
         case 3:\\n\\\n\
-            opt.width = -1;\\n\\\n\
-            opt.style.width = \"100%\";\\n\\\n\
+            width = -1;\\n\\\n\
+            styleBar.width = \"100%\";\\n\\\n\
             setTimeout(opt, 1000, gotoState, onError);\\n\\\n\
             break;\\n\\\n\
         // ajaxProgress - hide\\n\\\n\
         case 4:\\n\\\n\
-            // cleanup timerInterval and timerTimeout\\n\\\n\
-            clearInterval(opt.timerInterval);\\n\\\n\
-            opt.timerInterval = null;\\n\\\n\
-            clearTimeout(opt.timerTimeout);\\n\\\n\
-            opt.timerTimeout = null;\\n\\\n\
-            // hide ajaxProgress\\n\\\n\
-            opt.style.background = \"transparent\";\\n\\\n\
+            // debug timeElapsed\\n\\\n\
+            tmp = Date.now();\\n\\\n\
+            console.error(\\n\\\n\
+                \"domOnEventAjaxProgressUpdate - timeElapsed - \"\\n\\\n\
+                + (tmp - timeStart)\\n\\\n\
+                + \" ms\"\\n\\\n\
+            );\\n\\\n\
+            // cleanup <timerInterval> and <timerTimeout>\\n\\\n\
+            timeStart = tmp;\\n\\\n\
+            clearInterval(timerInterval);\\n\\\n\
+            timerInterval = null;\\n\\\n\
+            clearTimeout(timerTimeout);\\n\\\n\
+            timerTimeout = null;\\n\\\n\
+            // hide ajaxProgressBar\\n\\\n\
+            styleBar.background = \"transparent\";\\n\\\n\
+            // hide ajaxProgressModal\\n\\\n\
+            styleModal.opacity = \"0\";\\n\\\n\
             if (onError) {\\n\\\n\
                 onError();\\n\\\n\
             }\\n\\\n\
@@ -63489,10 +62019,10 @@ pre {\\n\\\n\
             break;\\n\\\n\
         // ajaxProgress - reset\\n\\\n\
         default:\\n\\\n\
-            // reset ajaxProgress\\n\\\n\
             opt.cnt = 0;\\n\\\n\
-            opt.width = 0;\\n\\\n\
-            opt.style.width = \"0%\";\\n\\\n\
+            width = 0;\\n\\\n\
+            styleBar.width = \"0%\";\\n\\\n\
+            styleModal.height = \"0\";\\n\\\n\
         }\\n\\\n\
     };\\n\\\n\
     opt = window.domOnEventAjaxProgressUpdate;\\n\\\n\
@@ -63500,16 +62030,9 @@ pre {\\n\\\n\
         opt.cnt = 0;\\n\\\n\
         window.domOnEventAjaxProgressUpdate(2, onError);\\n\\\n\
     };\\n\\\n\
-    opt.elem = document.getElementById(\"domElementAjaxProgress1\");\\n\\\n\
-    if (!opt.elem) {\\n\\\n\
-        opt.elem = document.createElement(\"div\");\\n\\\n\
-        setTimeout(function () {\\n\\\n\
-            document.body.insertBefore(opt.elem, document.body.firstChild);\\n\\\n\
-        });\\n\\\n\
-    }\\n\\\n\
-    opt.elem.id = \"domElementAjaxProgress1\";\\n\\\n\
-    opt.style = opt.elem.style;\\n\\\n\
-    // init style\\n\\\n\
+    // init <styleBar>\\n\\\n\
+    styleBar = document.getElementById(\"domElementAjaxProgressBar1\").style;\\n\\\n\
+    styleBar0 = Object.assign({}, styleBar);\\n\\\n\
     Object.entries({\\n\\\n\
         background: \"#d00\",\\n\\\n\
         height: \"2px\",\\n\\\n\
@@ -63522,12 +62045,31 @@ pre {\\n\\\n\
         width: \"0%\",\\n\\\n\
         \"z-index\": \"1\"\\n\\\n\
     }).forEach(function (entry) {\\n\\\n\
-        opt.style[entry[0]] = opt.style[entry[0]] || entry[1];\\n\\\n\
+        styleBar[entry[0]] = styleBar[entry[0]] || entry[1];\\n\\\n\
+    });\\n\\\n\
+    // init <styleModal>\\n\\\n\
+    styleModal = document.getElementById(\"domElementAjaxProgressModal1\") || {};\\n\\\n\
+    styleModal = styleModal.style || {};\\n\\\n\
+    styleModal0 = Object.assign({}, styleModal);\\n\\\n\
+    Object.entries({\\n\\\n\
+        height: \"0\",\\n\\\n\
+        left: \"0\",\\n\\\n\
+        margin: \"0\",\\n\\\n\
+        padding: \"0\",\\n\\\n\
+        position: \"fixed\",\\n\\\n\
+        top: \"0\",\\n\\\n\
+        transition: \"opacity 125ms\",\\n\\\n\
+        width: \"100%\",\\n\\\n\
+        \"z-index\": \"1\"\\n\\\n\
+    }).forEach(function (entry) {\\n\\\n\
+        styleModal[entry[0]] = styleModal[entry[0]] || entry[1];\\n\\\n\
     });\\n\\\n\
     // init state\\n\\\n\
-    opt.background = opt.style.background;\\n\\\n\
+    width = 0;\\n\\\n\
     opt.cnt = 0;\\n\\\n\
-    opt.width = 0;\\n\\\n\
+    opt.timeout = 30000;\\n\\\n\
+    // init ajaxProgress\\n\\\n\
+    window.domOnEventAjaxProgressUpdate();\\n\\\n\
 }());\\n\\\n\
 \\n\\\n\
 \\n\\\n\
@@ -63930,6 +62472,10 @@ local.assetsDict["/assets.utility2.html"] = "<!doctype html>\n\
 *:before {\n\
     box-sizing: border-box;\n\
 }\n\
+.uiAnimateSlide {\n\
+    overflow-y: hidden;\n\
+    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;\n\
+}\n\
 /* csslint ignore:end */\n\
 @keyframes uiAnimateSpin {\n\
 0% {\n\
@@ -64002,10 +62548,6 @@ pre {\n\
     overflow: auto;\n\
     padding: 2px;\n\
 }\n\
-.uiAnimateSlide {\n\
-    overflow-y: hidden;\n\
-    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;\n\
-}\n\
 .zeroPixel {\n\
     border: 0;\n\
     height: 0;\n\
@@ -64055,10 +62597,23 @@ pre {\n\
  */\n\
     \"use strict\";\n\
     let opt;\n\
-    if (!(\n\
-        typeof window === \"object\" && window && window.document\n\
-        && typeof document.addEventListener === \"function\"\n\
-    ) || window.domOnEventAjaxProgressUpdate) {\n\
+    let styleBar0;\n\
+    let styleBar;\n\
+    let styleModal0;\n\
+    let styleModal;\n\
+    let timeStart;\n\
+    let timerInterval;\n\
+    let timerTimeout;\n\
+    let tmp;\n\
+    let width;\n\
+    try {\n\
+        if (\n\
+            window.domOnEventAjaxProgressUpdate\n\
+            || !document.getElementById(\"domElementAjaxProgressBar1\").style\n\
+        ) {\n\
+            return;\n\
+        }\n\
+    } catch (ignore) {\n\
         return;\n\
     }\n\
     window.domOnEventAjaxProgressUpdate = function (gotoState, onError) {\n\
@@ -64066,56 +62621,68 @@ pre {\n\
         switch (gotoState) {\n\
         // ajaxProgress - show\n\
         case 1:\n\
-            // init timerInterval and timerTimeout\n\
-            opt.timerInterval = (\n\
-                opt.timerInterval || setInterval(opt, 2000, 1, onError)\n\
-            );\n\
-            opt.timerTimeout = (\n\
-                opt.timerTimeout || setTimeout(opt, 30000, 2, onError)\n\
-            );\n\
-            // show ajaxProgress\n\
-            if (opt.width !== -1) {\n\
-                opt.style.background = opt.background;\n\
+            // init <timerInterval> and <timerTimeout>\n\
+            if (!timerTimeout) {\n\
+                timeStart = Date.now();\n\
+                timerInterval = setInterval(opt, 2000, 1, onError);\n\
+                timerTimeout = setTimeout(opt, opt.timeout, 2, onError);\n\
+            }\n\
+            // show ajaxProgressBar\n\
+            if (width !== -1) {\n\
+                styleBar.background = styleBar0.background;\n\
             }\n\
             setTimeout(opt, 50, gotoState, onError);\n\
             break;\n\
         // ajaxProgress - increment\n\
         case 2:\n\
-            // show ajaxProgress\n\
-            if (opt.width === -1) {\n\
-                return;\n\
+            // show ajaxProgressBar\n\
+            if (width === -1) {\n\
+                break;\n\
             }\n\
-            opt.style.background = opt.background;\n\
-            // reset ajaxProgress if it goes too high\n\
-            if ((opt.style.width.slice(0, -1) | 0) > 95) {\n\
-                opt.width = 0;\n\
+            styleBar.background = styleBar0.background;\n\
+            // reset ajaxProgress if it reaches end\n\
+            if ((styleBar.width.slice(0, -1) | 0) > 95) {\n\
+                width = 0;\n\
             }\n\
             // this algorithm will indefinitely increment ajaxProgress\n\
             // with successively smaller increments without reaching 100%\n\
-            opt.width += 1;\n\
-            opt.style.width = Math.max(\n\
-                100 - 75 * Math.exp(-0.125 * opt.width),\n\
-                opt.style.width.slice(0, -1) | 0\n\
+            width += 1;\n\
+            styleBar.width = Math.max(\n\
+                100 - 75 * Math.exp(-0.125 * width),\n\
+                styleBar.width.slice(0, -1) | 0\n\
             ) + \"%\";\n\
+            // show ajaxProgressModal\n\
+            styleModal.height = \"100%\";\n\
+            styleModal.opacity = styleModal0.opacity;\n\
             if (!opt.cnt) {\n\
                 setTimeout(opt, 0, gotoState, onError);\n\
             }\n\
             break;\n\
         // ajaxProgress - 100%\n\
         case 3:\n\
-            opt.width = -1;\n\
-            opt.style.width = \"100%\";\n\
+            width = -1;\n\
+            styleBar.width = \"100%\";\n\
             setTimeout(opt, 1000, gotoState, onError);\n\
             break;\n\
         // ajaxProgress - hide\n\
         case 4:\n\
-            // cleanup timerInterval and timerTimeout\n\
-            clearInterval(opt.timerInterval);\n\
-            opt.timerInterval = null;\n\
-            clearTimeout(opt.timerTimeout);\n\
-            opt.timerTimeout = null;\n\
-            // hide ajaxProgress\n\
-            opt.style.background = \"transparent\";\n\
+            // debug timeElapsed\n\
+            tmp = Date.now();\n\
+            console.error(\n\
+                \"domOnEventAjaxProgressUpdate - timeElapsed - \"\n\
+                + (tmp - timeStart)\n\
+                + \" ms\"\n\
+            );\n\
+            // cleanup <timerInterval> and <timerTimeout>\n\
+            timeStart = tmp;\n\
+            clearInterval(timerInterval);\n\
+            timerInterval = null;\n\
+            clearTimeout(timerTimeout);\n\
+            timerTimeout = null;\n\
+            // hide ajaxProgressBar\n\
+            styleBar.background = \"transparent\";\n\
+            // hide ajaxProgressModal\n\
+            styleModal.opacity = \"0\";\n\
             if (onError) {\n\
                 onError();\n\
             }\n\
@@ -64123,10 +62690,10 @@ pre {\n\
             break;\n\
         // ajaxProgress - reset\n\
         default:\n\
-            // reset ajaxProgress\n\
             opt.cnt = 0;\n\
-            opt.width = 0;\n\
-            opt.style.width = \"0%\";\n\
+            width = 0;\n\
+            styleBar.width = \"0%\";\n\
+            styleModal.height = \"0\";\n\
         }\n\
     };\n\
     opt = window.domOnEventAjaxProgressUpdate;\n\
@@ -64134,16 +62701,9 @@ pre {\n\
         opt.cnt = 0;\n\
         window.domOnEventAjaxProgressUpdate(2, onError);\n\
     };\n\
-    opt.elem = document.getElementById(\"domElementAjaxProgress1\");\n\
-    if (!opt.elem) {\n\
-        opt.elem = document.createElement(\"div\");\n\
-        setTimeout(function () {\n\
-            document.body.insertBefore(opt.elem, document.body.firstChild);\n\
-        });\n\
-    }\n\
-    opt.elem.id = \"domElementAjaxProgress1\";\n\
-    opt.style = opt.elem.style;\n\
-    // init style\n\
+    // init <styleBar>\n\
+    styleBar = document.getElementById(\"domElementAjaxProgressBar1\").style;\n\
+    styleBar0 = Object.assign({}, styleBar);\n\
     Object.entries({\n\
         background: \"#d00\",\n\
         height: \"2px\",\n\
@@ -64156,12 +62716,31 @@ pre {\n\
         width: \"0%\",\n\
         \"z-index\": \"1\"\n\
     }).forEach(function (entry) {\n\
-        opt.style[entry[0]] = opt.style[entry[0]] || entry[1];\n\
+        styleBar[entry[0]] = styleBar[entry[0]] || entry[1];\n\
+    });\n\
+    // init <styleModal>\n\
+    styleModal = document.getElementById(\"domElementAjaxProgressModal1\") || {};\n\
+    styleModal = styleModal.style || {};\n\
+    styleModal0 = Object.assign({}, styleModal);\n\
+    Object.entries({\n\
+        height: \"0\",\n\
+        left: \"0\",\n\
+        margin: \"0\",\n\
+        padding: \"0\",\n\
+        position: \"fixed\",\n\
+        top: \"0\",\n\
+        transition: \"opacity 125ms\",\n\
+        width: \"100%\",\n\
+        \"z-index\": \"1\"\n\
+    }).forEach(function (entry) {\n\
+        styleModal[entry[0]] = styleModal[entry[0]] || entry[1];\n\
     });\n\
     // init state\n\
-    opt.background = opt.style.background;\n\
+    width = 0;\n\
     opt.cnt = 0;\n\
-    opt.width = 0;\n\
+    opt.timeout = 30000;\n\
+    // init ajaxProgress\n\
+    window.domOnEventAjaxProgressUpdate();\n\
 }());\n\
 \n\
 \n\
@@ -64476,8 +63055,6 @@ local.assetsDict["/assets.utility2.test.js"] = "/* istanbul instrument in packag
 /* jslint utility2:true */\n\
 (function (globalThis) {\n\
     \"use strict\";\n\
-    let ArrayPrototypeFlat;\n\
-    let TextXxcoder;\n\
     let consoleError;\n\
     let debugName;\n\
     let local;\n\
@@ -64493,162 +63070,17 @@ local.assetsDict["/assets.utility2.test.js"] = "/* istanbul instrument in packag
          * and return <argList>[0]\n\
          */\n\
             consoleError(\"\\n\\n\" + debugName);\n\
-            consoleError.apply(console, argList);\n\
+            consoleError(...argList);\n\
             consoleError(\"\\n\");\n\
-            // return arg0 for inspection\n\
             return argList[0];\n\
         };\n\
     }\n\
-    // polyfill\n\
-    ArrayPrototypeFlat = function (depth) {\n\
-    /*\n\
-     * this function will polyfill Array.prototype.flat\n\
-     * https://github.com/jonathantneal/array-flat-polyfill\n\
-     */\n\
-        depth = (\n\
-            globalThis.isNaN(depth)\n\
-            ? 1\n\
-            : Number(depth)\n\
-        );\n\
-        if (!depth) {\n\
-            return Array.prototype.slice.call(this);\n\
-        }\n\
-        return Array.prototype.reduce.call(this, function (acc, cur) {\n\
-            if (Array.isArray(cur)) {\n\
-                // recurse\n\
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));\n\
-            } else {\n\
-                acc.push(cur);\n\
-            }\n\
-            return acc;\n\
-        }, []);\n\
-    };\n\
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;\n\
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(\n\
-        ...argList\n\
-    ) {\n\
-    /*\n\
-     * this function will polyfill Array.prototype.flatMap\n\
-     * https://github.com/jonathantneal/array-flat-polyfill\n\
-     */\n\
-        return this.map(...argList).flat();\n\
-    };\n\
     String.prototype.trimEnd = (\n\
         String.prototype.trimEnd || String.prototype.trimRight\n\
     );\n\
     String.prototype.trimStart = (\n\
         String.prototype.trimStart || String.prototype.trimLeft\n\
     );\n\
-    (function () {\n\
-        try {\n\
-            globalThis.TextDecoder = (\n\
-                globalThis.TextDecoder || require(\"util\").TextDecoder\n\
-            );\n\
-            globalThis.TextEncoder = (\n\
-                globalThis.TextEncoder || require(\"util\").TextEncoder\n\
-            );\n\
-        } catch (ignore) {}\n\
-    }());\n\
-    TextXxcoder = function () {\n\
-    /*\n\
-     * this function will polyfill TextDecoder/TextEncoder\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        return;\n\
-    };\n\
-    TextXxcoder.prototype.decode = function (octets) {\n\
-    /*\n\
-     * this function will polyfill TextDecoder.prototype.decode\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        let bytesNeeded;\n\
-        let codePoint;\n\
-        let ii;\n\
-        let kk;\n\
-        let octet;\n\
-        let string;\n\
-        string = \"\";\n\
-        ii = 0;\n\
-        while (ii < octets.length) {\n\
-            octet = octets[ii];\n\
-            bytesNeeded = 0;\n\
-            codePoint = 0;\n\
-            if (octet <= 0x7F) {\n\
-                bytesNeeded = 0;\n\
-                codePoint = octet & 0xFF;\n\
-            } else if (octet <= 0xDF) {\n\
-                bytesNeeded = 1;\n\
-                codePoint = octet & 0x1F;\n\
-            } else if (octet <= 0xEF) {\n\
-                bytesNeeded = 2;\n\
-                codePoint = octet & 0x0F;\n\
-            } else if (octet <= 0xF4) {\n\
-                bytesNeeded = 3;\n\
-                codePoint = octet & 0x07;\n\
-            }\n\
-            if (octets.length - ii - bytesNeeded > 0) {\n\
-                kk = 0;\n\
-                while (kk < bytesNeeded) {\n\
-                    octet = octets[ii + kk + 1];\n\
-                    codePoint = (codePoint << 6) | (octet & 0x3F);\n\
-                    kk += 1;\n\
-                }\n\
-            } else {\n\
-                codePoint = 0xFFFD;\n\
-                bytesNeeded = octets.length - ii;\n\
-            }\n\
-            string += String.fromCodePoint(codePoint);\n\
-            ii += bytesNeeded + 1;\n\
-        }\n\
-        return string;\n\
-    };\n\
-    TextXxcoder.prototype.encode = function (string) {\n\
-    /*\n\
-     * this function will polyfill TextEncoder.prototype.encode\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        let bits;\n\
-        let cc;\n\
-        let codePoint;\n\
-        let ii;\n\
-        let length;\n\
-        let octets;\n\
-        octets = [];\n\
-        length = string.length;\n\
-        ii = 0;\n\
-        while (ii < length) {\n\
-            codePoint = string.codePointAt(ii);\n\
-            cc = 0;\n\
-            bits = 0;\n\
-            if (codePoint <= 0x0000007F) {\n\
-                cc = 0;\n\
-                bits = 0x00;\n\
-            } else if (codePoint <= 0x000007FF) {\n\
-                cc = 6;\n\
-                bits = 0xC0;\n\
-            } else if (codePoint <= 0x0000FFFF) {\n\
-                cc = 12;\n\
-                bits = 0xE0;\n\
-            } else if (codePoint <= 0x001FFFFF) {\n\
-                cc = 18;\n\
-                bits = 0xF0;\n\
-            }\n\
-            octets.push(bits | (codePoint >> cc));\n\
-            cc -= 6;\n\
-            while (cc >= 0) {\n\
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));\n\
-                cc -= 6;\n\
-            }\n\
-            ii += (\n\
-                codePoint >= 0x10000\n\
-                ? 2\n\
-                : 1\n\
-            );\n\
-        }\n\
-        return octets;\n\
-    };\n\
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;\n\
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;\n\
     // init local\n\
     local = {};\n\
     local.local = local;\n\
@@ -64661,34 +63093,32 @@ local.assetsDict["/assets.utility2.test.js"] = "/* istanbul instrument in packag
     );\n\
     // init isWebWorker\n\
     local.isWebWorker = (\n\
-        local.isBrowser && typeof globalThis.importScript === \"function\"\n\
+        local.isBrowser && typeof globalThis.importScripts === \"function\"\n\
     );\n\
     // init function\n\
-    local.assertOrThrow = function (passed, message) {\n\
+    local.assertOrThrow = function (passed, msg) {\n\
     /*\n\
-     * this function will throw err.<message> if <passed> is falsy\n\
+     * this function will throw err.<msg> if <passed> is falsy\n\
      */\n\
-        let err;\n\
         if (passed) {\n\
             return;\n\
         }\n\
-        err = (\n\
+        throw (\n\
             (\n\
-                message\n\
-                && typeof message.message === \"string\"\n\
-                && typeof message.stack === \"string\"\n\
+                msg\n\
+                && typeof msg.message === \"string\"\n\
+                && typeof msg.stack === \"string\"\n\
             )\n\
-            // if message is errObj, then leave as is\n\
-            ? message\n\
+            // if msg is err, then leave as is\n\
+            ? msg\n\
             : new Error(\n\
-                typeof message === \"string\"\n\
-                // if message is a string, then leave as is\n\
-                ? message\n\
-                // else JSON.stringify message\n\
-                : JSON.stringify(message, undefined, 4)\n\
+                typeof msg === \"string\"\n\
+                // if msg is a string, then leave as is\n\
+                ? msg\n\
+                // else JSON.stringify msg\n\
+                : JSON.stringify(msg, undefined, 4)\n\
             )\n\
         );\n\
-        throw err;\n\
     };\n\
     local.coalesce = function (...argList) {\n\
     /*\n\
@@ -64711,6 +63141,7 @@ local.assetsDict["/assets.utility2.test.js"] = "/* istanbul instrument in packag
      * this function will sync \"rm -rf\" <dir>\n\
      */\n\
         let child_process;\n\
+        // do nothing if module does not exist\n\
         try {\n\
             child_process = require(\"child_process\");\n\
         } catch (ignore) {\n\
@@ -64729,6 +63160,7 @@ local.assetsDict["/assets.utility2.test.js"] = "/* istanbul instrument in packag
      * this function will sync write <data> to <file> with \"mkdir -p\"\n\
      */\n\
         let fs;\n\
+        // do nothing if module does not exist\n\
         try {\n\
             fs = require(\"fs\");\n\
         } catch (ignore) {\n\
@@ -64841,9 +63273,7 @@ local.assetsDict["/assets.utility2.test.js"] = "/* istanbul instrument in packag
         local.vm = require(\"vm\");\n\
         local.zlib = require(\"zlib\");\n\
     }\n\
-}((typeof globalThis === \"object\" && globalThis) || (function () {\n\
-    return Function(\"return this\")(); // jslint ignore:line\n\
-}())));\n\
+}((typeof globalThis === \"object\" && globalThis) || window));\n\
 // assets.utility2.header.js - end\n\
 \n\
 \n\
@@ -64919,7 +63349,7 @@ local.testCase_FormData_err = function (opt, onError) {\n\
         [\n\
             local.FormData.prototype, {\n\
                 read: function (onError) {\n\
-                    onError(local.errDefault);\n\
+                    onError(local.errorDefault);\n\
                 }\n\
             }\n\
         ]\n\
@@ -65144,9 +63574,9 @@ local.testCase_ajax_default = function (opt, onError) {\n\
                 //!! url: \"https://undefined:0\"\n\
             }\n\
         ]\n\
-    }, function (option2, onParallel) {\n\
+    }, function (opt2, onParallel) {\n\
         onParallel.cnt += 1;\n\
-        local.ajax(option2.elem, function (err) {\n\
+        local.ajax(opt2.elem, function (err) {\n\
             // handle err\n\
             local.assertOrThrow(err, err);\n\
             onParallel(null, opt);\n\
@@ -65263,7 +63693,7 @@ local.testCase_assertXxx_default = function (opt, onError) {\n\
     });\n\
     // test assertion failed with errObj\n\
     local.tryCatchOnError(function () {\n\
-        local.assertOrThrow(null, local.errDefault);\n\
+        local.assertOrThrow(null, local.errorDefault);\n\
     }, function (err) {\n\
         // handle err\n\
         local.assertOrThrow(err, err);\n\
@@ -66058,7 +64488,7 @@ local.testCase_localStorageSetItemOrClear_default = function (\n\
             localStorage, {\n\
                 clear: null,\n\
                 setItem: function () {\n\
-                    throw local.errDefault;\n\
+                    throw local.errorDefault;\n\
                 }\n\
             }\n\
         ]\n\
@@ -66548,7 +64978,7 @@ local.testCase_onErrorDefault_default = function (opt, onError) {\n\
         // validate opt\n\
         local.assertOrThrow(!opt, opt);\n\
         // test err handling-behavior\n\
-        local.onErrorDefault(local.errDefault);\n\
+        local.onErrorDefault(local.errorDefault);\n\
         // validate opt\n\
         local.assertOrThrow(opt, opt);\n\
         onError(undefined, opt);\n\
@@ -66560,7 +64990,7 @@ local.testCase_onErrorThrow_err = function (opt, onError) {\n\
  * this function will test onErrorThrow's err handling-behavior\n\
  */\n\
     local.tryCatchOnError(function () {\n\
-        local.onErrorThrow(local.errDefault);\n\
+        local.onErrorThrow(local.errorDefault);\n\
     }, function (err) {\n\
         // handle err\n\
         local.assertOrThrow(err, err);\n\
@@ -66611,7 +65041,7 @@ local.testCase_onNext_err = function (opt, onError) {\n\
     opt = {};\n\
     opt.modeDebug = true;\n\
     local.gotoNext(opt, function () {\n\
-        throw local.errDefault;\n\
+        throw local.errorDefault;\n\
     });\n\
     opt.gotoState = 0;\n\
     local.tryCatchOnError(function () {\n\
@@ -66640,10 +65070,10 @@ local.testCase_onParallelList_default = function (opt, onError) {\n\
             ];\n\
             // test retryLimit handling-behavior\n\
             opt.retryLimit = 1;\n\
-            local.onParallelList(opt, function (option2, onParallel) {\n\
+            local.onParallelList(opt, function (opt2, onParallel) {\n\
                 onParallel.cnt += 1;\n\
                 // test err handling-behavior\n\
-                onParallel(local.errDefault, option2);\n\
+                onParallel(local.errorDefault, opt2);\n\
                 // test multiple-callback handling-behavior\n\
                 setTimeout(onParallel, 5000);\n\
             }, function (err) {\n\
@@ -66664,7 +65094,7 @@ local.testCase_onParallelList_default = function (opt, onError) {\n\
                     1, 2, 3, 4\n\
                 ],\n\
                 rateLimit: opt.rateLimit\n\
-            }, function (option2, onParallel) {\n\
+            }, function (opt2, onParallel) {\n\
                 onParallel.cnt += 1;\n\
                 opt.rateMax = Math.max(\n\
                     onParallel.cnt - 1,\n\
@@ -66673,13 +65103,13 @@ local.testCase_onParallelList_default = function (opt, onError) {\n\
                 // test async handling-behavior\n\
                 setTimeout(function () {\n\
                     // test list-growth handling-behavior\n\
-                    if (option2.ii === 3) {\n\
-                        option2.list.push(5);\n\
+                    if (opt2.ii === 3) {\n\
+                        opt2.list.push(5);\n\
                     }\n\
-                    opt.data[option2.ii] = option2.elem;\n\
+                    opt.data[opt2.ii] = opt2.elem;\n\
                     // test retry handling-behavior\n\
-                    local.assertOrThrow(option2.retry < 1);\n\
-                    onParallel(null, option2);\n\
+                    local.assertOrThrow(opt2.retry < 1);\n\
+                    onParallel(null, opt2);\n\
                 });\n\
             }, opt.gotoNext, opt.rateLimit);\n\
             break;\n\
@@ -66697,11 +65127,11 @@ local.testCase_onParallelList_default = function (opt, onError) {\n\
                     1, 2, 3, 4, 5\n\
                 ],\n\
                 rateLimit: opt.rateLimit\n\
-            }, function (option2, onParallel) {\n\
+            }, function (opt2, onParallel) {\n\
                 // test sync handling-behavior\n\
                 onParallel.cnt += 1;\n\
                 opt.rateMax = Math.max(onParallel.cnt, opt.rateMax);\n\
-                opt.data[option2.ii] = option2.elem;\n\
+                opt.data[opt2.ii] = opt2.elem;\n\
                 onParallel(null, opt);\n\
             }, opt.gotoNext);\n\
             break;\n\
@@ -66744,7 +65174,7 @@ local.testCase_onParallel_default = function (opt, onError) {\n\
         // handle err\n\
         local.assertOrThrow(onParallelError.err, onParallelError.err);\n\
         // test err handling-behavior\n\
-        onParallelError(local.errDefault);\n\
+        onParallelError(local.errorDefault);\n\
         // handle err\n\
         local.assertOrThrow(onParallelError.err, onParallelError.err);\n\
         // test ignore-after-error handling-behavior\n\
@@ -67395,7 +65825,7 @@ local.testCase_webpage_err = function (opt, onError) {\n\
     globalThis.utility2_testReport.testsPending = 0;\n\
     setTimeout(function () {\n\
         // test err from callback handling-behavior\n\
-        onError(local.errDefault, opt);\n\
+        onError(local.errorDefault, opt);\n\
         // test err from multiple-callback handling-behavior\n\
         onError(undefined, opt);\n\
     }, 2000);\n\
@@ -67457,9 +65887,9 @@ local.middlewareList.push(function (req, res, next) {\n\
     case \"/test.err-500\":\n\
         // test multiple-callback serverRespondHeadSet handling-behavior\n\
         local.serverRespondHeadSet(req, res, null, {});\n\
-        next(local.errDefault);\n\
+        next(local.errorDefault);\n\
         // test multiple-callback-error handling-behavior\n\
-        next(local.errDefault);\n\
+        next(local.errorDefault);\n\
         // test onErrorDefault handling-behavior\n\
         local.testMock([\n\
             [\n\
@@ -67584,6 +66014,10 @@ if (process.argv[2]) {\n\
     process.argv[1] = local.path.resolve(process.cwd(), process.argv[1]);\n\
     local.Module.runMain();\n\
 }\n\
+// runme\n\
+if (local.env.npm_config_runme) {\n\
+    require(local.path.resolve(local.env.npm_config_runme));\n\
+}\n\
 }());\n\
 }());\n\
 "
@@ -67614,8 +66048,6 @@ if (process.argv[2]) {\n\
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -67631,162 +66063,17 @@ if (process.argv[2]) {\n\
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -67799,34 +66086,32 @@ if (process.argv[2]) {\n\
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -67849,6 +66134,7 @@ if (process.argv[2]) {\n\
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -67867,6 +66153,7 @@ if (process.argv[2]) {\n\
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -67979,9 +66266,7 @@ if (process.argv[2]) {\n\
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -68009,10 +66294,10 @@ local.stateInit({
     "utility2": {
         "assetsDict": {
             "/assets.example.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<!-- \"assets.utility2.template.html\" -->\n<title>bootstrap-lite (0.0.1)</title>\n<link href=\"assets.bootstrap.css\" rel=\"stylesheet\">\n<style>\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/dashboard.css */\n/*\n * Base structure\n */\n/* Move down content because we have a fixed navbar that is 50px tall */\nbody {\n    padding-top: 50px;\n}\n/*\n * Global add-ons\n */\n.sub-header {\n    padding-bottom: 10px;\n    border-bottom: 1px solid #eee;\n}\n/*\n * Top navigation\n * Hide default border to remove 1px line.\n */\n.navbar-fixed-top {\n    border: 0;\n}\n/*\n * Sidebar\n */\n/* Hide for mobile, show later */\n.sidebar {\n    display: none;\n}\n@media (min-width: 768px) {\n    .sidebar {\n        position: fixed;\n        top: 51px;\n        bottom: 0;\n        left: 0;\n        z-index: 1000;\n        display: block;\n        padding: 20px;\n        overflow-x: hidden;\n        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */\n        background-color: #f5f5f5;\n        border-right: 1px solid #eee;\n    }\n}\n/* Sidebar navigation */\n.nav-sidebar {\n    margin-right: -21px; /* 20px padding + 1px border */\n    margin-bottom: 20px;\n    margin-left: -20px;\n}\n.nav-sidebar > li > a {\n    padding-right: 20px;\n    padding-left: 20px;\n}\n.nav-sidebar > .active > a,\n.nav-sidebar > .active > a:hover,\n.nav-sidebar > .active > a:focus {\n    color: #fff;\n    background-color: #428bca;\n}\n/*\n * Main content\n */\n.main {\n    padding: 20px;\n}\n@media (min-width: 768px) {\n    .main {\n        padding-right: 40px;\n        padding-left: 40px;\n    }\n}\n.main .page-header {\n    margin-top: 0;\n}\n/*\n * Placeholder dashboard ideas\n */\n.placeholders {\n    margin-bottom: 30px;\n    text-align: center;\n}\n.placeholders h4 {\n    margin-bottom: 0;\n}\n.placeholder {\n    margin-bottom: 20px;\n}\n.placeholder img {\n    display: inline-block;\n    border-radius: 50%;\n}\n.theme-dropdown .dropdown-menu {\n    position: static;\n    display: block;\n    margin-bottom: 20px;\n}\n.theme-showcase > p > .btn {\n    margin: 5px 0;\n}\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/theme.css */\n.theme-showcase .navbar .container {\n    width: auto;\n}\n</style>\n</head>\n<body>\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/index.html -->\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li><a href=\"#\">Dashboard</a></li>\n                <li><a href=\"#\">Settings</a></li>\n                <li><a href=\"#\">Profile</a></li>\n                <li><a href=\"#\">Help</a></li>\n            </ul>\n            <form class=\"navbar-form navbar-right\">\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search...\">\n            </form>\n        </div>\n    </div>\n</nav>\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"col-sm-3 col-md-2 sidebar\">\n            <ul class=\"nav nav-sidebar\">\n                <li class=\"active\"><a href=\"#\">Overview <span class=\"sr-only\">(current)</span></a></li>\n                <li><a href=\"#\">Reports</a></li>\n                <li><a href=\"#\">Analytics</a></li>\n                <li><a href=\"#\">Export</a></li>\n            </ul>\n            <ul class=\"nav nav-sidebar\">\n                <li><a href=\"\">Nav item</a></li>\n                <li><a href=\"\">Nav item again</a></li>\n                <li><a href=\"\">One more nav</a></li>\n                <li><a href=\"\">Another nav item</a></li>\n                <li><a href=\"\">More navigation</a></li>\n            </ul>\n            <ul class=\"nav nav-sidebar\">\n                <li><a href=\"\">Nav item again</a></li>\n                <li><a href=\"\">One more nav</a></li>\n                <li><a href=\"\">Another nav item</a></li>\n            </ul>\n        </div>\n        <div class=\"col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main\">\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/index.html -->\n<!-- Main jumbotron for a primary marketing message or call to action -->\n<div class=\"jumbotron\">\n    <h1>\n    <!-- utility2-comment\n        <a\n            {{#if env.npm_package_homepage}}\n            href=\"{{env.npm_package_homepage}}\"\n            {{/if env.npm_package_homepage}}\n            target=\"_blank\"\n        >\n    utility2-comment -->\n            bootstrap-lite (0.0.1)\n    <!-- utility2-comment\n        </a>\n    utility2-comment -->\n    </h1>\n    <p>the greatest app in the world!</p>\n    <!-- utility2-comment\n    utility2-comment -->\n</div>\n<h1 class=\"page-header\">Dashboard</h1>\n<div class=\"row placeholders\">\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n</div>\n<h2 class=\"sub-header\">Section title</h2>\n<div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>#</th>\n                <th>Header</th>\n                <th>Header</th>\n                <th>Header</th>\n                <th>Header</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td>1,001</td>\n                <td>Lorem</td>\n                <td>ipsum</td>\n                <td>dolor</td>\n                <td>sit</td>\n            </tr>\n            <tr>\n                <td>1,002</td>\n                <td>amet</td>\n                <td>consectetur</td>\n                <td>adipiscing</td>\n                <td>elit</td>\n            </tr>\n            <tr>\n                <td>1,003</td>\n                <td>Integer</td>\n                <td>nec</td>\n                <td>odio</td>\n                <td>Praesent</td>\n            </tr>\n            <tr>\n                <td>1,003</td>\n                <td>libero</td>\n                <td>Sed</td>\n                <td>cursus</td>\n                <td>ante</td>\n            </tr>\n            <tr>\n                <td>1,004</td>\n                <td>dapibus</td>\n                <td>diam</td>\n                <td>Sed</td>\n                <td>nisi</td>\n            </tr>\n            <tr>\n                <td>1,005</td>\n                <td>Nulla</td>\n                <td>quis</td>\n                <td>sem</td>\n                <td>at</td>\n            </tr>\n            <tr>\n                <td>1,006</td>\n                <td>nibh</td>\n                <td>elementum</td>\n                <td>imperdiet</td>\n                <td>Duis</td>\n            </tr>\n            <tr>\n                <td>1,007</td>\n                <td>sagittis</td>\n                <td>ipsum</td>\n                <td>Praesent</td>\n                <td>mauris</td>\n            </tr>\n            <tr>\n                <td>1,008</td>\n                <td>Fusce</td>\n                <td>nec</td>\n                <td>tellus</td>\n                <td>sed</td>\n            </tr>\n            <tr>\n                <td>1,009</td>\n                <td>augue</td>\n                <td>semper</td>\n                <td>porta</td>\n                <td>Mauris</td>\n            </tr>\n            <tr>\n                <td>1,010</td>\n                <td>massa</td>\n                <td>Vestibulum</td>\n                <td>lacinia</td>\n                <td>arcu</td>\n            </tr>\n            <tr>\n                <td>1,011</td>\n                <td>eget</td>\n                <td>nulla</td>\n                <td>Class</td>\n                <td>aptent</td>\n            </tr>\n            <tr>\n                <td>1,012</td>\n                <td>taciti</td>\n                <td>sociosqu</td>\n                <td>ad</td>\n                <td>litora</td>\n            </tr>\n            <tr>\n                <td>1,013</td>\n                <td>torquent</td>\n                <td>per</td>\n                <td>conubia</td>\n                <td>nostra</td>\n            </tr>\n            <tr>\n                <td>1,014</td>\n                <td>per</td>\n                <td>inceptos</td>\n                <td>himenaeos</td>\n                <td>Curabitur</td>\n            </tr>\n            <tr>\n                <td>1,015</td>\n                <td>sodales</td>\n                <td>ligula</td>\n                <td>in</td>\n                <td>libero</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n<div class=\"page-header\">\n    <h1>Buttons</h1>\n</div>\n<p>\n    <button type=\"button\" class=\"btn btn-lg btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-lg btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-lg btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-lg btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-lg btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-lg btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-lg btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-sm btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-sm btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-sm btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-sm btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-sm btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-sm btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-sm btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-xs btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-xs btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-xs btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-xs btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-xs btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-xs btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-xs btn-link\">Link</button>\n</p>\n<div class=\"page-header\">\n    <h1>Tables</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-6\">\n        <table class=\"table\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td>Larry</td>\n                    <td>the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <div class=\"col-md-6\">\n        <table class=\"table table-striped\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td>Larry</td>\n                    <td>the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-6\">\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td rowspan=\"2\">1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@TwBootstrap</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td colspan=\"2\">Larry the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <div class=\"col-md-6\">\n        <table class=\"table table-condensed\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td colspan=\"2\">Larry the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n<div class=\"page-header\">\n    <h1>Thumbnails</h1>\n</div>\n<img src=\"#\" data-src=\"holder.js/200x200\" class=\"img-thumbnail\" alt=\"A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera\">\n<div class=\"page-header\">\n    <h1>Labels</h1>\n</div>\n<h1>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h1>\n<h2>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h2>\n<h3>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h3>\n<h4>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h4>\n<h5>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h5>\n<h6>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h6>\n<p>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</p>\n<div class=\"page-header\">\n    <h1>Badges</h1>\n</div>\n<p>\n    <a href=\"#\">Inbox <span class=\"badge\">42</span></a>\n</p>\n<ul class=\"nav nav-pills\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home <span class=\"badge\">42</span></a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages <span class=\"badge\">3</span></a></li>\n</ul>\n<div class=\"page-header\">\n    <h1>Dropdown menus</h1>\n</div>\n<div class=\"dropdown theme-dropdown clearfix\">\n    <a id=\"dropdownMenu1\" href=\"#\" class=\"sr-only dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\n        <li class=\"active\"><a href=\"#\">Action</a></li>\n        <li><a href=\"#\">Another action</a></li>\n        <li><a href=\"#\">Something else here</a></li>\n        <li role=\"separator\" class=\"divider\"></li>\n        <li><a href=\"#\">Separated link</a></li>\n    </ul>\n</div>\n<div class=\"page-header\">\n    <h1>Navs</h1>\n</div>\n<ul class=\"nav nav-tabs\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\n</ul>\n<ul class=\"nav nav-pills\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\n</ul>\n<div class=\"page-header\">\n    <h1>Navbars</h1>\n</div>\n<nav class=\"navbar navbar-default\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#\">Home</a></li>\n                <li><a href=\"#\">About</a></li>\n                <li><a href=\"#\">Contact</a></li>\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"#\">Action</a></li>\n                        <li><a href=\"#\">Another action</a></li>\n                        <li><a href=\"#\">Something else here</a></li>\n                        <li role=\"separator\" class=\"divider\"></li>\n                        <li class=\"dropdown-header\">Nav header</li>\n                        <li><a href=\"#\">Separated link</a></li>\n                        <li><a href=\"#\">One more separated link</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div><!--/.nav-collapse -->\n    </div>\n</nav>\n<nav class=\"navbar navbar-inverse\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#\">Home</a></li>\n                <li><a href=\"#\">About</a></li>\n                <li><a href=\"#\">Contact</a></li>\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"#\">Action</a></li>\n                        <li><a href=\"#\">Another action</a></li>\n                        <li><a href=\"#\">Something else here</a></li>\n                        <li role=\"separator\" class=\"divider\"></li>\n                        <li class=\"dropdown-header\">Nav header</li>\n                        <li><a href=\"#\">Separated link</a></li>\n                        <li><a href=\"#\">One more separated link</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div><!--/.nav-collapse -->\n    </div>\n</nav>\n<div class=\"page-header\">\n    <h1>Alerts</h1>\n</div>\n<div class=\"alert alert-success\" role=\"alert\">\n    <strong>Well done!</strong> You successfully read this important alert message.\n</div>\n<div class=\"alert alert-info\" role=\"alert\">\n    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.\n</div>\n<div class=\"alert alert-warning\" role=\"alert\">\n    <strong>Warning!</strong> Best check yo self, you're not looking too good.\n</div>\n<div class=\"alert alert-danger\" role=\"alert\">\n    <strong>Oh snap!</strong> Change a few things up and try submitting again.\n</div>\n<div class=\"page-header\">\n    <h1>Progress bars</h1>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%;\"><span class=\"sr-only\">60% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-success\" style=\"width: 35%\"><span class=\"sr-only\">35% Complete (success)</span></div>\n    <div class=\"progress-bar progress-bar-warning\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div>\n    <div class=\"progress-bar progress-bar-danger\" style=\"width: 10%\"><span class=\"sr-only\">10% Complete (danger)</span></div>\n</div>\n<div class=\"page-header\">\n    <h1>List groups</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-4\">\n        <ul class=\"list-group\">\n            <li class=\"list-group-item\">Cras justo odio</li>\n            <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n            <li class=\"list-group-item\">Morbi leo risus</li>\n            <li class=\"list-group-item\">Porta ac consectetur ac</li>\n            <li class=\"list-group-item\">Vestibulum at eros</li>\n        </ul>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"list-group\">\n            <a href=\"#\" class=\"list-group-item active\">\n                Cras justo odio\n            </a>\n            <a href=\"#\" class=\"list-group-item\">Dapibus ac facilisis in</a>\n            <a href=\"#\" class=\"list-group-item\">Morbi leo risus</a>\n            <a href=\"#\" class=\"list-group-item\">Porta ac consectetur ac</a>\n            <a href=\"#\" class=\"list-group-item\">Vestibulum at eros</a>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"list-group\">\n            <a href=\"#\" class=\"list-group-item active\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n            <a href=\"#\" class=\"list-group-item\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n            <a href=\"#\" class=\"list-group-item\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n        </div>\n    </div><!-- /.col-sm-4 -->\n</div>\n<div class=\"page-header\">\n    <h1>Panels</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-default\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-success\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-info\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-warning\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-danger\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n</div>\n<div class=\"page-header\">\n    <h1>Wells</h1>\n</div>\n<div class=\"well\">\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>\n</div>\n<div class=\"page-header\">\n    <h1>Carousel</h1>\n</div>\n<div id=\"carousel-example-generic\" class=\"carousel slide\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"0\" class=\"active\"></li>\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"1\"></li>\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"2\"></li>\n    </ol>\n    <div class=\"carousel-inner\" role=\"listbox\">\n        <div class=\"item active\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#777:#555/text:First slide\" alt=\"First slide\">\n        </div>\n        <div class=\"item\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#666:#444/text:Second slide\" alt=\"Second slide\">\n        </div>\n        <div class=\"item\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#555:#333/text:Third slide\" alt=\"Third slide\">\n        </div>\n    </div>\n    <a class=\"left carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"prev\">\n        <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\n        <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"right carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"next\">\n        <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\n        <span class=\"sr-only\">Next</span>\n    </a>\n</div>\n        </div>\n    </div>\n</div>\n<!-- Bootstrap core JavaScript\n================================================== -->\n<!-- Placed at the end of the document so the pages load faster -->\n<script src=\"assets.bootstrap.js\"></script>\n</body>\n</html>\n",
-            "/assets.example.js": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\nexample.js\n\nthis script will run a web-demo of bootstrap-lite\n\ninstruction\n    1. save this script as example.js\n    2. run shell-command:\n        $ npm install bootstrap-lite && \\\n            PORT=8081 node example.js\n    3. open a browser to http://127.0.0.1:8081 and play with web-demo\n    4. edit this script to suit your needs\n*/\n\n\n\n// assets.utility2.header.js - start\n/* istanbul ignore next */\n/* jslint utility2:true */\n(function (globalThis) {\n    \"use strict\";\n    let ArrayPrototypeFlat;\n    let TextXxcoder;\n    let consoleError;\n    let debugName;\n    let local;\n    debugName = \"debug\" + String(\"Inline\");\n    // init globalThis\n    globalThis.globalThis = globalThis.globalThis || globalThis;\n    // init debug_inline\n    if (!globalThis[debugName]) {\n        consoleError = console.error;\n        globalThis[debugName] = function (...argList) {\n        /*\n         * this function will both print <argList> to stderr\n         * and return <argList>[0]\n         */\n            consoleError(\"\\n\\n\" + debugName);\n            consoleError.apply(console, argList);\n            consoleError(\"\\n\");\n            // return arg0 for inspection\n            return argList[0];\n        };\n    }\n    // polyfill\n    ArrayPrototypeFlat = function (depth) {\n    /*\n     * this function will polyfill Array.prototype.flat\n     * https://github.com/jonathantneal/array-flat-polyfill\n     */\n        depth = (\n            globalThis.isNaN(depth)\n            ? 1\n            : Number(depth)\n        );\n        if (!depth) {\n            return Array.prototype.slice.call(this);\n        }\n        return Array.prototype.reduce.call(this, function (acc, cur) {\n            if (Array.isArray(cur)) {\n                // recurse\n                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));\n            } else {\n                acc.push(cur);\n            }\n            return acc;\n        }, []);\n    };\n    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;\n    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(\n        ...argList\n    ) {\n    /*\n     * this function will polyfill Array.prototype.flatMap\n     * https://github.com/jonathantneal/array-flat-polyfill\n     */\n        return this.map(...argList).flat();\n    };\n    String.prototype.trimEnd = (\n        String.prototype.trimEnd || String.prototype.trimRight\n    );\n    String.prototype.trimStart = (\n        String.prototype.trimStart || String.prototype.trimLeft\n    );\n    (function () {\n        try {\n            globalThis.TextDecoder = (\n                globalThis.TextDecoder || require(\"util\").TextDecoder\n            );\n            globalThis.TextEncoder = (\n                globalThis.TextEncoder || require(\"util\").TextEncoder\n            );\n        } catch (ignore) {}\n    }());\n    TextXxcoder = function () {\n    /*\n     * this function will polyfill TextDecoder/TextEncoder\n     * https://gist.github.com/Yaffle/5458286\n     */\n        return;\n    };\n    TextXxcoder.prototype.decode = function (octets) {\n    /*\n     * this function will polyfill TextDecoder.prototype.decode\n     * https://gist.github.com/Yaffle/5458286\n     */\n        let bytesNeeded;\n        let codePoint;\n        let ii;\n        let kk;\n        let octet;\n        let string;\n        string = \"\";\n        ii = 0;\n        while (ii < octets.length) {\n            octet = octets[ii];\n            bytesNeeded = 0;\n            codePoint = 0;\n            if (octet <= 0x7F) {\n                bytesNeeded = 0;\n                codePoint = octet & 0xFF;\n            } else if (octet <= 0xDF) {\n                bytesNeeded = 1;\n                codePoint = octet & 0x1F;\n            } else if (octet <= 0xEF) {\n                bytesNeeded = 2;\n                codePoint = octet & 0x0F;\n            } else if (octet <= 0xF4) {\n                bytesNeeded = 3;\n                codePoint = octet & 0x07;\n            }\n            if (octets.length - ii - bytesNeeded > 0) {\n                kk = 0;\n                while (kk < bytesNeeded) {\n                    octet = octets[ii + kk + 1];\n                    codePoint = (codePoint << 6) | (octet & 0x3F);\n                    kk += 1;\n                }\n            } else {\n                codePoint = 0xFFFD;\n                bytesNeeded = octets.length - ii;\n            }\n            string += String.fromCodePoint(codePoint);\n            ii += bytesNeeded + 1;\n        }\n        return string;\n    };\n    TextXxcoder.prototype.encode = function (string) {\n    /*\n     * this function will polyfill TextEncoder.prototype.encode\n     * https://gist.github.com/Yaffle/5458286\n     */\n        let bits;\n        let cc;\n        let codePoint;\n        let ii;\n        let length;\n        let octets;\n        octets = [];\n        length = string.length;\n        ii = 0;\n        while (ii < length) {\n            codePoint = string.codePointAt(ii);\n            cc = 0;\n            bits = 0;\n            if (codePoint <= 0x0000007F) {\n                cc = 0;\n                bits = 0x00;\n            } else if (codePoint <= 0x000007FF) {\n                cc = 6;\n                bits = 0xC0;\n            } else if (codePoint <= 0x0000FFFF) {\n                cc = 12;\n                bits = 0xE0;\n            } else if (codePoint <= 0x001FFFFF) {\n                cc = 18;\n                bits = 0xF0;\n            }\n            octets.push(bits | (codePoint >> cc));\n            cc -= 6;\n            while (cc >= 0) {\n                octets.push(0x80 | ((codePoint >> cc) & 0x3F));\n                cc -= 6;\n            }\n            ii += (\n                codePoint >= 0x10000\n                ? 2\n                : 1\n            );\n        }\n        return octets;\n    };\n    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;\n    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;\n    // init local\n    local = {};\n    local.local = local;\n    globalThis.globalLocal = local;\n    // init isBrowser\n    local.isBrowser = (\n        typeof globalThis.XMLHttpRequest === \"function\"\n        && globalThis.navigator\n        && typeof globalThis.navigator.userAgent === \"string\"\n    );\n    // init isWebWorker\n    local.isWebWorker = (\n        local.isBrowser && typeof globalThis.importScript === \"function\"\n    );\n    // init function\n    local.assertOrThrow = function (passed, message) {\n    /*\n     * this function will throw err.<message> if <passed> is falsy\n     */\n        let err;\n        if (passed) {\n            return;\n        }\n        err = (\n            (\n                message\n                && typeof message.message === \"string\"\n                && typeof message.stack === \"string\"\n            )\n            // if message is errObj, then leave as is\n            ? message\n            : new Error(\n                typeof message === \"string\"\n                // if message is a string, then leave as is\n                ? message\n                // else JSON.stringify message\n                : JSON.stringify(message, undefined, 4)\n            )\n        );\n        throw err;\n    };\n    local.coalesce = function (...argList) {\n    /*\n     * this function will coalesce null, undefined, or \"\" in <argList>\n     */\n        let arg;\n        let ii;\n        ii = 0;\n        while (ii < argList.length) {\n            arg = argList[ii];\n            if (arg !== null && arg !== undefined && arg !== \"\") {\n                break;\n            }\n            ii += 1;\n        }\n        return arg;\n    };\n    local.fsRmrfSync = function (dir) {\n    /*\n     * this function will sync \"rm -rf\" <dir>\n     */\n        let child_process;\n        try {\n            child_process = require(\"child_process\");\n        } catch (ignore) {\n            return;\n        }\n        child_process.spawnSync(\"rm\", [\n            \"-rf\", dir\n        ], {\n            stdio: [\n                \"ignore\", 1, 2\n            ]\n        });\n    };\n    local.fsWriteFileWithMkdirpSync = function (file, data) {\n    /*\n     * this function will sync write <data> to <file> with \"mkdir -p\"\n     */\n        let fs;\n        try {\n            fs = require(\"fs\");\n        } catch (ignore) {\n            return;\n        }\n        // try to write file\n        try {\n            fs.writeFileSync(file, data);\n        } catch (ignore) {\n            // mkdir -p\n            require(\"child_process\").spawnSync(\n                \"mkdir\",\n                [\n                    \"-p\", require(\"path\").dirname(file)\n                ],\n                {\n                    stdio: [\n                        \"ignore\", 1, 2\n                    ]\n                }\n            );\n            // rewrite file\n            fs.writeFileSync(file, data);\n        }\n    };\n    local.functionOrNop = function (fnc) {\n    /*\n     * this function will if <fnc> exists,\n     * return <fnc>,\n     * else return <nop>\n     */\n        return fnc || local.nop;\n    };\n    local.identity = function (val) {\n    /*\n     * this function will return <val>\n     */\n        return val;\n    };\n    local.nop = function () {\n    /*\n     * this function will do nothing\n     */\n        return;\n    };\n    local.objectAssignDefault = function (target, source) {\n    /*\n     * this function will if items from <target> are null, undefined, or \"\",\n     * then overwrite them with items from <source>\n     */\n        target = target || {};\n        Object.keys(source || {}).forEach(function (key) {\n            if (\n                target[key] === null\n                || target[key] === undefined\n                || target[key] === \"\"\n            ) {\n                target[key] = target[key] || source[key];\n            }\n        });\n        return target;\n    };\n    local.querySelector = function (selectors) {\n    /*\n     * this function will return first dom-elem that match <selectors>\n     */\n        return (\n            typeof document === \"object\" && document\n            && typeof document.querySelector === \"function\"\n            && document.querySelector(selectors)\n        ) || {};\n    };\n    local.querySelectorAll = function (selectors) {\n    /*\n     * this function will return dom-elem-list that match <selectors>\n     */\n        return (\n            typeof document === \"object\" && document\n            && typeof document.querySelectorAll === \"function\"\n            && Array.from(document.querySelectorAll(selectors))\n        ) || [];\n    };\n    // require builtin\n    if (!local.isBrowser) {\n        local.assert = require(\"assert\");\n        local.buffer = require(\"buffer\");\n        local.child_process = require(\"child_process\");\n        local.cluster = require(\"cluster\");\n        local.crypto = require(\"crypto\");\n        local.dgram = require(\"dgram\");\n        local.dns = require(\"dns\");\n        local.domain = require(\"domain\");\n        local.events = require(\"events\");\n        local.fs = require(\"fs\");\n        local.http = require(\"http\");\n        local.https = require(\"https\");\n        local.net = require(\"net\");\n        local.os = require(\"os\");\n        local.path = require(\"path\");\n        local.querystring = require(\"querystring\");\n        local.readline = require(\"readline\");\n        local.repl = require(\"repl\");\n        local.stream = require(\"stream\");\n        local.string_decoder = require(\"string_decoder\");\n        local.timers = require(\"timers\");\n        local.tls = require(\"tls\");\n        local.tty = require(\"tty\");\n        local.url = require(\"url\");\n        local.util = require(\"util\");\n        local.vm = require(\"vm\");\n        local.zlib = require(\"zlib\");\n    }\n}((typeof globalThis === \"object\" && globalThis) || (function () {\n    return Function(\"return this\")(); // jslint ignore:line\n}())));\n// assets.utility2.header.js - end\n\n\n\n/* jslint utility2:true */\n(function (local) {\n\"use strict\";\n\n\n\n// run shared js-env code - init-before\n(function () {\n// init local\nlocal = (\n    globalThis.utility2_rollup\n    || globalThis.utility2_bootstrap\n    || globalThis.utility2_moduleExports\n);\n// init exports\nglobalThis.local = local;\n}());\n\n\n\n/* istanbul ignore next */\n// run browser js-env code - init-test\n(function () {\nif (!local.isBrowser) {\n    return;\n}\n}());\n\n\n\n// run node js-env code - init-test\n(function () {\nif (local.isBrowser) {\n    return;\n}\n// init exports\nmodule.exports = local;\n// init assetsDict\nlocal.assetsDict = local.assetsDict || {};\n[\n    \"assets.swgg.swagger.json\",\n    \"assets.swgg.swagger.server.json\"\n].forEach(function (file) {\n    file = \"/\" + file;\n    local.assetsDict[file] = local.assetsDict[file] || \"\";\n    if (local.fs.existsSync(local.__dirname + file)) {\n        local.assetsDict[file] = local.fs.readFileSync(\n            local.__dirname + file,\n            \"utf8\"\n        );\n    }\n});\n/* jslint ignore:start */\nlocal.assetsDict[\"/assets.index.template.html\"] = '\\\n<!doctype html>\\n\\\n<html lang=\"en\">\\n\\\n<head>\\n\\\n<meta charset=\"utf-8\">\\n\\\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\\n\\\n<!-- \"assets.utility2.template.html\" -->\\n\\\n<title>{{env.npm_package_name}} ({{env.npm_package_version}})</title>\\n\\\n<link href=\"assets.bootstrap.css\" rel=\"stylesheet\">\\n\\\n<style>\\n\\\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/dashboard.css */\\n\\\n/*\\n\\\n * Base structure\\n\\\n */\\n\\\n/* Move down content because we have a fixed navbar that is 50px tall */\\n\\\nbody {\\n\\\n    padding-top: 50px;\\n\\\n}\\n\\\n/*\\n\\\n * Global add-ons\\n\\\n */\\n\\\n.sub-header {\\n\\\n    padding-bottom: 10px;\\n\\\n    border-bottom: 1px solid #eee;\\n\\\n}\\n\\\n/*\\n\\\n * Top navigation\\n\\\n * Hide default border to remove 1px line.\\n\\\n */\\n\\\n.navbar-fixed-top {\\n\\\n    border: 0;\\n\\\n}\\n\\\n/*\\n\\\n * Sidebar\\n\\\n */\\n\\\n/* Hide for mobile, show later */\\n\\\n.sidebar {\\n\\\n    display: none;\\n\\\n}\\n\\\n@media (min-width: 768px) {\\n\\\n    .sidebar {\\n\\\n        position: fixed;\\n\\\n        top: 51px;\\n\\\n        bottom: 0;\\n\\\n        left: 0;\\n\\\n        z-index: 1000;\\n\\\n        display: block;\\n\\\n        padding: 20px;\\n\\\n        overflow-x: hidden;\\n\\\n        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */\\n\\\n        background-color: #f5f5f5;\\n\\\n        border-right: 1px solid #eee;\\n\\\n    }\\n\\\n}\\n\\\n/* Sidebar navigation */\\n\\\n.nav-sidebar {\\n\\\n    margin-right: -21px; /* 20px padding + 1px border */\\n\\\n    margin-bottom: 20px;\\n\\\n    margin-left: -20px;\\n\\\n}\\n\\\n.nav-sidebar > li > a {\\n\\\n    padding-right: 20px;\\n\\\n    padding-left: 20px;\\n\\\n}\\n\\\n.nav-sidebar > .active > a,\\n\\\n.nav-sidebar > .active > a:hover,\\n\\\n.nav-sidebar > .active > a:focus {\\n\\\n    color: #fff;\\n\\\n    background-color: #428bca;\\n\\\n}\\n\\\n/*\\n\\\n * Main content\\n\\\n */\\n\\\n.main {\\n\\\n    padding: 20px;\\n\\\n}\\n\\\n@media (min-width: 768px) {\\n\\\n    .main {\\n\\\n        padding-right: 40px;\\n\\\n        padding-left: 40px;\\n\\\n    }\\n\\\n}\\n\\\n.main .page-header {\\n\\\n    margin-top: 0;\\n\\\n}\\n\\\n/*\\n\\\n * Placeholder dashboard ideas\\n\\\n */\\n\\\n.placeholders {\\n\\\n    margin-bottom: 30px;\\n\\\n    text-align: center;\\n\\\n}\\n\\\n.placeholders h4 {\\n\\\n    margin-bottom: 0;\\n\\\n}\\n\\\n.placeholder {\\n\\\n    margin-bottom: 20px;\\n\\\n}\\n\\\n.placeholder img {\\n\\\n    display: inline-block;\\n\\\n    border-radius: 50%;\\n\\\n}\\n\\\n.theme-dropdown .dropdown-menu {\\n\\\n    position: static;\\n\\\n    display: block;\\n\\\n    margin-bottom: 20px;\\n\\\n}\\n\\\n.theme-showcase > p > .btn {\\n\\\n    margin: 5px 0;\\n\\\n}\\n\\\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/theme.css */\\n\\\n.theme-showcase .navbar .container {\\n\\\n    width: auto;\\n\\\n}\\n\\\n</style>\\n\\\n</head>\\n\\\n<body>\\n\\\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/index.html -->\\n\\\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\\n\\\n    <div class=\"container-fluid\">\\n\\\n        <div class=\"navbar-header\">\\n\\\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\\n\\\n                <span class=\"sr-only\">Toggle navigation</span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n            </button>\\n\\\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\\n\\\n        </div>\\n\\\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\\n\\\n            <ul class=\"nav navbar-nav navbar-right\">\\n\\\n                <li><a href=\"#\">Dashboard</a></li>\\n\\\n                <li><a href=\"#\">Settings</a></li>\\n\\\n                <li><a href=\"#\">Profile</a></li>\\n\\\n                <li><a href=\"#\">Help</a></li>\\n\\\n            </ul>\\n\\\n            <form class=\"navbar-form navbar-right\">\\n\\\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search...\">\\n\\\n            </form>\\n\\\n        </div>\\n\\\n    </div>\\n\\\n</nav>\\n\\\n<div class=\"container-fluid\">\\n\\\n    <div class=\"row\">\\n\\\n        <div class=\"col-sm-3 col-md-2 sidebar\">\\n\\\n            <ul class=\"nav nav-sidebar\">\\n\\\n                <li class=\"active\"><a href=\"#\">Overview <span class=\"sr-only\">(current)</span></a></li>\\n\\\n                <li><a href=\"#\">Reports</a></li>\\n\\\n                <li><a href=\"#\">Analytics</a></li>\\n\\\n                <li><a href=\"#\">Export</a></li>\\n\\\n            </ul>\\n\\\n            <ul class=\"nav nav-sidebar\">\\n\\\n                <li><a href=\"\">Nav item</a></li>\\n\\\n                <li><a href=\"\">Nav item again</a></li>\\n\\\n                <li><a href=\"\">One more nav</a></li>\\n\\\n                <li><a href=\"\">Another nav item</a></li>\\n\\\n                <li><a href=\"\">More navigation</a></li>\\n\\\n            </ul>\\n\\\n            <ul class=\"nav nav-sidebar\">\\n\\\n                <li><a href=\"\">Nav item again</a></li>\\n\\\n                <li><a href=\"\">One more nav</a></li>\\n\\\n                <li><a href=\"\">Another nav item</a></li>\\n\\\n            </ul>\\n\\\n        </div>\\n\\\n        <div class=\"col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main\">\\n\\\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/index.html -->\\n\\\n<!-- Main jumbotron for a primary marketing message or call to action -->\\n\\\n<div class=\"jumbotron\">\\n\\\n    <h1>\\n\\\n    <!-- utility2-comment\\n\\\n        <a\\n\\\n            {{#if env.npm_package_homepage}}\\n\\\n            href=\"{{env.npm_package_homepage}}\"\\n\\\n            {{/if env.npm_package_homepage}}\\n\\\n            target=\"_blank\"\\n\\\n        >\\n\\\n    utility2-comment -->\\n\\\n            {{env.npm_package_name}} ({{env.npm_package_version}})\\n\\\n    <!-- utility2-comment\\n\\\n        </a>\\n\\\n    utility2-comment -->\\n\\\n    </h1>\\n\\\n    <p>{{env.npm_package_description}}</p>\\n\\\n    <!-- utility2-comment\\n\\\n    utility2-comment -->\\n\\\n</div>\\n\\\n<h1 class=\"page-header\">Dashboard</h1>\\n\\\n<div class=\"row placeholders\">\\n\\\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\\n\\\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\\n\\\n        <h4>Label</h4>\\n\\\n        <span class=\"text-muted\">Something else</span>\\n\\\n    </div>\\n\\\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\\n\\\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\\n\\\n        <h4>Label</h4>\\n\\\n        <span class=\"text-muted\">Something else</span>\\n\\\n    </div>\\n\\\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\\n\\\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\\n\\\n        <h4>Label</h4>\\n\\\n        <span class=\"text-muted\">Something else</span>\\n\\\n    </div>\\n\\\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\\n\\\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\\n\\\n        <h4>Label</h4>\\n\\\n        <span class=\"text-muted\">Something else</span>\\n\\\n    </div>\\n\\\n</div>\\n\\\n<h2 class=\"sub-header\">Section title</h2>\\n\\\n<div class=\"table-responsive\">\\n\\\n    <table class=\"table table-striped\">\\n\\\n        <thead>\\n\\\n            <tr>\\n\\\n                <th>#</th>\\n\\\n                <th>Header</th>\\n\\\n                <th>Header</th>\\n\\\n                <th>Header</th>\\n\\\n                <th>Header</th>\\n\\\n            </tr>\\n\\\n        </thead>\\n\\\n        <tbody>\\n\\\n            <tr>\\n\\\n                <td>1,001</td>\\n\\\n                <td>Lorem</td>\\n\\\n                <td>ipsum</td>\\n\\\n                <td>dolor</td>\\n\\\n                <td>sit</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,002</td>\\n\\\n                <td>amet</td>\\n\\\n                <td>consectetur</td>\\n\\\n                <td>adipiscing</td>\\n\\\n                <td>elit</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,003</td>\\n\\\n                <td>Integer</td>\\n\\\n                <td>nec</td>\\n\\\n                <td>odio</td>\\n\\\n                <td>Praesent</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,003</td>\\n\\\n                <td>libero</td>\\n\\\n                <td>Sed</td>\\n\\\n                <td>cursus</td>\\n\\\n                <td>ante</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,004</td>\\n\\\n                <td>dapibus</td>\\n\\\n                <td>diam</td>\\n\\\n                <td>Sed</td>\\n\\\n                <td>nisi</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,005</td>\\n\\\n                <td>Nulla</td>\\n\\\n                <td>quis</td>\\n\\\n                <td>sem</td>\\n\\\n                <td>at</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,006</td>\\n\\\n                <td>nibh</td>\\n\\\n                <td>elementum</td>\\n\\\n                <td>imperdiet</td>\\n\\\n                <td>Duis</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,007</td>\\n\\\n                <td>sagittis</td>\\n\\\n                <td>ipsum</td>\\n\\\n                <td>Praesent</td>\\n\\\n                <td>mauris</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,008</td>\\n\\\n                <td>Fusce</td>\\n\\\n                <td>nec</td>\\n\\\n                <td>tellus</td>\\n\\\n                <td>sed</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,009</td>\\n\\\n                <td>augue</td>\\n\\\n                <td>semper</td>\\n\\\n                <td>porta</td>\\n\\\n                <td>Mauris</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,010</td>\\n\\\n                <td>massa</td>\\n\\\n                <td>Vestibulum</td>\\n\\\n                <td>lacinia</td>\\n\\\n                <td>arcu</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,011</td>\\n\\\n                <td>eget</td>\\n\\\n                <td>nulla</td>\\n\\\n                <td>Class</td>\\n\\\n                <td>aptent</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,012</td>\\n\\\n                <td>taciti</td>\\n\\\n                <td>sociosqu</td>\\n\\\n                <td>ad</td>\\n\\\n                <td>litora</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,013</td>\\n\\\n                <td>torquent</td>\\n\\\n                <td>per</td>\\n\\\n                <td>conubia</td>\\n\\\n                <td>nostra</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,014</td>\\n\\\n                <td>per</td>\\n\\\n                <td>inceptos</td>\\n\\\n                <td>himenaeos</td>\\n\\\n                <td>Curabitur</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,015</td>\\n\\\n                <td>sodales</td>\\n\\\n                <td>ligula</td>\\n\\\n                <td>in</td>\\n\\\n                <td>libero</td>\\n\\\n            </tr>\\n\\\n        </tbody>\\n\\\n    </table>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Buttons</h1>\\n\\\n</div>\\n\\\n<p>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-default\">Default</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-primary\">Primary</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-success\">Success</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-info\">Info</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-warning\">Warning</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-danger\">Danger</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-link\">Link</button>\\n\\\n</p>\\n\\\n<p>\\n\\\n    <button type=\"button\" class=\"btn btn-default\">Default</button>\\n\\\n    <button type=\"button\" class=\"btn btn-primary\">Primary</button>\\n\\\n    <button type=\"button\" class=\"btn btn-success\">Success</button>\\n\\\n    <button type=\"button\" class=\"btn btn-info\">Info</button>\\n\\\n    <button type=\"button\" class=\"btn btn-warning\">Warning</button>\\n\\\n    <button type=\"button\" class=\"btn btn-danger\">Danger</button>\\n\\\n    <button type=\"button\" class=\"btn btn-link\">Link</button>\\n\\\n</p>\\n\\\n<p>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-default\">Default</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-primary\">Primary</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-success\">Success</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-info\">Info</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-warning\">Warning</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-danger\">Danger</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-link\">Link</button>\\n\\\n</p>\\n\\\n<p>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-default\">Default</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-primary\">Primary</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-success\">Success</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-info\">Info</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-warning\">Warning</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-danger\">Danger</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-link\">Link</button>\\n\\\n</p>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Tables</h1>\\n\\\n</div>\\n\\\n<div class=\"row\">\\n\\\n    <div class=\"col-md-6\">\\n\\\n        <table class=\"table\">\\n\\\n            <thead>\\n\\\n                <tr>\\n\\\n                    <th>#</th>\\n\\\n                    <th>First Name</th>\\n\\\n                    <th>Last Name</th>\\n\\\n                    <th>Username</th>\\n\\\n                </tr>\\n\\\n            </thead>\\n\\\n            <tbody>\\n\\\n                <tr>\\n\\\n                    <td>1</td>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@mdo</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>2</td>\\n\\\n                    <td>Jacob</td>\\n\\\n                    <td>Thornton</td>\\n\\\n                    <td>@fat</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>3</td>\\n\\\n                    <td>Larry</td>\\n\\\n                    <td>the Bird</td>\\n\\\n                    <td>@twitter</td>\\n\\\n                </tr>\\n\\\n            </tbody>\\n\\\n        </table>\\n\\\n    </div>\\n\\\n    <div class=\"col-md-6\">\\n\\\n        <table class=\"table table-striped\">\\n\\\n            <thead>\\n\\\n                <tr>\\n\\\n                    <th>#</th>\\n\\\n                    <th>First Name</th>\\n\\\n                    <th>Last Name</th>\\n\\\n                    <th>Username</th>\\n\\\n                </tr>\\n\\\n            </thead>\\n\\\n            <tbody>\\n\\\n                <tr>\\n\\\n                    <td>1</td>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@mdo</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>2</td>\\n\\\n                    <td>Jacob</td>\\n\\\n                    <td>Thornton</td>\\n\\\n                    <td>@fat</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>3</td>\\n\\\n                    <td>Larry</td>\\n\\\n                    <td>the Bird</td>\\n\\\n                    <td>@twitter</td>\\n\\\n                </tr>\\n\\\n            </tbody>\\n\\\n        </table>\\n\\\n    </div>\\n\\\n</div>\\n\\\n<div class=\"row\">\\n\\\n    <div class=\"col-md-6\">\\n\\\n        <table class=\"table table-bordered\">\\n\\\n            <thead>\\n\\\n                <tr>\\n\\\n                    <th>#</th>\\n\\\n                    <th>First Name</th>\\n\\\n                    <th>Last Name</th>\\n\\\n                    <th>Username</th>\\n\\\n                </tr>\\n\\\n            </thead>\\n\\\n            <tbody>\\n\\\n                <tr>\\n\\\n                    <td rowspan=\"2\">1</td>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@mdo</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@TwBootstrap</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>2</td>\\n\\\n                    <td>Jacob</td>\\n\\\n                    <td>Thornton</td>\\n\\\n                    <td>@fat</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>3</td>\\n\\\n                    <td colspan=\"2\">Larry the Bird</td>\\n\\\n                    <td>@twitter</td>\\n\\\n                </tr>\\n\\\n            </tbody>\\n\\\n        </table>\\n\\\n    </div>\\n\\\n    <div class=\"col-md-6\">\\n\\\n        <table class=\"table table-condensed\">\\n\\\n            <thead>\\n\\\n                <tr>\\n\\\n                    <th>#</th>\\n\\\n                    <th>First Name</th>\\n\\\n                    <th>Last Name</th>\\n\\\n                    <th>Username</th>\\n\\\n                </tr>\\n\\\n            </thead>\\n\\\n            <tbody>\\n\\\n                <tr>\\n\\\n                    <td>1</td>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@mdo</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>2</td>\\n\\\n                    <td>Jacob</td>\\n\\\n                    <td>Thornton</td>\\n\\\n                    <td>@fat</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>3</td>\\n\\\n                    <td colspan=\"2\">Larry the Bird</td>\\n\\\n                    <td>@twitter</td>\\n\\\n                </tr>\\n\\\n            </tbody>\\n\\\n        </table>\\n\\\n    </div>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Thumbnails</h1>\\n\\\n</div>\\n\\\n<img src=\"#\" data-src=\"holder.js/200x200\" class=\"img-thumbnail\" alt=\"A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera\">\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Labels</h1>\\n\\\n</div>\\n\\\n<h1>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h1>\\n\\\n<h2>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h2>\\n\\\n<h3>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h3>\\n\\\n<h4>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h4>\\n\\\n<h5>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h5>\\n\\\n<h6>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h6>\\n\\\n<p>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</p>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Badges</h1>\\n\\\n</div>\\n\\\n<p>\\n\\\n    <a href=\"#\">Inbox <span class=\"badge\">42</span></a>\\n\\\n</p>\\n\\\n<ul class=\"nav nav-pills\" role=\"tablist\">\\n\\\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home <span class=\"badge\">42</span></a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Messages <span class=\"badge\">3</span></a></li>\\n\\\n</ul>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Dropdown menus</h1>\\n\\\n</div>\\n\\\n<div class=\"dropdown theme-dropdown clearfix\">\\n\\\n    <a id=\"dropdownMenu1\" href=\"#\" class=\"sr-only dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\\n\\\n    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\\n\\\n        <li class=\"active\"><a href=\"#\">Action</a></li>\\n\\\n        <li><a href=\"#\">Another action</a></li>\\n\\\n        <li><a href=\"#\">Something else here</a></li>\\n\\\n        <li role=\"separator\" class=\"divider\"></li>\\n\\\n        <li><a href=\"#\">Separated link</a></li>\\n\\\n    </ul>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Navs</h1>\\n\\\n</div>\\n\\\n<ul class=\"nav nav-tabs\" role=\"tablist\">\\n\\\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\\n\\\n</ul>\\n\\\n<ul class=\"nav nav-pills\" role=\"tablist\">\\n\\\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\\n\\\n</ul>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Navbars</h1>\\n\\\n</div>\\n\\\n<nav class=\"navbar navbar-default\">\\n\\\n    <div class=\"container\">\\n\\\n        <div class=\"navbar-header\">\\n\\\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\\n\\\n                <span class=\"sr-only\">Toggle navigation</span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n            </button>\\n\\\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\\n\\\n        </div>\\n\\\n        <div class=\"navbar-collapse collapse\">\\n\\\n            <ul class=\"nav navbar-nav\">\\n\\\n                <li class=\"active\"><a href=\"#\">Home</a></li>\\n\\\n                <li><a href=\"#\">About</a></li>\\n\\\n                <li><a href=\"#\">Contact</a></li>\\n\\\n                <li class=\"dropdown\">\\n\\\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\\n\\\n                    <ul class=\"dropdown-menu\">\\n\\\n                        <li><a href=\"#\">Action</a></li>\\n\\\n                        <li><a href=\"#\">Another action</a></li>\\n\\\n                        <li><a href=\"#\">Something else here</a></li>\\n\\\n                        <li role=\"separator\" class=\"divider\"></li>\\n\\\n                        <li class=\"dropdown-header\">Nav header</li>\\n\\\n                        <li><a href=\"#\">Separated link</a></li>\\n\\\n                        <li><a href=\"#\">One more separated link</a></li>\\n\\\n                    </ul>\\n\\\n                </li>\\n\\\n            </ul>\\n\\\n        </div><!--/.nav-collapse -->\\n\\\n    </div>\\n\\\n</nav>\\n\\\n<nav class=\"navbar navbar-inverse\">\\n\\\n    <div class=\"container\">\\n\\\n        <div class=\"navbar-header\">\\n\\\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\\n\\\n                <span class=\"sr-only\">Toggle navigation</span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n            </button>\\n\\\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\\n\\\n        </div>\\n\\\n        <div class=\"navbar-collapse collapse\">\\n\\\n            <ul class=\"nav navbar-nav\">\\n\\\n                <li class=\"active\"><a href=\"#\">Home</a></li>\\n\\\n                <li><a href=\"#\">About</a></li>\\n\\\n                <li><a href=\"#\">Contact</a></li>\\n\\\n                <li class=\"dropdown\">\\n\\\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\\n\\\n                    <ul class=\"dropdown-menu\">\\n\\\n                        <li><a href=\"#\">Action</a></li>\\n\\\n                        <li><a href=\"#\">Another action</a></li>\\n\\\n                        <li><a href=\"#\">Something else here</a></li>\\n\\\n                        <li role=\"separator\" class=\"divider\"></li>\\n\\\n                        <li class=\"dropdown-header\">Nav header</li>\\n\\\n                        <li><a href=\"#\">Separated link</a></li>\\n\\\n                        <li><a href=\"#\">One more separated link</a></li>\\n\\\n                    </ul>\\n\\\n                </li>\\n\\\n            </ul>\\n\\\n        </div><!--/.nav-collapse -->\\n\\\n    </div>\\n\\\n</nav>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Alerts</h1>\\n\\\n</div>\\n\\\n<div class=\"alert alert-success\" role=\"alert\">\\n\\\n    <strong>Well done!</strong> You successfully read this important alert message.\\n\\\n</div>\\n\\\n<div class=\"alert alert-info\" role=\"alert\">\\n\\\n    <strong>Heads up!</strong> This alert needs your attention, but it\\'s not super important.\\n\\\n</div>\\n\\\n<div class=\"alert alert-warning\" role=\"alert\">\\n\\\n    <strong>Warning!</strong> Best check yo self, you\\'re not looking too good.\\n\\\n</div>\\n\\\n<div class=\"alert alert-danger\" role=\"alert\">\\n\\\n    <strong>Oh snap!</strong> Change a few things up and try submitting again.\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Progress bars</h1>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%;\"><span class=\"sr-only\">60% Complete</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-success\" style=\"width: 35%\"><span class=\"sr-only\">35% Complete (success)</span></div>\\n\\\n    <div class=\"progress-bar progress-bar-warning\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div>\\n\\\n    <div class=\"progress-bar progress-bar-danger\" style=\"width: 10%\"><span class=\"sr-only\">10% Complete (danger)</span></div>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>List groups</h1>\\n\\\n</div>\\n\\\n<div class=\"row\">\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <ul class=\"list-group\">\\n\\\n            <li class=\"list-group-item\">Cras justo odio</li>\\n\\\n            <li class=\"list-group-item\">Dapibus ac facilisis in</li>\\n\\\n            <li class=\"list-group-item\">Morbi leo risus</li>\\n\\\n            <li class=\"list-group-item\">Porta ac consectetur ac</li>\\n\\\n            <li class=\"list-group-item\">Vestibulum at eros</li>\\n\\\n        </ul>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"list-group\">\\n\\\n            <a href=\"#\" class=\"list-group-item active\">\\n\\\n                Cras justo odio\\n\\\n            </a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">Dapibus ac facilisis in</a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">Morbi leo risus</a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">Porta ac consectetur ac</a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">Vestibulum at eros</a>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"list-group\">\\n\\\n            <a href=\"#\" class=\"list-group-item active\">\\n\\\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\\n\\\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\\n\\\n            </a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">\\n\\\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\\n\\\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\\n\\\n            </a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">\\n\\\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\\n\\\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\\n\\\n            </a>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Panels</h1>\\n\\\n</div>\\n\\\n<div class=\"row\">\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"panel panel-default\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n        <div class=\"panel panel-primary\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"panel panel-success\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n        <div class=\"panel panel-info\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"panel panel-warning\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n        <div class=\"panel panel-danger\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Wells</h1>\\n\\\n</div>\\n\\\n<div class=\"well\">\\n\\\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Carousel</h1>\\n\\\n</div>\\n\\\n<div id=\"carousel-example-generic\" class=\"carousel slide\" data-ride=\"carousel\">\\n\\\n    <ol class=\"carousel-indicators\">\\n\\\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"0\" class=\"active\"></li>\\n\\\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"1\"></li>\\n\\\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"2\"></li>\\n\\\n    </ol>\\n\\\n    <div class=\"carousel-inner\" role=\"listbox\">\\n\\\n        <div class=\"item active\">\\n\\\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#777:#555/text:First slide\" alt=\"First slide\">\\n\\\n        </div>\\n\\\n        <div class=\"item\">\\n\\\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#666:#444/text:Second slide\" alt=\"Second slide\">\\n\\\n        </div>\\n\\\n        <div class=\"item\">\\n\\\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#555:#333/text:Third slide\" alt=\"Third slide\">\\n\\\n        </div>\\n\\\n    </div>\\n\\\n    <a class=\"left carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"prev\">\\n\\\n        <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\\n\\\n        <span class=\"sr-only\">Previous</span>\\n\\\n    </a>\\n\\\n    <a class=\"right carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"next\">\\n\\\n        <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\\n\\\n        <span class=\"sr-only\">Next</span>\\n\\\n    </a>\\n\\\n</div>\\n\\\n        </div>\\n\\\n    </div>\\n\\\n</div>\\n\\\n<!-- Bootstrap core JavaScript\\n\\\n================================================== -->\\n\\\n<!-- Placed at the end of the document so the pages load faster -->\\n\\\n<script src=\"assets.bootstrap.js\"></script>\\n\\\n</body>\\n\\\n</html>\\n\\\n';\n/* jslint ignore:end */\nlocal.assetsDict[\"/assets.bootstrap.js\"] = (\n    local.assetsDict[\"/assets.bootstrap.js\"]\n    || local.fs.readFileSync(\n        local.__dirname + \"/lib.bootstrap.js\",\n        \"utf8\"\n    ).replace((\n        /^#!\\//\n    ), \"// \")\n);\n/* validateLineSortedReset */\nlocal.assetsDict[\"/\"] = local.assetsDict[\n    \"/assets.index.template.html\"\n].replace((\n    /\\{\\{env\\.(\\w+?)\\}\\}/g\n), function (match0, match1) {\n    switch (match1) {\n    case \"npm_package_description\":\n        return \"the greatest app in the world!\";\n    case \"npm_package_name\":\n        return \"bootstrap-lite\";\n    case \"npm_package_nameLib\":\n        return \"bootstrap\";\n    case \"npm_package_version\":\n        return \"0.0.1\";\n    default:\n        return match0;\n    }\n});\nlocal.assetsDict[\"/assets.example.html\"] = local.assetsDict[\"/\"];\n// init cli\nif (module !== require.main || globalThis.utility2_rollup) {\n    return;\n}\nlocal.assetsDict[\"/assets.example.js\"] = (\n    local.assetsDict[\"/assets.example.js\"]\n    || local.fs.readFileSync(__filename, \"utf8\")\n);\nlocal.assetsDict[\"/favicon.ico\"] = local.assetsDict[\"/favicon.ico\"] || \"\";\nlocal.assetsDict[\"/index.html\"] = local.assetsDict[\"/\"];\n// if $npm_config_timeout_exit exists,\n// then exit this process after $npm_config_timeout_exit ms\nif (Number(process.env.npm_config_timeout_exit)) {\n    setTimeout(process.exit, Number(process.env.npm_config_timeout_exit));\n}\n// start server\nif (globalThis.utility2_serverHttp1) {\n    return;\n}\nprocess.env.PORT = process.env.PORT || \"8081\";\nconsole.error(\"http-server listening on port \" + process.env.PORT);\nlocal.http.createServer(function (req, res) {\n    req.urlParsed = local.url.parse(req.url);\n    if (local.assetsDict[req.urlParsed.pathname] !== undefined) {\n        res.end(local.assetsDict[req.urlParsed.pathname]);\n        return;\n    }\n    res.statusCode = 404;\n    res.end();\n}).listen(process.env.PORT);\n}());\n}());",
+            "/assets.example.js": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\nexample.js\n\nthis script will run a web-demo of bootstrap-lite\n\ninstruction\n    1. save this script as example.js\n    2. run shell-command:\n        $ npm install bootstrap-lite && \\\n            PORT=8081 node example.js\n    3. open a browser to http://127.0.0.1:8081 and play with web-demo\n    4. edit this script to suit your needs\n*/\n\n\n\n// assets.utility2.header.js - start\n/* istanbul ignore next */\n/* jslint utility2:true */\n(function (globalThis) {\n    \"use strict\";\n    let consoleError;\n    let debugName;\n    let local;\n    debugName = \"debug\" + String(\"Inline\");\n    // init globalThis\n    globalThis.globalThis = globalThis.globalThis || globalThis;\n    // init debug_inline\n    if (!globalThis[debugName]) {\n        consoleError = console.error;\n        globalThis[debugName] = function (...argList) {\n        /*\n         * this function will both print <argList> to stderr\n         * and return <argList>[0]\n         */\n            consoleError(\"\\n\\n\" + debugName);\n            consoleError(...argList);\n            consoleError(\"\\n\");\n            return argList[0];\n        };\n    }\n    String.prototype.trimEnd = (\n        String.prototype.trimEnd || String.prototype.trimRight\n    );\n    String.prototype.trimStart = (\n        String.prototype.trimStart || String.prototype.trimLeft\n    );\n    // init local\n    local = {};\n    local.local = local;\n    globalThis.globalLocal = local;\n    // init isBrowser\n    local.isBrowser = (\n        typeof globalThis.XMLHttpRequest === \"function\"\n        && globalThis.navigator\n        && typeof globalThis.navigator.userAgent === \"string\"\n    );\n    // init isWebWorker\n    local.isWebWorker = (\n        local.isBrowser && typeof globalThis.importScripts === \"function\"\n    );\n    // init function\n    local.assertOrThrow = function (passed, msg) {\n    /*\n     * this function will throw err.<msg> if <passed> is falsy\n     */\n        if (passed) {\n            return;\n        }\n        throw (\n            (\n                msg\n                && typeof msg.message === \"string\"\n                && typeof msg.stack === \"string\"\n            )\n            // if msg is err, then leave as is\n            ? msg\n            : new Error(\n                typeof msg === \"string\"\n                // if msg is a string, then leave as is\n                ? msg\n                // else JSON.stringify msg\n                : JSON.stringify(msg, undefined, 4)\n            )\n        );\n    };\n    local.coalesce = function (...argList) {\n    /*\n     * this function will coalesce null, undefined, or \"\" in <argList>\n     */\n        let arg;\n        let ii;\n        ii = 0;\n        while (ii < argList.length) {\n            arg = argList[ii];\n            if (arg !== null && arg !== undefined && arg !== \"\") {\n                break;\n            }\n            ii += 1;\n        }\n        return arg;\n    };\n    local.fsRmrfSync = function (dir) {\n    /*\n     * this function will sync \"rm -rf\" <dir>\n     */\n        let child_process;\n        // do nothing if module does not exist\n        try {\n            child_process = require(\"child_process\");\n        } catch (ignore) {\n            return;\n        }\n        child_process.spawnSync(\"rm\", [\n            \"-rf\", dir\n        ], {\n            stdio: [\n                \"ignore\", 1, 2\n            ]\n        });\n    };\n    local.fsWriteFileWithMkdirpSync = function (file, data) {\n    /*\n     * this function will sync write <data> to <file> with \"mkdir -p\"\n     */\n        let fs;\n        // do nothing if module does not exist\n        try {\n            fs = require(\"fs\");\n        } catch (ignore) {\n            return;\n        }\n        // try to write file\n        try {\n            fs.writeFileSync(file, data);\n        } catch (ignore) {\n            // mkdir -p\n            require(\"child_process\").spawnSync(\n                \"mkdir\",\n                [\n                    \"-p\", require(\"path\").dirname(file)\n                ],\n                {\n                    stdio: [\n                        \"ignore\", 1, 2\n                    ]\n                }\n            );\n            // rewrite file\n            fs.writeFileSync(file, data);\n        }\n    };\n    local.functionOrNop = function (fnc) {\n    /*\n     * this function will if <fnc> exists,\n     * return <fnc>,\n     * else return <nop>\n     */\n        return fnc || local.nop;\n    };\n    local.identity = function (val) {\n    /*\n     * this function will return <val>\n     */\n        return val;\n    };\n    local.nop = function () {\n    /*\n     * this function will do nothing\n     */\n        return;\n    };\n    local.objectAssignDefault = function (target, source) {\n    /*\n     * this function will if items from <target> are null, undefined, or \"\",\n     * then overwrite them with items from <source>\n     */\n        target = target || {};\n        Object.keys(source || {}).forEach(function (key) {\n            if (\n                target[key] === null\n                || target[key] === undefined\n                || target[key] === \"\"\n            ) {\n                target[key] = target[key] || source[key];\n            }\n        });\n        return target;\n    };\n    local.querySelector = function (selectors) {\n    /*\n     * this function will return first dom-elem that match <selectors>\n     */\n        return (\n            typeof document === \"object\" && document\n            && typeof document.querySelector === \"function\"\n            && document.querySelector(selectors)\n        ) || {};\n    };\n    local.querySelectorAll = function (selectors) {\n    /*\n     * this function will return dom-elem-list that match <selectors>\n     */\n        return (\n            typeof document === \"object\" && document\n            && typeof document.querySelectorAll === \"function\"\n            && Array.from(document.querySelectorAll(selectors))\n        ) || [];\n    };\n    // require builtin\n    if (!local.isBrowser) {\n        local.assert = require(\"assert\");\n        local.buffer = require(\"buffer\");\n        local.child_process = require(\"child_process\");\n        local.cluster = require(\"cluster\");\n        local.crypto = require(\"crypto\");\n        local.dgram = require(\"dgram\");\n        local.dns = require(\"dns\");\n        local.domain = require(\"domain\");\n        local.events = require(\"events\");\n        local.fs = require(\"fs\");\n        local.http = require(\"http\");\n        local.https = require(\"https\");\n        local.net = require(\"net\");\n        local.os = require(\"os\");\n        local.path = require(\"path\");\n        local.querystring = require(\"querystring\");\n        local.readline = require(\"readline\");\n        local.repl = require(\"repl\");\n        local.stream = require(\"stream\");\n        local.string_decoder = require(\"string_decoder\");\n        local.timers = require(\"timers\");\n        local.tls = require(\"tls\");\n        local.tty = require(\"tty\");\n        local.url = require(\"url\");\n        local.util = require(\"util\");\n        local.vm = require(\"vm\");\n        local.zlib = require(\"zlib\");\n    }\n}((typeof globalThis === \"object\" && globalThis) || window));\n// assets.utility2.header.js - end\n\n\n\n/* jslint utility2:true */\n(function (local) {\n\"use strict\";\n\n\n\n// run shared js-env code - init-before\n(function () {\n// init local\nlocal = (\n    globalThis.utility2_rollup\n    || globalThis.utility2_bootstrap\n    || globalThis.utility2_moduleExports\n);\n// init exports\nglobalThis.local = local;\n}());\n\n\n\n/* istanbul ignore next */\n// run browser js-env code - init-test\n(function () {\nif (!local.isBrowser) {\n    return;\n}\n}());\n\n\n\n// run node js-env code - init-test\n(function () {\nif (local.isBrowser) {\n    return;\n}\n// init exports\nmodule.exports = local;\n// init assetsDict\nlocal.assetsDict = local.assetsDict || {};\n[\n    \"assets.swgg.swagger.json\",\n    \"assets.swgg.swagger.server.json\"\n].forEach(function (file) {\n    file = \"/\" + file;\n    local.assetsDict[file] = local.assetsDict[file] || \"\";\n    if (local.fs.existsSync(local.__dirname + file)) {\n        local.assetsDict[file] = local.fs.readFileSync(\n            local.__dirname + file,\n            \"utf8\"\n        );\n    }\n});\n/* jslint ignore:start */\nlocal.assetsDict[\"/assets.index.template.html\"] = '\\\n<!doctype html>\\n\\\n<html lang=\"en\">\\n\\\n<head>\\n\\\n<meta charset=\"utf-8\">\\n\\\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\\n\\\n<!-- \"assets.utility2.template.html\" -->\\n\\\n<title>{{env.npm_package_name}} ({{env.npm_package_version}})</title>\\n\\\n<link href=\"assets.bootstrap.css\" rel=\"stylesheet\">\\n\\\n<style>\\n\\\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/dashboard.css */\\n\\\n/*\\n\\\n * Base structure\\n\\\n */\\n\\\n/* Move down content because we have a fixed navbar that is 50px tall */\\n\\\nbody {\\n\\\n    padding-top: 50px;\\n\\\n}\\n\\\n/*\\n\\\n * Global add-ons\\n\\\n */\\n\\\n.sub-header {\\n\\\n    padding-bottom: 10px;\\n\\\n    border-bottom: 1px solid #eee;\\n\\\n}\\n\\\n/*\\n\\\n * Top navigation\\n\\\n * Hide default border to remove 1px line.\\n\\\n */\\n\\\n.navbar-fixed-top {\\n\\\n    border: 0;\\n\\\n}\\n\\\n/*\\n\\\n * Sidebar\\n\\\n */\\n\\\n/* Hide for mobile, show later */\\n\\\n.sidebar {\\n\\\n    display: none;\\n\\\n}\\n\\\n@media (min-width: 768px) {\\n\\\n    .sidebar {\\n\\\n        position: fixed;\\n\\\n        top: 51px;\\n\\\n        bottom: 0;\\n\\\n        left: 0;\\n\\\n        z-index: 1000;\\n\\\n        display: block;\\n\\\n        padding: 20px;\\n\\\n        overflow-x: hidden;\\n\\\n        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */\\n\\\n        background-color: #f5f5f5;\\n\\\n        border-right: 1px solid #eee;\\n\\\n    }\\n\\\n}\\n\\\n/* Sidebar navigation */\\n\\\n.nav-sidebar {\\n\\\n    margin-right: -21px; /* 20px padding + 1px border */\\n\\\n    margin-bottom: 20px;\\n\\\n    margin-left: -20px;\\n\\\n}\\n\\\n.nav-sidebar > li > a {\\n\\\n    padding-right: 20px;\\n\\\n    padding-left: 20px;\\n\\\n}\\n\\\n.nav-sidebar > .active > a,\\n\\\n.nav-sidebar > .active > a:hover,\\n\\\n.nav-sidebar > .active > a:focus {\\n\\\n    color: #fff;\\n\\\n    background-color: #428bca;\\n\\\n}\\n\\\n/*\\n\\\n * Main content\\n\\\n */\\n\\\n.main {\\n\\\n    padding: 20px;\\n\\\n}\\n\\\n@media (min-width: 768px) {\\n\\\n    .main {\\n\\\n        padding-right: 40px;\\n\\\n        padding-left: 40px;\\n\\\n    }\\n\\\n}\\n\\\n.main .page-header {\\n\\\n    margin-top: 0;\\n\\\n}\\n\\\n/*\\n\\\n * Placeholder dashboard ideas\\n\\\n */\\n\\\n.placeholders {\\n\\\n    margin-bottom: 30px;\\n\\\n    text-align: center;\\n\\\n}\\n\\\n.placeholders h4 {\\n\\\n    margin-bottom: 0;\\n\\\n}\\n\\\n.placeholder {\\n\\\n    margin-bottom: 20px;\\n\\\n}\\n\\\n.placeholder img {\\n\\\n    display: inline-block;\\n\\\n    border-radius: 50%;\\n\\\n}\\n\\\n.theme-dropdown .dropdown-menu {\\n\\\n    position: static;\\n\\\n    display: block;\\n\\\n    margin-bottom: 20px;\\n\\\n}\\n\\\n.theme-showcase > p > .btn {\\n\\\n    margin: 5px 0;\\n\\\n}\\n\\\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/theme.css */\\n\\\n.theme-showcase .navbar .container {\\n\\\n    width: auto;\\n\\\n}\\n\\\n</style>\\n\\\n</head>\\n\\\n<body>\\n\\\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/index.html -->\\n\\\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\\n\\\n    <div class=\"container-fluid\">\\n\\\n        <div class=\"navbar-header\">\\n\\\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\\n\\\n                <span class=\"sr-only\">Toggle navigation</span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n            </button>\\n\\\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\\n\\\n        </div>\\n\\\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\\n\\\n            <ul class=\"nav navbar-nav navbar-right\">\\n\\\n                <li><a href=\"#\">Dashboard</a></li>\\n\\\n                <li><a href=\"#\">Settings</a></li>\\n\\\n                <li><a href=\"#\">Profile</a></li>\\n\\\n                <li><a href=\"#\">Help</a></li>\\n\\\n            </ul>\\n\\\n            <form class=\"navbar-form navbar-right\">\\n\\\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search...\">\\n\\\n            </form>\\n\\\n        </div>\\n\\\n    </div>\\n\\\n</nav>\\n\\\n<div class=\"container-fluid\">\\n\\\n    <div class=\"row\">\\n\\\n        <div class=\"col-sm-3 col-md-2 sidebar\">\\n\\\n            <ul class=\"nav nav-sidebar\">\\n\\\n                <li class=\"active\"><a href=\"#\">Overview <span class=\"sr-only\">(current)</span></a></li>\\n\\\n                <li><a href=\"#\">Reports</a></li>\\n\\\n                <li><a href=\"#\">Analytics</a></li>\\n\\\n                <li><a href=\"#\">Export</a></li>\\n\\\n            </ul>\\n\\\n            <ul class=\"nav nav-sidebar\">\\n\\\n                <li><a href=\"\">Nav item</a></li>\\n\\\n                <li><a href=\"\">Nav item again</a></li>\\n\\\n                <li><a href=\"\">One more nav</a></li>\\n\\\n                <li><a href=\"\">Another nav item</a></li>\\n\\\n                <li><a href=\"\">More navigation</a></li>\\n\\\n            </ul>\\n\\\n            <ul class=\"nav nav-sidebar\">\\n\\\n                <li><a href=\"\">Nav item again</a></li>\\n\\\n                <li><a href=\"\">One more nav</a></li>\\n\\\n                <li><a href=\"\">Another nav item</a></li>\\n\\\n            </ul>\\n\\\n        </div>\\n\\\n        <div class=\"col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main\">\\n\\\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/index.html -->\\n\\\n<!-- Main jumbotron for a primary marketing message or call to action -->\\n\\\n<div class=\"jumbotron\">\\n\\\n    <h1>\\n\\\n    <!-- utility2-comment\\n\\\n        <a\\n\\\n            {{#if env.npm_package_homepage}}\\n\\\n            href=\"{{env.npm_package_homepage}}\"\\n\\\n            {{/if env.npm_package_homepage}}\\n\\\n            target=\"_blank\"\\n\\\n        >\\n\\\n    utility2-comment -->\\n\\\n            {{env.npm_package_name}} ({{env.npm_package_version}})\\n\\\n    <!-- utility2-comment\\n\\\n        </a>\\n\\\n    utility2-comment -->\\n\\\n    </h1>\\n\\\n    <p>{{env.npm_package_description}}</p>\\n\\\n    <!-- utility2-comment\\n\\\n    utility2-comment -->\\n\\\n</div>\\n\\\n<h1 class=\"page-header\">Dashboard</h1>\\n\\\n<div class=\"row placeholders\">\\n\\\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\\n\\\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\\n\\\n        <h4>Label</h4>\\n\\\n        <span class=\"text-muted\">Something else</span>\\n\\\n    </div>\\n\\\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\\n\\\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\\n\\\n        <h4>Label</h4>\\n\\\n        <span class=\"text-muted\">Something else</span>\\n\\\n    </div>\\n\\\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\\n\\\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\\n\\\n        <h4>Label</h4>\\n\\\n        <span class=\"text-muted\">Something else</span>\\n\\\n    </div>\\n\\\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\\n\\\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\\n\\\n        <h4>Label</h4>\\n\\\n        <span class=\"text-muted\">Something else</span>\\n\\\n    </div>\\n\\\n</div>\\n\\\n<h2 class=\"sub-header\">Section title</h2>\\n\\\n<div class=\"table-responsive\">\\n\\\n    <table class=\"table table-striped\">\\n\\\n        <thead>\\n\\\n            <tr>\\n\\\n                <th>#</th>\\n\\\n                <th>Header</th>\\n\\\n                <th>Header</th>\\n\\\n                <th>Header</th>\\n\\\n                <th>Header</th>\\n\\\n            </tr>\\n\\\n        </thead>\\n\\\n        <tbody>\\n\\\n            <tr>\\n\\\n                <td>1,001</td>\\n\\\n                <td>Lorem</td>\\n\\\n                <td>ipsum</td>\\n\\\n                <td>dolor</td>\\n\\\n                <td>sit</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,002</td>\\n\\\n                <td>amet</td>\\n\\\n                <td>consectetur</td>\\n\\\n                <td>adipiscing</td>\\n\\\n                <td>elit</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,003</td>\\n\\\n                <td>Integer</td>\\n\\\n                <td>nec</td>\\n\\\n                <td>odio</td>\\n\\\n                <td>Praesent</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,003</td>\\n\\\n                <td>libero</td>\\n\\\n                <td>Sed</td>\\n\\\n                <td>cursus</td>\\n\\\n                <td>ante</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,004</td>\\n\\\n                <td>dapibus</td>\\n\\\n                <td>diam</td>\\n\\\n                <td>Sed</td>\\n\\\n                <td>nisi</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,005</td>\\n\\\n                <td>Nulla</td>\\n\\\n                <td>quis</td>\\n\\\n                <td>sem</td>\\n\\\n                <td>at</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,006</td>\\n\\\n                <td>nibh</td>\\n\\\n                <td>elementum</td>\\n\\\n                <td>imperdiet</td>\\n\\\n                <td>Duis</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,007</td>\\n\\\n                <td>sagittis</td>\\n\\\n                <td>ipsum</td>\\n\\\n                <td>Praesent</td>\\n\\\n                <td>mauris</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,008</td>\\n\\\n                <td>Fusce</td>\\n\\\n                <td>nec</td>\\n\\\n                <td>tellus</td>\\n\\\n                <td>sed</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,009</td>\\n\\\n                <td>augue</td>\\n\\\n                <td>semper</td>\\n\\\n                <td>porta</td>\\n\\\n                <td>Mauris</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,010</td>\\n\\\n                <td>massa</td>\\n\\\n                <td>Vestibulum</td>\\n\\\n                <td>lacinia</td>\\n\\\n                <td>arcu</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,011</td>\\n\\\n                <td>eget</td>\\n\\\n                <td>nulla</td>\\n\\\n                <td>Class</td>\\n\\\n                <td>aptent</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,012</td>\\n\\\n                <td>taciti</td>\\n\\\n                <td>sociosqu</td>\\n\\\n                <td>ad</td>\\n\\\n                <td>litora</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,013</td>\\n\\\n                <td>torquent</td>\\n\\\n                <td>per</td>\\n\\\n                <td>conubia</td>\\n\\\n                <td>nostra</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,014</td>\\n\\\n                <td>per</td>\\n\\\n                <td>inceptos</td>\\n\\\n                <td>himenaeos</td>\\n\\\n                <td>Curabitur</td>\\n\\\n            </tr>\\n\\\n            <tr>\\n\\\n                <td>1,015</td>\\n\\\n                <td>sodales</td>\\n\\\n                <td>ligula</td>\\n\\\n                <td>in</td>\\n\\\n                <td>libero</td>\\n\\\n            </tr>\\n\\\n        </tbody>\\n\\\n    </table>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Buttons</h1>\\n\\\n</div>\\n\\\n<p>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-default\">Default</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-primary\">Primary</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-success\">Success</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-info\">Info</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-warning\">Warning</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-danger\">Danger</button>\\n\\\n    <button type=\"button\" class=\"btn btn-lg btn-link\">Link</button>\\n\\\n</p>\\n\\\n<p>\\n\\\n    <button type=\"button\" class=\"btn btn-default\">Default</button>\\n\\\n    <button type=\"button\" class=\"btn btn-primary\">Primary</button>\\n\\\n    <button type=\"button\" class=\"btn btn-success\">Success</button>\\n\\\n    <button type=\"button\" class=\"btn btn-info\">Info</button>\\n\\\n    <button type=\"button\" class=\"btn btn-warning\">Warning</button>\\n\\\n    <button type=\"button\" class=\"btn btn-danger\">Danger</button>\\n\\\n    <button type=\"button\" class=\"btn btn-link\">Link</button>\\n\\\n</p>\\n\\\n<p>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-default\">Default</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-primary\">Primary</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-success\">Success</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-info\">Info</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-warning\">Warning</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-danger\">Danger</button>\\n\\\n    <button type=\"button\" class=\"btn btn-sm btn-link\">Link</button>\\n\\\n</p>\\n\\\n<p>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-default\">Default</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-primary\">Primary</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-success\">Success</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-info\">Info</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-warning\">Warning</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-danger\">Danger</button>\\n\\\n    <button type=\"button\" class=\"btn btn-xs btn-link\">Link</button>\\n\\\n</p>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Tables</h1>\\n\\\n</div>\\n\\\n<div class=\"row\">\\n\\\n    <div class=\"col-md-6\">\\n\\\n        <table class=\"table\">\\n\\\n            <thead>\\n\\\n                <tr>\\n\\\n                    <th>#</th>\\n\\\n                    <th>First Name</th>\\n\\\n                    <th>Last Name</th>\\n\\\n                    <th>Username</th>\\n\\\n                </tr>\\n\\\n            </thead>\\n\\\n            <tbody>\\n\\\n                <tr>\\n\\\n                    <td>1</td>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@mdo</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>2</td>\\n\\\n                    <td>Jacob</td>\\n\\\n                    <td>Thornton</td>\\n\\\n                    <td>@fat</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>3</td>\\n\\\n                    <td>Larry</td>\\n\\\n                    <td>the Bird</td>\\n\\\n                    <td>@twitter</td>\\n\\\n                </tr>\\n\\\n            </tbody>\\n\\\n        </table>\\n\\\n    </div>\\n\\\n    <div class=\"col-md-6\">\\n\\\n        <table class=\"table table-striped\">\\n\\\n            <thead>\\n\\\n                <tr>\\n\\\n                    <th>#</th>\\n\\\n                    <th>First Name</th>\\n\\\n                    <th>Last Name</th>\\n\\\n                    <th>Username</th>\\n\\\n                </tr>\\n\\\n            </thead>\\n\\\n            <tbody>\\n\\\n                <tr>\\n\\\n                    <td>1</td>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@mdo</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>2</td>\\n\\\n                    <td>Jacob</td>\\n\\\n                    <td>Thornton</td>\\n\\\n                    <td>@fat</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>3</td>\\n\\\n                    <td>Larry</td>\\n\\\n                    <td>the Bird</td>\\n\\\n                    <td>@twitter</td>\\n\\\n                </tr>\\n\\\n            </tbody>\\n\\\n        </table>\\n\\\n    </div>\\n\\\n</div>\\n\\\n<div class=\"row\">\\n\\\n    <div class=\"col-md-6\">\\n\\\n        <table class=\"table table-bordered\">\\n\\\n            <thead>\\n\\\n                <tr>\\n\\\n                    <th>#</th>\\n\\\n                    <th>First Name</th>\\n\\\n                    <th>Last Name</th>\\n\\\n                    <th>Username</th>\\n\\\n                </tr>\\n\\\n            </thead>\\n\\\n            <tbody>\\n\\\n                <tr>\\n\\\n                    <td rowspan=\"2\">1</td>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@mdo</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@TwBootstrap</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>2</td>\\n\\\n                    <td>Jacob</td>\\n\\\n                    <td>Thornton</td>\\n\\\n                    <td>@fat</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>3</td>\\n\\\n                    <td colspan=\"2\">Larry the Bird</td>\\n\\\n                    <td>@twitter</td>\\n\\\n                </tr>\\n\\\n            </tbody>\\n\\\n        </table>\\n\\\n    </div>\\n\\\n    <div class=\"col-md-6\">\\n\\\n        <table class=\"table table-condensed\">\\n\\\n            <thead>\\n\\\n                <tr>\\n\\\n                    <th>#</th>\\n\\\n                    <th>First Name</th>\\n\\\n                    <th>Last Name</th>\\n\\\n                    <th>Username</th>\\n\\\n                </tr>\\n\\\n            </thead>\\n\\\n            <tbody>\\n\\\n                <tr>\\n\\\n                    <td>1</td>\\n\\\n                    <td>Mark</td>\\n\\\n                    <td>Otto</td>\\n\\\n                    <td>@mdo</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>2</td>\\n\\\n                    <td>Jacob</td>\\n\\\n                    <td>Thornton</td>\\n\\\n                    <td>@fat</td>\\n\\\n                </tr>\\n\\\n                <tr>\\n\\\n                    <td>3</td>\\n\\\n                    <td colspan=\"2\">Larry the Bird</td>\\n\\\n                    <td>@twitter</td>\\n\\\n                </tr>\\n\\\n            </tbody>\\n\\\n        </table>\\n\\\n    </div>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Thumbnails</h1>\\n\\\n</div>\\n\\\n<img src=\"#\" data-src=\"holder.js/200x200\" class=\"img-thumbnail\" alt=\"A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera\">\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Labels</h1>\\n\\\n</div>\\n\\\n<h1>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h1>\\n\\\n<h2>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h2>\\n\\\n<h3>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h3>\\n\\\n<h4>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h4>\\n\\\n<h5>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h5>\\n\\\n<h6>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</h6>\\n\\\n<p>\\n\\\n    <span class=\"label label-default\">Default</span>\\n\\\n    <span class=\"label label-primary\">Primary</span>\\n\\\n    <span class=\"label label-success\">Success</span>\\n\\\n    <span class=\"label label-info\">Info</span>\\n\\\n    <span class=\"label label-warning\">Warning</span>\\n\\\n    <span class=\"label label-danger\">Danger</span>\\n\\\n</p>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Badges</h1>\\n\\\n</div>\\n\\\n<p>\\n\\\n    <a href=\"#\">Inbox <span class=\"badge\">42</span></a>\\n\\\n</p>\\n\\\n<ul class=\"nav nav-pills\" role=\"tablist\">\\n\\\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home <span class=\"badge\">42</span></a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Messages <span class=\"badge\">3</span></a></li>\\n\\\n</ul>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Dropdown menus</h1>\\n\\\n</div>\\n\\\n<div class=\"dropdown theme-dropdown clearfix\">\\n\\\n    <a id=\"dropdownMenu1\" href=\"#\" class=\"sr-only dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\\n\\\n    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\\n\\\n        <li class=\"active\"><a href=\"#\">Action</a></li>\\n\\\n        <li><a href=\"#\">Another action</a></li>\\n\\\n        <li><a href=\"#\">Something else here</a></li>\\n\\\n        <li role=\"separator\" class=\"divider\"></li>\\n\\\n        <li><a href=\"#\">Separated link</a></li>\\n\\\n    </ul>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Navs</h1>\\n\\\n</div>\\n\\\n<ul class=\"nav nav-tabs\" role=\"tablist\">\\n\\\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\\n\\\n</ul>\\n\\\n<ul class=\"nav nav-pills\" role=\"tablist\">\\n\\\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\\n\\\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\\n\\\n</ul>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Navbars</h1>\\n\\\n</div>\\n\\\n<nav class=\"navbar navbar-default\">\\n\\\n    <div class=\"container\">\\n\\\n        <div class=\"navbar-header\">\\n\\\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\\n\\\n                <span class=\"sr-only\">Toggle navigation</span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n            </button>\\n\\\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\\n\\\n        </div>\\n\\\n        <div class=\"navbar-collapse collapse\">\\n\\\n            <ul class=\"nav navbar-nav\">\\n\\\n                <li class=\"active\"><a href=\"#\">Home</a></li>\\n\\\n                <li><a href=\"#\">About</a></li>\\n\\\n                <li><a href=\"#\">Contact</a></li>\\n\\\n                <li class=\"dropdown\">\\n\\\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\\n\\\n                    <ul class=\"dropdown-menu\">\\n\\\n                        <li><a href=\"#\">Action</a></li>\\n\\\n                        <li><a href=\"#\">Another action</a></li>\\n\\\n                        <li><a href=\"#\">Something else here</a></li>\\n\\\n                        <li role=\"separator\" class=\"divider\"></li>\\n\\\n                        <li class=\"dropdown-header\">Nav header</li>\\n\\\n                        <li><a href=\"#\">Separated link</a></li>\\n\\\n                        <li><a href=\"#\">One more separated link</a></li>\\n\\\n                    </ul>\\n\\\n                </li>\\n\\\n            </ul>\\n\\\n        </div><!--/.nav-collapse -->\\n\\\n    </div>\\n\\\n</nav>\\n\\\n<nav class=\"navbar navbar-inverse\">\\n\\\n    <div class=\"container\">\\n\\\n        <div class=\"navbar-header\">\\n\\\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\\n\\\n                <span class=\"sr-only\">Toggle navigation</span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n                <span class=\"icon-bar\"></span>\\n\\\n            </button>\\n\\\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\\n\\\n        </div>\\n\\\n        <div class=\"navbar-collapse collapse\">\\n\\\n            <ul class=\"nav navbar-nav\">\\n\\\n                <li class=\"active\"><a href=\"#\">Home</a></li>\\n\\\n                <li><a href=\"#\">About</a></li>\\n\\\n                <li><a href=\"#\">Contact</a></li>\\n\\\n                <li class=\"dropdown\">\\n\\\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\\n\\\n                    <ul class=\"dropdown-menu\">\\n\\\n                        <li><a href=\"#\">Action</a></li>\\n\\\n                        <li><a href=\"#\">Another action</a></li>\\n\\\n                        <li><a href=\"#\">Something else here</a></li>\\n\\\n                        <li role=\"separator\" class=\"divider\"></li>\\n\\\n                        <li class=\"dropdown-header\">Nav header</li>\\n\\\n                        <li><a href=\"#\">Separated link</a></li>\\n\\\n                        <li><a href=\"#\">One more separated link</a></li>\\n\\\n                    </ul>\\n\\\n                </li>\\n\\\n            </ul>\\n\\\n        </div><!--/.nav-collapse -->\\n\\\n    </div>\\n\\\n</nav>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Alerts</h1>\\n\\\n</div>\\n\\\n<div class=\"alert alert-success\" role=\"alert\">\\n\\\n    <strong>Well done!</strong> You successfully read this important alert message.\\n\\\n</div>\\n\\\n<div class=\"alert alert-info\" role=\"alert\">\\n\\\n    <strong>Heads up!</strong> This alert needs your attention, but it\\'s not super important.\\n\\\n</div>\\n\\\n<div class=\"alert alert-warning\" role=\"alert\">\\n\\\n    <strong>Warning!</strong> Best check yo self, you\\'re not looking too good.\\n\\\n</div>\\n\\\n<div class=\"alert alert-danger\" role=\"alert\">\\n\\\n    <strong>Oh snap!</strong> Change a few things up and try submitting again.\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Progress bars</h1>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%;\"><span class=\"sr-only\">60% Complete</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete</span></div>\\n\\\n</div>\\n\\\n<div class=\"progress\">\\n\\\n    <div class=\"progress-bar progress-bar-success\" style=\"width: 35%\"><span class=\"sr-only\">35% Complete (success)</span></div>\\n\\\n    <div class=\"progress-bar progress-bar-warning\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div>\\n\\\n    <div class=\"progress-bar progress-bar-danger\" style=\"width: 10%\"><span class=\"sr-only\">10% Complete (danger)</span></div>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>List groups</h1>\\n\\\n</div>\\n\\\n<div class=\"row\">\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <ul class=\"list-group\">\\n\\\n            <li class=\"list-group-item\">Cras justo odio</li>\\n\\\n            <li class=\"list-group-item\">Dapibus ac facilisis in</li>\\n\\\n            <li class=\"list-group-item\">Morbi leo risus</li>\\n\\\n            <li class=\"list-group-item\">Porta ac consectetur ac</li>\\n\\\n            <li class=\"list-group-item\">Vestibulum at eros</li>\\n\\\n        </ul>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"list-group\">\\n\\\n            <a href=\"#\" class=\"list-group-item active\">\\n\\\n                Cras justo odio\\n\\\n            </a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">Dapibus ac facilisis in</a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">Morbi leo risus</a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">Porta ac consectetur ac</a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">Vestibulum at eros</a>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"list-group\">\\n\\\n            <a href=\"#\" class=\"list-group-item active\">\\n\\\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\\n\\\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\\n\\\n            </a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">\\n\\\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\\n\\\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\\n\\\n            </a>\\n\\\n            <a href=\"#\" class=\"list-group-item\">\\n\\\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\\n\\\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\\n\\\n            </a>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Panels</h1>\\n\\\n</div>\\n\\\n<div class=\"row\">\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"panel panel-default\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n        <div class=\"panel panel-primary\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"panel panel-success\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n        <div class=\"panel panel-info\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n    <div class=\"col-sm-4\">\\n\\\n        <div class=\"panel panel-warning\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n        <div class=\"panel panel-danger\">\\n\\\n            <div class=\"panel-heading\">\\n\\\n                <h3 class=\"panel-title\">Panel title</h3>\\n\\\n            </div>\\n\\\n            <div class=\"panel-body\">\\n\\\n                Panel content\\n\\\n            </div>\\n\\\n        </div>\\n\\\n    </div><!-- /.col-sm-4 -->\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Wells</h1>\\n\\\n</div>\\n\\\n<div class=\"well\">\\n\\\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>\\n\\\n</div>\\n\\\n<div class=\"page-header\">\\n\\\n    <h1>Carousel</h1>\\n\\\n</div>\\n\\\n<div id=\"carousel-example-generic\" class=\"carousel slide\" data-ride=\"carousel\">\\n\\\n    <ol class=\"carousel-indicators\">\\n\\\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"0\" class=\"active\"></li>\\n\\\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"1\"></li>\\n\\\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"2\"></li>\\n\\\n    </ol>\\n\\\n    <div class=\"carousel-inner\" role=\"listbox\">\\n\\\n        <div class=\"item active\">\\n\\\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#777:#555/text:First slide\" alt=\"First slide\">\\n\\\n        </div>\\n\\\n        <div class=\"item\">\\n\\\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#666:#444/text:Second slide\" alt=\"Second slide\">\\n\\\n        </div>\\n\\\n        <div class=\"item\">\\n\\\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#555:#333/text:Third slide\" alt=\"Third slide\">\\n\\\n        </div>\\n\\\n    </div>\\n\\\n    <a class=\"left carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"prev\">\\n\\\n        <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\\n\\\n        <span class=\"sr-only\">Previous</span>\\n\\\n    </a>\\n\\\n    <a class=\"right carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"next\">\\n\\\n        <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\\n\\\n        <span class=\"sr-only\">Next</span>\\n\\\n    </a>\\n\\\n</div>\\n\\\n        </div>\\n\\\n    </div>\\n\\\n</div>\\n\\\n<!-- Bootstrap core JavaScript\\n\\\n================================================== -->\\n\\\n<!-- Placed at the end of the document so the pages load faster -->\\n\\\n<script src=\"assets.bootstrap.js\"></script>\\n\\\n</body>\\n\\\n</html>\\n\\\n';\n/* jslint ignore:end */\nlocal.assetsDict[\"/assets.bootstrap.js\"] = (\n    local.assetsDict[\"/assets.bootstrap.js\"]\n    || local.fs.readFileSync(\n        local.__dirname + \"/lib.bootstrap.js\",\n        \"utf8\"\n    ).replace((\n        /^#!\\//\n    ), \"// \")\n);\n/* validateLineSortedReset */\nlocal.assetsDict[\"/\"] = local.assetsDict[\n    \"/assets.index.template.html\"\n].replace((\n    /\\{\\{env\\.(\\w+?)\\}\\}/g\n), function (match0, match1) {\n    switch (match1) {\n    case \"npm_package_description\":\n        return \"the greatest app in the world!\";\n    case \"npm_package_name\":\n        return \"bootstrap-lite\";\n    case \"npm_package_nameLib\":\n        return \"bootstrap\";\n    case \"npm_package_version\":\n        return \"0.0.1\";\n    default:\n        return match0;\n    }\n});\nlocal.assetsDict[\"/assets.example.html\"] = local.assetsDict[\"/\"];\n// init cli\nif (module !== require.main || globalThis.utility2_rollup) {\n    return;\n}\nlocal.assetsDict[\"/assets.example.js\"] = (\n    local.assetsDict[\"/assets.example.js\"]\n    || local.fs.readFileSync(__filename, \"utf8\")\n);\nlocal.assetsDict[\"/favicon.ico\"] = local.assetsDict[\"/favicon.ico\"] || \"\";\nlocal.assetsDict[\"/index.html\"] = local.assetsDict[\"/\"];\n// if $npm_config_timeout_exit exists,\n// then exit this process after $npm_config_timeout_exit ms\nif (Number(process.env.npm_config_timeout_exit)) {\n    setTimeout(process.exit, Number(process.env.npm_config_timeout_exit));\n}\n// start server\nif (globalThis.utility2_serverHttp1) {\n    return;\n}\nprocess.env.PORT = process.env.PORT || \"8081\";\nconsole.error(\"http-server listening on port \" + process.env.PORT);\nlocal.http.createServer(function (req, res) {\n    req.urlParsed = local.url.parse(req.url);\n    if (local.assetsDict[req.urlParsed.pathname] !== undefined) {\n        res.end(local.assetsDict[req.urlParsed.pathname]);\n        return;\n    }\n    res.statusCode = 404;\n    res.end();\n}).listen(process.env.PORT);\n}());\n}());",
             "/assets.swgg.swagger.json": "",
-            "/assets.test.js": "/* istanbul instrument in package bootstrap */\n// assets.utility2.header.js - start\n/* istanbul ignore next */\n/* jslint utility2:true */\n(function (globalThis) {\n    \"use strict\";\n    let ArrayPrototypeFlat;\n    let TextXxcoder;\n    let consoleError;\n    let debugName;\n    let local;\n    debugName = \"debug\" + String(\"Inline\");\n    // init globalThis\n    globalThis.globalThis = globalThis.globalThis || globalThis;\n    // init debug_inline\n    if (!globalThis[debugName]) {\n        consoleError = console.error;\n        globalThis[debugName] = function (...argList) {\n        /*\n         * this function will both print <argList> to stderr\n         * and return <argList>[0]\n         */\n            consoleError(\"\\n\\n\" + debugName);\n            consoleError.apply(console, argList);\n            consoleError(\"\\n\");\n            // return arg0 for inspection\n            return argList[0];\n        };\n    }\n    // polyfill\n    ArrayPrototypeFlat = function (depth) {\n    /*\n     * this function will polyfill Array.prototype.flat\n     * https://github.com/jonathantneal/array-flat-polyfill\n     */\n        depth = (\n            globalThis.isNaN(depth)\n            ? 1\n            : Number(depth)\n        );\n        if (!depth) {\n            return Array.prototype.slice.call(this);\n        }\n        return Array.prototype.reduce.call(this, function (acc, cur) {\n            if (Array.isArray(cur)) {\n                // recurse\n                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));\n            } else {\n                acc.push(cur);\n            }\n            return acc;\n        }, []);\n    };\n    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;\n    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(\n        ...argList\n    ) {\n    /*\n     * this function will polyfill Array.prototype.flatMap\n     * https://github.com/jonathantneal/array-flat-polyfill\n     */\n        return this.map(...argList).flat();\n    };\n    String.prototype.trimEnd = (\n        String.prototype.trimEnd || String.prototype.trimRight\n    );\n    String.prototype.trimStart = (\n        String.prototype.trimStart || String.prototype.trimLeft\n    );\n    (function () {\n        try {\n            globalThis.TextDecoder = (\n                globalThis.TextDecoder || require(\"util\").TextDecoder\n            );\n            globalThis.TextEncoder = (\n                globalThis.TextEncoder || require(\"util\").TextEncoder\n            );\n        } catch (ignore) {}\n    }());\n    TextXxcoder = function () {\n    /*\n     * this function will polyfill TextDecoder/TextEncoder\n     * https://gist.github.com/Yaffle/5458286\n     */\n        return;\n    };\n    TextXxcoder.prototype.decode = function (octets) {\n    /*\n     * this function will polyfill TextDecoder.prototype.decode\n     * https://gist.github.com/Yaffle/5458286\n     */\n        let bytesNeeded;\n        let codePoint;\n        let ii;\n        let kk;\n        let octet;\n        let string;\n        string = \"\";\n        ii = 0;\n        while (ii < octets.length) {\n            octet = octets[ii];\n            bytesNeeded = 0;\n            codePoint = 0;\n            if (octet <= 0x7F) {\n                bytesNeeded = 0;\n                codePoint = octet & 0xFF;\n            } else if (octet <= 0xDF) {\n                bytesNeeded = 1;\n                codePoint = octet & 0x1F;\n            } else if (octet <= 0xEF) {\n                bytesNeeded = 2;\n                codePoint = octet & 0x0F;\n            } else if (octet <= 0xF4) {\n                bytesNeeded = 3;\n                codePoint = octet & 0x07;\n            }\n            if (octets.length - ii - bytesNeeded > 0) {\n                kk = 0;\n                while (kk < bytesNeeded) {\n                    octet = octets[ii + kk + 1];\n                    codePoint = (codePoint << 6) | (octet & 0x3F);\n                    kk += 1;\n                }\n            } else {\n                codePoint = 0xFFFD;\n                bytesNeeded = octets.length - ii;\n            }\n            string += String.fromCodePoint(codePoint);\n            ii += bytesNeeded + 1;\n        }\n        return string;\n    };\n    TextXxcoder.prototype.encode = function (string) {\n    /*\n     * this function will polyfill TextEncoder.prototype.encode\n     * https://gist.github.com/Yaffle/5458286\n     */\n        let bits;\n        let cc;\n        let codePoint;\n        let ii;\n        let length;\n        let octets;\n        octets = [];\n        length = string.length;\n        ii = 0;\n        while (ii < length) {\n            codePoint = string.codePointAt(ii);\n            cc = 0;\n            bits = 0;\n            if (codePoint <= 0x0000007F) {\n                cc = 0;\n                bits = 0x00;\n            } else if (codePoint <= 0x000007FF) {\n                cc = 6;\n                bits = 0xC0;\n            } else if (codePoint <= 0x0000FFFF) {\n                cc = 12;\n                bits = 0xE0;\n            } else if (codePoint <= 0x001FFFFF) {\n                cc = 18;\n                bits = 0xF0;\n            }\n            octets.push(bits | (codePoint >> cc));\n            cc -= 6;\n            while (cc >= 0) {\n                octets.push(0x80 | ((codePoint >> cc) & 0x3F));\n                cc -= 6;\n            }\n            ii += (\n                codePoint >= 0x10000\n                ? 2\n                : 1\n            );\n        }\n        return octets;\n    };\n    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;\n    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;\n    // init local\n    local = {};\n    local.local = local;\n    globalThis.globalLocal = local;\n    // init isBrowser\n    local.isBrowser = (\n        typeof globalThis.XMLHttpRequest === \"function\"\n        && globalThis.navigator\n        && typeof globalThis.navigator.userAgent === \"string\"\n    );\n    // init isWebWorker\n    local.isWebWorker = (\n        local.isBrowser && typeof globalThis.importScript === \"function\"\n    );\n    // init function\n    local.assertOrThrow = function (passed, message) {\n    /*\n     * this function will throw err.<message> if <passed> is falsy\n     */\n        let err;\n        if (passed) {\n            return;\n        }\n        err = (\n            (\n                message\n                && typeof message.message === \"string\"\n                && typeof message.stack === \"string\"\n            )\n            // if message is errObj, then leave as is\n            ? message\n            : new Error(\n                typeof message === \"string\"\n                // if message is a string, then leave as is\n                ? message\n                // else JSON.stringify message\n                : JSON.stringify(message, undefined, 4)\n            )\n        );\n        throw err;\n    };\n    local.coalesce = function (...argList) {\n    /*\n     * this function will coalesce null, undefined, or \"\" in <argList>\n     */\n        let arg;\n        let ii;\n        ii = 0;\n        while (ii < argList.length) {\n            arg = argList[ii];\n            if (arg !== null && arg !== undefined && arg !== \"\") {\n                break;\n            }\n            ii += 1;\n        }\n        return arg;\n    };\n    local.fsRmrfSync = function (dir) {\n    /*\n     * this function will sync \"rm -rf\" <dir>\n     */\n        let child_process;\n        try {\n            child_process = require(\"child_process\");\n        } catch (ignore) {\n            return;\n        }\n        child_process.spawnSync(\"rm\", [\n            \"-rf\", dir\n        ], {\n            stdio: [\n                \"ignore\", 1, 2\n            ]\n        });\n    };\n    local.fsWriteFileWithMkdirpSync = function (file, data) {\n    /*\n     * this function will sync write <data> to <file> with \"mkdir -p\"\n     */\n        let fs;\n        try {\n            fs = require(\"fs\");\n        } catch (ignore) {\n            return;\n        }\n        // try to write file\n        try {\n            fs.writeFileSync(file, data);\n        } catch (ignore) {\n            // mkdir -p\n            require(\"child_process\").spawnSync(\n                \"mkdir\",\n                [\n                    \"-p\", require(\"path\").dirname(file)\n                ],\n                {\n                    stdio: [\n                        \"ignore\", 1, 2\n                    ]\n                }\n            );\n            // rewrite file\n            fs.writeFileSync(file, data);\n        }\n    };\n    local.functionOrNop = function (fnc) {\n    /*\n     * this function will if <fnc> exists,\n     * return <fnc>,\n     * else return <nop>\n     */\n        return fnc || local.nop;\n    };\n    local.identity = function (val) {\n    /*\n     * this function will return <val>\n     */\n        return val;\n    };\n    local.nop = function () {\n    /*\n     * this function will do nothing\n     */\n        return;\n    };\n    local.objectAssignDefault = function (target, source) {\n    /*\n     * this function will if items from <target> are null, undefined, or \"\",\n     * then overwrite them with items from <source>\n     */\n        target = target || {};\n        Object.keys(source || {}).forEach(function (key) {\n            if (\n                target[key] === null\n                || target[key] === undefined\n                || target[key] === \"\"\n            ) {\n                target[key] = target[key] || source[key];\n            }\n        });\n        return target;\n    };\n    local.querySelector = function (selectors) {\n    /*\n     * this function will return first dom-elem that match <selectors>\n     */\n        return (\n            typeof document === \"object\" && document\n            && typeof document.querySelector === \"function\"\n            && document.querySelector(selectors)\n        ) || {};\n    };\n    local.querySelectorAll = function (selectors) {\n    /*\n     * this function will return dom-elem-list that match <selectors>\n     */\n        return (\n            typeof document === \"object\" && document\n            && typeof document.querySelectorAll === \"function\"\n            && Array.from(document.querySelectorAll(selectors))\n        ) || [];\n    };\n    // require builtin\n    if (!local.isBrowser) {\n        local.assert = require(\"assert\");\n        local.buffer = require(\"buffer\");\n        local.child_process = require(\"child_process\");\n        local.cluster = require(\"cluster\");\n        local.crypto = require(\"crypto\");\n        local.dgram = require(\"dgram\");\n        local.dns = require(\"dns\");\n        local.domain = require(\"domain\");\n        local.events = require(\"events\");\n        local.fs = require(\"fs\");\n        local.http = require(\"http\");\n        local.https = require(\"https\");\n        local.net = require(\"net\");\n        local.os = require(\"os\");\n        local.path = require(\"path\");\n        local.querystring = require(\"querystring\");\n        local.readline = require(\"readline\");\n        local.repl = require(\"repl\");\n        local.stream = require(\"stream\");\n        local.string_decoder = require(\"string_decoder\");\n        local.timers = require(\"timers\");\n        local.tls = require(\"tls\");\n        local.tty = require(\"tty\");\n        local.url = require(\"url\");\n        local.util = require(\"util\");\n        local.vm = require(\"vm\");\n        local.zlib = require(\"zlib\");\n    }\n}((typeof globalThis === \"object\" && globalThis) || (function () {\n    return Function(\"return this\")(); // jslint ignore:line\n}())));\n// assets.utility2.header.js - end\n\n\n\n/* istanbul ignore next */\n/* jslint utility2:true */\n(function (local) {\n\"use strict\";\n\n\n\n// run shared js-env code - init-before\n(function () {\n// init local\nlocal = globalThis.utility2 || require(\"utility2\");\nlocal = local.requireReadme();\nglobalThis.local = local;\n// init test\nlocal.testRunDefault(local);\n}());\n\n\n\n// run shared js-env code - function\n(function () {\nlocal.testCase_buildApp_default = function (option, onError) {\n/*\n * this function will test buildApp's default handling-behavior\n */\n    if (local.isBrowser) {\n        onError(null, option);\n        return;\n    }\n    local.testCase_buildReadme_default(option, local.onErrorThrow);\n    local.testCase_buildLib_default(option, local.onErrorThrow);\n    local.testCase_buildTest_default(option, local.onErrorThrow);\n    option = {\n        assetsList: [\n            {\n                file: \"/assets.bootstrap-v3.4.1.rollup.css\",\n                url: \"/assets.bootstrap.css\"\n            }, {\n                file: \"/assets.bootstrap-v3.4.1.rollup.js\",\n                url: \"/assets.bootstrap.js\"\n            }\n        ]\n    };\n    local.buildApp(option, onError);\n};\n\nlocal.testCase_buildReadme_default = function (option, onError) {\n/*\n * this function will test buildReadme's default handling-behavior\n */\n    if (local.isBrowser) {\n        onError(null, option);\n        return;\n    }\n    option = {};\n    option.customize = function () {\n        // search-and-replace - customize dataTo\n        [\n            (\n                /\\n\\/\\*\\u0020jslint\\u0020ignore:start\\u0020\\*\\/\\nlocal.assetsDict\\[\"\\/assets.index.template.html\"\\]\\u0020=\\u0020'\\\\\\n[\\S\\s]*?\\n\\/\\*\\u0020jslint\\u0020ignore:end\\u0020\\*\\/\\n/\n            )\n        ].forEach(function (rgx) {\n            option.dataFrom.replace(rgx, function (match0) {\n                option.dataTo = option.dataTo.replace(rgx, match0);\n            });\n        });\n    };\n    local.buildReadme(option, onError);\n};\n}());\n}());\n",
-            "/index.rollup.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<!-- \"assets.utility2.template.html\" -->\n<title>bootstrap-lite (2020.1.20)</title>\n<link href=\"assets.bootstrap.css\" rel=\"stylesheet\">\n<style>\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/dashboard.css */\n/*\n * Base structure\n */\n/* Move down content because we have a fixed navbar that is 50px tall */\nbody {\n    padding-top: 50px;\n}\n/*\n * Global add-ons\n */\n.sub-header {\n    padding-bottom: 10px;\n    border-bottom: 1px solid #eee;\n}\n/*\n * Top navigation\n * Hide default border to remove 1px line.\n */\n.navbar-fixed-top {\n    border: 0;\n}\n/*\n * Sidebar\n */\n/* Hide for mobile, show later */\n.sidebar {\n    display: none;\n}\n@media (min-width: 768px) {\n    .sidebar {\n        position: fixed;\n        top: 51px;\n        bottom: 0;\n        left: 0;\n        z-index: 1000;\n        display: block;\n        padding: 20px;\n        overflow-x: hidden;\n        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */\n        background-color: #f5f5f5;\n        border-right: 1px solid #eee;\n    }\n}\n/* Sidebar navigation */\n.nav-sidebar {\n    margin-right: -21px; /* 20px padding + 1px border */\n    margin-bottom: 20px;\n    margin-left: -20px;\n}\n.nav-sidebar > li > a {\n    padding-right: 20px;\n    padding-left: 20px;\n}\n.nav-sidebar > .active > a,\n.nav-sidebar > .active > a:hover,\n.nav-sidebar > .active > a:focus {\n    color: #fff;\n    background-color: #428bca;\n}\n/*\n * Main content\n */\n.main {\n    padding: 20px;\n}\n@media (min-width: 768px) {\n    .main {\n        padding-right: 40px;\n        padding-left: 40px;\n    }\n}\n.main .page-header {\n    margin-top: 0;\n}\n/*\n * Placeholder dashboard ideas\n */\n.placeholders {\n    margin-bottom: 30px;\n    text-align: center;\n}\n.placeholders h4 {\n    margin-bottom: 0;\n}\n.placeholder {\n    margin-bottom: 20px;\n}\n.placeholder img {\n    display: inline-block;\n    border-radius: 50%;\n}\n.theme-dropdown .dropdown-menu {\n    position: static;\n    display: block;\n    margin-bottom: 20px;\n}\n.theme-showcase > p > .btn {\n    margin: 5px 0;\n}\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/theme.css */\n.theme-showcase .navbar .container {\n    width: auto;\n}\n</style>\n</head>\n<body>\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/index.html -->\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li><a href=\"#\">Dashboard</a></li>\n                <li><a href=\"#\">Settings</a></li>\n                <li><a href=\"#\">Profile</a></li>\n                <li><a href=\"#\">Help</a></li>\n            </ul>\n            <form class=\"navbar-form navbar-right\">\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search...\">\n            </form>\n        </div>\n    </div>\n</nav>\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"col-sm-3 col-md-2 sidebar\">\n            <ul class=\"nav nav-sidebar\">\n                <li class=\"active\"><a href=\"#\">Overview <span class=\"sr-only\">(current)</span></a></li>\n                <li><a href=\"#\">Reports</a></li>\n                <li><a href=\"#\">Analytics</a></li>\n                <li><a href=\"#\">Export</a></li>\n            </ul>\n            <ul class=\"nav nav-sidebar\">\n                <li><a href=\"\">Nav item</a></li>\n                <li><a href=\"\">Nav item again</a></li>\n                <li><a href=\"\">One more nav</a></li>\n                <li><a href=\"\">Another nav item</a></li>\n                <li><a href=\"\">More navigation</a></li>\n            </ul>\n            <ul class=\"nav nav-sidebar\">\n                <li><a href=\"\">Nav item again</a></li>\n                <li><a href=\"\">One more nav</a></li>\n                <li><a href=\"\">Another nav item</a></li>\n            </ul>\n        </div>\n        <div class=\"col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main\">\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/index.html -->\n<!-- Main jumbotron for a primary marketing message or call to action -->\n<div class=\"jumbotron\">\n    <h1>\n    \n        <a\n            \n            href=\"https://github.com/kaizhu256/node-bootstrap-lite\"\n            \n            target=\"_blank\"\n        >\n    \n            bootstrap-lite (2020.1.20)\n    \n        </a>\n    \n    </h1>\n    <p>this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo</p>\n    \n    \n</div>\n<h1 class=\"page-header\">Dashboard</h1>\n<div class=\"row placeholders\">\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n</div>\n<h2 class=\"sub-header\">Section title</h2>\n<div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>#</th>\n                <th>Header</th>\n                <th>Header</th>\n                <th>Header</th>\n                <th>Header</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td>1,001</td>\n                <td>Lorem</td>\n                <td>ipsum</td>\n                <td>dolor</td>\n                <td>sit</td>\n            </tr>\n            <tr>\n                <td>1,002</td>\n                <td>amet</td>\n                <td>consectetur</td>\n                <td>adipiscing</td>\n                <td>elit</td>\n            </tr>\n            <tr>\n                <td>1,003</td>\n                <td>Integer</td>\n                <td>nec</td>\n                <td>odio</td>\n                <td>Praesent</td>\n            </tr>\n            <tr>\n                <td>1,003</td>\n                <td>libero</td>\n                <td>Sed</td>\n                <td>cursus</td>\n                <td>ante</td>\n            </tr>\n            <tr>\n                <td>1,004</td>\n                <td>dapibus</td>\n                <td>diam</td>\n                <td>Sed</td>\n                <td>nisi</td>\n            </tr>\n            <tr>\n                <td>1,005</td>\n                <td>Nulla</td>\n                <td>quis</td>\n                <td>sem</td>\n                <td>at</td>\n            </tr>\n            <tr>\n                <td>1,006</td>\n                <td>nibh</td>\n                <td>elementum</td>\n                <td>imperdiet</td>\n                <td>Duis</td>\n            </tr>\n            <tr>\n                <td>1,007</td>\n                <td>sagittis</td>\n                <td>ipsum</td>\n                <td>Praesent</td>\n                <td>mauris</td>\n            </tr>\n            <tr>\n                <td>1,008</td>\n                <td>Fusce</td>\n                <td>nec</td>\n                <td>tellus</td>\n                <td>sed</td>\n            </tr>\n            <tr>\n                <td>1,009</td>\n                <td>augue</td>\n                <td>semper</td>\n                <td>porta</td>\n                <td>Mauris</td>\n            </tr>\n            <tr>\n                <td>1,010</td>\n                <td>massa</td>\n                <td>Vestibulum</td>\n                <td>lacinia</td>\n                <td>arcu</td>\n            </tr>\n            <tr>\n                <td>1,011</td>\n                <td>eget</td>\n                <td>nulla</td>\n                <td>Class</td>\n                <td>aptent</td>\n            </tr>\n            <tr>\n                <td>1,012</td>\n                <td>taciti</td>\n                <td>sociosqu</td>\n                <td>ad</td>\n                <td>litora</td>\n            </tr>\n            <tr>\n                <td>1,013</td>\n                <td>torquent</td>\n                <td>per</td>\n                <td>conubia</td>\n                <td>nostra</td>\n            </tr>\n            <tr>\n                <td>1,014</td>\n                <td>per</td>\n                <td>inceptos</td>\n                <td>himenaeos</td>\n                <td>Curabitur</td>\n            </tr>\n            <tr>\n                <td>1,015</td>\n                <td>sodales</td>\n                <td>ligula</td>\n                <td>in</td>\n                <td>libero</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n<div class=\"page-header\">\n    <h1>Buttons</h1>\n</div>\n<p>\n    <button type=\"button\" class=\"btn btn-lg btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-lg btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-lg btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-lg btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-lg btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-lg btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-lg btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-sm btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-sm btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-sm btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-sm btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-sm btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-sm btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-sm btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-xs btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-xs btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-xs btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-xs btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-xs btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-xs btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-xs btn-link\">Link</button>\n</p>\n<div class=\"page-header\">\n    <h1>Tables</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-6\">\n        <table class=\"table\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td>Larry</td>\n                    <td>the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <div class=\"col-md-6\">\n        <table class=\"table table-striped\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td>Larry</td>\n                    <td>the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-6\">\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td rowspan=\"2\">1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@TwBootstrap</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td colspan=\"2\">Larry the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <div class=\"col-md-6\">\n        <table class=\"table table-condensed\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td colspan=\"2\">Larry the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n<div class=\"page-header\">\n    <h1>Thumbnails</h1>\n</div>\n<img src=\"#\" data-src=\"holder.js/200x200\" class=\"img-thumbnail\" alt=\"A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera\">\n<div class=\"page-header\">\n    <h1>Labels</h1>\n</div>\n<h1>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h1>\n<h2>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h2>\n<h3>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h3>\n<h4>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h4>\n<h5>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h5>\n<h6>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h6>\n<p>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</p>\n<div class=\"page-header\">\n    <h1>Badges</h1>\n</div>\n<p>\n    <a href=\"#\">Inbox <span class=\"badge\">42</span></a>\n</p>\n<ul class=\"nav nav-pills\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home <span class=\"badge\">42</span></a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages <span class=\"badge\">3</span></a></li>\n</ul>\n<div class=\"page-header\">\n    <h1>Dropdown menus</h1>\n</div>\n<div class=\"dropdown theme-dropdown clearfix\">\n    <a id=\"dropdownMenu1\" href=\"#\" class=\"sr-only dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\n        <li class=\"active\"><a href=\"#\">Action</a></li>\n        <li><a href=\"#\">Another action</a></li>\n        <li><a href=\"#\">Something else here</a></li>\n        <li role=\"separator\" class=\"divider\"></li>\n        <li><a href=\"#\">Separated link</a></li>\n    </ul>\n</div>\n<div class=\"page-header\">\n    <h1>Navs</h1>\n</div>\n<ul class=\"nav nav-tabs\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\n</ul>\n<ul class=\"nav nav-pills\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\n</ul>\n<div class=\"page-header\">\n    <h1>Navbars</h1>\n</div>\n<nav class=\"navbar navbar-default\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#\">Home</a></li>\n                <li><a href=\"#\">About</a></li>\n                <li><a href=\"#\">Contact</a></li>\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"#\">Action</a></li>\n                        <li><a href=\"#\">Another action</a></li>\n                        <li><a href=\"#\">Something else here</a></li>\n                        <li role=\"separator\" class=\"divider\"></li>\n                        <li class=\"dropdown-header\">Nav header</li>\n                        <li><a href=\"#\">Separated link</a></li>\n                        <li><a href=\"#\">One more separated link</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div><!--/.nav-collapse -->\n    </div>\n</nav>\n<nav class=\"navbar navbar-inverse\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#\">Home</a></li>\n                <li><a href=\"#\">About</a></li>\n                <li><a href=\"#\">Contact</a></li>\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"#\">Action</a></li>\n                        <li><a href=\"#\">Another action</a></li>\n                        <li><a href=\"#\">Something else here</a></li>\n                        <li role=\"separator\" class=\"divider\"></li>\n                        <li class=\"dropdown-header\">Nav header</li>\n                        <li><a href=\"#\">Separated link</a></li>\n                        <li><a href=\"#\">One more separated link</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div><!--/.nav-collapse -->\n    </div>\n</nav>\n<div class=\"page-header\">\n    <h1>Alerts</h1>\n</div>\n<div class=\"alert alert-success\" role=\"alert\">\n    <strong>Well done!</strong> You successfully read this important alert message.\n</div>\n<div class=\"alert alert-info\" role=\"alert\">\n    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.\n</div>\n<div class=\"alert alert-warning\" role=\"alert\">\n    <strong>Warning!</strong> Best check yo self, you're not looking too good.\n</div>\n<div class=\"alert alert-danger\" role=\"alert\">\n    <strong>Oh snap!</strong> Change a few things up and try submitting again.\n</div>\n<div class=\"page-header\">\n    <h1>Progress bars</h1>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%;\"><span class=\"sr-only\">60% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-success\" style=\"width: 35%\"><span class=\"sr-only\">35% Complete (success)</span></div>\n    <div class=\"progress-bar progress-bar-warning\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div>\n    <div class=\"progress-bar progress-bar-danger\" style=\"width: 10%\"><span class=\"sr-only\">10% Complete (danger)</span></div>\n</div>\n<div class=\"page-header\">\n    <h1>List groups</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-4\">\n        <ul class=\"list-group\">\n            <li class=\"list-group-item\">Cras justo odio</li>\n            <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n            <li class=\"list-group-item\">Morbi leo risus</li>\n            <li class=\"list-group-item\">Porta ac consectetur ac</li>\n            <li class=\"list-group-item\">Vestibulum at eros</li>\n        </ul>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"list-group\">\n            <a href=\"#\" class=\"list-group-item active\">\n                Cras justo odio\n            </a>\n            <a href=\"#\" class=\"list-group-item\">Dapibus ac facilisis in</a>\n            <a href=\"#\" class=\"list-group-item\">Morbi leo risus</a>\n            <a href=\"#\" class=\"list-group-item\">Porta ac consectetur ac</a>\n            <a href=\"#\" class=\"list-group-item\">Vestibulum at eros</a>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"list-group\">\n            <a href=\"#\" class=\"list-group-item active\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n            <a href=\"#\" class=\"list-group-item\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n            <a href=\"#\" class=\"list-group-item\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n        </div>\n    </div><!-- /.col-sm-4 -->\n</div>\n<div class=\"page-header\">\n    <h1>Panels</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-default\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-success\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-info\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-warning\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-danger\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n</div>\n<div class=\"page-header\">\n    <h1>Wells</h1>\n</div>\n<div class=\"well\">\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>\n</div>\n<div class=\"page-header\">\n    <h1>Carousel</h1>\n</div>\n<div id=\"carousel-example-generic\" class=\"carousel slide\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"0\" class=\"active\"></li>\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"1\"></li>\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"2\"></li>\n    </ol>\n    <div class=\"carousel-inner\" role=\"listbox\">\n        <div class=\"item active\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#777:#555/text:First slide\" alt=\"First slide\">\n        </div>\n        <div class=\"item\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#666:#444/text:Second slide\" alt=\"Second slide\">\n        </div>\n        <div class=\"item\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#555:#333/text:Third slide\" alt=\"Third slide\">\n        </div>\n    </div>\n    <a class=\"left carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"prev\">\n        <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\n        <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"right carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"next\">\n        <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\n        <span class=\"sr-only\">Next</span>\n    </a>\n</div>\n        </div>\n    </div>\n</div>\n<!-- Bootstrap core JavaScript\n================================================== -->\n<!-- Placed at the end of the document so the pages load faster -->\n<script src=\"assets.bootstrap.js\"></script>\n</body>\n</html>\n"
+            "/assets.test.js": "/* istanbul instrument in package bootstrap */\n// assets.utility2.header.js - start\n/* istanbul ignore next */\n/* jslint utility2:true */\n(function (globalThis) {\n    \"use strict\";\n    let consoleError;\n    let debugName;\n    let local;\n    debugName = \"debug\" + String(\"Inline\");\n    // init globalThis\n    globalThis.globalThis = globalThis.globalThis || globalThis;\n    // init debug_inline\n    if (!globalThis[debugName]) {\n        consoleError = console.error;\n        globalThis[debugName] = function (...argList) {\n        /*\n         * this function will both print <argList> to stderr\n         * and return <argList>[0]\n         */\n            consoleError(\"\\n\\n\" + debugName);\n            consoleError(...argList);\n            consoleError(\"\\n\");\n            return argList[0];\n        };\n    }\n    String.prototype.trimEnd = (\n        String.prototype.trimEnd || String.prototype.trimRight\n    );\n    String.prototype.trimStart = (\n        String.prototype.trimStart || String.prototype.trimLeft\n    );\n    // init local\n    local = {};\n    local.local = local;\n    globalThis.globalLocal = local;\n    // init isBrowser\n    local.isBrowser = (\n        typeof globalThis.XMLHttpRequest === \"function\"\n        && globalThis.navigator\n        && typeof globalThis.navigator.userAgent === \"string\"\n    );\n    // init isWebWorker\n    local.isWebWorker = (\n        local.isBrowser && typeof globalThis.importScripts === \"function\"\n    );\n    // init function\n    local.assertOrThrow = function (passed, msg) {\n    /*\n     * this function will throw err.<msg> if <passed> is falsy\n     */\n        if (passed) {\n            return;\n        }\n        throw (\n            (\n                msg\n                && typeof msg.message === \"string\"\n                && typeof msg.stack === \"string\"\n            )\n            // if msg is err, then leave as is\n            ? msg\n            : new Error(\n                typeof msg === \"string\"\n                // if msg is a string, then leave as is\n                ? msg\n                // else JSON.stringify msg\n                : JSON.stringify(msg, undefined, 4)\n            )\n        );\n    };\n    local.coalesce = function (...argList) {\n    /*\n     * this function will coalesce null, undefined, or \"\" in <argList>\n     */\n        let arg;\n        let ii;\n        ii = 0;\n        while (ii < argList.length) {\n            arg = argList[ii];\n            if (arg !== null && arg !== undefined && arg !== \"\") {\n                break;\n            }\n            ii += 1;\n        }\n        return arg;\n    };\n    local.fsRmrfSync = function (dir) {\n    /*\n     * this function will sync \"rm -rf\" <dir>\n     */\n        let child_process;\n        // do nothing if module does not exist\n        try {\n            child_process = require(\"child_process\");\n        } catch (ignore) {\n            return;\n        }\n        child_process.spawnSync(\"rm\", [\n            \"-rf\", dir\n        ], {\n            stdio: [\n                \"ignore\", 1, 2\n            ]\n        });\n    };\n    local.fsWriteFileWithMkdirpSync = function (file, data) {\n    /*\n     * this function will sync write <data> to <file> with \"mkdir -p\"\n     */\n        let fs;\n        // do nothing if module does not exist\n        try {\n            fs = require(\"fs\");\n        } catch (ignore) {\n            return;\n        }\n        // try to write file\n        try {\n            fs.writeFileSync(file, data);\n        } catch (ignore) {\n            // mkdir -p\n            require(\"child_process\").spawnSync(\n                \"mkdir\",\n                [\n                    \"-p\", require(\"path\").dirname(file)\n                ],\n                {\n                    stdio: [\n                        \"ignore\", 1, 2\n                    ]\n                }\n            );\n            // rewrite file\n            fs.writeFileSync(file, data);\n        }\n    };\n    local.functionOrNop = function (fnc) {\n    /*\n     * this function will if <fnc> exists,\n     * return <fnc>,\n     * else return <nop>\n     */\n        return fnc || local.nop;\n    };\n    local.identity = function (val) {\n    /*\n     * this function will return <val>\n     */\n        return val;\n    };\n    local.nop = function () {\n    /*\n     * this function will do nothing\n     */\n        return;\n    };\n    local.objectAssignDefault = function (target, source) {\n    /*\n     * this function will if items from <target> are null, undefined, or \"\",\n     * then overwrite them with items from <source>\n     */\n        target = target || {};\n        Object.keys(source || {}).forEach(function (key) {\n            if (\n                target[key] === null\n                || target[key] === undefined\n                || target[key] === \"\"\n            ) {\n                target[key] = target[key] || source[key];\n            }\n        });\n        return target;\n    };\n    local.querySelector = function (selectors) {\n    /*\n     * this function will return first dom-elem that match <selectors>\n     */\n        return (\n            typeof document === \"object\" && document\n            && typeof document.querySelector === \"function\"\n            && document.querySelector(selectors)\n        ) || {};\n    };\n    local.querySelectorAll = function (selectors) {\n    /*\n     * this function will return dom-elem-list that match <selectors>\n     */\n        return (\n            typeof document === \"object\" && document\n            && typeof document.querySelectorAll === \"function\"\n            && Array.from(document.querySelectorAll(selectors))\n        ) || [];\n    };\n    // require builtin\n    if (!local.isBrowser) {\n        local.assert = require(\"assert\");\n        local.buffer = require(\"buffer\");\n        local.child_process = require(\"child_process\");\n        local.cluster = require(\"cluster\");\n        local.crypto = require(\"crypto\");\n        local.dgram = require(\"dgram\");\n        local.dns = require(\"dns\");\n        local.domain = require(\"domain\");\n        local.events = require(\"events\");\n        local.fs = require(\"fs\");\n        local.http = require(\"http\");\n        local.https = require(\"https\");\n        local.net = require(\"net\");\n        local.os = require(\"os\");\n        local.path = require(\"path\");\n        local.querystring = require(\"querystring\");\n        local.readline = require(\"readline\");\n        local.repl = require(\"repl\");\n        local.stream = require(\"stream\");\n        local.string_decoder = require(\"string_decoder\");\n        local.timers = require(\"timers\");\n        local.tls = require(\"tls\");\n        local.tty = require(\"tty\");\n        local.url = require(\"url\");\n        local.util = require(\"util\");\n        local.vm = require(\"vm\");\n        local.zlib = require(\"zlib\");\n    }\n}((typeof globalThis === \"object\" && globalThis) || window));\n// assets.utility2.header.js - end\n\n\n\n/* istanbul ignore next */\n/* jslint utility2:true */\n(function (local) {\n\"use strict\";\n\n\n\n// run shared js-env code - init-before\n(function () {\n// init local\nlocal = globalThis.utility2 || require(\"utility2\");\nlocal = local.requireReadme();\nglobalThis.local = local;\n// init test\nlocal.testRunDefault(local);\n}());\n\n\n\n// run shared js-env code - function\n(function () {\nlocal.testCase_buildApp_default = function (option, onError) {\n/*\n * this function will test buildApp's default handling-behavior\n */\n    if (local.isBrowser) {\n        onError(null, option);\n        return;\n    }\n    local.testCase_buildReadme_default(option, local.onErrorThrow);\n    local.testCase_buildLib_default(option, local.onErrorThrow);\n    local.testCase_buildTest_default(option, local.onErrorThrow);\n    option = {\n        assetsList: [\n            {\n                file: \"/assets.bootstrap-v3.4.1.rollup.css\",\n                url: \"/assets.bootstrap.css\"\n            }, {\n                file: \"/assets.bootstrap-v3.4.1.rollup.js\",\n                url: \"/assets.bootstrap.js\"\n            }\n        ]\n    };\n    local.buildApp(option, onError);\n};\n\nlocal.testCase_buildReadme_default = function (option, onError) {\n/*\n * this function will test buildReadme's default handling-behavior\n */\n    if (local.isBrowser) {\n        onError(null, option);\n        return;\n    }\n    option = {};\n    option.customize = function () {\n        // search-and-replace - customize dataTo\n        [\n            (\n                /\\n\\/\\*\\u0020jslint\\u0020ignore:start\\u0020\\*\\/\\nlocal.assetsDict\\[\"\\/assets.index.template.html\"\\]\\u0020=\\u0020'\\\\\\n[\\S\\s]*?\\n\\/\\*\\u0020jslint\\u0020ignore:end\\u0020\\*\\/\\n/\n            )\n        ].forEach(function (rgx) {\n            option.dataFrom.replace(rgx, function (match0) {\n                option.dataTo = option.dataTo.replace(rgx, match0);\n            });\n        });\n    };\n    local.buildReadme(option, onError);\n};\n}());\n}());\n",
+            "/index.rollup.html": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<!-- \"assets.utility2.template.html\" -->\n<title>bootstrap-lite (2020.3.17)</title>\n<link href=\"assets.bootstrap.css\" rel=\"stylesheet\">\n<style>\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/dashboard.css */\n/*\n * Base structure\n */\n/* Move down content because we have a fixed navbar that is 50px tall */\nbody {\n    padding-top: 50px;\n}\n/*\n * Global add-ons\n */\n.sub-header {\n    padding-bottom: 10px;\n    border-bottom: 1px solid #eee;\n}\n/*\n * Top navigation\n * Hide default border to remove 1px line.\n */\n.navbar-fixed-top {\n    border: 0;\n}\n/*\n * Sidebar\n */\n/* Hide for mobile, show later */\n.sidebar {\n    display: none;\n}\n@media (min-width: 768px) {\n    .sidebar {\n        position: fixed;\n        top: 51px;\n        bottom: 0;\n        left: 0;\n        z-index: 1000;\n        display: block;\n        padding: 20px;\n        overflow-x: hidden;\n        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */\n        background-color: #f5f5f5;\n        border-right: 1px solid #eee;\n    }\n}\n/* Sidebar navigation */\n.nav-sidebar {\n    margin-right: -21px; /* 20px padding + 1px border */\n    margin-bottom: 20px;\n    margin-left: -20px;\n}\n.nav-sidebar > li > a {\n    padding-right: 20px;\n    padding-left: 20px;\n}\n.nav-sidebar > .active > a,\n.nav-sidebar > .active > a:hover,\n.nav-sidebar > .active > a:focus {\n    color: #fff;\n    background-color: #428bca;\n}\n/*\n * Main content\n */\n.main {\n    padding: 20px;\n}\n@media (min-width: 768px) {\n    .main {\n        padding-right: 40px;\n        padding-left: 40px;\n    }\n}\n.main .page-header {\n    margin-top: 0;\n}\n/*\n * Placeholder dashboard ideas\n */\n.placeholders {\n    margin-bottom: 30px;\n    text-align: center;\n}\n.placeholders h4 {\n    margin-bottom: 0;\n}\n.placeholder {\n    margin-bottom: 20px;\n}\n.placeholder img {\n    display: inline-block;\n    border-radius: 50%;\n}\n.theme-dropdown .dropdown-menu {\n    position: static;\n    display: block;\n    margin-bottom: 20px;\n}\n.theme-showcase > p > .btn {\n    margin: 5px 0;\n}\n/* https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/theme.css */\n.theme-showcase .navbar .container {\n    width: auto;\n}\n</style>\n</head>\n<body>\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/index.html -->\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li><a href=\"#\">Dashboard</a></li>\n                <li><a href=\"#\">Settings</a></li>\n                <li><a href=\"#\">Profile</a></li>\n                <li><a href=\"#\">Help</a></li>\n            </ul>\n            <form class=\"navbar-form navbar-right\">\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search...\">\n            </form>\n        </div>\n    </div>\n</nav>\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"col-sm-3 col-md-2 sidebar\">\n            <ul class=\"nav nav-sidebar\">\n                <li class=\"active\"><a href=\"#\">Overview <span class=\"sr-only\">(current)</span></a></li>\n                <li><a href=\"#\">Reports</a></li>\n                <li><a href=\"#\">Analytics</a></li>\n                <li><a href=\"#\">Export</a></li>\n            </ul>\n            <ul class=\"nav nav-sidebar\">\n                <li><a href=\"\">Nav item</a></li>\n                <li><a href=\"\">Nav item again</a></li>\n                <li><a href=\"\">One more nav</a></li>\n                <li><a href=\"\">Another nav item</a></li>\n                <li><a href=\"\">More navigation</a></li>\n            </ul>\n            <ul class=\"nav nav-sidebar\">\n                <li><a href=\"\">Nav item again</a></li>\n                <li><a href=\"\">One more nav</a></li>\n                <li><a href=\"\">Another nav item</a></li>\n            </ul>\n        </div>\n        <div class=\"col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main\">\n<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/theme/index.html -->\n<!-- Main jumbotron for a primary marketing message or call to action -->\n<div class=\"jumbotron\">\n    <h1>\n    \n        <a\n            \n            href=\"https://github.com/kaizhu256/node-bootstrap-lite\"\n            \n            target=\"_blank\"\n        >\n    \n            bootstrap-lite (2020.3.17)\n    \n        </a>\n    \n    </h1>\n    <p>this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo</p>\n    \n    \n</div>\n<h1 class=\"page-header\">Dashboard</h1>\n<div class=\"row placeholders\">\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n    <div class=\"col-xs-6 col-sm-3 placeholder\">\n        <img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\" width=\"200\" height=\"200\" class=\"img-responsive\" alt=\"Generic placeholder thumbnail\">\n        <h4>Label</h4>\n        <span class=\"text-muted\">Something else</span>\n    </div>\n</div>\n<h2 class=\"sub-header\">Section title</h2>\n<div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>#</th>\n                <th>Header</th>\n                <th>Header</th>\n                <th>Header</th>\n                <th>Header</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td>1,001</td>\n                <td>Lorem</td>\n                <td>ipsum</td>\n                <td>dolor</td>\n                <td>sit</td>\n            </tr>\n            <tr>\n                <td>1,002</td>\n                <td>amet</td>\n                <td>consectetur</td>\n                <td>adipiscing</td>\n                <td>elit</td>\n            </tr>\n            <tr>\n                <td>1,003</td>\n                <td>Integer</td>\n                <td>nec</td>\n                <td>odio</td>\n                <td>Praesent</td>\n            </tr>\n            <tr>\n                <td>1,003</td>\n                <td>libero</td>\n                <td>Sed</td>\n                <td>cursus</td>\n                <td>ante</td>\n            </tr>\n            <tr>\n                <td>1,004</td>\n                <td>dapibus</td>\n                <td>diam</td>\n                <td>Sed</td>\n                <td>nisi</td>\n            </tr>\n            <tr>\n                <td>1,005</td>\n                <td>Nulla</td>\n                <td>quis</td>\n                <td>sem</td>\n                <td>at</td>\n            </tr>\n            <tr>\n                <td>1,006</td>\n                <td>nibh</td>\n                <td>elementum</td>\n                <td>imperdiet</td>\n                <td>Duis</td>\n            </tr>\n            <tr>\n                <td>1,007</td>\n                <td>sagittis</td>\n                <td>ipsum</td>\n                <td>Praesent</td>\n                <td>mauris</td>\n            </tr>\n            <tr>\n                <td>1,008</td>\n                <td>Fusce</td>\n                <td>nec</td>\n                <td>tellus</td>\n                <td>sed</td>\n            </tr>\n            <tr>\n                <td>1,009</td>\n                <td>augue</td>\n                <td>semper</td>\n                <td>porta</td>\n                <td>Mauris</td>\n            </tr>\n            <tr>\n                <td>1,010</td>\n                <td>massa</td>\n                <td>Vestibulum</td>\n                <td>lacinia</td>\n                <td>arcu</td>\n            </tr>\n            <tr>\n                <td>1,011</td>\n                <td>eget</td>\n                <td>nulla</td>\n                <td>Class</td>\n                <td>aptent</td>\n            </tr>\n            <tr>\n                <td>1,012</td>\n                <td>taciti</td>\n                <td>sociosqu</td>\n                <td>ad</td>\n                <td>litora</td>\n            </tr>\n            <tr>\n                <td>1,013</td>\n                <td>torquent</td>\n                <td>per</td>\n                <td>conubia</td>\n                <td>nostra</td>\n            </tr>\n            <tr>\n                <td>1,014</td>\n                <td>per</td>\n                <td>inceptos</td>\n                <td>himenaeos</td>\n                <td>Curabitur</td>\n            </tr>\n            <tr>\n                <td>1,015</td>\n                <td>sodales</td>\n                <td>ligula</td>\n                <td>in</td>\n                <td>libero</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n<div class=\"page-header\">\n    <h1>Buttons</h1>\n</div>\n<p>\n    <button type=\"button\" class=\"btn btn-lg btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-lg btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-lg btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-lg btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-lg btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-lg btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-lg btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-sm btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-sm btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-sm btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-sm btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-sm btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-sm btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-sm btn-link\">Link</button>\n</p>\n<p>\n    <button type=\"button\" class=\"btn btn-xs btn-default\">Default</button>\n    <button type=\"button\" class=\"btn btn-xs btn-primary\">Primary</button>\n    <button type=\"button\" class=\"btn btn-xs btn-success\">Success</button>\n    <button type=\"button\" class=\"btn btn-xs btn-info\">Info</button>\n    <button type=\"button\" class=\"btn btn-xs btn-warning\">Warning</button>\n    <button type=\"button\" class=\"btn btn-xs btn-danger\">Danger</button>\n    <button type=\"button\" class=\"btn btn-xs btn-link\">Link</button>\n</p>\n<div class=\"page-header\">\n    <h1>Tables</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-6\">\n        <table class=\"table\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td>Larry</td>\n                    <td>the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <div class=\"col-md-6\">\n        <table class=\"table table-striped\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td>Larry</td>\n                    <td>the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-6\">\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td rowspan=\"2\">1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@TwBootstrap</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td colspan=\"2\">Larry the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <div class=\"col-md-6\">\n        <table class=\"table table-condensed\">\n            <thead>\n                <tr>\n                    <th>#</th>\n                    <th>First Name</th>\n                    <th>Last Name</th>\n                    <th>Username</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>1</td>\n                    <td>Mark</td>\n                    <td>Otto</td>\n                    <td>@mdo</td>\n                </tr>\n                <tr>\n                    <td>2</td>\n                    <td>Jacob</td>\n                    <td>Thornton</td>\n                    <td>@fat</td>\n                </tr>\n                <tr>\n                    <td>3</td>\n                    <td colspan=\"2\">Larry the Bird</td>\n                    <td>@twitter</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n<div class=\"page-header\">\n    <h1>Thumbnails</h1>\n</div>\n<img src=\"#\" data-src=\"holder.js/200x200\" class=\"img-thumbnail\" alt=\"A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera\">\n<div class=\"page-header\">\n    <h1>Labels</h1>\n</div>\n<h1>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h1>\n<h2>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h2>\n<h3>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h3>\n<h4>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h4>\n<h5>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h5>\n<h6>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</h6>\n<p>\n    <span class=\"label label-default\">Default</span>\n    <span class=\"label label-primary\">Primary</span>\n    <span class=\"label label-success\">Success</span>\n    <span class=\"label label-info\">Info</span>\n    <span class=\"label label-warning\">Warning</span>\n    <span class=\"label label-danger\">Danger</span>\n</p>\n<div class=\"page-header\">\n    <h1>Badges</h1>\n</div>\n<p>\n    <a href=\"#\">Inbox <span class=\"badge\">42</span></a>\n</p>\n<ul class=\"nav nav-pills\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home <span class=\"badge\">42</span></a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages <span class=\"badge\">3</span></a></li>\n</ul>\n<div class=\"page-header\">\n    <h1>Dropdown menus</h1>\n</div>\n<div class=\"dropdown theme-dropdown clearfix\">\n    <a id=\"dropdownMenu1\" href=\"#\" class=\"sr-only dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\n        <li class=\"active\"><a href=\"#\">Action</a></li>\n        <li><a href=\"#\">Another action</a></li>\n        <li><a href=\"#\">Something else here</a></li>\n        <li role=\"separator\" class=\"divider\"></li>\n        <li><a href=\"#\">Separated link</a></li>\n    </ul>\n</div>\n<div class=\"page-header\">\n    <h1>Navs</h1>\n</div>\n<ul class=\"nav nav-tabs\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\n</ul>\n<ul class=\"nav nav-pills\" role=\"tablist\">\n    <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n    <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n    <li role=\"presentation\"><a href=\"#\">Messages</a></li>\n</ul>\n<div class=\"page-header\">\n    <h1>Navbars</h1>\n</div>\n<nav class=\"navbar navbar-default\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#\">Home</a></li>\n                <li><a href=\"#\">About</a></li>\n                <li><a href=\"#\">Contact</a></li>\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"#\">Action</a></li>\n                        <li><a href=\"#\">Another action</a></li>\n                        <li><a href=\"#\">Something else here</a></li>\n                        <li role=\"separator\" class=\"divider\"></li>\n                        <li class=\"dropdown-header\">Nav header</li>\n                        <li><a href=\"#\">Separated link</a></li>\n                        <li><a href=\"#\">One more separated link</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div><!--/.nav-collapse -->\n    </div>\n</nav>\n<nav class=\"navbar navbar-inverse\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#\">Home</a></li>\n                <li><a href=\"#\">About</a></li>\n                <li><a href=\"#\">Contact</a></li>\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"#\">Action</a></li>\n                        <li><a href=\"#\">Another action</a></li>\n                        <li><a href=\"#\">Something else here</a></li>\n                        <li role=\"separator\" class=\"divider\"></li>\n                        <li class=\"dropdown-header\">Nav header</li>\n                        <li><a href=\"#\">Separated link</a></li>\n                        <li><a href=\"#\">One more separated link</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div><!--/.nav-collapse -->\n    </div>\n</nav>\n<div class=\"page-header\">\n    <h1>Alerts</h1>\n</div>\n<div class=\"alert alert-success\" role=\"alert\">\n    <strong>Well done!</strong> You successfully read this important alert message.\n</div>\n<div class=\"alert alert-info\" role=\"alert\">\n    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.\n</div>\n<div class=\"alert alert-warning\" role=\"alert\">\n    <strong>Warning!</strong> Best check yo self, you're not looking too good.\n</div>\n<div class=\"alert alert-danger\" role=\"alert\">\n    <strong>Oh snap!</strong> Change a few things up and try submitting again.\n</div>\n<div class=\"page-header\">\n    <h1>Progress bars</h1>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%;\"><span class=\"sr-only\">60% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete</span></div>\n</div>\n<div class=\"progress\">\n    <div class=\"progress-bar progress-bar-success\" style=\"width: 35%\"><span class=\"sr-only\">35% Complete (success)</span></div>\n    <div class=\"progress-bar progress-bar-warning\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div>\n    <div class=\"progress-bar progress-bar-danger\" style=\"width: 10%\"><span class=\"sr-only\">10% Complete (danger)</span></div>\n</div>\n<div class=\"page-header\">\n    <h1>List groups</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-4\">\n        <ul class=\"list-group\">\n            <li class=\"list-group-item\">Cras justo odio</li>\n            <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n            <li class=\"list-group-item\">Morbi leo risus</li>\n            <li class=\"list-group-item\">Porta ac consectetur ac</li>\n            <li class=\"list-group-item\">Vestibulum at eros</li>\n        </ul>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"list-group\">\n            <a href=\"#\" class=\"list-group-item active\">\n                Cras justo odio\n            </a>\n            <a href=\"#\" class=\"list-group-item\">Dapibus ac facilisis in</a>\n            <a href=\"#\" class=\"list-group-item\">Morbi leo risus</a>\n            <a href=\"#\" class=\"list-group-item\">Porta ac consectetur ac</a>\n            <a href=\"#\" class=\"list-group-item\">Vestibulum at eros</a>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"list-group\">\n            <a href=\"#\" class=\"list-group-item active\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n            <a href=\"#\" class=\"list-group-item\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n            <a href=\"#\" class=\"list-group-item\">\n                <h4 class=\"list-group-item-heading\">List group item heading</h4>\n                <p class=\"list-group-item-text\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n            </a>\n        </div>\n    </div><!-- /.col-sm-4 -->\n</div>\n<div class=\"page-header\">\n    <h1>Panels</h1>\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-default\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-success\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-info\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n    <div class=\"col-sm-4\">\n        <div class=\"panel panel-warning\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n        <div class=\"panel panel-danger\">\n            <div class=\"panel-heading\">\n                <h3 class=\"panel-title\">Panel title</h3>\n            </div>\n            <div class=\"panel-body\">\n                Panel content\n            </div>\n        </div>\n    </div><!-- /.col-sm-4 -->\n</div>\n<div class=\"page-header\">\n    <h1>Wells</h1>\n</div>\n<div class=\"well\">\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>\n</div>\n<div class=\"page-header\">\n    <h1>Carousel</h1>\n</div>\n<div id=\"carousel-example-generic\" class=\"carousel slide\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"0\" class=\"active\"></li>\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"1\"></li>\n        <li data-target=\"#carousel-example-generic\" data-slide-to=\"2\"></li>\n    </ol>\n    <div class=\"carousel-inner\" role=\"listbox\">\n        <div class=\"item active\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#777:#555/text:First slide\" alt=\"First slide\">\n        </div>\n        <div class=\"item\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#666:#444/text:Second slide\" alt=\"Second slide\">\n        </div>\n        <div class=\"item\">\n            <img src=\"#\" data-src=\"holder.js/1140x500/auto/#555:#333/text:Third slide\" alt=\"Third slide\">\n        </div>\n    </div>\n    <a class=\"left carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"prev\">\n        <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\n        <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"right carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"next\">\n        <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\n        <span class=\"sr-only\">Next</span>\n    </a>\n</div>\n        </div>\n    </div>\n</div>\n<!-- Bootstrap core JavaScript\n================================================== -->\n<!-- Placed at the end of the document so the pages load faster -->\n<script src=\"assets.bootstrap.js\"></script>\n</body>\n</html>\n"
         },
         "env": {
             "NODE_ENV": "test",
@@ -68020,7 +66305,7 @@ local.stateInit({
             "npm_package_homepage": "https://github.com/kaizhu256/node-bootstrap-lite",
             "npm_package_name": "bootstrap-lite",
             "npm_package_nameLib": "bootstrap",
-            "npm_package_version": "2020.1.20"
+            "npm_package_version": "2020.3.17"
         }
     }
 });
@@ -68049,7 +66334,7 @@ local.assetsDict["/assets.bootstrap.css"] = "/*\nrepo https://github.com/twbs/bo
 /* jslint ignore:start */
 local.assetsDict["/assets.bootstrap.js"] = "// usr/bin/env node\n\
 /*\n\
- * lib.bootstrap.js (2020.1.20)\n\
+ * lib.bootstrap.js (2020.3.17)\n\
  * https://github.com/kaizhu256/node-bootstrap-lite\n\
  * this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo\n\
  *\n\
@@ -68063,8 +66348,6 @@ local.assetsDict["/assets.bootstrap.js"] = "// usr/bin/env node\n\
 /* jslint utility2:true */\n\
 (function (globalThis) {\n\
     \"use strict\";\n\
-    let ArrayPrototypeFlat;\n\
-    let TextXxcoder;\n\
     let consoleError;\n\
     let debugName;\n\
     let local;\n\
@@ -68080,162 +66363,17 @@ local.assetsDict["/assets.bootstrap.js"] = "// usr/bin/env node\n\
          * and return <argList>[0]\n\
          */\n\
             consoleError(\"\\n\\n\" + debugName);\n\
-            consoleError.apply(console, argList);\n\
+            consoleError(...argList);\n\
             consoleError(\"\\n\");\n\
-            // return arg0 for inspection\n\
             return argList[0];\n\
         };\n\
     }\n\
-    // polyfill\n\
-    ArrayPrototypeFlat = function (depth) {\n\
-    /*\n\
-     * this function will polyfill Array.prototype.flat\n\
-     * https://github.com/jonathantneal/array-flat-polyfill\n\
-     */\n\
-        depth = (\n\
-            globalThis.isNaN(depth)\n\
-            ? 1\n\
-            : Number(depth)\n\
-        );\n\
-        if (!depth) {\n\
-            return Array.prototype.slice.call(this);\n\
-        }\n\
-        return Array.prototype.reduce.call(this, function (acc, cur) {\n\
-            if (Array.isArray(cur)) {\n\
-                // recurse\n\
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));\n\
-            } else {\n\
-                acc.push(cur);\n\
-            }\n\
-            return acc;\n\
-        }, []);\n\
-    };\n\
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;\n\
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(\n\
-        ...argList\n\
-    ) {\n\
-    /*\n\
-     * this function will polyfill Array.prototype.flatMap\n\
-     * https://github.com/jonathantneal/array-flat-polyfill\n\
-     */\n\
-        return this.map(...argList).flat();\n\
-    };\n\
     String.prototype.trimEnd = (\n\
         String.prototype.trimEnd || String.prototype.trimRight\n\
     );\n\
     String.prototype.trimStart = (\n\
         String.prototype.trimStart || String.prototype.trimLeft\n\
     );\n\
-    (function () {\n\
-        try {\n\
-            globalThis.TextDecoder = (\n\
-                globalThis.TextDecoder || require(\"util\").TextDecoder\n\
-            );\n\
-            globalThis.TextEncoder = (\n\
-                globalThis.TextEncoder || require(\"util\").TextEncoder\n\
-            );\n\
-        } catch (ignore) {}\n\
-    }());\n\
-    TextXxcoder = function () {\n\
-    /*\n\
-     * this function will polyfill TextDecoder/TextEncoder\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        return;\n\
-    };\n\
-    TextXxcoder.prototype.decode = function (octets) {\n\
-    /*\n\
-     * this function will polyfill TextDecoder.prototype.decode\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        let bytesNeeded;\n\
-        let codePoint;\n\
-        let ii;\n\
-        let kk;\n\
-        let octet;\n\
-        let string;\n\
-        string = \"\";\n\
-        ii = 0;\n\
-        while (ii < octets.length) {\n\
-            octet = octets[ii];\n\
-            bytesNeeded = 0;\n\
-            codePoint = 0;\n\
-            if (octet <= 0x7F) {\n\
-                bytesNeeded = 0;\n\
-                codePoint = octet & 0xFF;\n\
-            } else if (octet <= 0xDF) {\n\
-                bytesNeeded = 1;\n\
-                codePoint = octet & 0x1F;\n\
-            } else if (octet <= 0xEF) {\n\
-                bytesNeeded = 2;\n\
-                codePoint = octet & 0x0F;\n\
-            } else if (octet <= 0xF4) {\n\
-                bytesNeeded = 3;\n\
-                codePoint = octet & 0x07;\n\
-            }\n\
-            if (octets.length - ii - bytesNeeded > 0) {\n\
-                kk = 0;\n\
-                while (kk < bytesNeeded) {\n\
-                    octet = octets[ii + kk + 1];\n\
-                    codePoint = (codePoint << 6) | (octet & 0x3F);\n\
-                    kk += 1;\n\
-                }\n\
-            } else {\n\
-                codePoint = 0xFFFD;\n\
-                bytesNeeded = octets.length - ii;\n\
-            }\n\
-            string += String.fromCodePoint(codePoint);\n\
-            ii += bytesNeeded + 1;\n\
-        }\n\
-        return string;\n\
-    };\n\
-    TextXxcoder.prototype.encode = function (string) {\n\
-    /*\n\
-     * this function will polyfill TextEncoder.prototype.encode\n\
-     * https://gist.github.com/Yaffle/5458286\n\
-     */\n\
-        let bits;\n\
-        let cc;\n\
-        let codePoint;\n\
-        let ii;\n\
-        let length;\n\
-        let octets;\n\
-        octets = [];\n\
-        length = string.length;\n\
-        ii = 0;\n\
-        while (ii < length) {\n\
-            codePoint = string.codePointAt(ii);\n\
-            cc = 0;\n\
-            bits = 0;\n\
-            if (codePoint <= 0x0000007F) {\n\
-                cc = 0;\n\
-                bits = 0x00;\n\
-            } else if (codePoint <= 0x000007FF) {\n\
-                cc = 6;\n\
-                bits = 0xC0;\n\
-            } else if (codePoint <= 0x0000FFFF) {\n\
-                cc = 12;\n\
-                bits = 0xE0;\n\
-            } else if (codePoint <= 0x001FFFFF) {\n\
-                cc = 18;\n\
-                bits = 0xF0;\n\
-            }\n\
-            octets.push(bits | (codePoint >> cc));\n\
-            cc -= 6;\n\
-            while (cc >= 0) {\n\
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));\n\
-                cc -= 6;\n\
-            }\n\
-            ii += (\n\
-                codePoint >= 0x10000\n\
-                ? 2\n\
-                : 1\n\
-            );\n\
-        }\n\
-        return octets;\n\
-    };\n\
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;\n\
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;\n\
     // init local\n\
     local = {};\n\
     local.local = local;\n\
@@ -68248,34 +66386,32 @@ local.assetsDict["/assets.bootstrap.js"] = "// usr/bin/env node\n\
     );\n\
     // init isWebWorker\n\
     local.isWebWorker = (\n\
-        local.isBrowser && typeof globalThis.importScript === \"function\"\n\
+        local.isBrowser && typeof globalThis.importScripts === \"function\"\n\
     );\n\
     // init function\n\
-    local.assertOrThrow = function (passed, message) {\n\
+    local.assertOrThrow = function (passed, msg) {\n\
     /*\n\
-     * this function will throw err.<message> if <passed> is falsy\n\
+     * this function will throw err.<msg> if <passed> is falsy\n\
      */\n\
-        let err;\n\
         if (passed) {\n\
             return;\n\
         }\n\
-        err = (\n\
+        throw (\n\
             (\n\
-                message\n\
-                && typeof message.message === \"string\"\n\
-                && typeof message.stack === \"string\"\n\
+                msg\n\
+                && typeof msg.message === \"string\"\n\
+                && typeof msg.stack === \"string\"\n\
             )\n\
-            // if message is errObj, then leave as is\n\
-            ? message\n\
+            // if msg is err, then leave as is\n\
+            ? msg\n\
             : new Error(\n\
-                typeof message === \"string\"\n\
-                // if message is a string, then leave as is\n\
-                ? message\n\
-                // else JSON.stringify message\n\
-                : JSON.stringify(message, undefined, 4)\n\
+                typeof msg === \"string\"\n\
+                // if msg is a string, then leave as is\n\
+                ? msg\n\
+                // else JSON.stringify msg\n\
+                : JSON.stringify(msg, undefined, 4)\n\
             )\n\
         );\n\
-        throw err;\n\
     };\n\
     local.coalesce = function (...argList) {\n\
     /*\n\
@@ -68298,6 +66434,7 @@ local.assetsDict["/assets.bootstrap.js"] = "// usr/bin/env node\n\
      * this function will sync \"rm -rf\" <dir>\n\
      */\n\
         let child_process;\n\
+        // do nothing if module does not exist\n\
         try {\n\
             child_process = require(\"child_process\");\n\
         } catch (ignore) {\n\
@@ -68316,6 +66453,7 @@ local.assetsDict["/assets.bootstrap.js"] = "// usr/bin/env node\n\
      * this function will sync write <data> to <file> with \"mkdir -p\"\n\
      */\n\
         let fs;\n\
+        // do nothing if module does not exist\n\
         try {\n\
             fs = require(\"fs\");\n\
         } catch (ignore) {\n\
@@ -68428,9 +66566,7 @@ local.assetsDict["/assets.bootstrap.js"] = "// usr/bin/env node\n\
         local.vm = require(\"vm\");\n\
         local.zlib = require(\"zlib\");\n\
     }\n\
-}((typeof globalThis === \"object\" && globalThis) || (function () {\n\
-    return Function(\"return this\")(); // jslint ignore:line\n\
-}())));\n\
+}((typeof globalThis === \"object\" && globalThis) || window));\n\
 // assets.utility2.header.js - end\n\
 \n\
 \n\
@@ -80844,7 +78980,7 @@ if (globalThis.utility2_rollup) {\n\
 
 // usr/bin/env node
 /*
- * lib.bootstrap.js (2020.1.20)
+ * lib.bootstrap.js (2020.3.17)
  * https://github.com/kaizhu256/node-bootstrap-lite
  * this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo
  *
@@ -80858,8 +78994,6 @@ if (globalThis.utility2_rollup) {\n\
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -80875,162 +79009,17 @@ if (globalThis.utility2_rollup) {\n\
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -81043,34 +79032,32 @@ if (globalThis.utility2_rollup) {\n\
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -81093,6 +79080,7 @@ if (globalThis.utility2_rollup) {\n\
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -81111,6 +79099,7 @@ if (globalThis.utility2_rollup) {\n\
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -81223,9 +79212,7 @@ if (globalThis.utility2_rollup) {\n\
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -93658,8 +91645,6 @@ instruction
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -93675,162 +91660,17 @@ instruction
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -93843,34 +91683,32 @@ instruction
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -93893,6 +91731,7 @@ instruction
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -93911,6 +91750,7 @@ instruction
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -94023,9 +91863,7 @@ instruction
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 
@@ -95023,8 +92861,6 @@ local.http.createServer(function (req, res) {
 /* jslint utility2:true */
 (function (globalThis) {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
     let debugName;
     let local;
@@ -95040,162 +92876,17 @@ local.http.createServer(function (req, res) {
          * and return <argList>[0]
          */
             consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
     String.prototype.trimEnd = (
         String.prototype.trimEnd || String.prototype.trimRight
     );
     String.prototype.trimStart = (
         String.prototype.trimStart || String.prototype.trimLeft
     );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -95208,34 +92899,32 @@ local.http.createServer(function (req, res) {
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will throw err.<msg> if <passed> is falsy
      */
-        let err;
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is a string, then leave as is
+                ? msg
+                // else JSON.stringify msg
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -95258,6 +92947,7 @@ local.http.createServer(function (req, res) {
      * this function will sync "rm -rf" <dir>
      */
         let child_process;
+        // do nothing if module does not exist
         try {
             child_process = require("child_process");
         } catch (ignore) {
@@ -95276,6 +92966,7 @@ local.http.createServer(function (req, res) {
      * this function will sync write <data> to <file> with "mkdir -p"
      */
         let fs;
+        // do nothing if module does not exist
         try {
             fs = require("fs");
         } catch (ignore) {
@@ -95388,9 +93079,7 @@ local.http.createServer(function (req, res) {
         local.vm = require("vm");
         local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}((typeof globalThis === "object" && globalThis) || window));
 // assets.utility2.header.js - end
 
 

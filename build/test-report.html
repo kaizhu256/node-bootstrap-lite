@@ -15,6 +15,10 @@
 *:before {
     box-sizing: border-box;
 }
+.uiAnimateSlide {
+    overflow-y: hidden;
+    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;
+}
 /* csslint ignore:end */
 @keyframes uiAnimateSpin {
 0% {
@@ -86,10 +90,6 @@ pre {
     cursor: auto;
     overflow: auto;
     padding: 2px;
-}
-.uiAnimateSlide {
-    overflow-y: hidden;
-    transition: max-height ease-in 250ms, min-height ease-in 250ms, padding-bottom ease-in 250ms, padding-top ease-in 250ms;
 }
 .zeroPixel {
     border: 0;
@@ -189,10 +189,23 @@ pre {
  */
     "use strict";
     let opt;
-    if (!(
-        typeof window === "object" && window && window.document
-        && typeof document.addEventListener === "function"
-    ) || window.domOnEventAjaxProgressUpdate) {
+    let styleBar0;
+    let styleBar;
+    let styleModal0;
+    let styleModal;
+    let timeStart;
+    let timerInterval;
+    let timerTimeout;
+    let tmp;
+    let width;
+    try {
+        if (
+            window.domOnEventAjaxProgressUpdate
+            || !document.getElementById("domElementAjaxProgressBar1").style
+        ) {
+            return;
+        }
+    } catch (ignore) {
         return;
     }
     window.domOnEventAjaxProgressUpdate = function (gotoState, onError) {
@@ -200,56 +213,68 @@ pre {
         switch (gotoState) {
         // ajaxProgress - show
         case 1:
-            // init timerInterval and timerTimeout
-            opt.timerInterval = (
-                opt.timerInterval || setInterval(opt, 2000, 1, onError)
-            );
-            opt.timerTimeout = (
-                opt.timerTimeout || setTimeout(opt, 30000, 2, onError)
-            );
-            // show ajaxProgress
-            if (opt.width !== -1) {
-                opt.style.background = opt.background;
+            // init <timerInterval> and <timerTimeout>
+            if (!timerTimeout) {
+                timeStart = Date.now();
+                timerInterval = setInterval(opt, 2000, 1, onError);
+                timerTimeout = setTimeout(opt, opt.timeout, 2, onError);
+            }
+            // show ajaxProgressBar
+            if (width !== -1) {
+                styleBar.background = styleBar0.background;
             }
             setTimeout(opt, 50, gotoState, onError);
             break;
         // ajaxProgress - increment
         case 2:
-            // show ajaxProgress
-            if (opt.width === -1) {
-                return;
+            // show ajaxProgressBar
+            if (width === -1) {
+                break;
             }
-            opt.style.background = opt.background;
-            // reset ajaxProgress if it goes too high
-            if ((opt.style.width.slice(0, -1) | 0) > 95) {
-                opt.width = 0;
+            styleBar.background = styleBar0.background;
+            // reset ajaxProgress if it reaches end
+            if ((styleBar.width.slice(0, -1) | 0) > 95) {
+                width = 0;
             }
             // this algorithm will indefinitely increment ajaxProgress
             // with successively smaller increments without reaching 100%
-            opt.width += 1;
-            opt.style.width = Math.max(
-                100 - 75 * Math.exp(-0.125 * opt.width),
-                opt.style.width.slice(0, -1) | 0
+            width += 1;
+            styleBar.width = Math.max(
+                100 - 75 * Math.exp(-0.125 * width),
+                styleBar.width.slice(0, -1) | 0
             ) + "%";
+            // show ajaxProgressModal
+            styleModal.height = "100%";
+            styleModal.opacity = styleModal0.opacity;
             if (!opt.cnt) {
                 setTimeout(opt, 0, gotoState, onError);
             }
             break;
         // ajaxProgress - 100%
         case 3:
-            opt.width = -1;
-            opt.style.width = "100%";
+            width = -1;
+            styleBar.width = "100%";
             setTimeout(opt, 1000, gotoState, onError);
             break;
         // ajaxProgress - hide
         case 4:
-            // cleanup timerInterval and timerTimeout
-            clearInterval(opt.timerInterval);
-            opt.timerInterval = null;
-            clearTimeout(opt.timerTimeout);
-            opt.timerTimeout = null;
-            // hide ajaxProgress
-            opt.style.background = "transparent";
+            // debug timeElapsed
+            tmp = Date.now();
+            console.error(
+                "domOnEventAjaxProgressUpdate - timeElapsed - "
+                + (tmp - timeStart)
+                + " ms"
+            );
+            // cleanup <timerInterval> and <timerTimeout>
+            timeStart = tmp;
+            clearInterval(timerInterval);
+            timerInterval = null;
+            clearTimeout(timerTimeout);
+            timerTimeout = null;
+            // hide ajaxProgressBar
+            styleBar.background = "transparent";
+            // hide ajaxProgressModal
+            styleModal.opacity = "0";
             if (onError) {
                 onError();
             }
@@ -257,10 +282,10 @@ pre {
             break;
         // ajaxProgress - reset
         default:
-            // reset ajaxProgress
             opt.cnt = 0;
-            opt.width = 0;
-            opt.style.width = "0%";
+            width = 0;
+            styleBar.width = "0%";
+            styleModal.height = "0";
         }
     };
     opt = window.domOnEventAjaxProgressUpdate;
@@ -268,16 +293,9 @@ pre {
         opt.cnt = 0;
         window.domOnEventAjaxProgressUpdate(2, onError);
     };
-    opt.elem = document.getElementById("domElementAjaxProgress1");
-    if (!opt.elem) {
-        opt.elem = document.createElement("div");
-        setTimeout(function () {
-            document.body.insertBefore(opt.elem, document.body.firstChild);
-        });
-    }
-    opt.elem.id = "domElementAjaxProgress1";
-    opt.style = opt.elem.style;
-    // init style
+    // init <styleBar>
+    styleBar = document.getElementById("domElementAjaxProgressBar1").style;
+    styleBar0 = Object.assign({}, styleBar);
     Object.entries({
         background: "#d00",
         height: "2px",
@@ -290,12 +308,31 @@ pre {
         width: "0%",
         "z-index": "1"
     }).forEach(function (entry) {
-        opt.style[entry[0]] = opt.style[entry[0]] || entry[1];
+        styleBar[entry[0]] = styleBar[entry[0]] || entry[1];
+    });
+    // init <styleModal>
+    styleModal = document.getElementById("domElementAjaxProgressModal1") || {};
+    styleModal = styleModal.style || {};
+    styleModal0 = Object.assign({}, styleModal);
+    Object.entries({
+        height: "0",
+        left: "0",
+        margin: "0",
+        padding: "0",
+        position: "fixed",
+        top: "0",
+        transition: "opacity 125ms",
+        width: "100%",
+        "z-index": "1"
+    }).forEach(function (entry) {
+        styleModal[entry[0]] = styleModal[entry[0]] || entry[1];
     });
     // init state
-    opt.background = opt.style.background;
+    width = 0;
     opt.cnt = 0;
-    opt.width = 0;
+    opt.timeout = 30000;
+    // init ajaxProgress
+    window.domOnEventAjaxProgressUpdate();
 }());
 
 
@@ -426,18 +463,18 @@ pre {
         href="https://github.com/kaizhu256/node-bootstrap-lite"
         
     >
-        bootstrap-lite (2020.1.20)
+        bootstrap-lite (2020.3.17)
     </a>
 </h1>
 <div class="platform summary">
 <h2>summary</h2>
 <h4>
     <span>version</span>-
-        2020.1.20<br>
-    <span>test date</span>- 2020-01-20T23:38:57.419Z<br>
+        2020.3.17<br>
+    <span>test date</span>- 2020-03-17T06:34:51.745Z<br>
     <span>commit info</span>-
         
-        b85969fedda3294a3b83994125a902eaae6f1aac - <br>
+        5b6abc78008699ac4bf7060c9a3675b55135bb12 - <br>
         
 </h4>
 <table>
@@ -450,7 +487,7 @@ pre {
     </tr>
 </thead>
 <tbody><tr>
-    <td>100522 ms</td>
+    <td>61618 ms</td>
     <td class="testPassed">0</td>
     <td>15</td>
     <td>0</td>
@@ -460,10 +497,10 @@ pre {
 
 <div class="platform">
 <h4>
-    1. buildApidoc - node - linux v13.6.0 - 2020-01-20T23:38:06.500Z<br>
+    1. buildApidoc - node - linux v13.11.0 - 2020-03-17T06:34:46.342Z<br>
     
     
-    <span>time-elapsed</span>- 52206 ms<br>
+    <span>time-elapsed</span>- 13193 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 1<br>
     <span>tests pending</span>- 0<br>
@@ -479,7 +516,7 @@ pre {
 
 <tr>
     <td>1</td>
-    <td>7948 ms</td>
+    <td>7571 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
@@ -493,10 +530,10 @@ pre {
 
 <div class="platform">
 <h4>
-    2. npmTest - node - linux v13.6.0 - 2020-01-20T23:37:57.205Z<br>
+    2. npmTest - node - linux v13.11.0 - 2020-03-17T06:34:37.296Z<br>
     
     
-    <span>time-elapsed</span>- 59640 ms<br>
+    <span>time-elapsed</span>- 20643 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 7<br>
     <span>tests pending</span>- 0<br>
@@ -519,14 +556,14 @@ pre {
 
 <tr>
     <td>3</td>
-    <td>5888 ms</td>
+    <td>5905 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
 
 <tr>
     <td>4</td>
-    <td>2 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildLib_default</td>
 </tr>
@@ -547,14 +584,14 @@ pre {
 
 <tr>
     <td>7</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_nop_default</td>
 </tr>
 
 <tr>
     <td>8</td>
-    <td>1578 ms</td>
+    <td>1349 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_default</td>
 </tr>
@@ -568,10 +605,10 @@ pre {
 
 <div class="platform">
 <h4>
-    3. npmTestPublished - node - linux v13.6.0 - 2020-01-20T23:37:16.307Z<br>
+    3. npmTestPublished - node - linux v13.11.0 - 2020-03-17T06:33:55.594Z<br>
     
     
-    <span>time-elapsed</span>- 100522 ms<br>
+    <span>time-elapsed</span>- 61618 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 7<br>
     <span>tests pending</span>- 0<br>
@@ -594,21 +631,21 @@ pre {
 
 <tr>
     <td>10</td>
-    <td>5973 ms</td>
+    <td>5908 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
 
 <tr>
     <td>11</td>
-    <td>2 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildLib_default</td>
 </tr>
 
 <tr>
     <td>12</td>
-    <td>10 ms</td>
+    <td>8 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildReadme_default</td>
 </tr>
@@ -629,7 +666,7 @@ pre {
 
 <tr>
     <td>15</td>
-    <td>1407 ms</td>
+    <td>1455 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_default</td>
 </tr>
