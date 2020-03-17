@@ -52,7 +52,7 @@
 
         href="https://github.com/kaizhu256/node-bootstrap-lite"
 
-    >bootstrap-lite (2020.1.20)</a>
+    >bootstrap-lite (2020.3.17)</a>
 </h1>
 <h4>this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo</h4>
 <div class="apidocSectionDiv"><a
@@ -66,7 +66,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.assertOrThrow">
             function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertOrThrow
-            <span class="apidocSignatureSpan">(passed, message)</span>
+            <span class="apidocSignatureSpan">(passed, msg)</span>
             </a>
 
         </li>
@@ -187,37 +187,35 @@
     <h2>
         <a href="#apidoc.elem.bootstrap-lite.assertOrThrow" id="apidoc.elem.bootstrap-lite.assertOrThrow">
         function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertOrThrow
-        <span class="apidocSignatureSpan">(passed, message)</span>
+        <span class="apidocSignatureSpan">(passed, msg)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, message) {
+    <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, msg) {
 <span class="apidocCodeCommentSpan">/*
- * this function will throw err.&lt;message&gt; if &lt;passed&gt; is falsy
+ * this function will throw err.&lt;msg&gt; if &lt;passed&gt; is falsy
  */
-</span>    let err;
-    if (passed) {
+</span>    if (passed) {
         return;
     }
-    err = (
+    throw (
         (
-            message
-            &amp;&amp; typeof message.message === &quot;string&quot;
-            &amp;&amp; typeof message.stack === &quot;string&quot;
+            msg
+            &amp;&amp; typeof msg.message === &quot;string&quot;
+            &amp;&amp; typeof msg.stack === &quot;string&quot;
         )
-        // if message is errObj, then leave as is
-        ? message
+        // if msg is err, then leave as is
+        ? msg
         : new Error(
-            typeof message === &quot;string&quot;
-            // if message is a string, then leave as is
-            ? message
-            // else JSON.stringify message
-            : JSON.stringify(message, undefined, 4)
+            typeof msg === &quot;string&quot;
+            // if msg is a string, then leave as is
+            ? msg
+            // else JSON.stringify msg
+            : JSON.stringify(msg, undefined, 4)
         )
     );
-    throw err;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -245,7 +243,7 @@
     }
     return arg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -262,6 +260,7 @@
  * this function will sync &quot;rm -rf&quot; &lt;dir&gt;
  */
 </span>    let child_process;
+    // do nothing if module does not exist
     try {
         child_process = require(&quot;child_process&quot;);
     } catch (ignore) {
@@ -275,7 +274,7 @@
         ]
     });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -292,6 +291,7 @@
  * this function will sync write &lt;data&gt; to &lt;file&gt; with &quot;mkdir -p&quot;
  */
 </span>    let fs;
+    // do nothing if module does not exist
     try {
         fs = require(&quot;fs&quot;);
     } catch (ignore) {
@@ -317,7 +317,7 @@
         fs.writeFileSync(file, data);
     }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -337,7 +337,7 @@
  */
 </span>    return fnc || local.nop;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -355,7 +355,7 @@
  */
 </span>    return val;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
+    <li>example use<pre class="apidocCodePre">...
 // init lib main
 local.bootstrap = local;
 
@@ -389,7 +389,7 @@ let module;
  */
 </span>    return;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -418,7 +418,7 @@ let module;
     });
     return target;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -440,7 +440,7 @@ let module;
         &amp;&amp; document.querySelector(selectors)
     ) || {};
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
+    <li>example use<pre class="apidocCodePre">...
 local.querySelector = function (selectors) {
 /*
  * this function will return first dom-elem that match &lt;selectors&gt;
@@ -478,7 +478,7 @@ local.querySelectorAll = function (selectors) {
         &amp;&amp; Array.from(document.querySelectorAll(selectors))
     ) || [];
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
+    <li>example use<pre class="apidocCodePre">...
 local.querySelectorAll = function (selectors) {
 /*
  * this function will return dom-elem-list that match &lt;selectors&gt;
