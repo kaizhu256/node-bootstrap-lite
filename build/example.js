@@ -13,7 +13,6 @@ instruction
 */
 
 
-
 /* istanbul instrument in package bootstrap */
 // assets.utility2.header.js - start
 /* jslint utility2:true */
@@ -177,11 +176,9 @@ instruction
 // assets.utility2.header.js - end
 
 
-
 /* jslint utility2:true */
 (function (local) {
 "use strict";
-
 
 
 // run shared js-env code - init-before
@@ -197,7 +194,6 @@ globalThis.local = local;
 }());
 
 
-
 /* istanbul ignore next */
 // run browser js-env code - init-test
 (function () {
@@ -205,7 +201,6 @@ if (!local.isBrowser) {
     return;
 }
 }());
-
 
 
 /* istanbul ignore next */
