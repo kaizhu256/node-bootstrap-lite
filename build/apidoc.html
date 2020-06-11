@@ -64,6 +64,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.assertJsonEqual">
+            function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertJsonEqual
+            <span class="apidocSignatureSpan">(aa, bb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.assertOrThrow">
             function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertOrThrow
             <span class="apidocSignatureSpan">(passed, msg)</span>
@@ -76,33 +85,6 @@
             <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.coalesce">
             function <span class="apidocSignatureSpan">bootstrap-lite.</span>coalesce
             <span class="apidocSignatureSpan">(...argList)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.fsRmrfSync">
-            function <span class="apidocSignatureSpan">bootstrap-lite.</span>fsRmrfSync
-            <span class="apidocSignatureSpan">(dir)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.fsWriteFileWithMkdirpSync">
-            function <span class="apidocSignatureSpan">bootstrap-lite.</span>fsWriteFileWithMkdirpSync
-            <span class="apidocSignatureSpan">(file, data)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.functionOrNop">
-            function <span class="apidocSignatureSpan">bootstrap-lite.</span>functionOrNop
-            <span class="apidocSignatureSpan">(fnc)</span>
             </a>
 
         </li>
@@ -129,25 +111,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.objectAssignDefault">
             function <span class="apidocSignatureSpan">bootstrap-lite.</span>objectAssignDefault
-            <span class="apidocSignatureSpan">(target, source)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.querySelector">
-            function <span class="apidocSignatureSpan">bootstrap-lite.</span>querySelector
-            <span class="apidocSignatureSpan">(selectors)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.querySelectorAll">
-            function <span class="apidocSignatureSpan">bootstrap-lite.</span>querySelectorAll
-            <span class="apidocSignatureSpan">(selectors)</span>
+            <span class="apidocSignatureSpan">(tgt = {}, src = {}, depth = 0)</span>
             </a>
 
         </li>
@@ -185,6 +149,48 @@
 
 
     <h2>
+        <a href="#apidoc.elem.bootstrap-lite.assertJsonEqual" id="apidoc.elem.bootstrap-lite.assertJsonEqual">
+        function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertJsonEqual
+        <span class="apidocSignatureSpan">(aa, bb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">assertJsonEqual = function (aa, bb) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
+ */
+</span>    let objectDeepCopyWithKeysSorted;
+    objectDeepCopyWithKeysSorted = function (obj) {
+    /*
+     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== &quot;object&quot; || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    };
+    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+    bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
+    if (aa !== bb) {
+        throw new Error(JSON.stringify(aa) + &quot; !== &quot; + JSON.stringify(bb));
+    }
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
         <a href="#apidoc.elem.bootstrap-lite.assertOrThrow" id="apidoc.elem.bootstrap-lite.assertOrThrow">
         function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertOrThrow
         <span class="apidocSignatureSpan">(passed, msg)</span>
@@ -193,7 +199,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, msg) {
 <span class="apidocCodeCommentSpan">/*
- * this function will throw err.&lt;msg&gt; if &lt;passed&gt; is falsy
+ * this function will throw &lt;msg&gt; if &lt;passed&gt; is falsy
  */
 </span>    if (passed) {
         return;
@@ -208,9 +214,9 @@
         ? msg
         : new Error(
             typeof msg === &quot;string&quot;
-            // if msg is a string, then leave as is
+            // if msg is string, then leave as is
             ? msg
-            // else JSON.stringify msg
+            // else JSON.stringify(msg)
             : JSON.stringify(msg, undefined, 4)
         )
     );
@@ -236,106 +242,12 @@
     ii = 0;
     while (ii &lt; argList.length) {
         arg = argList[ii];
-        if (arg !== null &amp;&amp; arg !== undefined &amp;&amp; arg !== &quot;&quot;) {
-            break;
+        if (arg !== undefined &amp;&amp; arg !== null &amp;&amp; arg !== &quot;&quot;) {
+            return arg;
         }
         ii += 1;
     }
     return arg;
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.bootstrap-lite.fsRmrfSync" id="apidoc.elem.bootstrap-lite.fsRmrfSync">
-        function <span class="apidocSignatureSpan">bootstrap-lite.</span>fsRmrfSync
-        <span class="apidocSignatureSpan">(dir)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">fsRmrfSync = function (dir) {
-<span class="apidocCodeCommentSpan">/*
- * this function will sync &quot;rm -rf&quot; &lt;dir&gt;
- */
-</span>    let child_process;
-    // do nothing if module does not exist
-    try {
-        child_process = require(&quot;child_process&quot;);
-    } catch (ignore) {
-        return;
-    }
-    child_process.spawnSync(&quot;rm&quot;, [
-        &quot;-rf&quot;, dir
-    ], {
-        stdio: [
-            &quot;ignore&quot;, 1, 2
-        ]
-    });
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.bootstrap-lite.fsWriteFileWithMkdirpSync" id="apidoc.elem.bootstrap-lite.fsWriteFileWithMkdirpSync">
-        function <span class="apidocSignatureSpan">bootstrap-lite.</span>fsWriteFileWithMkdirpSync
-        <span class="apidocSignatureSpan">(file, data)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">fsWriteFileWithMkdirpSync = function (file, data) {
-<span class="apidocCodeCommentSpan">/*
- * this function will sync write &lt;data&gt; to &lt;file&gt; with &quot;mkdir -p&quot;
- */
-</span>    let fs;
-    // do nothing if module does not exist
-    try {
-        fs = require(&quot;fs&quot;);
-    } catch (ignore) {
-        return;
-    }
-    // try to write file
-    try {
-        fs.writeFileSync(file, data);
-    } catch (ignore) {
-        // mkdir -p
-        require(&quot;child_process&quot;).spawnSync(
-            &quot;mkdir&quot;,
-            [
-                &quot;-p&quot;, require(&quot;path&quot;).dirname(file)
-            ],
-            {
-                stdio: [
-                    &quot;ignore&quot;, 1, 2
-                ]
-            }
-        );
-        // rewrite file
-        fs.writeFileSync(file, data);
-    }
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.bootstrap-lite.functionOrNop" id="apidoc.elem.bootstrap-lite.functionOrNop">
-        function <span class="apidocSignatureSpan">bootstrap-lite.</span>functionOrNop
-        <span class="apidocSignatureSpan">(fnc)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">functionOrNop = function (fnc) {
-<span class="apidocCodeCommentSpan">/*
- * this function will if &lt;fnc&gt; exists,
- * return &lt;fnc&gt;,
- * else return &lt;nop&gt;
- */
-</span>    return fnc || local.nop;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -397,104 +309,39 @@ let module;
     <h2>
         <a href="#apidoc.elem.bootstrap-lite.objectAssignDefault" id="apidoc.elem.bootstrap-lite.objectAssignDefault">
         function <span class="apidocSignatureSpan">bootstrap-lite.</span>objectAssignDefault
-        <span class="apidocSignatureSpan">(target, source)</span>
+        <span class="apidocSignatureSpan">(tgt = {}, src = {}, depth = 0)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">objectAssignDefault = function (target, source) {
+    <li>description and source-code<pre class="apidocCodePre">objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
 <span class="apidocCodeCommentSpan">/*
- * this function will if items from &lt;target&gt; are null, undefined, or &quot;&quot;,
- * then overwrite them with items from &lt;source&gt;
+ * this function will if items from &lt;tgt&gt; are null, undefined, or &quot;&quot;,
+ * then overwrite them with items from &lt;src&gt;
  */
-</span>    target = target || {};
-    Object.keys(source || {}).forEach(function (key) {
-        if (
-            target[key] === null
-            || target[key] === undefined
-            || target[key] === &quot;&quot;
-        ) {
-            target[key] = target[key] || source[key];
-        }
-    });
-    return target;
+</span>    let recurse;
+    recurse = function (tgt, src, depth) {
+        Object.entries(src).forEach(function ([
+            key, bb
+        ]) {
+            let aa;
+            aa = tgt[key];
+            if (aa === undefined || aa === null || aa === &quot;&quot;) {
+                tgt[key] = bb;
+                return;
+            }
+            if (
+                depth !== 0
+                &amp;&amp; typeof aa === &quot;object&quot; &amp;&amp; aa &amp;&amp; !Array.isArray(aa)
+                &amp;&amp; typeof bb === &quot;object&quot; &amp;&amp; bb &amp;&amp; !Array.isArray(bb)
+            ) {
+                recurse(aa, bb, depth - 1);
+            }
+        });
+    };
+    recurse(tgt, src, depth | 0);
+    return tgt;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.bootstrap-lite.querySelector" id="apidoc.elem.bootstrap-lite.querySelector">
-        function <span class="apidocSignatureSpan">bootstrap-lite.</span>querySelector
-        <span class="apidocSignatureSpan">(selectors)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">querySelector = function (selectors) {
-<span class="apidocCodeCommentSpan">/*
- * this function will return first dom-elem that match &lt;selectors&gt;
- */
-</span>    return (
-        typeof document === &quot;object&quot; &amp;&amp; document
-        &amp;&amp; typeof document.querySelector === &quot;function&quot;
-        &amp;&amp; document.querySelector(selectors)
-    ) || {};
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-local.querySelector = function (selectors) {
-/*
- * this function will return first dom-elem that match &lt;selectors&gt;
- */
-    return (
-        typeof document === &quot;object&quot; &amp;&amp; document
-        &amp;&amp; typeof document.querySelector === &quot;function&quot;
-        &amp;&amp; document.<span class="apidocCodeKeywordSpan">querySelector</span>(selectors)
-    ) || {};
-};
-local.querySelectorAll = function (selectors) {
-/*
- * this function will return dom-elem-list that match &lt;selectors&gt;
- */
-    return (
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.bootstrap-lite.querySelectorAll" id="apidoc.elem.bootstrap-lite.querySelectorAll">
-        function <span class="apidocSignatureSpan">bootstrap-lite.</span>querySelectorAll
-        <span class="apidocSignatureSpan">(selectors)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">querySelectorAll = function (selectors) {
-<span class="apidocCodeCommentSpan">/*
- * this function will return dom-elem-list that match &lt;selectors&gt;
- */
-</span>    return (
-        typeof document === &quot;object&quot; &amp;&amp; document
-        &amp;&amp; typeof document.querySelectorAll === &quot;function&quot;
-        &amp;&amp; Array.from(document.querySelectorAll(selectors))
-    ) || [];
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-local.querySelectorAll = function (selectors) {
-/*
- * this function will return dom-elem-list that match &lt;selectors&gt;
- */
-    return (
-        typeof document === &quot;object&quot; &amp;&amp; document
-        &amp;&amp; typeof document.querySelectorAll === &quot;function&quot;
-        &amp;&amp; Array.from(document.<span class="apidocCodeKeywordSpan">querySelectorAll</span>(selectors))
-    ) || [];
-};
-// require builtin
-if (!local.isBrowser) {
-    local.assert = require(&quot;assert&quot;);
-    local.buffer = require(&quot;buffer&quot;);
-    local.child_process = require(&quot;child_process&quot;);
-...</pre></li>
     </ul>
 
 

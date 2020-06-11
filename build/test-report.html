@@ -213,7 +213,7 @@ pre {
         switch (gotoState) {
         // ajaxProgress - show
         case 1:
-            // init <timerInterval> and <timerTimeout>
+            // init timerInterval and timerTimeout
             if (!timerTimeout) {
                 timeStart = Date.now();
                 timerInterval = setInterval(opt, 2000, 1, onError);
@@ -265,12 +265,12 @@ pre {
                 + (tmp - timeStart)
                 + " ms"
             );
-            // cleanup <timerInterval> and <timerTimeout>
+            // cleanup timerInterval and timerTimeout
             timeStart = tmp;
             clearInterval(timerInterval);
-            timerInterval = null;
+            timerInterval = undefined;
             clearTimeout(timerTimeout);
-            timerTimeout = null;
+            timerTimeout = undefined;
             // hide ajaxProgressBar
             styleBar.background = "transparent";
             // hide ajaxProgressModal
@@ -293,7 +293,7 @@ pre {
         opt.cnt = 0;
         window.domOnEventAjaxProgressUpdate(2, onError);
     };
-    // init <styleBar>
+    // init styleBar
     styleBar = document.getElementById("domElementAjaxProgressBar1").style;
     styleBar0 = Object.assign({}, styleBar);
     Object.entries({
@@ -310,7 +310,7 @@ pre {
     }).forEach(function (entry) {
         styleBar[entry[0]] = styleBar[entry[0]] || entry[1];
     });
-    // init <styleModal>
+    // init styleModal
     styleModal = document.getElementById("domElementAjaxProgressModal1") || {};
     styleModal = styleModal.style || {};
     styleModal0 = Object.assign({}, styleModal);
@@ -471,10 +471,10 @@ pre {
 <h4>
     <span>version</span>-
         2020.3.17<br>
-    <span>test date</span>- 2020-03-17T06:35:42.279Z<br>
+    <span>test date</span>- 2020-06-11T17:21:37.747Z<br>
     <span>commit info</span>-
         
-        5b6abc78008699ac4bf7060c9a3675b55135bb12 - <br>
+        0210e19a3526dd9262f14eb6ac1f6f271f793a3d - <br>
         
 </h4>
 <table>
@@ -487,9 +487,9 @@ pre {
     </tr>
 </thead>
 <tbody><tr>
-    <td>105891 ms</td>
+    <td>17785 ms</td>
     <td class="testPassed">0</td>
-    <td>15</td>
+    <td>8</td>
     <td>0</td>
 </tr></tbody>
 </table>
@@ -497,10 +497,10 @@ pre {
 
 <div class="platform">
 <h4>
-    1. buildApidoc - node - linux v13.11.0 - 2020-03-17T06:34:46.342Z<br>
+    1. buildApidoc - node - linux v14.4.0 - 2020-06-11T17:21:34.215Z<br>
     
     
-    <span>time-elapsed</span>- 57466 ms<br>
+    <span>time-elapsed</span>- 9871 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 1<br>
     <span>tests pending</span>- 0<br>
@@ -516,7 +516,7 @@ pre {
 
 <tr>
     <td>1</td>
-    <td>7571 ms</td>
+    <td>6103 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
@@ -530,10 +530,10 @@ pre {
 
 <div class="platform">
 <h4>
-    2. npmTest - node - linux v13.11.0 - 2020-03-17T06:34:37.296Z<br>
+    2. npmTest - node - linux v14.4.0 - 2020-06-11T17:21:23.857Z<br>
     
     
-    <span>time-elapsed</span>- 64916 ms<br>
+    <span>time-elapsed</span>- 17785 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 7<br>
     <span>tests pending</span>- 0<br>
@@ -549,35 +549,35 @@ pre {
 
 <tr>
     <td>2</td>
-    <td>1 ms</td>
+    <td>126 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApidoc_default</td>
 </tr>
 
 <tr>
     <td>3</td>
-    <td>5905 ms</td>
+    <td>6211 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
 
 <tr>
     <td>4</td>
-    <td>1 ms</td>
+    <td>5 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildLib_default</td>
 </tr>
 
 <tr>
     <td>5</td>
-    <td>9 ms</td>
+    <td>10 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildReadme_default</td>
 </tr>
 
 <tr>
     <td>6</td>
-    <td>0 ms</td>
+    <td>2 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildTest_default</td>
 </tr>
@@ -591,82 +591,7 @@ pre {
 
 <tr>
     <td>8</td>
-    <td>1349 ms</td>
-    <td class="testPassed">passed</td>
-    <td>testCase_webpage_default</td>
-</tr>
-
-</tbody>
-</table>
-<pre class="displayNone" tabIndex="0">
-
-</pre>
-</div>
-
-<div class="platform">
-<h4>
-    3. npmTestPublished - node - linux v13.11.0 - 2020-03-17T06:33:55.594Z<br>
-    
-    
-    <span>time-elapsed</span>- 105891 ms<br>
-    <span>tests failed</span>- 0<br>
-    <span>tests passed</span>- 7<br>
-    <span>tests pending</span>- 0<br>
-</h4>
-<table>
-<thead><tr>
-    <th>#</th>
-    <th>time-elapsed</th>
-    <th>status</th>
-    <th>test-case</th>
-</tr></thead>
-<tbody>
-
-<tr>
-    <td>9</td>
-    <td>0 ms</td>
-    <td class="testPassed">passed</td>
-    <td>testCase_buildApidoc_default</td>
-</tr>
-
-<tr>
-    <td>10</td>
-    <td>5908 ms</td>
-    <td class="testPassed">passed</td>
-    <td>testCase_buildApp_default</td>
-</tr>
-
-<tr>
-    <td>11</td>
-    <td>1 ms</td>
-    <td class="testPassed">passed</td>
-    <td>testCase_buildLib_default</td>
-</tr>
-
-<tr>
-    <td>12</td>
-    <td>8 ms</td>
-    <td class="testPassed">passed</td>
-    <td>testCase_buildReadme_default</td>
-</tr>
-
-<tr>
-    <td>13</td>
-    <td>1 ms</td>
-    <td class="testPassed">passed</td>
-    <td>testCase_buildTest_default</td>
-</tr>
-
-<tr>
-    <td>14</td>
-    <td>0 ms</td>
-    <td class="testPassed">passed</td>
-    <td>testCase_nop_default</td>
-</tr>
-
-<tr>
-    <td>15</td>
-    <td>1455 ms</td>
+    <td>2140 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_default</td>
 </tr>

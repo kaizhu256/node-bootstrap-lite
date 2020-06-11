@@ -1,0 +1,363 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    overflow-wrap: break-word;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/kaizhu256/node-bootstrap-lite"
+
+    >bootstrap-lite (2020.3.17)</a>
+</h1>
+<h4>this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bootstrap-lite">module bootstrap-lite</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.assertJsonEqual">
+            function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertJsonEqual
+            <span class="apidocSignatureSpan">(aa, bb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.assertOrThrow">
+            function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertOrThrow
+            <span class="apidocSignatureSpan">(passed, msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.coalesce">
+            function <span class="apidocSignatureSpan">bootstrap-lite.</span>coalesce
+            <span class="apidocSignatureSpan">(...argList)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.identity">
+            function <span class="apidocSignatureSpan">bootstrap-lite.</span>identity
+            <span class="apidocSignatureSpan">(val)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.nop">
+            function <span class="apidocSignatureSpan">bootstrap-lite.</span>nop
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.objectAssignDefault">
+            function <span class="apidocSignatureSpan">bootstrap-lite.</span>objectAssignDefault
+            <span class="apidocSignatureSpan">(tgt = {}, src = {}, depth = 0)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">bootstrap-lite.</span>timeExit</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bootstrap-lite.</span>bootstrap</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bootstrap-lite.</span>local</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">bootstrap-lite.</span>__dirname</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bootstrap-lite" id="apidoc.module.bootstrap-lite">module bootstrap-lite</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.elem.bootstrap-lite.assertJsonEqual" id="apidoc.elem.bootstrap-lite.assertJsonEqual">
+        function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertJsonEqual
+        <span class="apidocSignatureSpan">(aa, bb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">assertJsonEqual = function (aa, bb) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
+ */
+</span>    let objectDeepCopyWithKeysSorted;
+    objectDeepCopyWithKeysSorted = function (obj) {
+    /*
+     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== &quot;object&quot; || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    };
+    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+    bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
+    if (aa !== bb) {
+        throw new Error(JSON.stringify(aa) + &quot; !== &quot; + JSON.stringify(bb));
+    }
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.bootstrap-lite.assertOrThrow" id="apidoc.elem.bootstrap-lite.assertOrThrow">
+        function <span class="apidocSignatureSpan">bootstrap-lite.</span>assertOrThrow
+        <span class="apidocSignatureSpan">(passed, msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, msg) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will throw &lt;msg&gt; if &lt;passed&gt; is falsy
+ */
+</span>    if (passed) {
+        return;
+    }
+    throw (
+        (
+            msg
+            &amp;&amp; typeof msg.message === &quot;string&quot;
+            &amp;&amp; typeof msg.stack === &quot;string&quot;
+        )
+        // if msg is err, then leave as is
+        ? msg
+        : new Error(
+            typeof msg === &quot;string&quot;
+            // if msg is string, then leave as is
+            ? msg
+            // else JSON.stringify(msg)
+            : JSON.stringify(msg, undefined, 4)
+        )
+    );
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.bootstrap-lite.coalesce" id="apidoc.elem.bootstrap-lite.coalesce">
+        function <span class="apidocSignatureSpan">bootstrap-lite.</span>coalesce
+        <span class="apidocSignatureSpan">(...argList)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">coalesce = function (...argList) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will coalesce null, undefined, or &quot;&quot; in &lt;argList&gt;
+ */
+</span>    let arg;
+    let ii;
+    ii = 0;
+    while (ii &lt; argList.length) {
+        arg = argList[ii];
+        if (arg !== undefined &amp;&amp; arg !== null &amp;&amp; arg !== &quot;&quot;) {
+            return arg;
+        }
+        ii += 1;
+    }
+    return arg;
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.bootstrap-lite.identity" id="apidoc.elem.bootstrap-lite.identity">
+        function <span class="apidocSignatureSpan">bootstrap-lite.</span>identity
+        <span class="apidocSignatureSpan">(val)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">identity = function (val) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will return &lt;val&gt;
+ */
+</span>    return val;
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+// init lib main
+local.bootstrap = local;
+
+
+
+/* validateLineSortedReset */
+// run browser js-env code - init-function
+local.<span class="apidocCodeKeywordSpan">identity</span>(function () {
+if (!local.isBrowser) {
+    return;
+}
+/* jslint ignore:start */
+let define;
+let exports;
+let module;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.bootstrap-lite.nop" id="apidoc.elem.bootstrap-lite.nop">
+        function <span class="apidocSignatureSpan">bootstrap-lite.</span>nop
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">nop = function () {
+<span class="apidocCodeCommentSpan">/*
+ * this function will do nothing
+ */
+</span>    return;
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.bootstrap-lite.objectAssignDefault" id="apidoc.elem.bootstrap-lite.objectAssignDefault">
+        function <span class="apidocSignatureSpan">bootstrap-lite.</span>objectAssignDefault
+        <span class="apidocSignatureSpan">(tgt = {}, src = {}, depth = 0)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will if items from &lt;tgt&gt; are null, undefined, or &quot;&quot;,
+ * then overwrite them with items from &lt;src&gt;
+ */
+</span>    let recurse;
+    recurse = function (tgt, src, depth) {
+        Object.entries(src).forEach(function ([
+            key, bb
+        ]) {
+            let aa;
+            aa = tgt[key];
+            if (aa === undefined || aa === null || aa === &quot;&quot;) {
+                tgt[key] = bb;
+                return;
+            }
+            if (
+                depth !== 0
+                &amp;&amp; typeof aa === &quot;object&quot; &amp;&amp; aa &amp;&amp; !Array.isArray(aa)
+                &amp;&amp; typeof bb === &quot;object&quot; &amp;&amp; bb &amp;&amp; !Array.isArray(bb)
+            ) {
+                recurse(aa, bb, depth - 1);
+            }
+        });
+    };
+    recurse(tgt, src, depth | 0);
+    return tgt;
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>

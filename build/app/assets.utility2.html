@@ -164,7 +164,7 @@ pre {
         switch (gotoState) {
         // ajaxProgress - show
         case 1:
-            // init <timerInterval> and <timerTimeout>
+            // init timerInterval and timerTimeout
             if (!timerTimeout) {
                 timeStart = Date.now();
                 timerInterval = setInterval(opt, 2000, 1, onError);
@@ -216,12 +216,12 @@ pre {
                 + (tmp - timeStart)
                 + " ms"
             );
-            // cleanup <timerInterval> and <timerTimeout>
+            // cleanup timerInterval and timerTimeout
             timeStart = tmp;
             clearInterval(timerInterval);
-            timerInterval = null;
+            timerInterval = undefined;
             clearTimeout(timerTimeout);
-            timerTimeout = null;
+            timerTimeout = undefined;
             // hide ajaxProgressBar
             styleBar.background = "transparent";
             // hide ajaxProgressModal
@@ -244,7 +244,7 @@ pre {
         opt.cnt = 0;
         window.domOnEventAjaxProgressUpdate(2, onError);
     };
-    // init <styleBar>
+    // init styleBar
     styleBar = document.getElementById("domElementAjaxProgressBar1").style;
     styleBar0 = Object.assign({}, styleBar);
     Object.entries({
@@ -261,7 +261,7 @@ pre {
     }).forEach(function (entry) {
         styleBar[entry[0]] = styleBar[entry[0]] || entry[1];
     });
-    // init <styleModal>
+    // init styleModal
     styleModal = document.getElementById("domElementAjaxProgressModal1") || {};
     styleModal = styleModal.style || {};
     styleModal0 = Object.assign({}, styleModal);
@@ -491,7 +491,7 @@ pre {
 window.addEventListener("load", function (local) {
 "use strict";
 local = window.utility2;
-local.querySelectorAll(
+document.querySelectorAll(
     "#buttonTestRun1, #htmlTestReport1"
 ).forEach(function (elem) {
     elem.style.display = "none";
@@ -501,18 +501,18 @@ local.domOnEventInputChange = function (evt) {
     case "click.buttonJslintAutofix1":
     case "keyup.inputTextarea1":
         // jslint #inputTextarea1
-        local.jslintAndPrint(local.querySelector(
+        local.jslintAndPrint(document.querySelector(
             "#inputTextarea1"
         ).value, "inputTextarea1.js", {
             autofix: evt.target.id === "buttonJslintAutofix1",
             conditional: evt.target.id !== "buttonJslintAutofix1"
         });
         if (local.jslint.jslintResult.autofix) {
-            local.querySelector(
+            document.querySelector(
                 "#inputTextarea1"
             ).value = local.jslint.jslintResult.code;
         }
-        local.querySelector(
+        document.querySelector(
             "#outputJslintPre1"
         ).textContent = local.jslint.jslintResult.errMsg.replace((
             /\\u001b\\[\\d*m/g
@@ -523,14 +523,14 @@ local.domOnEventInputChange = function (evt) {
         } catch (ignore) {}
         // try to cover and eval #inputTextarea1
         try {
-            local.querySelector(
+            document.querySelector(
                 "#outputTextarea1"
             ).value = local.istanbul.instrumentSync(
-                local.querySelector("#inputTextarea1").value,
+                document.querySelector("#inputTextarea1").value,
                 "/inputTextarea1.js"
             );
             eval( // jslint ignore:line
-                local.querySelector("#outputTextarea1").value
+                document.querySelector("#outputTextarea1").value
             );
         } catch (errCaught) {
             console.error(errCaught);
@@ -539,15 +539,15 @@ local.domOnEventInputChange = function (evt) {
     }
 };
 // handle evt
-local.on("utility2.testRunEnd", function () {
-    local.querySelector(
+local.eventListenerAdd("utility2.testRunEnd", function () {
+    document.querySelector(
         "#htmlCoverageReport1"
     ).innerHTML = local.istanbul.coverageReportCreate({
         coverage: globalThis.__coverage__
     });
 });
-local.on("utility2.testRunProgressUpdate", function (testReport) {
-    local.querySelector(
+local.eventListenerAdd("utility2.testRunProgressUpdate", function (testReport) {
+    document.querySelector(
         "#htmlTestReport2"
     ).innerHTML = local.testReportMerge(testReport, {});
 });

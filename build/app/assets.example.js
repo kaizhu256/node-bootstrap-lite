@@ -95,56 +95,45 @@
 
 
 
-
-
-
 /*
 example.js
 
-this script will run a web-demo of bootstrap-lite
+this script will run web-demo of bootstrap-lite
 
 instruction
     1. save this script as example.js
     2. run shell-command:
-        $ npm install bootstrap-lite && \
+        $ npm install kaizhu256/node-bootstrap-lite#alpha && \
             PORT=8081 node example.js
-    3. open a browser to http://127.0.0.1:8081 and play with web-demo
+    3. open browser to http://127.0.0.1:8081 and play with web-demo
     4. edit this script to suit your needs
 */
 
 
 
+/* istanbul instrument in package bootstrap */
 // assets.utility2.header.js - start
-/* istanbul ignore next */
 /* jslint utility2:true */
-(function (globalThis) {
+/* istanbul ignore next */
+// run shared js-env code - init-local
+(function () {
     "use strict";
     let consoleError;
-    let debugName;
     let local;
-    debugName = "debug" + String("Inline");
-    // init globalThis
-    globalThis.globalThis = globalThis.globalThis || globalThis;
-    // init debug_inline
-    if (!globalThis[debugName]) {
+    // init debugInline
+    if (!globalThis.debugInline) {
         consoleError = console.error;
-        globalThis[debugName] = function (...argList) {
+        globalThis.debugInline = function (...argList) {
         /*
          * this function will both print <argList> to stderr
          * and return <argList>[0]
          */
-            consoleError("\n\n" + debugName);
+            consoleError("\n\ndebugInline");
             consoleError(...argList);
             consoleError("\n");
             return argList[0];
         };
     }
-    String.prototype.trimEnd = (
-        String.prototype.trimEnd || String.prototype.trimRight
-    );
-    String.prototype.trimStart = (
-        String.prototype.trimStart || String.prototype.trimLeft
-    );
     // init local
     local = {};
     local.local = local;
@@ -160,9 +149,39 @@ instruction
         local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    local.assertJsonEqual = function (aa, bb) {
+    /*
+     * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
+     */
+        let objectDeepCopyWithKeysSorted;
+        objectDeepCopyWithKeysSorted = function (obj) {
+        /*
+         * this function will recursively deep-copy <obj> with keys sorted
+         */
+            let sorted;
+            if (typeof obj !== "object" || !obj) {
+                return obj;
+            }
+            // recursively deep-copy list with child-keys sorted
+            if (Array.isArray(obj)) {
+                return obj.map(objectDeepCopyWithKeysSorted);
+            }
+            // recursively deep-copy obj with keys sorted
+            sorted = {};
+            Object.keys(obj).sort().forEach(function (key) {
+                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+            });
+            return sorted;
+        };
+        aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+        bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
+        if (aa !== bb) {
+            throw new Error(JSON.stringify(aa) + " !== " + JSON.stringify(bb));
+        }
+    };
     local.assertOrThrow = function (passed, msg) {
     /*
-     * this function will throw err.<msg> if <passed> is falsy
+     * this function will throw <msg> if <passed> is falsy
      */
         if (passed) {
             return;
@@ -177,9 +196,9 @@ instruction
             ? msg
             : new Error(
                 typeof msg === "string"
-                // if msg is a string, then leave as is
+                // if msg is string, then leave as is
                 ? msg
-                // else JSON.stringify msg
+                // else JSON.stringify(msg)
                 : JSON.stringify(msg, undefined, 4)
             )
         );
@@ -193,70 +212,12 @@ instruction
         ii = 0;
         while (ii < argList.length) {
             arg = argList[ii];
-            if (arg !== null && arg !== undefined && arg !== "") {
-                break;
+            if (arg !== undefined && arg !== null && arg !== "") {
+                return arg;
             }
             ii += 1;
         }
         return arg;
-    };
-    local.fsRmrfSync = function (dir) {
-    /*
-     * this function will sync "rm -rf" <dir>
-     */
-        let child_process;
-        // do nothing if module does not exist
-        try {
-            child_process = require("child_process");
-        } catch (ignore) {
-            return;
-        }
-        child_process.spawnSync("rm", [
-            "-rf", dir
-        ], {
-            stdio: [
-                "ignore", 1, 2
-            ]
-        });
-    };
-    local.fsWriteFileWithMkdirpSync = function (file, data) {
-    /*
-     * this function will sync write <data> to <file> with "mkdir -p"
-     */
-        let fs;
-        // do nothing if module does not exist
-        try {
-            fs = require("fs");
-        } catch (ignore) {
-            return;
-        }
-        // try to write file
-        try {
-            fs.writeFileSync(file, data);
-        } catch (ignore) {
-            // mkdir -p
-            require("child_process").spawnSync(
-                "mkdir",
-                [
-                    "-p", require("path").dirname(file)
-                ],
-                {
-                    stdio: [
-                        "ignore", 1, 2
-                    ]
-                }
-            );
-            // rewrite file
-            fs.writeFileSync(file, data);
-        }
-    };
-    local.functionOrNop = function (fnc) {
-    /*
-     * this function will if <fnc> exists,
-     * return <fnc>,
-     * else return <nop>
-     */
-        return fnc || local.nop;
     };
     local.identity = function (val) {
     /*
@@ -270,74 +231,46 @@ instruction
      */
         return;
     };
-    local.objectAssignDefault = function (target, source) {
+    local.objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
     /*
-     * this function will if items from <target> are null, undefined, or "",
-     * then overwrite them with items from <source>
+     * this function will if items from <tgt> are null, undefined, or "",
+     * then overwrite them with items from <src>
      */
-        target = target || {};
-        Object.keys(source || {}).forEach(function (key) {
-            if (
-                target[key] === null
-                || target[key] === undefined
-                || target[key] === ""
-            ) {
-                target[key] = target[key] || source[key];
-            }
+        let recurse;
+        recurse = function (tgt, src, depth) {
+            Object.entries(src).forEach(function ([
+                key, bb
+            ]) {
+                let aa;
+                aa = tgt[key];
+                if (aa === undefined || aa === null || aa === "") {
+                    tgt[key] = bb;
+                    return;
+                }
+                if (
+                    depth !== 0
+                    && typeof aa === "object" && aa && !Array.isArray(aa)
+                    && typeof bb === "object" && bb && !Array.isArray(bb)
+                ) {
+                    recurse(aa, bb, depth - 1);
+                }
+            });
+        };
+        recurse(tgt, src, depth | 0);
+        return tgt;
+    };
+    // bug-workaround - throw unhandledRejections in node-process
+    if (
+        typeof process === "object" && process
+        && typeof process.on === "function"
+        && process.unhandledRejections !== "strict"
+    ) {
+        process.unhandledRejections = "strict";
+        process.on("unhandledRejection", function (err) {
+            throw err;
         });
-        return target;
-    };
-    local.querySelector = function (selectors) {
-    /*
-     * this function will return first dom-elem that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelector === "function"
-            && document.querySelector(selectors)
-        ) || {};
-    };
-    local.querySelectorAll = function (selectors) {
-    /*
-     * this function will return dom-elem-list that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelectorAll === "function"
-            && Array.from(document.querySelectorAll(selectors))
-        ) || [];
-    };
-    // require builtin
-    if (!local.isBrowser) {
-        local.assert = require("assert");
-        local.buffer = require("buffer");
-        local.child_process = require("child_process");
-        local.cluster = require("cluster");
-        local.crypto = require("crypto");
-        local.dgram = require("dgram");
-        local.dns = require("dns");
-        local.domain = require("domain");
-        local.events = require("events");
-        local.fs = require("fs");
-        local.http = require("http");
-        local.https = require("https");
-        local.net = require("net");
-        local.os = require("os");
-        local.path = require("path");
-        local.querystring = require("querystring");
-        local.readline = require("readline");
-        local.repl = require("repl");
-        local.stream = require("stream");
-        local.string_decoder = require("string_decoder");
-        local.timers = require("timers");
-        local.tls = require("tls");
-        local.tty = require("tty");
-        local.url = require("url");
-        local.util = require("util");
-        local.vm = require("vm");
-        local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || window));
+}());
 // assets.utility2.header.js - end
 
 
@@ -372,6 +305,7 @@ if (!local.isBrowser) {
 
 
 
+/* istanbul ignore next */
 // run node js-env code - init-test
 (function () {
 if (local.isBrowser) {
@@ -381,19 +315,6 @@ if (local.isBrowser) {
 module.exports = local;
 // init assetsDict
 local.assetsDict = local.assetsDict || {};
-[
-    "assets.swgg.swagger.json",
-    "assets.swgg.swagger.server.json"
-].forEach(function (file) {
-    file = "/" + file;
-    local.assetsDict[file] = local.assetsDict[file] || "";
-    if (local.fs.existsSync(local.__dirname + file)) {
-        local.assetsDict[file] = local.fs.readFileSync(
-            local.__dirname + file,
-            "utf8"
-        );
-    }
-});
 /* jslint ignore:start */
 local.assetsDict["/assets.index.template.html"] = '\
 <!doctype html>\n\
@@ -1265,8 +1186,8 @@ body {\n\
 /* jslint ignore:end */
 local.assetsDict["/assets.bootstrap.js"] = (
     local.assetsDict["/assets.bootstrap.js"]
-    || local.fs.readFileSync(
-        local.__dirname + "/lib.bootstrap.js",
+    || require("fs").readFileSync(
+        require("path").resolve(local.__dirname + "/lib.bootstrap.js"),
         "utf8"
     ).replace((
         /^#!\//
@@ -1298,7 +1219,7 @@ if (module !== require.main || globalThis.utility2_rollup) {
 }
 local.assetsDict["/assets.example.js"] = (
     local.assetsDict["/assets.example.js"]
-    || local.fs.readFileSync(__filename, "utf8")
+    || require("fs").readFileSync(__filename, "utf8")
 );
 local.assetsDict["/favicon.ico"] = local.assetsDict["/favicon.ico"] || "";
 local.assetsDict["/index.html"] = local.assetsDict["/"];
@@ -1313,10 +1234,11 @@ if (globalThis.utility2_serverHttp1) {
 }
 process.env.PORT = process.env.PORT || "8081";
 console.error("http-server listening on port " + process.env.PORT);
-local.http.createServer(function (req, res) {
-    req.urlParsed = local.url.parse(req.url);
-    if (local.assetsDict[req.urlParsed.pathname] !== undefined) {
-        res.end(local.assetsDict[req.urlParsed.pathname]);
+require("http").createServer(function (req, res) {
+    let data;
+    data = local.assetsDict[require("url").parse(req.url).pathname];
+    if (data !== undefined) {
+        res.end(data);
         return;
     }
     res.statusCode = 404;
