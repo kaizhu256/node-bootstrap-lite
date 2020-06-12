@@ -493,7 +493,8 @@ body {\n\
 </div>\n\
 \n\
 \n\
-<h1 class="page-header">DataTables</h1>\n\
+<h1>DataTables</h1>\n\
+<!-- https://github.com/DataTables/DataTables/blob/1.10.20/examples/basic_init/zero_configuration.html -->\n\
 <table id="example" class="display" style="width:100%">\n\
     <thead>\n\
         <tr>\n\
@@ -693,7 +694,7 @@ body {\n\
         <tr>\n\
             <td>Doris Wilder</td>\n\
             <td>Sales Assistant</td>\n\
-            <td>Sydney</td>\n\
+            <td>Sidney</td>\n\
             <td>23</td>\n\
             <td>2010/09/20</td>\n\
             <td>$85,600</td>\n\
@@ -749,7 +750,7 @@ body {\n\
         <tr>\n\
             <td>Michelle House</td>\n\
             <td>Integration Specialist</td>\n\
-            <td>Sydney</td>\n\
+            <td>Sidney</td>\n\
             <td>37</td>\n\
             <td>2011/06/02</td>\n\
             <td>$95,400</td>\n\
@@ -974,8 +975,24 @@ body {\n\
         </tr>\n\
     </tfoot>\n\
 </table>\n\
-\n\
-\n\
+<br>\n\
+<br>\n\
+<br>\n\
+<h1>Chart.js</h1>\n\
+<!-- https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/charts/line/basic.html -->\n\
+<div style="width:100%;">\n\
+    <canvas id="canvas"></canvas>\n\
+</div>\n\
+<br>\n\
+<br>\n\
+<button id="randomizeData">Randomize Data</button>\n\
+<button id="addDataset">Add Dataset</button>\n\
+<button id="removeDataset">Remove Dataset</button>\n\
+<button id="addData">Add Data</button>\n\
+<button id="removeData">Remove Data</button>\n\
+<br>\n\
+<br>\n\
+<br>\n\
 <h1 class="page-header">Dashboard</h1>\n\
 <div class="row placeholders">\n\
     <div class="col-xs-6 col-sm-3 placeholder">\n\
@@ -1655,8 +1672,257 @@ body {\n\
 <!-- Placed at the end of the document so the pages load faster -->\n\
 <script src="assets.bootstrap.js"></script>\n\
 <script>\n\
+// https://github.com/DataTables/DataTables/blob/1.10.20/examples/basic_init/zero_configuration.html\n\
 $(document).ready(function() {\n\
-    $("#example").DataTable();\n\
+    $(\'#example\').DataTable();\n\
+});\n\
+</script>\n\
+<script>\n\
+// https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/utils.js\n\
+\'use strict\';\n\
+window.chartColors = {\n\
+	red: \'rgb(255, 99, 132)\',\n\
+	orange: \'rgb(255, 159, 64)\',\n\
+	yellow: \'rgb(255, 205, 86)\',\n\
+	green: \'rgb(75, 192, 192)\',\n\
+	blue: \'rgb(54, 162, 235)\',\n\
+	purple: \'rgb(153, 102, 255)\',\n\
+	grey: \'rgb(201, 203, 207)\'\n\
+};\n\
+(function(global) {\n\
+	var MONTHS = [\n\
+		\'January\',\n\
+		\'February\',\n\
+		\'March\',\n\
+		\'April\',\n\
+		\'May\',\n\
+		\'June\',\n\
+		\'July\',\n\
+		\'August\',\n\
+		\'September\',\n\
+		\'October\',\n\
+		\'November\',\n\
+		\'December\'\n\
+	];\n\
+	var COLORS = [\n\
+		\'#4dc9f6\',\n\
+		\'#f67019\',\n\
+		\'#f53794\',\n\
+		\'#537bc4\',\n\
+		\'#acc236\',\n\
+		\'#166a8f\',\n\
+		\'#00a950\',\n\
+		\'#58595b\',\n\
+		\'#8549ba\'\n\
+	];\n\
+	var Samples = global.Samples || (global.Samples = {});\n\
+	var Color = global.Color;\n\
+	Samples.utils = {\n\
+		// Adapted from http://indiegamr.com/generate-repeatable-random-numbers-in-js/\n\
+		srand: function(seed) {\n\
+			this._seed = seed;\n\
+		},\n\
+		rand: function(min, max) {\n\
+			var seed = this._seed;\n\
+			min = min === undefined ? 0 : min;\n\
+			max = max === undefined ? 1 : max;\n\
+			this._seed = (seed * 9301 + 49297) % 233280;\n\
+			return min + (this._seed / 233280) * (max - min);\n\
+		},\n\
+		numbers: function(config) {\n\
+			var cfg = config || {};\n\
+			var min = cfg.min || 0;\n\
+			var max = cfg.max || 1;\n\
+			var from = cfg.from || [];\n\
+			var count = cfg.count || 8;\n\
+			var decimals = cfg.decimals || 8;\n\
+			var continuity = cfg.continuity || 1;\n\
+			var dfactor = Math.pow(10, decimals) || 0;\n\
+			var data = [];\n\
+			var i, value;\n\
+			for (i = 0; i < count; ++i) {\n\
+				value = (from[i] || 0) + this.rand(min, max);\n\
+				if (this.rand() <= continuity) {\n\
+					data.push(Math.round(dfactor * value) / dfactor);\n\
+				} else {\n\
+					data.push(null);\n\
+				}\n\
+			}\n\
+			return data;\n\
+		},\n\
+		labels: function(config) {\n\
+			var cfg = config || {};\n\
+			var min = cfg.min || 0;\n\
+			var max = cfg.max || 100;\n\
+			var count = cfg.count || 8;\n\
+			var step = (max - min) / count;\n\
+			var decimals = cfg.decimals || 8;\n\
+			var dfactor = Math.pow(10, decimals) || 0;\n\
+			var prefix = cfg.prefix || \'\';\n\
+			var values = [];\n\
+			var i;\n\
+			for (i = min; i < max; i += step) {\n\
+				values.push(prefix + Math.round(dfactor * i) / dfactor);\n\
+			}\n\
+			return values;\n\
+		},\n\
+		months: function(config) {\n\
+			var cfg = config || {};\n\
+			var count = cfg.count || 12;\n\
+			var section = cfg.section;\n\
+			var values = [];\n\
+			var i, value;\n\
+			for (i = 0; i < count; ++i) {\n\
+				value = MONTHS[Math.ceil(i) % 12];\n\
+				values.push(value.substring(0, section));\n\
+			}\n\
+			return values;\n\
+		},\n\
+		color: function(index) {\n\
+			return COLORS[index % COLORS.length];\n\
+		},\n\
+		transparentize: function(color, opacity) {\n\
+			var alpha = opacity === undefined ? 0.5 : 1 - opacity;\n\
+			return Color(color).alpha(alpha).rgbString();\n\
+		}\n\
+	};\n\
+	// DEPRECATED\n\
+	window.randomScalingFactor = function() {\n\
+		return Math.round(Samples.utils.rand(-100, 100));\n\
+	};\n\
+	// INITIALIZATION\n\
+	Samples.utils.srand(Date.now());\n\
+	// Google Analytics\n\
+	/* eslint-disable */\n\
+	if (document.location.hostname.match(/^(www\\.)?chartjs\\.org$/)) {\n\
+		(function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){\n\
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n\
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n\
+		})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');\n\
+		ga(\'create\', \'UA-28909194-3\', \'auto\');\n\
+		ga(\'send\', \'pageview\');\n\
+	}\n\
+	/* eslint-enable */\n\
+}(this));\n\
+</script>\n\
+<script>\n\
+// https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/charts/line/basic.html\n\
+var MONTHS = [\'January\', \'February\', \'March\', \'April\', \'May\', \'June\', \'July\', \'August\', \'September\', \'October\', \'November\', \'December\'];\n\
+var config = {\n\
+    type: \'line\',\n\
+    data: {\n\
+        labels: [\'January\', \'February\', \'March\', \'April\', \'May\', \'June\', \'July\'],\n\
+        datasets: [{\n\
+            label: \'My First dataset\',\n\
+            backgroundColor: window.chartColors.red,\n\
+            borderColor: window.chartColors.red,\n\
+            data: [\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor()\n\
+            ],\n\
+            fill: false,\n\
+        }, {\n\
+            label: \'My Second dataset\',\n\
+            fill: false,\n\
+            backgroundColor: window.chartColors.blue,\n\
+            borderColor: window.chartColors.blue,\n\
+            data: [\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor()\n\
+            ],\n\
+        }]\n\
+    },\n\
+    options: {\n\
+        responsive: true,\n\
+        title: {\n\
+            display: true,\n\
+            text: \'Chart.js Line Chart\'\n\
+        },\n\
+        tooltips: {\n\
+            mode: \'index\',\n\
+            intersect: false,\n\
+        },\n\
+        hover: {\n\
+            mode: \'nearest\',\n\
+            intersect: true\n\
+        },\n\
+        scales: {\n\
+            xAxes: [{\n\
+                display: true,\n\
+                scaleLabel: {\n\
+                    display: true,\n\
+                    labelString: \'Month\'\n\
+                }\n\
+            }],\n\
+            yAxes: [{\n\
+                display: true,\n\
+                scaleLabel: {\n\
+                    display: true,\n\
+                    labelString: \'Value\'\n\
+                }\n\
+            }]\n\
+        }\n\
+    }\n\
+};\n\
+window.onload = function() {\n\
+    var ctx = document.getElementById(\'canvas\').getContext(\'2d\');\n\
+    window.myLine = new Chart(ctx, config);\n\
+};\n\
+document.getElementById(\'randomizeData\').addEventListener(\'click\', function() {\n\
+    config.data.datasets.forEach(function(dataset) {\n\
+        dataset.data = dataset.data.map(function() {\n\
+            return randomScalingFactor();\n\
+        });\n\
+    });\n\
+    window.myLine.update();\n\
+});\n\
+var colorNames = Object.keys(window.chartColors);\n\
+document.getElementById(\'addDataset\').addEventListener(\'click\', function() {\n\
+    var colorName = colorNames[config.data.datasets.length % colorNames.length];\n\
+    var newColor = window.chartColors[colorName];\n\
+    var newDataset = {\n\
+        label: \'Dataset \' + config.data.datasets.length,\n\
+        backgroundColor: newColor,\n\
+        borderColor: newColor,\n\
+        data: [],\n\
+        fill: false\n\
+    };\n\
+    for (var index = 0; index < config.data.labels.length; ++index) {\n\
+        newDataset.data.push(randomScalingFactor());\n\
+    }\n\
+    config.data.datasets.push(newDataset);\n\
+    window.myLine.update();\n\
+});\n\
+document.getElementById(\'addData\').addEventListener(\'click\', function() {\n\
+    if (config.data.datasets.length > 0) {\n\
+        var month = MONTHS[config.data.labels.length % MONTHS.length];\n\
+        config.data.labels.push(month);\n\
+        config.data.datasets.forEach(function(dataset) {\n\
+            dataset.data.push(randomScalingFactor());\n\
+        });\n\
+        window.myLine.update();\n\
+    }\n\
+});\n\
+document.getElementById(\'removeDataset\').addEventListener(\'click\', function() {\n\
+    config.data.datasets.splice(0, 1);\n\
+    window.myLine.update();\n\
+});\n\
+document.getElementById(\'removeData\').addEventListener(\'click\', function() {\n\
+    config.data.labels.splice(-1, 1); // remove the label first\n\
+    config.data.datasets.forEach(function(dataset) {\n\
+        dataset.data.pop();\n\
+    });\n\
+    window.myLine.update();\n\
 });\n\
 </script>\n\
 </body>\n\
