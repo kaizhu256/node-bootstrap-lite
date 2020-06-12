@@ -995,7 +995,6 @@ body {\n\
 <br>\n\
 <!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/index.html -->\n\
 <h1 class="page-header">Dashboard</h1>\n\
-<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>\n\
 <div class="row placeholders">\n\
     <div class="col-xs-6 col-sm-3 placeholder">\n\
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">\n\
