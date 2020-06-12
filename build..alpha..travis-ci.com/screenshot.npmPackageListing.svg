@@ -5,17 +5,17 @@
 
 <tspan x="10" y="42"></tspan>
 
-<tspan x="10" y="58">0.    2020-06-12 00:20:04 -0500   2373478 bytes .</tspan>
+<tspan x="10" y="58">0.    2020-06-12 00:59:11 -0500   2973806 bytes .</tspan>
 
 <tspan x="10" y="74">1.    2020-03-17 01:32:33 -0500       125 bytes .gitignore</tspan>
 
 <tspan x="10" y="90">2.    2020-06-11 11:15:12 -0500      1530 bytes .travis.yml</tspan>
 
-<tspan x="10" y="106">3.    2018-08-13 13:39:56 +0700      1090 bytes LICENSE</tspan>
+<tspan x="10" y="106">3.    2020-03-17 01:32:33 -0500      1090 bytes LICENSE</tspan>
 
-<tspan x="10" y="122">4.    2020-06-11 17:42:42 -0500     55607 bytes README.md</tspan>
+<tspan x="10" y="122">4.    2020-06-12 05:58:25 +0000     70146 bytes README.md</tspan>
 
-<tspan x="10" y="138">5.    2020-06-12 00:20:04 -0500    223655 bytes lib.bootstrap.css</tspan>
+<tspan x="10" y="138">5.    2020-06-12 05:58:25 +0000    225779 bytes lib.bootstrap.css</tspan>
 
 <tspan x="10" y="154">6.    2020-06-11 17:26:26 -0500    930962 bytes lib.bootstrap.js</tspan>
 
@@ -23,9 +23,9 @@
 
 <tspan x="10" y="186">8.    2020-06-11 17:19:09 +0000      1235 bytes package.json</tspan>
 
-<tspan x="10" y="202">9.    2020-06-12 00:19:35 -0500    225073 bytes raw.bootstrap.css</tspan>
+<tspan x="10" y="202">9.    2020-06-12 00:59:11 -0500    229513 bytes raw.bootstrap.css</tspan>
 
-<tspan x="10" y="218">10.   2020-06-11 17:24:53 -0500    925182 bytes raw.bootstrap.js</tspan>
+<tspan x="10" y="218">10.   2020-06-12 00:27:57 -0500   1504407 bytes raw.bootstrap.js</tspan>
 
 <tspan x="10" y="234">11.   2020-06-11 17:23:22 -0500      6908 bytes test.js</tspan>
 
