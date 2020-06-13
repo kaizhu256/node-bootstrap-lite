@@ -52878,29 +52878,29 @@ if (local.isBrowser) {
 }
 // init assets
 local.assetsDict = local.assetsDict || {};
-if (globalThis.utility2_rollup) {
+[
+    ".css", ".js"
+].forEach(function (extname) {
+    local.assetsDict[
+        "/assets.bootstrap" + extname
+    ] = local.assetsDict[
+        "/assets.bootstrap" + extname
+    ] || require("fs").readFileSync(
+        __dirname + "/lib.bootstrap" + extname,
+        "utf8"
+    ).replace((
+        /^#!\//
+    ), "// ");
     local.assetsDict[
         "/assets"
         + ".bootstrap-v3.4.1"
         + ".datatables-v1.10.20"
         + ".chartjs-v2.9.3"
-        + ".rollup.css"
-    ] = local.assetsDict["/assets.bootstrap.css"];
-    local.assetsDict[
-        "/assets"
-        + ".bootstrap-v3.4.1"
-        + ".datatables-v1.10.20"
-        + ".chartjs-v2.9.3"
-        + ".rollup.js"
-    ] = local.assetsDict["/assets.bootstrap.js"];
-} else {
-    local.assetsDict[
-        "/assets.bootstrap-v3.4.1.rollup.css"
-    ] = require("fs").readFileSync(__dirname + "/lib.bootstrap.css", "utf8");
-    local.assetsDict[
-        "/assets.bootstrap-v3.4.1.rollup.js"
-    ] = require("fs").readFileSync(__dirname + "/lib.bootstrap.js", "utf8");
-}
+        + ".rollup" + extname
+    ] = local.assetsDict[
+        "/assets.bootstrap" + extname
+    ];
+});
 }());
 }());
 }());

@@ -568,8 +568,6 @@
 <a href="#l243" id="l243">243</a>
 <a href="#l244" id="l244">244</a>
 <a href="#l245" id="l245">245</a>
-<a href="#l246" id="l246">246</a>
-<a href="#l247" id="l247">247</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -765,8 +763,6 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1016,23 +1012,21 @@ local.testCase_buildApp_default = function (opt, onError) {
     opt = {
         assetsList: [
             {
-                file: (
+                url: (
                     "/assets"
                     + ".bootstrap-v3.4.1"
                     + ".datatables-v1.10.20"
                     + ".chartjs-v2.9.3"
                     + ".rollup.css"
-                ),
-                url: "/assets.bootstrap.css"
+                )
             }, {
-                file: (
+                url: (
                     "/assets"
                     + ".bootstrap-v3.4.1"
                     + ".datatables-v1.10.20"
                     + ".chartjs-v2.9.3"
                     + ".rollup.js"
-                ),
-                url: "/assets.bootstrap.js"
+                )
             }
         ]
     };

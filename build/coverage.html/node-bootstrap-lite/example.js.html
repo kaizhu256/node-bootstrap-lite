@@ -297,7 +297,7 @@
     <tbody>
         <td>
             Statements: 69<br>
-            Branches: 59<br>
+            Branches: 60<br>
             Functions: 13
         </td>
         <td>
@@ -6290,7 +6290,7 @@ document.getElementById(\'removeData\').addEventListener(\'click\', function() {
 /* jslint ignore:end */
 local.assetsDict["/assets.bootstrap.js"] = (
     local.assetsDict["/assets.bootstrap.js"]
-    || require("fs").readFileSync(
+    || <span class="branch-1 cbranch-skip" title="branch not covered">require("fs").readFileSync(</span>
         require("path").resolve(local.__dirname + "/lib.bootstrap.js"),
         "utf8"
     ).replace((

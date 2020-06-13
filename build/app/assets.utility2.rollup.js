@@ -46610,7 +46610,7 @@ local.buildApp = function (opt, onError) {
  */
     // cleanup app
     require("child_process").spawn((
-        "rm -rf tmp/build/app tmp/buildAssetsAppJs;"
+        "rm -rf tmp/build/app tmp/build/app.rollup;"
     ), {
         shell: true,
         stdio: [
@@ -46627,12 +46627,12 @@ local.buildApp = function (opt, onError) {
                 data: local.assetsDict["/assets.app.js"],
                 modeDebug: true,
                 modeUncaughtException: true,
-                pathname: "tmp/buildAssetsAppJs/assets.app.js"
+                pathname: "tmp/build/app.rollup/assets.app.js"
             }, function () {
                 require("child_process").spawn("node", [
                     "assets.app.js"
                 ], {
-                    cwd: "tmp/buildAssetsAppJs",
+                    cwd: "tmp/build/app.rollup",
                     env: {
                         PATH: process.env.PATH,
                         PORT: (Math.random() * 0x10000) | 0x8000,
@@ -46651,43 +46651,31 @@ local.buildApp = function (opt, onError) {
         // build app
         [
             {
-                file: "/LICENSE",
                 url: "/LICENSE"
             }, {
                 file: "/assets." + process.env.npm_package_nameLib + ".html",
                 url: "/index.html"
             }, {
-                file: "/assets." + process.env.npm_package_nameLib + ".css",
                 url: "/assets." + process.env.npm_package_nameLib + ".css"
             }, {
-                file: "/assets." + process.env.npm_package_nameLib + ".js",
                 url: "/assets." + process.env.npm_package_nameLib + ".js"
             }, {
-                file: "/assets.app.js",
                 url: "/assets.app.js"
             }, {
-                file: "/assets.example.html",
                 url: "/assets.example.html"
             }, {
-                file: "/assets.example.js",
                 url: "/assets.example.js"
             }, {
-                file: "/assets.test.js",
                 url: "/assets.test.js"
             }, {
-                file: "/assets.utility2.html",
                 url: "/assets.utility2.html"
             }, {
-                file: "/assets.utility2.rollup.js",
                 url: "/assets.utility2.rollup.js"
             }, {
-                file: "/index.html",
                 url: "/index.html"
             }, {
-                file: "/index.rollup.html",
                 url: "/index.rollup.html"
             }, {
-                file: "/utility2.state.init.js",
                 url: "/utility2.state.init.js"
             }
         ].concat(opt.assetsList).forEach(function (elem) {
@@ -46708,7 +46696,7 @@ local.buildApp = function (opt, onError) {
                             data: Buffer.concat(data),
                             modeDebug: true,
                             modeUncaughtException: true,
-                            pathname: "tmp/build/app/" + elem.file
+                            pathname: "tmp/build/app/" + (elem.file || elem.url)
                         }, resolve);
                     });
                 }).end();
