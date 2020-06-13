@@ -3,7 +3,7 @@
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
 <tspan x="10" y="26"></tspan>
 
-<tspan x="10" y="42">\x1b[35m[MODE_BUILD=buildApidoc]\x1b[0m - 2020-06-13T19:24:17.473Z - npm-testing /home/travis/bu\</tspan>
+<tspan x="10" y="42">\x1b[35m[MODE_BUILD=buildApidoc]\x1b[0m - 2020-06-13T19:29:12.999Z - npm-testing /home/travis/bu\</tspan>
 <tspan x="10" y="58">ild/kaizhu256/node-bootstrap-lite</tspan>
 
 <tspan x="10" y="74"></tspan>
@@ -20,19 +20,19 @@
 
 <tspan x="10" y="186">jslint - 7ms - /home/travis/build/kaizhu256/node-bootstrap-lite/npm_scripts.sh</tspan>
 
-<tspan x="10" y="202">http-server listening on port 62921</tspan>
+<tspan x="10" y="202">http-server listening on port 47222</tspan>
 
-<tspan x="10" y="218">jslint - 17ms - /home/travis/build/kaizhu256/node-bootstrap-lite/package.json</tspan>
+<tspan x="10" y="218">jslint - 15ms - /home/travis/build/kaizhu256/node-bootstrap-lite/package.json</tspan>
 
 <tspan x="10" y="234">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/package.json</tspan>
 
-<tspan x="10" y="250">jslint - 55ms - /home/travis/build/kaizhu256/node-bootstrap-lite/test.js</tspan>
+<tspan x="10" y="250">jslint - 51ms - /home/travis/build/kaizhu256/node-bootstrap-lite/test.js</tspan>
 
-<tspan x="10" y="266">jslint - 110ms - /home/travis/build/kaizhu256/node-bootstrap-lite/README.md</tspan>
+<tspan x="10" y="266">jslint - 113ms - /home/travis/build/kaizhu256/node-bootstrap-lite/README.md</tspan>
 
-<tspan x="10" y="282">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/.gitignore</tspan>
+<tspan x="10" y="282">jslint - 116ms - /home/travis/build/kaizhu256/node-bootstrap-lite/lib.bootstrap.css</tspan>
 
-<tspan x="10" y="298">jslint - 112ms - /home/travis/build/kaizhu256/node-bootstrap-lite/lib.bootstrap.css</tspan>
+<tspan x="10" y="298">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/.gitignore</tspan>
 
 <tspan x="10" y="314">apidocCreate - readExample /home/travis/build/kaizhu256/node-bootstrap-lite/lib.bootstrap.css</tspan>
 
@@ -62,11 +62,11 @@
 
 <tspan x="10" y="522">apidocCreate - libFile raw.bootstrap.js</tspan>
 
-<tspan x="10" y="538">jslint - 405ms - /home/travis/build/kaizhu256/node-bootstrap-lite/lib.bootstrap.js</tspan>
+<tspan x="10" y="538">jslint - 411ms - /home/travis/build/kaizhu256/node-bootstrap-lite/lib.bootstrap.js</tspan>
 
 <tspan x="10" y="554">fsWriteFileWithMkdirp - /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/build/apidoc.html</tspan>
 
-<tspan x="10" y="570">testRunDefault - 426 ms - [node test-case 1 of 1 passed] - testCase_buildApidoc_default</tspan>
+<tspan x="10" y="570">testRunDefault - 432 ms - [node test-case 1 of 1 passed] - testCase_buildApidoc_default</tspan>
 
 <tspan x="10" y="586">wrote file - test-report - /home/travis/build/kaizhu256/node-bootstrap-lite/tmp/build/test-repor\</tspan>
 <tspan x="10" y="602">t.json</tspan>
@@ -80,15 +80,15 @@
 
 <tspan x="10" y="682">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="698">| test-report - buildApidoc - node - linux v14.4.0 - 2020-06-13T19:24:17.568Z</tspan>
+<tspan x="10" y="698">| test-report - buildApidoc - node - linux v14.4.0 - 2020-06-13T19:29:13.096Z</tspan>
 
-<tspan x="10" y="714">|     427 ms            0 failed        1 passed      |</tspan>
+<tspan x="10" y="714">|     432 ms            0 failed        1 passed      |</tspan>
 
 <tspan x="10" y="730">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="746">| test-report - npmTest - node - linux v14.4.0 - 2020-06-13T19:24:01.403Z</tspan>
+<tspan x="10" y="746">| test-report - npmTest - node - linux v14.4.0 - 2020-06-13T19:28:57.727Z</tspan>
 
-<tspan x="10" y="762">|    7393 ms            0 failed        7 passed      |</tspan>
+<tspan x="10" y="762">|    7363 ms            0 failed        7 passed      |</tspan>
 
 <tspan x="10" y="778">-------------------------------------------------------</tspan>
 
@@ -111,7 +111,7 @@
 
 <tspan x="10" y="954"></tspan>
 
-<tspan x="10" y="970">\x1b[35m[MODE_BUILD=buildApidoc]\x1b[0m - 2020-06-13T19:24:18.401Z - EXIT_CODE - 0</tspan>
+<tspan x="10" y="970">\x1b[35m[MODE_BUILD=buildApidoc]\x1b[0m - 2020-06-13T19:29:13.948Z - EXIT_CODE - 0</tspan>
 
 </text>
 </svg>
