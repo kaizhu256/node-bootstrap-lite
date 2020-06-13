@@ -1,24 +1,25 @@
 {
     "author": "kai zhu <kaizhu256@gmail.com>",
-    "description": "this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo",
+    "description": "this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.20), and chart.js (v2.9.3) with working web-demo",
     "devDependencies": {
         "utility2": "kaizhu256/node-utility2#alpha"
     },
     "engines": {
-        "node": ">=10.0"
+        "node": ">=12.0"
     },
+    "fileCount": 11,
     "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",
-    "keywords": [],
+    "keywords": [
+        "bootstrap",
+        "datatables",
+        "chartjs"
+    ],
     "license": "MIT",
     "main": "lib.bootstrap.js",
     "name": "bootstrap-lite",
-    "nameAliasPublish": "bootstrap-classic bootstrap3-lite",
+    "nameAliasPublish": "bootstrap-classic bootstrap3-lite chartjs-lite datatable-lite",
     "nameLib": "bootstrap",
     "nameOriginal": "bootstrap-lite",
-    "os": [
-        "darwin",
-        "linux"
-    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/kaizhu256/node-bootstrap-lite.git"
@@ -33,5 +34,5 @@
         "test": "./npm_scripts.sh",
         "utility2": "./npm_scripts.sh"
     },
-    "version": "2020.1.20"
+    "version": "2020.6.12"
 }

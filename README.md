@@ -1,30 +1,28 @@
 # bootstrap-lite
-this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo
+this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.20), and chart.js (v2.9.3) with working web-demo
 
 # live web demo
-- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app)
+- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app)
 
-[![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/)
+[![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/)
 
 
-
-[![travis-ci.org build-status](https://api.travis-ci.org/kaizhu256/node-bootstrap-lite.svg)](https://travis-ci.org/kaizhu256/node-bootstrap-lite) [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build/coverage.html/index.html)
+[![travis-ci.com build-status](https://api.travis-ci.com/kaizhu256/node-bootstrap-lite.svg)](https://travis-ci.com/kaizhu256/node-bootstrap-lite) [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build/coverage.html/index.html)
 
 [![NPM](https://nodei.co/npm/bootstrap-lite.png?downloads=true)](https://www.npmjs.com/package/bootstrap-lite)
 
-[![build commit status](https://kaizhu256.github.io/node-bootstrap-lite/build/build.badge.svg)](https://travis-ci.org/kaizhu256/node-bootstrap-lite)
+[![build commit status](https://kaizhu256.github.io/node-bootstrap-lite/build/build.badge.svg)](https://travis-ci.com/kaizhu256/node-bootstrap-lite)
 
 | git-branch : | [master](https://github.com/kaizhu256/node-bootstrap-lite/tree/master) | [beta](https://github.com/kaizhu256/node-bootstrap-lite/tree/beta) | [alpha](https://github.com/kaizhu256/node-bootstrap-lite/tree/alpha)|
 |--:|:--|:--|:--|
-| test-server-github : | [![github.com test-server](https://kaizhu256.github.io/node-bootstrap-lite/GitHub-Mark-32px.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.org/app) | [![github.com test-server](https://kaizhu256.github.io/node-bootstrap-lite/GitHub-Mark-32px.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app) | [![github.com test-server](https://kaizhu256.github.io/node-bootstrap-lite/GitHub-Mark-32px.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.org/app)|
-| test-report : | [![test-report](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.org/test-report.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.org/test-report.html) | [![test-report](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/test-report.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/test-report.html) | [![test-report](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.org/test-report.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.org/test-report.html)|
-| coverage : | [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.org/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.org/coverage.html/index.html) | [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/coverage.html/index.html) | [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.org/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.org/coverage.html/index.html)|
-| build-artifacts : | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..master..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..beta..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..alpha..travis-ci.org)|
+| test-server-github : | [![github.com test-server](https://kaizhu256.github.io/node-bootstrap-lite/GitHub-Mark-32px.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.com/app) | [![github.com test-server](https://kaizhu256.github.io/node-bootstrap-lite/GitHub-Mark-32px.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app) | [![github.com test-server](https://kaizhu256.github.io/node-bootstrap-lite/GitHub-Mark-32px.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.com/app)|
+| test-report : | [![test-report](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.com/test-report.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.com/test-report.html) | [![test-report](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/test-report.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/test-report.html) | [![test-report](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.com/test-report.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.com/test-report.html)|
+| coverage : | [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.com/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..master..travis-ci.com/coverage.html/index.html) | [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/coverage.html/index.html) | [![coverage](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.com/coverage.badge.svg)](https://kaizhu256.github.io/node-bootstrap-lite/build..alpha..travis-ci.com/coverage.html/index.html)|
+| build-artifacts : | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..master..travis-ci.com) | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..beta..travis-ci.com) | [![build-artifacts](https://kaizhu256.github.io/node-bootstrap-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-bootstrap-lite/tree/gh-pages/build..alpha..travis-ci.com)|
 
 [![npmPackageListing](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageListing.svg)](https://github.com/kaizhu256/node-bootstrap-lite)
 
 ![npmPackageDependencyTree](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageDependencyTree.svg)
-
 
 
 # table of contents
@@ -39,52 +37,50 @@ this zero-dependency package will provide a rolled-up .css (includes font/glyphi
 1. [misc](#misc)
 
 
-
 # cdn download
-- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.1.rollup.css](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.1.rollup.css)
-- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.1.rollup.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.bootstrap-v3.4.1.rollup.js)
-
+- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.20.chartjs-v2.9.3.rollup.css](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.20.chartjs-v2.9.3.rollup.css)
+- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.20.chartjs-v2.9.3.rollup.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.20.chartjs-v2.9.3.rollup.js)
 
 
 # documentation
 #### api doc
-- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/apidoc.html](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/apidoc.html)
+- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/apidoc.html](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/apidoc.html)
 
-[![apidoc](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/apidoc.html)
+[![apidoc](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/apidoc.html)
 
 #### cli help
 ![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageCliHelp.svg)
 
-#### todo
-- improve apidoc with jquery-plugin documentation
+#### changelog 2020.6.12
+- npm publish 2020.6.12
+- include datatables and chartjs
+- jslint - add eslint-rule no-multiple-empty-lines
+- add limited win32-compat
+- remove globalThis polyfill
+- migrate ci from travis-ci.org to travis-ci.com
 - none
 
-#### changelog 2020.1.20
-- npm publish 2020.1.20
-- rename file assets.bootstrap-v3.4.1.rollup.xxx to lib.bootstrap.xxx
-- update to bootstrap v3.4.1
-- jslint - remove ternary-operator/newline comment preceding bra
-- update build
+#### todo
+- improve apidoc with jquery-plugin documentation
 - none
 
 #### this package requires
 - darwin or linux os
 
 
-
 # quickstart standalone app
 #### to run this example, follow instruction in script below
-- [assets.app.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.app.js)
+- [assets.app.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.app.js)
 ```shell
 # example.sh
 
-# this shell script will download and run a web-demo of bootstrap-lite as a standalone app
+# this shell script will download and run web-demo of bootstrap-lite as standalone app
 
 # 1. download standalone app
-curl -O https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/app/assets.app.js
+curl -O https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.app.js
 # 2. run standalone app
 PORT=8081 node ./assets.app.js
-# 3. open a browser to http://127.0.0.1:8081 and play with web-demo
+# 3. open browser to http://127.0.0.1:8081 and play with web-demo
 # 4. edit file assets.app.js to suit your needs
 ```
 
@@ -95,207 +91,50 @@ PORT=8081 node ./assets.app.js
 ![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.testExampleSh.svg)
 
 
-
 # quickstart example.js
 [![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.testExampleJs.browser.%252F.png)](https://kaizhu256.github.io/node-bootstrap-lite/build/app/assets.example.html)
 
 #### to run this example, follow instruction in script below
-- [example.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.org/example.js)
+- [example.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/example.js)
 ```javascript
 /*
 example.js
 
-this script will run a web-demo of bootstrap-lite
+this script will run web-demo of bootstrap-lite
 
 instruction
     1. save this script as example.js
     2. run shell-command:
         $ npm install bootstrap-lite && \
             PORT=8081 node example.js
-    3. open a browser to http://127.0.0.1:8081 and play with web-demo
+    3. open browser to http://127.0.0.1:8081 and play with web-demo
     4. edit this script to suit your needs
 */
 
 
-
+/* istanbul instrument in package bootstrap */
 // assets.utility2.header.js - start
-/* istanbul ignore next */
 /* jslint utility2:true */
-(function (globalThis) {
+/* istanbul ignore next */
+// run shared js-env code - init-local
+(function () {
     "use strict";
-    let ArrayPrototypeFlat;
-    let TextXxcoder;
     let consoleError;
-    let debugName;
     let local;
-    debugName = "debug" + String("Inline");
-    // init globalThis
-    globalThis.globalThis = globalThis.globalThis || globalThis;
-    // init debug_inline
-    if (!globalThis[debugName]) {
+    // init debugInline
+    if (!globalThis.debugInline) {
         consoleError = console.error;
-        globalThis[debugName] = function (...argList) {
+        globalThis.debugInline = function (...argList) {
         /*
          * this function will both print <argList> to stderr
          * and return <argList>[0]
          */
-            consoleError("\n\n" + debugName);
-            consoleError.apply(console, argList);
+            consoleError("\n\ndebugInline");
+            consoleError(...argList);
             consoleError("\n");
-            // return arg0 for inspection
             return argList[0];
         };
     }
-    // polyfill
-    ArrayPrototypeFlat = function (depth) {
-    /*
-     * this function will polyfill Array.prototype.flat
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        depth = (
-            globalThis.isNaN(depth)
-            ? 1
-            : Number(depth)
-        );
-        if (!depth) {
-            return Array.prototype.slice.call(this);
-        }
-        return Array.prototype.reduce.call(this, function (acc, cur) {
-            if (Array.isArray(cur)) {
-                // recurse
-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));
-            } else {
-                acc.push(cur);
-            }
-            return acc;
-        }, []);
-    };
-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;
-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(
-        ...argList
-    ) {
-    /*
-     * this function will polyfill Array.prototype.flatMap
-     * https://github.com/jonathantneal/array-flat-polyfill
-     */
-        return this.map(...argList).flat();
-    };
-    String.prototype.trimEnd = (
-        String.prototype.trimEnd || String.prototype.trimRight
-    );
-    String.prototype.trimStart = (
-        String.prototype.trimStart || String.prototype.trimLeft
-    );
-    (function () {
-        try {
-            globalThis.TextDecoder = (
-                globalThis.TextDecoder || require("util").TextDecoder
-            );
-            globalThis.TextEncoder = (
-                globalThis.TextEncoder || require("util").TextEncoder
-            );
-        } catch (ignore) {}
-    }());
-    TextXxcoder = function () {
-    /*
-     * this function will polyfill TextDecoder/TextEncoder
-     * https://gist.github.com/Yaffle/5458286
-     */
-        return;
-    };
-    TextXxcoder.prototype.decode = function (octets) {
-    /*
-     * this function will polyfill TextDecoder.prototype.decode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bytesNeeded;
-        let codePoint;
-        let ii;
-        let kk;
-        let octet;
-        let string;
-        string = "";
-        ii = 0;
-        while (ii < octets.length) {
-            octet = octets[ii];
-            bytesNeeded = 0;
-            codePoint = 0;
-            if (octet <= 0x7F) {
-                bytesNeeded = 0;
-                codePoint = octet & 0xFF;
-            } else if (octet <= 0xDF) {
-                bytesNeeded = 1;
-                codePoint = octet & 0x1F;
-            } else if (octet <= 0xEF) {
-                bytesNeeded = 2;
-                codePoint = octet & 0x0F;
-            } else if (octet <= 0xF4) {
-                bytesNeeded = 3;
-                codePoint = octet & 0x07;
-            }
-            if (octets.length - ii - bytesNeeded > 0) {
-                kk = 0;
-                while (kk < bytesNeeded) {
-                    octet = octets[ii + kk + 1];
-                    codePoint = (codePoint << 6) | (octet & 0x3F);
-                    kk += 1;
-                }
-            } else {
-                codePoint = 0xFFFD;
-                bytesNeeded = octets.length - ii;
-            }
-            string += String.fromCodePoint(codePoint);
-            ii += bytesNeeded + 1;
-        }
-        return string;
-    };
-    TextXxcoder.prototype.encode = function (string) {
-    /*
-     * this function will polyfill TextEncoder.prototype.encode
-     * https://gist.github.com/Yaffle/5458286
-     */
-        let bits;
-        let cc;
-        let codePoint;
-        let ii;
-        let length;
-        let octets;
-        octets = [];
-        length = string.length;
-        ii = 0;
-        while (ii < length) {
-            codePoint = string.codePointAt(ii);
-            cc = 0;
-            bits = 0;
-            if (codePoint <= 0x0000007F) {
-                cc = 0;
-                bits = 0x00;
-            } else if (codePoint <= 0x000007FF) {
-                cc = 6;
-                bits = 0xC0;
-            } else if (codePoint <= 0x0000FFFF) {
-                cc = 12;
-                bits = 0xE0;
-            } else if (codePoint <= 0x001FFFFF) {
-                cc = 18;
-                bits = 0xF0;
-            }
-            octets.push(bits | (codePoint >> cc));
-            cc -= 6;
-            while (cc >= 0) {
-                octets.push(0x80 | ((codePoint >> cc) & 0x3F));
-                cc -= 6;
-            }
-            ii += (
-                codePoint >= 0x10000
-                ? 2
-                : 1
-            );
-        }
-        return octets;
-    };
-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;
-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;
     // init local
     local = {};
     local.local = local;
@@ -308,34 +147,62 @@ instruction
     );
     // init isWebWorker
     local.isWebWorker = (
-        local.isBrowser && typeof globalThis.importScript === "function"
+        local.isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
-    local.assertOrThrow = function (passed, message) {
+    local.assertJsonEqual = function (aa, bb) {
     /*
-     * this function will throw err.<message> if <passed> is falsy
+     * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        let err;
+        let objectDeepCopyWithKeysSorted;
+        objectDeepCopyWithKeysSorted = function (obj) {
+        /*
+         * this function will recursively deep-copy <obj> with keys sorted
+         */
+            let sorted;
+            if (typeof obj !== "object" || !obj) {
+                return obj;
+            }
+            // recursively deep-copy list with child-keys sorted
+            if (Array.isArray(obj)) {
+                return obj.map(objectDeepCopyWithKeysSorted);
+            }
+            // recursively deep-copy obj with keys sorted
+            sorted = {};
+            Object.keys(obj).sort().forEach(function (key) {
+                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+            });
+            return sorted;
+        };
+        aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+        bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
+        if (aa !== bb) {
+            throw new Error(JSON.stringify(aa) + " !== " + JSON.stringify(bb));
+        }
+    };
+    local.assertOrThrow = function (passed, msg) {
+    /*
+     * this function will throw <msg> if <passed> is falsy
+     */
         if (passed) {
             return;
         }
-        err = (
+        throw (
             (
-                message
-                && typeof message.message === "string"
-                && typeof message.stack === "string"
+                msg
+                && typeof msg.message === "string"
+                && typeof msg.stack === "string"
             )
-            // if message is errObj, then leave as is
-            ? message
+            // if msg is err, then leave as is
+            ? msg
             : new Error(
-                typeof message === "string"
-                // if message is a string, then leave as is
-                ? message
-                // else JSON.stringify message
-                : JSON.stringify(message, undefined, 4)
+                typeof msg === "string"
+                // if msg is string, then leave as is
+                ? msg
+                // else JSON.stringify(msg)
+                : JSON.stringify(msg, undefined, 4)
             )
         );
-        throw err;
     };
     local.coalesce = function (...argList) {
     /*
@@ -346,68 +213,12 @@ instruction
         ii = 0;
         while (ii < argList.length) {
             arg = argList[ii];
-            if (arg !== null && arg !== undefined && arg !== "") {
-                break;
+            if (arg !== undefined && arg !== null && arg !== "") {
+                return arg;
             }
             ii += 1;
         }
         return arg;
-    };
-    local.fsRmrfSync = function (dir) {
-    /*
-     * this function will sync "rm -rf" <dir>
-     */
-        let child_process;
-        try {
-            child_process = require("child_process");
-        } catch (ignore) {
-            return;
-        }
-        child_process.spawnSync("rm", [
-            "-rf", dir
-        ], {
-            stdio: [
-                "ignore", 1, 2
-            ]
-        });
-    };
-    local.fsWriteFileWithMkdirpSync = function (file, data) {
-    /*
-     * this function will sync write <data> to <file> with "mkdir -p"
-     */
-        let fs;
-        try {
-            fs = require("fs");
-        } catch (ignore) {
-            return;
-        }
-        // try to write file
-        try {
-            fs.writeFileSync(file, data);
-        } catch (ignore) {
-            // mkdir -p
-            require("child_process").spawnSync(
-                "mkdir",
-                [
-                    "-p", require("path").dirname(file)
-                ],
-                {
-                    stdio: [
-                        "ignore", 1, 2
-                    ]
-                }
-            );
-            // rewrite file
-            fs.writeFileSync(file, data);
-        }
-    };
-    local.functionOrNop = function (fnc) {
-    /*
-     * this function will if <fnc> exists,
-     * return <fnc>,
-     * else return <nop>
-     */
-        return fnc || local.nop;
     };
     local.identity = function (val) {
     /*
@@ -421,84 +232,52 @@ instruction
      */
         return;
     };
-    local.objectAssignDefault = function (target, source) {
+    local.objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
     /*
-     * this function will if items from <target> are null, undefined, or "",
-     * then overwrite them with items from <source>
+     * this function will if items from <tgt> are null, undefined, or "",
+     * then overwrite them with items from <src>
      */
-        target = target || {};
-        Object.keys(source || {}).forEach(function (key) {
-            if (
-                target[key] === null
-                || target[key] === undefined
-                || target[key] === ""
-            ) {
-                target[key] = target[key] || source[key];
-            }
+        let recurse;
+        recurse = function (tgt, src, depth) {
+            Object.entries(src).forEach(function ([
+                key, bb
+            ]) {
+                let aa;
+                aa = tgt[key];
+                if (aa === undefined || aa === null || aa === "") {
+                    tgt[key] = bb;
+                    return;
+                }
+                if (
+                    depth !== 0
+                    && typeof aa === "object" && aa && !Array.isArray(aa)
+                    && typeof bb === "object" && bb && !Array.isArray(bb)
+                ) {
+                    recurse(aa, bb, depth - 1);
+                }
+            });
+        };
+        recurse(tgt, src, depth | 0);
+        return tgt;
+    };
+    // bug-workaround - throw unhandledRejections in node-process
+    if (
+        typeof process === "object" && process
+        && typeof process.on === "function"
+        && process.unhandledRejections !== "strict"
+    ) {
+        process.unhandledRejections = "strict";
+        process.on("unhandledRejection", function (err) {
+            throw err;
         });
-        return target;
-    };
-    local.querySelector = function (selectors) {
-    /*
-     * this function will return first dom-elem that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelector === "function"
-            && document.querySelector(selectors)
-        ) || {};
-    };
-    local.querySelectorAll = function (selectors) {
-    /*
-     * this function will return dom-elem-list that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelectorAll === "function"
-            && Array.from(document.querySelectorAll(selectors))
-        ) || [];
-    };
-    // require builtin
-    if (!local.isBrowser) {
-        local.assert = require("assert");
-        local.buffer = require("buffer");
-        local.child_process = require("child_process");
-        local.cluster = require("cluster");
-        local.crypto = require("crypto");
-        local.dgram = require("dgram");
-        local.dns = require("dns");
-        local.domain = require("domain");
-        local.events = require("events");
-        local.fs = require("fs");
-        local.http = require("http");
-        local.https = require("https");
-        local.net = require("net");
-        local.os = require("os");
-        local.path = require("path");
-        local.querystring = require("querystring");
-        local.readline = require("readline");
-        local.repl = require("repl");
-        local.stream = require("stream");
-        local.string_decoder = require("string_decoder");
-        local.timers = require("timers");
-        local.tls = require("tls");
-        local.tty = require("tty");
-        local.url = require("url");
-        local.util = require("util");
-        local.vm = require("vm");
-        local.zlib = require("zlib");
     }
-}((typeof globalThis === "object" && globalThis) || (function () {
-    return Function("return this")(); // jslint ignore:line
-}())));
+}());
 // assets.utility2.header.js - end
-
 
 
 /* jslint utility2:true */
 (function (local) {
 "use strict";
-
 
 
 // run shared js-env code - init-before
@@ -514,7 +293,6 @@ globalThis.local = local;
 }());
 
 
-
 /* istanbul ignore next */
 // run browser js-env code - init-test
 (function () {
@@ -524,7 +302,7 @@ if (!local.isBrowser) {
 }());
 
 
-
+/* istanbul ignore next */
 // run node js-env code - init-test
 (function () {
 if (local.isBrowser) {
@@ -534,19 +312,6 @@ if (local.isBrowser) {
 module.exports = local;
 // init assetsDict
 local.assetsDict = local.assetsDict || {};
-[
-    "assets.swgg.swagger.json",
-    "assets.swgg.swagger.server.json"
-].forEach(function (file) {
-    file = "/" + file;
-    local.assetsDict[file] = local.assetsDict[file] || "";
-    if (local.fs.existsSync(local.__dirname + file)) {
-        local.assetsDict[file] = local.fs.readFileSync(
-            local.__dirname + file,
-            "utf8"
-        );
-    }
-});
 /* jslint ignore:start */
 local.assetsDict["/assets.index.template.html"] = '\
 <!doctype html>\n\
@@ -734,6 +499,509 @@ body {\n\
     <!-- utility2-comment\n\
     utility2-comment -->\n\
 </div>\n\
+\n\
+\n\
+<!-- https://github.com/DataTables/DataTables/blob/1.10.20/examples/basic_init/zero_configuration.html -->\n\
+<h1>DataTables</h1>\n\
+<table id="example" class="display" style="width:100%">\n\
+    <thead>\n\
+        <tr>\n\
+            <th>Name</th>\n\
+            <th>Position</th>\n\
+            <th>Office</th>\n\
+            <th>Age</th>\n\
+            <th>Start date</th>\n\
+            <th>Salary</th>\n\
+        </tr>\n\
+    </thead>\n\
+    <tbody>\n\
+        <tr>\n\
+            <td>Tiger Nixon</td>\n\
+            <td>System Architect</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>61</td>\n\
+            <td>2011/04/25</td>\n\
+            <td>$320,800</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Garrett Winters</td>\n\
+            <td>Accountant</td>\n\
+            <td>Tokyo</td>\n\
+            <td>63</td>\n\
+            <td>2011/07/25</td>\n\
+            <td>$170,750</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Ashton Cox</td>\n\
+            <td>Junior Technical Author</td>\n\
+            <td>San Francisco</td>\n\
+            <td>66</td>\n\
+            <td>2009/01/12</td>\n\
+            <td>$86,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Cedric Kelly</td>\n\
+            <td>Senior Javascript Developer</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>22</td>\n\
+            <td>2012/03/29</td>\n\
+            <td>$433,060</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Airi Satou</td>\n\
+            <td>Accountant</td>\n\
+            <td>Tokyo</td>\n\
+            <td>33</td>\n\
+            <td>2008/11/28</td>\n\
+            <td>$162,700</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Brielle Williamson</td>\n\
+            <td>Integration Specialist</td>\n\
+            <td>New York</td>\n\
+            <td>61</td>\n\
+            <td>2012/12/02</td>\n\
+            <td>$372,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Herrod Chandler</td>\n\
+            <td>Sales Assistant</td>\n\
+            <td>San Francisco</td>\n\
+            <td>59</td>\n\
+            <td>2012/08/06</td>\n\
+            <td>$137,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Rhona Davidson</td>\n\
+            <td>Integration Specialist</td>\n\
+            <td>Tokyo</td>\n\
+            <td>55</td>\n\
+            <td>2010/10/14</td>\n\
+            <td>$327,900</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Colleen Hurst</td>\n\
+            <td>Javascript Developer</td>\n\
+            <td>San Francisco</td>\n\
+            <td>39</td>\n\
+            <td>2009/09/15</td>\n\
+            <td>$205,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Sonya Frost</td>\n\
+            <td>Software Engineer</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>23</td>\n\
+            <td>2008/12/13</td>\n\
+            <td>$103,600</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Jena Gaines</td>\n\
+            <td>Office Manager</td>\n\
+            <td>London</td>\n\
+            <td>30</td>\n\
+            <td>2008/12/19</td>\n\
+            <td>$90,560</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Quinn Flynn</td>\n\
+            <td>Support Lead</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>22</td>\n\
+            <td>2013/03/03</td>\n\
+            <td>$342,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Charde Marshall</td>\n\
+            <td>Regional Director</td>\n\
+            <td>San Francisco</td>\n\
+            <td>36</td>\n\
+            <td>2008/10/16</td>\n\
+            <td>$470,600</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Haley Kennedy</td>\n\
+            <td>Senior Marketing Designer</td>\n\
+            <td>London</td>\n\
+            <td>43</td>\n\
+            <td>2012/12/18</td>\n\
+            <td>$313,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Tatyana Fitzpatrick</td>\n\
+            <td>Regional Director</td>\n\
+            <td>London</td>\n\
+            <td>19</td>\n\
+            <td>2010/03/17</td>\n\
+            <td>$385,750</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Michael Silva</td>\n\
+            <td>Marketing Designer</td>\n\
+            <td>London</td>\n\
+            <td>66</td>\n\
+            <td>2012/11/27</td>\n\
+            <td>$198,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Paul Byrd</td>\n\
+            <td>Chief Financial Officer (CFO)</td>\n\
+            <td>New York</td>\n\
+            <td>64</td>\n\
+            <td>2010/06/09</td>\n\
+            <td>$725,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Gloria Little</td>\n\
+            <td>Systems Administrator</td>\n\
+            <td>New York</td>\n\
+            <td>59</td>\n\
+            <td>2009/04/10</td>\n\
+            <td>$237,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Bradley Greer</td>\n\
+            <td>Software Engineer</td>\n\
+            <td>London</td>\n\
+            <td>41</td>\n\
+            <td>2012/10/13</td>\n\
+            <td>$132,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Dai Rios</td>\n\
+            <td>Personnel Lead</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>35</td>\n\
+            <td>2012/09/26</td>\n\
+            <td>$217,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Jenette Caldwell</td>\n\
+            <td>Development Lead</td>\n\
+            <td>New York</td>\n\
+            <td>30</td>\n\
+            <td>2011/09/03</td>\n\
+            <td>$345,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Yuri Berry</td>\n\
+            <td>Chief Marketing Officer (CMO)</td>\n\
+            <td>New York</td>\n\
+            <td>40</td>\n\
+            <td>2009/06/25</td>\n\
+            <td>$675,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Caesar Vance</td>\n\
+            <td>Pre-Sales Support</td>\n\
+            <td>New York</td>\n\
+            <td>21</td>\n\
+            <td>2011/12/12</td>\n\
+            <td>$106,450</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Doris Wilder</td>\n\
+            <td>Sales Assistant</td>\n\
+            <td>Sidney</td>\n\
+            <td>23</td>\n\
+            <td>2010/09/20</td>\n\
+            <td>$85,600</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Angelica Ramos</td>\n\
+            <td>Chief Executive Officer (CEO)</td>\n\
+            <td>London</td>\n\
+            <td>47</td>\n\
+            <td>2009/10/09</td>\n\
+            <td>$1,200,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Gavin Joyce</td>\n\
+            <td>Developer</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>42</td>\n\
+            <td>2010/12/22</td>\n\
+            <td>$92,575</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Jennifer Chang</td>\n\
+            <td>Regional Director</td>\n\
+            <td>Singapore</td>\n\
+            <td>28</td>\n\
+            <td>2010/11/14</td>\n\
+            <td>$357,650</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Brenden Wagner</td>\n\
+            <td>Software Engineer</td>\n\
+            <td>San Francisco</td>\n\
+            <td>28</td>\n\
+            <td>2011/06/07</td>\n\
+            <td>$206,850</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Fiona Green</td>\n\
+            <td>Chief Operating Officer (COO)</td>\n\
+            <td>San Francisco</td>\n\
+            <td>48</td>\n\
+            <td>2010/03/11</td>\n\
+            <td>$850,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Shou Itou</td>\n\
+            <td>Regional Marketing</td>\n\
+            <td>Tokyo</td>\n\
+            <td>20</td>\n\
+            <td>2011/08/14</td>\n\
+            <td>$163,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Michelle House</td>\n\
+            <td>Integration Specialist</td>\n\
+            <td>Sidney</td>\n\
+            <td>37</td>\n\
+            <td>2011/06/02</td>\n\
+            <td>$95,400</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Suki Burks</td>\n\
+            <td>Developer</td>\n\
+            <td>London</td>\n\
+            <td>53</td>\n\
+            <td>2009/10/22</td>\n\
+            <td>$114,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Prescott Bartlett</td>\n\
+            <td>Technical Author</td>\n\
+            <td>London</td>\n\
+            <td>27</td>\n\
+            <td>2011/05/07</td>\n\
+            <td>$145,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Gavin Cortez</td>\n\
+            <td>Team Leader</td>\n\
+            <td>San Francisco</td>\n\
+            <td>22</td>\n\
+            <td>2008/10/26</td>\n\
+            <td>$235,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Martena Mccray</td>\n\
+            <td>Post-Sales support</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>46</td>\n\
+            <td>2011/03/09</td>\n\
+            <td>$324,050</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Unity Butler</td>\n\
+            <td>Marketing Designer</td>\n\
+            <td>San Francisco</td>\n\
+            <td>47</td>\n\
+            <td>2009/12/09</td>\n\
+            <td>$85,675</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Howard Hatfield</td>\n\
+            <td>Office Manager</td>\n\
+            <td>San Francisco</td>\n\
+            <td>51</td>\n\
+            <td>2008/12/16</td>\n\
+            <td>$164,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Hope Fuentes</td>\n\
+            <td>Secretary</td>\n\
+            <td>San Francisco</td>\n\
+            <td>41</td>\n\
+            <td>2010/02/12</td>\n\
+            <td>$109,850</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Vivian Harrell</td>\n\
+            <td>Financial Controller</td>\n\
+            <td>San Francisco</td>\n\
+            <td>62</td>\n\
+            <td>2009/02/14</td>\n\
+            <td>$452,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Timothy Mooney</td>\n\
+            <td>Office Manager</td>\n\
+            <td>London</td>\n\
+            <td>37</td>\n\
+            <td>2008/12/11</td>\n\
+            <td>$136,200</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Jackson Bradshaw</td>\n\
+            <td>Director</td>\n\
+            <td>New York</td>\n\
+            <td>65</td>\n\
+            <td>2008/09/26</td>\n\
+            <td>$645,750</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Olivia Liang</td>\n\
+            <td>Support Engineer</td>\n\
+            <td>Singapore</td>\n\
+            <td>64</td>\n\
+            <td>2011/02/03</td>\n\
+            <td>$234,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Bruno Nash</td>\n\
+            <td>Software Engineer</td>\n\
+            <td>London</td>\n\
+            <td>38</td>\n\
+            <td>2011/05/03</td>\n\
+            <td>$163,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Sakura Yamamoto</td>\n\
+            <td>Support Engineer</td>\n\
+            <td>Tokyo</td>\n\
+            <td>37</td>\n\
+            <td>2009/08/19</td>\n\
+            <td>$139,575</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Thor Walton</td>\n\
+            <td>Developer</td>\n\
+            <td>New York</td>\n\
+            <td>61</td>\n\
+            <td>2013/08/11</td>\n\
+            <td>$98,540</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Finn Camacho</td>\n\
+            <td>Support Engineer</td>\n\
+            <td>San Francisco</td>\n\
+            <td>47</td>\n\
+            <td>2009/07/07</td>\n\
+            <td>$87,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Serge Baldwin</td>\n\
+            <td>Data Coordinator</td>\n\
+            <td>Singapore</td>\n\
+            <td>64</td>\n\
+            <td>2012/04/09</td>\n\
+            <td>$138,575</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Zenaida Frank</td>\n\
+            <td>Software Engineer</td>\n\
+            <td>New York</td>\n\
+            <td>63</td>\n\
+            <td>2010/01/04</td>\n\
+            <td>$125,250</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Zorita Serrano</td>\n\
+            <td>Software Engineer</td>\n\
+            <td>San Francisco</td>\n\
+            <td>56</td>\n\
+            <td>2012/06/01</td>\n\
+            <td>$115,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Jennifer Acosta</td>\n\
+            <td>Junior Javascript Developer</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>43</td>\n\
+            <td>2013/02/01</td>\n\
+            <td>$75,650</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Cara Stevens</td>\n\
+            <td>Sales Assistant</td>\n\
+            <td>New York</td>\n\
+            <td>46</td>\n\
+            <td>2011/12/06</td>\n\
+            <td>$145,600</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Hermione Butler</td>\n\
+            <td>Regional Director</td>\n\
+            <td>London</td>\n\
+            <td>47</td>\n\
+            <td>2011/03/21</td>\n\
+            <td>$356,250</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Lael Greer</td>\n\
+            <td>Systems Administrator</td>\n\
+            <td>London</td>\n\
+            <td>21</td>\n\
+            <td>2009/02/27</td>\n\
+            <td>$103,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Jonas Alexander</td>\n\
+            <td>Developer</td>\n\
+            <td>San Francisco</td>\n\
+            <td>30</td>\n\
+            <td>2010/07/14</td>\n\
+            <td>$86,500</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Shad Decker</td>\n\
+            <td>Regional Director</td>\n\
+            <td>Edinburgh</td>\n\
+            <td>51</td>\n\
+            <td>2008/11/13</td>\n\
+            <td>$183,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Michael Bruce</td>\n\
+            <td>Javascript Developer</td>\n\
+            <td>Singapore</td>\n\
+            <td>29</td>\n\
+            <td>2011/06/27</td>\n\
+            <td>$183,000</td>\n\
+        </tr>\n\
+        <tr>\n\
+            <td>Donna Snider</td>\n\
+            <td>Customer Support</td>\n\
+            <td>New York</td>\n\
+            <td>27</td>\n\
+            <td>2011/01/25</td>\n\
+            <td>$112,000</td>\n\
+        </tr>\n\
+    </tbody>\n\
+    <tfoot>\n\
+        <tr>\n\
+            <th>Name</th>\n\
+            <th>Position</th>\n\
+            <th>Office</th>\n\
+            <th>Age</th>\n\
+            <th>Start date</th>\n\
+            <th>Salary</th>\n\
+        </tr>\n\
+    </tfoot>\n\
+</table>\n\
+<br>\n\
+<br>\n\
+<br>\n\
+<!-- https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/charts/line/basic.html -->\n\
+<h1>Chart.js</h1>\n\
+<div style="width:100%;">\n\
+    <canvas id="canvas"></canvas>\n\
+</div>\n\
+<br>\n\
+<br>\n\
+<button id="randomizeData">Randomize Data</button>\n\
+<button id="addDataset">Add Dataset</button>\n\
+<button id="removeDataset">Remove Dataset</button>\n\
+<button id="addData">Add Data</button>\n\
+<button id="removeData">Remove Data</button>\n\
+<br>\n\
+<br>\n\
+<br>\n\
+<!-- https://github.com/twbs/bootstrap/blob/v3.4.1/docs/examples/dashboard/index.html -->\n\
 <h1 class="page-header">Dashboard</h1>\n\
 <div class="row placeholders">\n\
     <div class="col-xs-6 col-sm-3 placeholder">\n\
@@ -884,6 +1152,12 @@ body {\n\
             </tr>\n\
         </tbody>\n\
     </table>\n\
+</div>\n\
+<!-- https://raw.githubusercontent.com/twbs/bootstrap/v3.4.1/docs/examples/theme/index.html -->\n\
+<!-- Main jumbotron for a primary marketing message or call to action -->\n\
+<div class="jumbotron">\n\
+    <h1>Theme example</h1>\n\
+    <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>\n\
 </div>\n\
 <div class="page-header">\n\
     <h1>Buttons</h1>\n\
@@ -1065,7 +1339,7 @@ body {\n\
 <div class="page-header">\n\
     <h1>Thumbnails</h1>\n\
 </div>\n\
-<img src="#" data-src="holder.js/200x200" class="img-thumbnail" alt="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera">\n\
+<img data-src="holder.js/200x200" class="img-thumbnail" alt="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera">\n\
 <div class="page-header">\n\
     <h1>Labels</h1>\n\
 </div>\n\
@@ -1387,13 +1661,13 @@ body {\n\
     </ol>\n\
     <div class="carousel-inner" role="listbox">\n\
         <div class="item active">\n\
-            <img src="#" data-src="holder.js/1140x500/auto/#777:#555/text:First slide" alt="First slide">\n\
+            <img data-src="holder.js/1140x500/auto/#777:#555/text:First slide" alt="First slide">\n\
         </div>\n\
         <div class="item">\n\
-            <img src="#" data-src="holder.js/1140x500/auto/#666:#444/text:Second slide" alt="Second slide">\n\
+            <img data-src="holder.js/1140x500/auto/#666:#444/text:Second slide" alt="Second slide">\n\
         </div>\n\
         <div class="item">\n\
-            <img src="#" data-src="holder.js/1140x500/auto/#555:#333/text:Third slide" alt="Third slide">\n\
+            <img data-src="holder.js/1140x500/auto/#555:#333/text:Third slide" alt="Third slide">\n\
         </div>\n\
     </div>\n\
     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">\n\
@@ -1412,14 +1686,272 @@ body {\n\
 ================================================== -->\n\
 <!-- Placed at the end of the document so the pages load faster -->\n\
 <script src="assets.bootstrap.js"></script>\n\
+<script>\n\
+// https://github.com/twbs/bootstrap/blob/v3.4.1/docs/assets/js/docs.min.js\n\
+window.initHolderJs();\n\
+</script>\n\
+<script>\n\
+// https://github.com/DataTables/DataTables/blob/1.10.20/examples/basic_init/zero_configuration.html\n\
+$(document).ready(function() {\n\
+    $(\'#example\').DataTable();\n\
+});\n\
+</script>\n\
+<script>\n\
+// https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/utils.js\n\
+\'use strict\';\n\
+window.chartColors = {\n\
+	red: \'rgb(255, 99, 132)\',\n\
+	orange: \'rgb(255, 159, 64)\',\n\
+	yellow: \'rgb(255, 205, 86)\',\n\
+	green: \'rgb(75, 192, 192)\',\n\
+	blue: \'rgb(54, 162, 235)\',\n\
+	purple: \'rgb(153, 102, 255)\',\n\
+	grey: \'rgb(201, 203, 207)\'\n\
+};\n\
+(function(global) {\n\
+	var MONTHS = [\n\
+		\'January\',\n\
+		\'February\',\n\
+		\'March\',\n\
+		\'April\',\n\
+		\'May\',\n\
+		\'June\',\n\
+		\'July\',\n\
+		\'August\',\n\
+		\'September\',\n\
+		\'October\',\n\
+		\'November\',\n\
+		\'December\'\n\
+	];\n\
+	var COLORS = [\n\
+		\'#4dc9f6\',\n\
+		\'#f67019\',\n\
+		\'#f53794\',\n\
+		\'#537bc4\',\n\
+		\'#acc236\',\n\
+		\'#166a8f\',\n\
+		\'#00a950\',\n\
+		\'#58595b\',\n\
+		\'#8549ba\'\n\
+	];\n\
+	var Samples = global.Samples || (global.Samples = {});\n\
+	var Color = global.Color;\n\
+	Samples.utils = {\n\
+		// Adapted from http2://indiegamr.com/generate-repeatable-random-numbers-in-js/\n\
+		srand: function(seed) {\n\
+			this._seed = seed;\n\
+		},\n\
+		rand: function(min, max) {\n\
+			var seed = this._seed;\n\
+			min = min === undefined ? 0 : min;\n\
+			max = max === undefined ? 1 : max;\n\
+			this._seed = (seed * 9301 + 49297) % 233280;\n\
+			return min + (this._seed / 233280) * (max - min);\n\
+		},\n\
+		numbers: function(config) {\n\
+			var cfg = config || {};\n\
+			var min = cfg.min || 0;\n\
+			var max = cfg.max || 1;\n\
+			var from = cfg.from || [];\n\
+			var count = cfg.count || 8;\n\
+			var decimals = cfg.decimals || 8;\n\
+			var continuity = cfg.continuity || 1;\n\
+			var dfactor = Math.pow(10, decimals) || 0;\n\
+			var data = [];\n\
+			var i, value;\n\
+			for (i = 0; i < count; ++i) {\n\
+				value = (from[i] || 0) + this.rand(min, max);\n\
+				if (this.rand() <= continuity) {\n\
+					data.push(Math.round(dfactor * value) / dfactor);\n\
+				} else {\n\
+					data.push(null);\n\
+				}\n\
+			}\n\
+			return data;\n\
+		},\n\
+		labels: function(config) {\n\
+			var cfg = config || {};\n\
+			var min = cfg.min || 0;\n\
+			var max = cfg.max || 100;\n\
+			var count = cfg.count || 8;\n\
+			var step = (max - min) / count;\n\
+			var decimals = cfg.decimals || 8;\n\
+			var dfactor = Math.pow(10, decimals) || 0;\n\
+			var prefix = cfg.prefix || \'\';\n\
+			var values = [];\n\
+			var i;\n\
+			for (i = min; i < max; i += step) {\n\
+				values.push(prefix + Math.round(dfactor * i) / dfactor);\n\
+			}\n\
+			return values;\n\
+		},\n\
+		months: function(config) {\n\
+			var cfg = config || {};\n\
+			var count = cfg.count || 12;\n\
+			var section = cfg.section;\n\
+			var values = [];\n\
+			var i, value;\n\
+			for (i = 0; i < count; ++i) {\n\
+				value = MONTHS[Math.ceil(i) % 12];\n\
+				values.push(value.substring(0, section));\n\
+			}\n\
+			return values;\n\
+		},\n\
+		color: function(index) {\n\
+			return COLORS[index % COLORS.length];\n\
+		},\n\
+		transparentize: function(color, opacity) {\n\
+			var alpha = opacity === undefined ? 0.5 : 1 - opacity;\n\
+			return Color(color).alpha(alpha).rgbString();\n\
+		}\n\
+	};\n\
+	// DEPRECATED\n\
+	window.randomScalingFactor = function() {\n\
+		return Math.round(Samples.utils.rand(-100, 100));\n\
+	};\n\
+	// INITIALIZATION\n\
+	Samples.utils.srand(Date.now());\n\
+	// Google Analytics\n\
+	/* eslint-disable */\n\
+	if (document.location.hostname.match(/^(www\\.)?chartjs\\.org$/)) {\n\
+		(function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){\n\
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n\
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n\
+		})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');\n\
+		ga(\'create\', \'UA-28909194-3\', \'auto\');\n\
+		ga(\'send\', \'pageview\');\n\
+	}\n\
+	/* eslint-enable */\n\
+}(this));\n\
+</script>\n\
+<script>\n\
+// https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/charts/line/basic.html\n\
+var MONTHS = [\'January\', \'February\', \'March\', \'April\', \'May\', \'June\', \'July\', \'August\', \'September\', \'October\', \'November\', \'December\'];\n\
+var config = {\n\
+    type: \'line\',\n\
+    data: {\n\
+        labels: [\'January\', \'February\', \'March\', \'April\', \'May\', \'June\', \'July\'],\n\
+        datasets: [{\n\
+            label: \'My First dataset\',\n\
+            backgroundColor: window.chartColors.red,\n\
+            borderColor: window.chartColors.red,\n\
+            data: [\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor()\n\
+            ],\n\
+            fill: false,\n\
+        }, {\n\
+            label: \'My Second dataset\',\n\
+            fill: false,\n\
+            backgroundColor: window.chartColors.blue,\n\
+            borderColor: window.chartColors.blue,\n\
+            data: [\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor(),\n\
+                randomScalingFactor()\n\
+            ],\n\
+        }]\n\
+    },\n\
+    options: {\n\
+        responsive: true,\n\
+        title: {\n\
+            display: true,\n\
+            text: \'Chart.js Line Chart\'\n\
+        },\n\
+        tooltips: {\n\
+            mode: \'index\',\n\
+            intersect: false,\n\
+        },\n\
+        hover: {\n\
+            mode: \'nearest\',\n\
+            intersect: true\n\
+        },\n\
+        scales: {\n\
+            xAxes: [{\n\
+                display: true,\n\
+                scaleLabel: {\n\
+                    display: true,\n\
+                    labelString: \'Month\'\n\
+                }\n\
+            }],\n\
+            yAxes: [{\n\
+                display: true,\n\
+                scaleLabel: {\n\
+                    display: true,\n\
+                    labelString: \'Value\'\n\
+                }\n\
+            }]\n\
+        }\n\
+    }\n\
+};\n\
+window.onload = function() {\n\
+    var ctx = document.getElementById(\'canvas\').getContext(\'2d\');\n\
+    window.myLine = new Chart(ctx, config);\n\
+};\n\
+document.getElementById(\'randomizeData\').addEventListener(\'click\', function() {\n\
+    config.data.datasets.forEach(function(dataset) {\n\
+        dataset.data = dataset.data.map(function() {\n\
+            return randomScalingFactor();\n\
+        });\n\
+    });\n\
+    window.myLine.update();\n\
+});\n\
+var colorNames = Object.keys(window.chartColors);\n\
+document.getElementById(\'addDataset\').addEventListener(\'click\', function() {\n\
+    var colorName = colorNames[config.data.datasets.length % colorNames.length];\n\
+    var newColor = window.chartColors[colorName];\n\
+    var newDataset = {\n\
+        label: \'Dataset \' + config.data.datasets.length,\n\
+        backgroundColor: newColor,\n\
+        borderColor: newColor,\n\
+        data: [],\n\
+        fill: false\n\
+    };\n\
+    for (var index = 0; index < config.data.labels.length; ++index) {\n\
+        newDataset.data.push(randomScalingFactor());\n\
+    }\n\
+    config.data.datasets.push(newDataset);\n\
+    window.myLine.update();\n\
+});\n\
+document.getElementById(\'addData\').addEventListener(\'click\', function() {\n\
+    if (config.data.datasets.length > 0) {\n\
+        var month = MONTHS[config.data.labels.length % MONTHS.length];\n\
+        config.data.labels.push(month);\n\
+        config.data.datasets.forEach(function(dataset) {\n\
+            dataset.data.push(randomScalingFactor());\n\
+        });\n\
+        window.myLine.update();\n\
+    }\n\
+});\n\
+document.getElementById(\'removeDataset\').addEventListener(\'click\', function() {\n\
+    config.data.datasets.splice(0, 1);\n\
+    window.myLine.update();\n\
+});\n\
+document.getElementById(\'removeData\').addEventListener(\'click\', function() {\n\
+    config.data.labels.splice(-1, 1); // remove the label first\n\
+    config.data.datasets.forEach(function(dataset) {\n\
+        dataset.data.pop();\n\
+    });\n\
+    window.myLine.update();\n\
+});\n\
+</script>\n\
 </body>\n\
 </html>\n\
 ';
 /* jslint ignore:end */
 local.assetsDict["/assets.bootstrap.js"] = (
     local.assetsDict["/assets.bootstrap.js"]
-    || local.fs.readFileSync(
-        local.__dirname + "/lib.bootstrap.js",
+    || require("fs").readFileSync(
+        require("path").resolve(local.__dirname + "/lib.bootstrap.js"),
         "utf8"
     ).replace((
         /^#!\//
@@ -1451,7 +1983,7 @@ if (module !== require.main || globalThis.utility2_rollup) {
 }
 local.assetsDict["/assets.example.js"] = (
     local.assetsDict["/assets.example.js"]
-    || local.fs.readFileSync(__filename, "utf8")
+    || require("fs").readFileSync(__filename, "utf8")
 );
 local.assetsDict["/favicon.ico"] = local.assetsDict["/favicon.ico"] || "";
 local.assetsDict["/index.html"] = local.assetsDict["/"];
@@ -1466,10 +1998,11 @@ if (globalThis.utility2_serverHttp1) {
 }
 process.env.PORT = process.env.PORT || "8081";
 console.error("http-server listening on port " + process.env.PORT);
-local.http.createServer(function (req, res) {
-    req.urlParsed = local.url.parse(req.url);
-    if (local.assetsDict[req.urlParsed.pathname] !== undefined) {
-        res.end(local.assetsDict[req.urlParsed.pathname]);
+require("http").createServer(function (req, res) {
+    let data;
+    data = local.assetsDict[require("url").parse(req.url).pathname];
+    if (data !== undefined) {
+        res.end(data);
         return;
     }
     res.statusCode = 404;
@@ -1486,7 +2019,6 @@ local.http.createServer(function (req, res) {
 ![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.testExampleJs.svg)
 
 
-
 # extra screenshots
 1. [https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)
 [![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)
@@ -1497,15 +2029,11 @@ local.http.createServer(function (req, res) {
 1. [https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)
 [![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)
 
-1. [https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png)
-[![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png)](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png)
-
 1. [https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png)
 [![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png)](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithub.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png)
 
 1. [https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithubTest.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithubTest.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png)
 [![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithubTest.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png)](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.deployGithubTest.browser.%252Fnode-bootstrap-lite%252Fbuild%252Fapp.png)
-
 
 
 1. [https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmTest.browser.%252F.png](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmTest.browser.%252F.png)
@@ -1518,30 +2046,30 @@ local.http.createServer(function (req, res) {
 [![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.testExampleSh.browser.%252F.png)](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.testExampleSh.browser.%252F.png)
 
 
-
 # package.json
 ```json
 {
     "author": "kai zhu <kaizhu256@gmail.com>",
-    "description": "this zero-dependency package will provide a rolled-up .css (includes font/glyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a working web-demo",
+    "description": "this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.20), and chart.js (v2.9.3) with working web-demo",
     "devDependencies": {
         "utility2": "kaizhu256/node-utility2#alpha"
     },
     "engines": {
-        "node": ">=10.0"
+        "node": ">=12.0"
     },
+    "fileCount": 11,
     "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",
-    "keywords": [],
+    "keywords": [
+        "bootstrap",
+        "datatables",
+        "chartjs"
+    ],
     "license": "MIT",
     "main": "lib.bootstrap.js",
     "name": "bootstrap-lite",
-    "nameAliasPublish": "bootstrap-classic bootstrap3-lite",
+    "nameAliasPublish": "bootstrap-classic bootstrap3-lite chartjs-lite datatable-lite",
     "nameLib": "bootstrap",
     "nameOriginal": "bootstrap-lite",
-    "os": [
-        "darwin",
-        "linux"
-    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/kaizhu256/node-bootstrap-lite.git"
@@ -1556,15 +2084,13 @@ local.http.createServer(function (req, res) {
         "test": "./npm_scripts.sh",
         "utility2": "./npm_scripts.sh"
     },
-    "version": "2020.1.20"
+    "version": "2020.6.12"
 }
 ```
 
 
-
 # changelog of last 50 commits
 [![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.gitLog.svg)](https://github.com/kaizhu256/node-bootstrap-lite/commits)
-
 
 
 # internal build script
@@ -1572,7 +2098,7 @@ local.http.createServer(function (req, res) {
 ```shell
 # build_ci.sh
 
-# this shell script will run the build for this package
+# this shell script will run build-ci for this package
 
 shBuildCiAfter () {(set -e
     # shDeployCustom
@@ -1590,7 +2116,6 @@ shBuildCiBefore () {(set -e
 eval "$(utility2 source)"
 shBuildCi
 ```
-
 
 
 # misc
