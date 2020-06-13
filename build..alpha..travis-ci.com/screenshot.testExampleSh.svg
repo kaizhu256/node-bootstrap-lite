@@ -1,28 +1,0 @@
-<svg height="254" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="254" fill="#555" width="720"></rect>
-<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
-<tspan x="10" y="26">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</tspan>
-
-<tspan x="10" y="42">                                 Dload  Upload   Total   Spent    Left  Speed</tspan>
-
-<tspan x="10" y="58"></tspan>
-<tspan x="10" y="74">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0</tspan>
-<tspan x="10" y="90">  3 6059k    3  215k    0     0   702k      0  0:00:08 --:--:--  0:00:08  702k</tspan>
-<tspan x="10" y="106">100 6059k  100 6059k    0     0  8382k      0 --:--:-- --:--:-- --:--:-- 8381k</tspan>
-
-<tspan x="10" y="122"></tspan>
-
-<tspan x="10" y="138">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-bootstrap-lite/tm\</tspan>
-<tspan x="10" y="154">p/build/test-report.json</tspan>
-
-<tspan x="10" y="170">&gt; http-server listening on port 8081</tspan>
-
-<tspan x="10" y="186"></tspan>
-
-<tspan x="10" y="202">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-bootstrap-lite/tm\</tspan>
-<tspan x="10" y="218">p/build/test-report.json</tspan>
-
-<tspan x="10" y="234">jslint - 1ms - /tmp/app/example.sh</tspan>
-
-</text>
-</svg>
