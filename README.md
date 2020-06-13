@@ -52,7 +52,6 @@ this zero-dependency package will provide single css-rollup (includes font/glyph
 ![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageCliHelp.svg)
 
 #### changelog 2020.6.14
-- npm publish 2020.6.14
 - none
 
 #### todo
