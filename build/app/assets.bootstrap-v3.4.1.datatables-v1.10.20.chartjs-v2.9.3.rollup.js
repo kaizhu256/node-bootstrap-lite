@@ -1,6 +1,6 @@
 // usr/bin/env node
 /*
- * lib.bootstrap.js (2020.6.12)
+ * lib.bootstrap.js (2020.6.14)
  * https://github.com/kaizhu256/node-bootstrap-lite
  * this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.20), and chart.js (v2.9.3) with working web-demo
  *
