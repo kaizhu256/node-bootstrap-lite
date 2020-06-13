@@ -1,9 +1,9 @@
-<svg height="3886" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="3886" fill="#555" width="720"></rect>
+<svg height="3870" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="3870" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
 <tspan x="10" y="26"></tspan>
 
-<tspan x="10" y="42">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-06-13T20:04:07.003Z - npm-testing /tmp/npmTe\</tspan>
+<tspan x="10" y="42">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-06-13T20:09:51.063Z - npm-testing /tmp/npmTe\</tspan>
 <tspan x="10" y="58">stPublished/node_modules/bootstrap-lite</tspan>
 
 <tspan x="10" y="74"></tspan>
@@ -15,10 +15,10 @@
 
 <tspan x="10" y="138">&gt; jslint - 7ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/npm_scripts.sh</tspan>
 
-<tspan x="10" y="154">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json.autofix.old	2020-06-13 20:04:\</tspan>
-<tspan x="10" y="170">07.407785640 +0000</tspan>
+<tspan x="10" y="154">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json.autofix.old	2020-06-13 20:09:\</tspan>
+<tspan x="10" y="170">51.499742899 +0000</tspan>
 
-<tspan x="10" y="186">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json	2020-06-13 20:04:07.407785640\</tspan>
+<tspan x="10" y="186">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json	2020-06-13 20:09:51.499742899\</tspan>
 <tspan x="10" y="202"> +0000</tspan>
 
 <tspan x="10" y="218">@@ -1,70 +1,70 @@</tspan>
@@ -306,149 +306,148 @@
 <tspan x="10" y="2522">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/packa\</tspan>
 <tspan x="10" y="2538">ge.json</tspan>
 
-<tspan x="10" y="2554">jslint - 32ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json</tspan>
+<tspan x="10" y="2554">jslint - 40ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json</tspan>
 
-<tspan x="10" y="2570">jslint - 82ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
+<tspan x="10" y="2570">jslint - 163ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
 
-<tspan x="10" y="2586">jslint - 205ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md</tspan>
+<tspan x="10" y="2586">jslint - 249ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md</tspan>
 
-<tspan x="10" y="2602">jslint - 211ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.css</tspan>
+<tspan x="10" y="2602">jslint - 254ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.css</tspan>
 
-<tspan x="10" y="2618">jslint - 648ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js</tspan>
+<tspan x="10" y="2618">jslint - 583ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js</tspan>
 
-<tspan x="10" y="2634">http-server listening on port 48623</tspan>
+<tspan x="10" y="2634">http-server listening on port 57486</tspan>
 
-<tspan x="10" y="2650">testRunDefault - 215 ms - [node test-case 1 of 7 passed] - testCase_buildLib_default</tspan>
+<tspan x="10" y="2650">testRunDefault - 143 ms - [node test-case 1 of 7 passed] - testCase_buildLib_default</tspan>
 
-<tspan x="10" y="2666">testRunDefault - 227 ms - [node test-case 2 of 7 passed] - testCase_buildReadme_default</tspan>
+<tspan x="10" y="2666">testRunDefault - 155 ms - [node test-case 2 of 7 passed] - testCase_buildReadme_default</tspan>
 
-<tspan x="10" y="2682">testRunDefault - 229 ms - [node test-case 3 of 7 passed] - testCase_buildTest_default</tspan>
+<tspan x="10" y="2682">testRunDefault - 159 ms - [node test-case 3 of 7 passed] - testCase_buildTest_default</tspan>
 
-<tspan x="10" y="2698">testRunDefault - 230 ms - [node test-case 4 of 7 passed] - testCase_nop_default</tspan>
+<tspan x="10" y="2698">testRunDefault - 161 ms - [node test-case 4 of 7 passed] - testCase_nop_default</tspan>
 
-<tspan x="10" y="2714">testRunDefault - 574 ms - [node test-case 5 of 7 passed] - testCase_buildApidoc_default</tspan>
+<tspan x="10" y="2714"></tspan>
 
-<tspan x="10" y="2730"></tspan>
+<tspan x="10" y="2730">DevTools listening on ws://127.0.0.1:44887/devtools/browser/4d390e66-4df0-42ae-a491-b1f3222a291f</tspan>
 
-<tspan x="10" y="2746">DevTools listening on ws://127.0.0.1:34031/devtools/browser/6f46c6fa-2bc7-48f6-95e1-0c35156df53a</tspan>
+<tspan x="10" y="2746">testRunDefault - 687 ms - [node test-case 5 of 7 passed] - testCase_buildApidoc_default</tspan>
 
-<tspan x="10" y="2762">&gt; http-server listening on port 53075</tspan>
+<tspan x="10" y="2762">&gt; http-server listening on port 34899</tspan>
 
-<tspan x="10" y="2778">testRunDefault - 6154 ms - testCase pending - testCase_buildApp_default, testCase_webpage_defaul\</tspan>
-<tspan x="10" y="2794">t ...</tspan>
+<tspan x="10" y="2778">testRunDefault - 5395 ms - [node test-case 6 of 7 passed] - testCase_webpage_default</tspan>
 
-<tspan x="10" y="2810">testRunDefault - 6623 ms - [node test-case 6 of 7 passed] - testCase_webpage_default</tspan>
+<tspan x="10" y="2794">testRunDefault - 6092 ms - testCase pending - testCase_buildApp_default ...</tspan>
 
-<tspan x="10" y="2826">jslint - 4ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.utility2.h\</tspan>
-<tspan x="10" y="2842">tml</tspan>
+<tspan x="10" y="2810">jslint - 3ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.utility2.h\</tspan>
+<tspan x="10" y="2826">tml</tspan>
 
-<tspan x="10" y="2858">jslint - 8ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.test.js</tspan>
+<tspan x="10" y="2842">jslint - 7ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.test.js</tspan>
 
-<tspan x="10" y="2874">jslint - 10ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
-<tspan x="10" y="2890">.html</tspan>
+<tspan x="10" y="2858">jslint - 8ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap.\</tspan>
+<tspan x="10" y="2874">html</tspan>
 
-<tspan x="10" y="2906">jslint - 12ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.example.h\</tspan>
-<tspan x="10" y="2922">tml</tspan>
+<tspan x="10" y="2890">jslint - 8ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.example.ht\</tspan>
+<tspan x="10" y="2906">ml</tspan>
 
-<tspan x="10" y="2938">jslint - 13ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/index.html</tspan>
+<tspan x="10" y="2922">jslint - 8ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/index.html</tspan>
 
-<tspan x="10" y="2954">jslint - 15ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.example.j\</tspan>
-<tspan x="10" y="2970">s</tspan>
+<tspan x="10" y="2938">jslint - 11ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.example.j\</tspan>
+<tspan x="10" y="2954">s</tspan>
 
-<tspan x="10" y="2986">jslint - 18ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
-<tspan x="10" y="3002">.css</tspan>
+<tspan x="10" y="2970">jslint - 14ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
+<tspan x="10" y="2986">.css</tspan>
 
-<tspan x="10" y="3018">jslint - 19ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/utility2.state.i\</tspan>
-<tspan x="10" y="3034">nit.js</tspan>
+<tspan x="10" y="3002">jslint - 14ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/utility2.state.i\</tspan>
+<tspan x="10" y="3018">nit.js</tspan>
 
-<tspan x="10" y="3050">jslint - 63ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
-<tspan x="10" y="3066">.js</tspan>
+<tspan x="10" y="3034">jslint - 61ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
+<tspan x="10" y="3050">.js</tspan>
 
-<tspan x="10" y="3082">testRunDefault - 7399 ms - [node test-case 7 of 7 passed] - testCase_buildApp_default</tspan>
+<tspan x="10" y="3066">testRunDefault - 7252 ms - [node test-case 7 of 7 passed] - testCase_buildApp_default</tspan>
 
-<tspan x="10" y="3098">-------------------|---------|---------|---------|---------|</tspan>
+<tspan x="10" y="3082">-------------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3114">File               | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
+<tspan x="10" y="3098">File               | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
 
-<tspan x="10" y="3130">-------------------|---------|---------|---------|---------|</tspan>
+<tspan x="10" y="3114">-------------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3146">All files          |   99.98 |   99.98 |     100 |   99.98 |</tspan>
+<tspan x="10" y="3130">All files          |   99.98 |   99.98 |     100 |   99.98 |</tspan>
 
-<tspan x="10" y="3162">bootstrap-lite/    |   99.98 |   99.98 |     100 |   99.98 |</tspan>
+<tspan x="10" y="3146">bootstrap-lite/    |   99.98 |   99.98 |     100 |   99.98 |</tspan>
 
-<tspan x="10" y="3178">  example.js       |     100 |     100 |     100 |     100 |</tspan>
+<tspan x="10" y="3162">  example.js       |     100 |     100 |     100 |     100 |</tspan>
 
-<tspan x="10" y="3194">  lib.bootstrap.js |     100 |     100 |     100 |     100 |</tspan>
+<tspan x="10" y="3178">  lib.bootstrap.js |     100 |     100 |     100 |     100 |</tspan>
 
-<tspan x="10" y="3210">  test.js          |    95.7 |   96.36 |     100 |    95.7 |</tspan>
+<tspan x="10" y="3194">  test.js          |    95.7 |   96.36 |     100 |    95.7 |</tspan>
 
-<tspan x="10" y="3226">-------------------|---------|---------|---------|---------|</tspan>
+<tspan x="10" y="3210">-------------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3242"></tspan>
+<tspan x="10" y="3226"></tspan>
 
-<tspan x="10" y="3258">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3274">age.html/coverage.txt</tspan>
+<tspan x="10" y="3242">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3258">age.html/coverage.txt</tspan>
 
-<tspan x="10" y="3290">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3306">age.html/index.html</tspan>
+<tspan x="10" y="3274">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3290">age.html/index.html</tspan>
 
-<tspan x="10" y="3322">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3338">age.html/bootstrap-lite/index.html</tspan>
+<tspan x="10" y="3306">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3322">age.html/bootstrap-lite/index.html</tspan>
 
-<tspan x="10" y="3354">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3370">age.html/bootstrap-lite/example.js.html</tspan>
+<tspan x="10" y="3338">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3354">age.html/bootstrap-lite/example.js.html</tspan>
 
-<tspan x="10" y="3386">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3402">age.html/bootstrap-lite/lib.bootstrap.js.html</tspan>
+<tspan x="10" y="3370">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3386">age.html/bootstrap-lite/lib.bootstrap.js.html</tspan>
 
-<tspan x="10" y="3418">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3434">age.html/bootstrap-lite/test.js.html</tspan>
+<tspan x="10" y="3402">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3418">age.html/bootstrap-lite/test.js.html</tspan>
 
-<tspan x="10" y="3450">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3466">age.html/coverage.all.html</tspan>
+<tspan x="10" y="3434">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3450">age.html/coverage.all.html</tspan>
 
-<tspan x="10" y="3482">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3498">age.html/coverage.json</tspan>
+<tspan x="10" y="3466">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3482">age.html/coverage.json</tspan>
 
-<tspan x="10" y="3514">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3530">age.html/coverage.include.json</tspan>
+<tspan x="10" y="3498">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3514">age.html/coverage.include.json</tspan>
 
-<tspan x="10" y="3546">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
-<tspan x="10" y="3562">age.badge.svg</tspan>
+<tspan x="10" y="3530">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3546">age.badge.svg</tspan>
 
-<tspan x="10" y="3578">istanbul - created coverage file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cov\</tspan>
-<tspan x="10" y="3594">erage.html/index.html</tspan>
+<tspan x="10" y="3562">istanbul - created coverage file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cov\</tspan>
+<tspan x="10" y="3578">erage.html/index.html</tspan>
 
-<tspan x="10" y="3610"></tspan>
+<tspan x="10" y="3594"></tspan>
 
-<tspan x="10" y="3626">-------------------------------------------------------</tspan>
+<tspan x="10" y="3610">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="3642">| test-report - npmTestPublished - node - linux v14.4.0 - 2020-06-13T20:04:07.150Z</tspan>
+<tspan x="10" y="3626">| test-report - npmTestPublished - node - linux v14.4.0 - 2020-06-13T20:09:51.202Z</tspan>
 
-<tspan x="10" y="3658">|    7399 ms            0 failed        7 passed      |</tspan>
+<tspan x="10" y="3642">|    7252 ms            0 failed        7 passed      |</tspan>
 
-<tspan x="10" y="3674">-------------------------------------------------------</tspan>
+<tspan x="10" y="3658">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="3690"></tspan>
+<tspan x="10" y="3674"></tspan>
 
-<tspan x="10" y="3706">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-repo\</tspan>
-<tspan x="10" y="3722">rt.html</tspan>
+<tspan x="10" y="3690">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-repo\</tspan>
+<tspan x="10" y="3706">rt.html</tspan>
 
-<tspan x="10" y="3738">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/build.bad\</tspan>
-<tspan x="10" y="3754">ge.svg</tspan>
+<tspan x="10" y="3722">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/build.bad\</tspan>
+<tspan x="10" y="3738">ge.svg</tspan>
 
-<tspan x="10" y="3770">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-repo\</tspan>
-<tspan x="10" y="3786">rt.badge.svg</tspan>
+<tspan x="10" y="3754">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-repo\</tspan>
+<tspan x="10" y="3770">rt.badge.svg</tspan>
 
-<tspan x="10" y="3802"></tspan>
+<tspan x="10" y="3786"></tspan>
 
-<tspan x="10" y="3818">npmTestPublished - 0 failed tests</tspan>
+<tspan x="10" y="3802">npmTestPublished - 0 failed tests</tspan>
+
+<tspan x="10" y="3818"></tspan>
 
 <tspan x="10" y="3834"></tspan>
 
-<tspan x="10" y="3850"></tspan>
-
-<tspan x="10" y="3866">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-06-13T20:04:21.464Z - EXIT_CODE - 0</tspan>
+<tspan x="10" y="3850">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-06-13T20:10:04.929Z - EXIT_CODE - 0</tspan>
 
 </text>
 </svg>
