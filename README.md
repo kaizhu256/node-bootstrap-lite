@@ -51,13 +51,8 @@ this zero-dependency package will provide single css-rollup (includes font/glyph
 #### cli help
 ![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageCliHelp.svg)
 
-#### changelog 2020.6.12
-- npm publish 2020.6.12
-- include datatables and chartjs
-- jslint - add eslint-rule no-multiple-empty-lines
-- add limited win32-compat
-- remove globalThis polyfill
-- migrate ci from travis-ci.org to travis-ci.com
+#### changelog 2020.6.14
+- npm publish 2020.6.14
 - none
 
 #### todo
@@ -2084,7 +2079,7 @@ require("http").createServer(function (req, res) {
         "test": "./npm_scripts.sh",
         "utility2": "./npm_scripts.sh"
     },
-    "version": "2020.6.12"
+    "version": "2020.6.14"
 }
 ```
 
