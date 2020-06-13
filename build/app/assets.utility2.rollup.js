@@ -45841,11 +45841,12 @@ local._testCase_webpage_default = function (opt, onError) {
 /*
  * this function will test webpage's default handling-behavior
  */
+    local.domQuerySelectorAllTagName();
+    local.domStyleValidate();
     if (local.isBrowser) {
         onError(undefined, opt);
         return;
     }
-    local.domStyleValidate();
     local.browserTest({
         fileScreenshot: (
             process.env.npm_config_dir_build
@@ -47480,25 +47481,19 @@ local.domFragmentRender = function (template, dict) {
 
 local.domQuerySelectorAllTagName = function (selector) {
 /*
- * this function will return all tagName that match <selector>
+ * this function will return list of tagName matching <selector>
  */
     let set;
+    try {
+        document.getElementById("undefined");
+    } catch (ignore) {
+        return [];
+    }
     set = new Set();
     document.querySelectorAll(selector).forEach(function (elem) {
         set.add(elem.tagName);
     });
     return Array.from(set).sort();
-};
-
-local.domSelectOptionValue = function (elem) {
-/*
- * this function will return <elem>.options[<elem>.selectedIndex].value
- */
-    if (typeof elem === "string") {
-        elem = document.querySelector(elem);
-    }
-    elem = elem && elem.options[elem.selectedIndex];
-    return (elem && elem.value) || "";
 };
 
 local.domStyleValidate = function () {
@@ -47508,7 +47503,7 @@ local.domStyleValidate = function () {
     let rgx;
     let tmp;
     try {
-        document.querySelector("#undefined");
+        document.getElementById("undefined");
     } catch (ignore) {
         return;
     }
