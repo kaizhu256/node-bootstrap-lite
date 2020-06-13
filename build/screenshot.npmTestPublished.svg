@@ -1,1924 +1,462 @@
-<svg height="15598" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="15598" fill="#555" width="720"></rect>
+<svg height="3966" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="3966" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
 <tspan x="10" y="26"></tspan>
 
-<tspan x="10" y="42">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-03-17T06:33:55.413Z - npm-testing /tmp/npmTe\</tspan>
+<tspan x="10" y="42">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-06-13T19:34:45.803Z - npm-testing /tmp/npmTe\</tspan>
 <tspan x="10" y="58">stPublished/node_modules/bootstrap-lite</tspan>
 
 <tspan x="10" y="74"></tspan>
 
 <tspan x="10" y="90"></tspan>
 
-<tspan x="10" y="106">covering $ /home/travis/.nvm/versions/node/v13.11.0/bin/node /tmp/npmTestPublished/node_modules/\</tspan>
-<tspan x="10" y="122">bootstrap-lite/test.js</tspan>
+<tspan x="10" y="106">istanbul - covering $ /home/travis/.nvm/versions/node/v14.4.0/bin/node /tmp/npmTestPublished/nod\</tspan>
+<tspan x="10" y="122">e_modules/bootstrap-lite/test.js</tspan>
 
-<tspan x="10" y="138">&gt; --- /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md.autofix.old	2020-03-17 06:33:5\</tspan>
-<tspan x="10" y="154">5.938960025 +0000</tspan>
+<tspan x="10" y="138">&gt; jslint - 7ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/npm_scripts.sh</tspan>
 
-<tspan x="10" y="170">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md	2020-03-17 06:33:55.934960025 +0\</tspan>
-<tspan x="10" y="186">000</tspan>
+<tspan x="10" y="154">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json.autofix.old	2020-06-13 19:34:\</tspan>
+<tspan x="10" y="170">46.199389648 +0000</tspan>
 
-<tspan x="10" y="202">@@ -123,8 +123,6 @@</tspan>
+<tspan x="10" y="186">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json	2020-06-13 19:34:46.199389648\</tspan>
+<tspan x="10" y="202"> +0000</tspan>
 
-<tspan x="10" y="218"> /* jslint utility2:true */</tspan>
+<tspan x="10" y="218">@@ -1,70 +1,70 @@</tspan>
 
-<tspan x="10" y="234"> (function (globalThis) {</tspan>
+<tspan x="10" y="234"> {</tspan>
 
-<tspan x="10" y="250">     "use strict";</tspan>
+<tspan x="10" y="250">-  "_from": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="266">-    let ArrayPrototypeFlat;</tspan>
+<tspan x="10" y="266">-  "_id": "bootstrap-lite@2020.6.12",</tspan>
 
-<tspan x="10" y="282">-    let TextXxcoder;</tspan>
+<tspan x="10" y="282">-  "_inBundle": false,</tspan>
 
-<tspan x="10" y="298">     let consoleError;</tspan>
+<tspan x="10" y="298">-  "_integrity": "sha512-VuY+p9CesMIHtb476Ur9H0oKr1M3dgXcjUzlbMecvzBoxvw5bUJiDSbruoQcwq+5ZgMsJF4\</tspan>
+<tspan x="10" y="314">4To3AVb6lDvqVUg==",</tspan>
 
-<tspan x="10" y="314">     let debugName;</tspan>
+<tspan x="10" y="330">-  "_location": "/bootstrap-lite",</tspan>
 
-<tspan x="10" y="330">     let local;</tspan>
+<tspan x="10" y="346">-  "_phantomChildren": {},</tspan>
 
-<tspan x="10" y="346">@@ -140,162 +138,17 @@</tspan>
+<tspan x="10" y="362">-  "_requested": {</tspan>
 
-<tspan x="10" y="362">          * and return &lt;argList&gt;[0]</tspan>
+<tspan x="10" y="378">-    "type": "tag",</tspan>
 
-<tspan x="10" y="378">          */</tspan>
+<tspan x="10" y="394">-    "registry": true,</tspan>
 
-<tspan x="10" y="394">             consoleError("\n\n" + debugName);</tspan>
+<tspan x="10" y="410">-    "raw": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="410">-            consoleError.apply(console, argList);</tspan>
+<tspan x="10" y="426">+    "_from": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="426">+            consoleError(...argList);</tspan>
+<tspan x="10" y="442">+    "_id": "bootstrap-lite@2020.6.12",</tspan>
 
-<tspan x="10" y="442">             consoleError("\n");</tspan>
+<tspan x="10" y="458">+    "_inBundle": false,</tspan>
 
-<tspan x="10" y="458">-            // return arg0 for inspection</tspan>
+<tspan x="10" y="474">+    "_integrity": "sha512-VuY+p9CesMIHtb476Ur9H0oKr1M3dgXcjUzlbMecvzBoxvw5bUJiDSbruoQcwq+5ZgMsJ\</tspan>
+<tspan x="10" y="490">F44To3AVb6lDvqVUg==",</tspan>
 
-<tspan x="10" y="474">             return argList[0];</tspan>
+<tspan x="10" y="506">+    "_location": "/bootstrap-lite",</tspan>
 
-<tspan x="10" y="490">         };</tspan>
+<tspan x="10" y="522">+    "_phantomChildren": {},</tspan>
 
-<tspan x="10" y="506">     }</tspan>
+<tspan x="10" y="538">+    "_requested": {</tspan>
 
-<tspan x="10" y="522">-    // polyfill</tspan>
+<tspan x="10" y="554">+        "escapedName": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="538">-    ArrayPrototypeFlat = function (depth) {</tspan>
+<tspan x="10" y="570">+        "fetchSpec": "latest",</tspan>
 
-<tspan x="10" y="554">-    /*</tspan>
+<tspan x="10" y="586">+        "name": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="570">-     * this function will polyfill Array.prototype.flat</tspan>
+<tspan x="10" y="602">+        "raw": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="586">-     * https://github.com/jonathantneal/array-flat-polyfill</tspan>
+<tspan x="10" y="618">+        "rawSpec": "",</tspan>
 
-<tspan x="10" y="602">-     */</tspan>
+<tspan x="10" y="634">+        "registry": true,</tspan>
 
-<tspan x="10" y="618">-        depth = (</tspan>
+<tspan x="10" y="650">+        "saveSpec": null,</tspan>
 
-<tspan x="10" y="634">-            globalThis.isNaN(depth)</tspan>
+<tspan x="10" y="666">+        "type": "tag"</tspan>
 
-<tspan x="10" y="650">-            ? 1</tspan>
+<tspan x="10" y="682">+    },</tspan>
 
-<tspan x="10" y="666">-            : Number(depth)</tspan>
+<tspan x="10" y="698">+    "_requiredBy_": [</tspan>
 
-<tspan x="10" y="682">-        );</tspan>
+<tspan x="10" y="714">+        "#USER",</tspan>
 
-<tspan x="10" y="698">-        if (!depth) {</tspan>
+<tspan x="10" y="730">+        "/"</tspan>
 
-<tspan x="10" y="714">-            return Array.prototype.slice.call(this);</tspan>
+<tspan x="10" y="746">+    ],</tspan>
 
-<tspan x="10" y="730">-        }</tspan>
+<tspan x="10" y="762">+    "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2020.6.12.tgz",</tspan>
 
-<tspan x="10" y="746">-        return Array.prototype.reduce.call(this, function (acc, cur) {</tspan>
+<tspan x="10" y="778">+    "_shasum": "727645adc1089ab95eb0a2f5a1588b652db21713",</tspan>
 
-<tspan x="10" y="762">-            if (Array.isArray(cur)) {</tspan>
+<tspan x="10" y="794">+    "_spec": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="778">-                // recurse</tspan>
+<tspan x="10" y="810">+    "_where": "/tmp/npmTestPublished",</tspan>
 
-<tspan x="10" y="794">-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));</tspan>
+<tspan x="10" y="826">+    "author": {</tspan>
 
-<tspan x="10" y="810">-            } else {</tspan>
+<tspan x="10" y="842">+        "email": "kaizhu256@gmail.com",</tspan>
 
-<tspan x="10" y="826">-                acc.push(cur);</tspan>
+<tspan x="10" y="858">+        "name": "kai zhu"</tspan>
 
-<tspan x="10" y="842">-            }</tspan>
+<tspan x="10" y="874">+    },</tspan>
 
-<tspan x="10" y="858">-            return acc;</tspan>
+<tspan x="10" y="890">+    "bugs": {</tspan>
 
-<tspan x="10" y="874">-        }, []);</tspan>
+<tspan x="10" y="906">+        "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
 
-<tspan x="10" y="890">-    };</tspan>
+<tspan x="10" y="922">+    },</tspan>
 
-<tspan x="10" y="906">-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;</tspan>
+<tspan x="10" y="938">+    "bundleDependencies": false,</tspan>
 
-<tspan x="10" y="922">-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(</tspan>
+<tspan x="10" y="954">+    "deprecated": false,</tspan>
 
-<tspan x="10" y="938">-        ...argList</tspan>
+<tspan x="10" y="970">+    "description": "this zero-dependency package will provide single css-rollup (includes font/\</tspan>
+<tspan x="10" y="986">glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatable\</tspan>
+<tspan x="10" y="1002">s (v1.10.20), and chart.js (v2.9.3) with working web-demo",</tspan>
 
-<tspan x="10" y="954">-    ) {</tspan>
+<tspan x="10" y="1018">+    "devDependencies": {</tspan>
 
-<tspan x="10" y="970">-    /*</tspan>
+<tspan x="10" y="1034">+        "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
 
-<tspan x="10" y="986">-     * this function will polyfill Array.prototype.flatMap</tspan>
+<tspan x="10" y="1050">+    },</tspan>
 
-<tspan x="10" y="1002">-     * https://github.com/jonathantneal/array-flat-polyfill</tspan>
+<tspan x="10" y="1066">+    "engines": {</tspan>
 
-<tspan x="10" y="1018">-     */</tspan>
+<tspan x="10" y="1082">+        "node": "&gt;=12.0"</tspan>
 
-<tspan x="10" y="1034">-        return this.map(...argList).flat();</tspan>
+<tspan x="10" y="1098">+    },</tspan>
 
-<tspan x="10" y="1050">-    };</tspan>
+<tspan x="10" y="1114">+    "fileCount": 11,</tspan>
 
-<tspan x="10" y="1066">     String.prototype.trimEnd = (</tspan>
+<tspan x="10" y="1130">+    "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
 
-<tspan x="10" y="1082">         String.prototype.trimEnd || String.prototype.trimRight</tspan>
+<tspan x="10" y="1146">+    "keywords": [</tspan>
 
-<tspan x="10" y="1098">     );</tspan>
+<tspan x="10" y="1162">+        "bootstrap",</tspan>
 
-<tspan x="10" y="1114">     String.prototype.trimStart = (</tspan>
+<tspan x="10" y="1178">+        "datatables",</tspan>
 
-<tspan x="10" y="1130">         String.prototype.trimStart || String.prototype.trimLeft</tspan>
+<tspan x="10" y="1194">+        "chartjs"</tspan>
 
-<tspan x="10" y="1146">     );</tspan>
+<tspan x="10" y="1210">+    ],</tspan>
 
-<tspan x="10" y="1162">-    (function () {</tspan>
+<tspan x="10" y="1226">+    "license": "MIT",</tspan>
 
-<tspan x="10" y="1178">-        try {</tspan>
+<tspan x="10" y="1242">+    "main": "lib.bootstrap.js",</tspan>
 
-<tspan x="10" y="1194">-            globalThis.TextDecoder = (</tspan>
+<tspan x="10" y="1258">     "name": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="1210">-                globalThis.TextDecoder || require("util").TextDecoder</tspan>
+<tspan x="10" y="1274">-    "escapedName": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="1226">-            );</tspan>
+<tspan x="10" y="1290">-    "rawSpec": "",</tspan>
 
-<tspan x="10" y="1242">-            globalThis.TextEncoder = (</tspan>
+<tspan x="10" y="1306">-    "saveSpec": null,</tspan>
 
-<tspan x="10" y="1258">-                globalThis.TextEncoder || require("util").TextEncoder</tspan>
+<tspan x="10" y="1322">-    "fetchSpec": "latest"</tspan>
 
-<tspan x="10" y="1274">-            );</tspan>
+<tspan x="10" y="1338">-  },</tspan>
 
-<tspan x="10" y="1290">-        } catch (ignore) {}</tspan>
+<tspan x="10" y="1354">-  "_requiredBy_": [</tspan>
 
-<tspan x="10" y="1306">-    }());</tspan>
+<tspan x="10" y="1370">-    "#USER",</tspan>
 
-<tspan x="10" y="1322">-    TextXxcoder = function () {</tspan>
+<tspan x="10" y="1386">-    "/"</tspan>
 
-<tspan x="10" y="1338">-    /*</tspan>
+<tspan x="10" y="1402">-  ],</tspan>
 
-<tspan x="10" y="1354">-     * this function will polyfill TextDecoder/TextEncoder</tspan>
+<tspan x="10" y="1418">-  "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2020.6.12.tgz",</tspan>
 
-<tspan x="10" y="1370">-     * https://gist.github.com/Yaffle/5458286</tspan>
+<tspan x="10" y="1434">-  "_shasum": "727645adc1089ab95eb0a2f5a1588b652db21713",</tspan>
 
-<tspan x="10" y="1386">-     */</tspan>
+<tspan x="10" y="1450">-  "_spec": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="1402">-        return;</tspan>
+<tspan x="10" y="1466">-  "_where": "/tmp/npmTestPublished",</tspan>
 
-<tspan x="10" y="1418">-    };</tspan>
+<tspan x="10" y="1482">-  "author": {</tspan>
 
-<tspan x="10" y="1434">-    TextXxcoder.prototype.decode = function (octets) {</tspan>
+<tspan x="10" y="1498">-    "name": "kai zhu",</tspan>
 
-<tspan x="10" y="1450">-    /*</tspan>
+<tspan x="10" y="1514">-    "email": "kaizhu256@gmail.com"</tspan>
 
-<tspan x="10" y="1466">-     * this function will polyfill TextDecoder.prototype.decode</tspan>
+<tspan x="10" y="1530">-  },</tspan>
 
-<tspan x="10" y="1482">-     * https://gist.github.com/Yaffle/5458286</tspan>
+<tspan x="10" y="1546">-  "bugs": {</tspan>
 
-<tspan x="10" y="1498">-     */</tspan>
+<tspan x="10" y="1562">-    "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
 
-<tspan x="10" y="1514">-        let bytesNeeded;</tspan>
+<tspan x="10" y="1578">-  },</tspan>
 
-<tspan x="10" y="1530">-        let codePoint;</tspan>
+<tspan x="10" y="1594">-  "bundleDependencies": false,</tspan>
 
-<tspan x="10" y="1546">-        let ii;</tspan>
+<tspan x="10" y="1610">-  "deprecated": false,</tspan>
 
-<tspan x="10" y="1562">-        let kk;</tspan>
+<tspan x="10" y="1626">-  "description": "this zero-dependency package will provide single css-rollup (includes font/gl\</tspan>
+<tspan x="10" y="1642">yphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables \</tspan>
+<tspan x="10" y="1658">(v1.10.20), and chart.js (v2.9.3) with working web-demo",</tspan>
 
-<tspan x="10" y="1578">-        let octet;</tspan>
+<tspan x="10" y="1674">-  "devDependencies": {</tspan>
 
-<tspan x="10" y="1594">-        let string;</tspan>
+<tspan x="10" y="1690">-    "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
 
-<tspan x="10" y="1610">-        string = "";</tspan>
+<tspan x="10" y="1706">-  },</tspan>
 
-<tspan x="10" y="1626">-        ii = 0;</tspan>
+<tspan x="10" y="1722">-  "engines": {</tspan>
 
-<tspan x="10" y="1642">-        while (ii &lt; octets.length) {</tspan>
+<tspan x="10" y="1738">-    "node": "&gt;=12.0"</tspan>
 
-<tspan x="10" y="1658">-            octet = octets[ii];</tspan>
+<tspan x="10" y="1754">-  },</tspan>
 
-<tspan x="10" y="1674">-            bytesNeeded = 0;</tspan>
+<tspan x="10" y="1770">-  "fileCount": 11,</tspan>
 
-<tspan x="10" y="1690">-            codePoint = 0;</tspan>
+<tspan x="10" y="1786">-  "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
 
-<tspan x="10" y="1706">-            if (octet &lt;= 0x7F) {</tspan>
+<tspan x="10" y="1802">-  "keywords": [</tspan>
 
-<tspan x="10" y="1722">-                bytesNeeded = 0;</tspan>
+<tspan x="10" y="1818">-    "bootstrap",</tspan>
 
-<tspan x="10" y="1738">-                codePoint = octet &amp; 0xFF;</tspan>
+<tspan x="10" y="1834">-    "datatables",</tspan>
 
-<tspan x="10" y="1754">-            } else if (octet &lt;= 0xDF) {</tspan>
+<tspan x="10" y="1850">-    "chartjs"</tspan>
 
-<tspan x="10" y="1770">-                bytesNeeded = 1;</tspan>
+<tspan x="10" y="1866">-  ],</tspan>
 
-<tspan x="10" y="1786">-                codePoint = octet &amp; 0x1F;</tspan>
+<tspan x="10" y="1882">-  "license": "MIT",</tspan>
 
-<tspan x="10" y="1802">-            } else if (octet &lt;= 0xEF) {</tspan>
+<tspan x="10" y="1898">-  "main": "lib.bootstrap.js",</tspan>
 
-<tspan x="10" y="1818">-                bytesNeeded = 2;</tspan>
+<tspan x="10" y="1914">-  "name": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="1834">-                codePoint = octet &amp; 0x0F;</tspan>
+<tspan x="10" y="1930">-  "nameAliasPublish": "bootstrap-classic bootstrap3-lite chartjs-lite datatable-lite",</tspan>
 
-<tspan x="10" y="1850">-            } else if (octet &lt;= 0xF4) {</tspan>
+<tspan x="10" y="1946">-  "nameLib": "bootstrap",</tspan>
 
-<tspan x="10" y="1866">-                bytesNeeded = 3;</tspan>
+<tspan x="10" y="1962">-  "nameOriginal": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="1882">-                codePoint = octet &amp; 0x07;</tspan>
+<tspan x="10" y="1978">-  "repository": {</tspan>
 
-<tspan x="10" y="1898">-            }</tspan>
+<tspan x="10" y="1994">-    "type": "git",</tspan>
 
-<tspan x="10" y="1914">-            if (octets.length - ii - bytesNeeded &gt; 0) {</tspan>
+<tspan x="10" y="2010">-    "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
 
-<tspan x="10" y="1930">-                kk = 0;</tspan>
+<tspan x="10" y="2026">-  },</tspan>
 
-<tspan x="10" y="1946">-                while (kk &lt; bytesNeeded) {</tspan>
+<tspan x="10" y="2042">-  "scripts": {</tspan>
 
-<tspan x="10" y="1962">-                    octet = octets[ii + kk + 1];</tspan>
+<tspan x="10" y="2058">-    "build-ci": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="1978">-                    codePoint = (codePoint &lt;&lt; 6) | (octet &amp; 0x3F);</tspan>
+<tspan x="10" y="2074">-    "env": "env",</tspan>
 
-<tspan x="10" y="1994">-                    kk += 1;</tspan>
+<tspan x="10" y="2090">-    "eval": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2010">-                }</tspan>
+<tspan x="10" y="2106">-    "heroku-postbuild": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2026">-            } else {</tspan>
+<tspan x="10" y="2122">-    "postinstall": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2042">-                codePoint = 0xFFFD;</tspan>
+<tspan x="10" y="2138">-    "start": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2058">-                bytesNeeded = octets.length - ii;</tspan>
+<tspan x="10" y="2154">-    "test": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2074">-            }</tspan>
+<tspan x="10" y="2170">-    "utility2": "./npm_scripts.sh"</tspan>
 
-<tspan x="10" y="2090">-            string += String.fromCodePoint(codePoint);</tspan>
+<tspan x="10" y="2186">-  },</tspan>
 
-<tspan x="10" y="2106">-            ii += bytesNeeded + 1;</tspan>
+<tspan x="10" y="2202">-  "version": "2020.6.12"</tspan>
 
-<tspan x="10" y="2122">-        }</tspan>
+<tspan x="10" y="2218">+    "nameAliasPublish": "bootstrap-classic bootstrap3-lite chartjs-lite datatable-lite",</tspan>
 
-<tspan x="10" y="2138">-        return string;</tspan>
+<tspan x="10" y="2234">+    "nameLib": "bootstrap",</tspan>
 
-<tspan x="10" y="2154">-    };</tspan>
+<tspan x="10" y="2250">+    "nameOriginal": "bootstrap-lite",</tspan>
 
-<tspan x="10" y="2170">-    TextXxcoder.prototype.encode = function (string) {</tspan>
+<tspan x="10" y="2266">+    "repository": {</tspan>
 
-<tspan x="10" y="2186">-    /*</tspan>
+<tspan x="10" y="2282">+        "type": "git",</tspan>
 
-<tspan x="10" y="2202">-     * this function will polyfill TextEncoder.prototype.encode</tspan>
+<tspan x="10" y="2298">+        "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
 
-<tspan x="10" y="2218">-     * https://gist.github.com/Yaffle/5458286</tspan>
+<tspan x="10" y="2314">+    },</tspan>
 
-<tspan x="10" y="2234">-     */</tspan>
+<tspan x="10" y="2330">+    "scripts": {</tspan>
 
-<tspan x="10" y="2250">-        let bits;</tspan>
+<tspan x="10" y="2346">+        "build-ci": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2266">-        let cc;</tspan>
+<tspan x="10" y="2362">+        "env": "env",</tspan>
 
-<tspan x="10" y="2282">-        let codePoint;</tspan>
+<tspan x="10" y="2378">+        "eval": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2298">-        let ii;</tspan>
+<tspan x="10" y="2394">+        "heroku-postbuild": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2314">-        let length;</tspan>
+<tspan x="10" y="2410">+        "postinstall": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2330">-        let octets;</tspan>
+<tspan x="10" y="2426">+        "start": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2346">-        octets = [];</tspan>
+<tspan x="10" y="2442">+        "test": "./npm_scripts.sh",</tspan>
 
-<tspan x="10" y="2362">-        length = string.length;</tspan>
+<tspan x="10" y="2458">+        "utility2": "./npm_scripts.sh"</tspan>
 
-<tspan x="10" y="2378">-        ii = 0;</tspan>
+<tspan x="10" y="2474">+    },</tspan>
 
-<tspan x="10" y="2394">-        while (ii &lt; length) {</tspan>
+<tspan x="10" y="2490">+    "version": "2020.6.12"</tspan>
 
-<tspan x="10" y="2410">-            codePoint = string.codePointAt(ii);</tspan>
+<tspan x="10" y="2506"> }</tspan>
 
-<tspan x="10" y="2426">-            cc = 0;</tspan>
+<tspan x="10" y="2522">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/packa\</tspan>
+<tspan x="10" y="2538">ge.json</tspan>
 
-<tspan x="10" y="2442">-            bits = 0;</tspan>
+<tspan x="10" y="2554">jslint - 35ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json</tspan>
 
-<tspan x="10" y="2458">-            if (codePoint &lt;= 0x0000007F) {</tspan>
+<tspan x="10" y="2570">jslint - 105ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
 
-<tspan x="10" y="2474">-                cc = 0;</tspan>
+<tspan x="10" y="2586">jslint - 192ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md</tspan>
 
-<tspan x="10" y="2490">-                bits = 0x00;</tspan>
+<tspan x="10" y="2602">jslint - 195ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.css</tspan>
 
-<tspan x="10" y="2506">-            } else if (codePoint &lt;= 0x000007FF) {</tspan>
+<tspan x="10" y="2618">jslint - 540ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js</tspan>
 
-<tspan x="10" y="2522">-                cc = 6;</tspan>
+<tspan x="10" y="2634">http-server listening on port 38105</tspan>
 
-<tspan x="10" y="2538">-                bits = 0xC0;</tspan>
+<tspan x="10" y="2650">testRunDefault - 145 ms - [node test-case 1 of 7 passed] - testCase_buildLib_default</tspan>
 
-<tspan x="10" y="2554">-            } else if (codePoint &lt;= 0x0000FFFF) {</tspan>
+<tspan x="10" y="2666">testRunDefault - 156 ms - [node test-case 2 of 7 passed] - testCase_buildReadme_default</tspan>
 
-<tspan x="10" y="2570">-                cc = 12;</tspan>
+<tspan x="10" y="2682">testRunDefault - 160 ms - [node test-case 3 of 7 passed] - testCase_buildTest_default</tspan>
 
-<tspan x="10" y="2586">-                bits = 0xE0;</tspan>
+<tspan x="10" y="2698">testRunDefault - 161 ms - [node test-case 4 of 7 passed] - testCase_nop_default</tspan>
 
-<tspan x="10" y="2602">-            } else if (codePoint &lt;= 0x001FFFFF) {</tspan>
+<tspan x="10" y="2714"></tspan>
 
-<tspan x="10" y="2618">-                cc = 18;</tspan>
+<tspan x="10" y="2730">DevTools listening on ws://127.0.0.1:35751/devtools/browser/ee7bbfcc-ed3d-46fd-aaee-36daaa9c079c</tspan>
 
-<tspan x="10" y="2634">-                bits = 0xF0;</tspan>
+<tspan x="10" y="2746">testRunDefault - 664 ms - [node test-case 5 of 7 passed] - testCase_buildApidoc_default</tspan>
 
-<tspan x="10" y="2650">-            }</tspan>
+<tspan x="10" y="2762">[0613/193452.994490:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
+<tspan x="10" y="2778">th unconsumed attachments: 0/1</tspan>
 
-<tspan x="10" y="2666">-            octets.push(bits | (codePoint &gt;&gt; cc));</tspan>
+<tspan x="10" y="2794">[0613/193452.994687:ERROR:command_buffer_proxy_impl.cc(122)] ContextResult::kTransientFailure: F\</tspan>
+<tspan x="10" y="2810">ailed to send GpuChannelMsg_CreateCommandBuffer.</tspan>
 
-<tspan x="10" y="2682">-            cc -= 6;</tspan>
+<tspan x="10" y="2826">[0613/193452.995151:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
+<tspan x="10" y="2842">th unconsumed attachments: 0/1</tspan>
 
-<tspan x="10" y="2698">-            while (cc &gt;= 0) {</tspan>
+<tspan x="10" y="2858">&gt; http-server listening on port 34798</tspan>
 
-<tspan x="10" y="2714">-                octets.push(0x80 | ((codePoint &gt;&gt; cc) &amp; 0x3F));</tspan>
+<tspan x="10" y="2874">testRunDefault - 4163 ms - [node test-case 6 of 7 passed] - testCase_webpage_default</tspan>
 
-<tspan x="10" y="2730">-                cc -= 6;</tspan>
+<tspan x="10" y="2890">testRunDefault - 6163 ms - testCase pending - testCase_buildApp_default ...</tspan>
 
-<tspan x="10" y="2746">-            }</tspan>
+<tspan x="10" y="2906">jslint - 4ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.utility2.h\</tspan>
+<tspan x="10" y="2922">tml</tspan>
 
-<tspan x="10" y="2762">-            ii += (</tspan>
+<tspan x="10" y="2938">jslint - 9ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.test.js</tspan>
 
-<tspan x="10" y="2778">-                codePoint &gt;= 0x10000</tspan>
+<tspan x="10" y="2954">jslint - 12ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
+<tspan x="10" y="2970">.html</tspan>
 
-<tspan x="10" y="2794">-                ? 2</tspan>
+<tspan x="10" y="2986">jslint - 12ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.example.h\</tspan>
+<tspan x="10" y="3002">tml</tspan>
 
-<tspan x="10" y="2810">-                : 1</tspan>
+<tspan x="10" y="3018">jslint - 12ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/index.html</tspan>
 
-<tspan x="10" y="2826">-            );</tspan>
+<tspan x="10" y="3034">jslint - 14ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.example.j\</tspan>
+<tspan x="10" y="3050">s</tspan>
 
-<tspan x="10" y="2842">-        }</tspan>
+<tspan x="10" y="3066">jslint - 17ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
+<tspan x="10" y="3082">.css</tspan>
 
-<tspan x="10" y="2858">-        return octets;</tspan>
+<tspan x="10" y="3098">jslint - 17ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/utility2.state.i\</tspan>
+<tspan x="10" y="3114">nit.js</tspan>
 
-<tspan x="10" y="2874">-    };</tspan>
+<tspan x="10" y="3130">jslint - 75ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
+<tspan x="10" y="3146">.js</tspan>
 
-<tspan x="10" y="2890">-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;</tspan>
+<tspan x="10" y="3162">testRunDefault - 7474 ms - [node test-case 7 of 7 passed] - testCase_buildApp_default</tspan>
 
-<tspan x="10" y="2906">-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;</tspan>
+<tspan x="10" y="3178">-------------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="2922">     // init local</tspan>
+<tspan x="10" y="3194">File               | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
 
-<tspan x="10" y="2938">     local = {};</tspan>
+<tspan x="10" y="3210">-------------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="2954">     local.local = local;</tspan>
+<tspan x="10" y="3226">All files          |   99.98 |   99.98 |     100 |   99.98 |</tspan>
 
-<tspan x="10" y="2970">@@ -308,34 +161,32 @@</tspan>
+<tspan x="10" y="3242">bootstrap-lite/    |   99.98 |   99.98 |     100 |   99.98 |</tspan>
 
-<tspan x="10" y="2986">     );</tspan>
+<tspan x="10" y="3258">  example.js       |     100 |     100 |     100 |     100 |</tspan>
 
-<tspan x="10" y="3002">     // init isWebWorker</tspan>
+<tspan x="10" y="3274">  lib.bootstrap.js |     100 |     100 |     100 |     100 |</tspan>
 
-<tspan x="10" y="3018">     local.isWebWorker = (</tspan>
+<tspan x="10" y="3290">  test.js          |    95.7 |   96.36 |     100 |    95.7 |</tspan>
 
-<tspan x="10" y="3034">-        local.isBrowser &amp;&amp; typeof globalThis.importScript === "function"</tspan>
+<tspan x="10" y="3306">-------------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3050">+        local.isBrowser &amp;&amp; typeof globalThis.importScripts === "function"</tspan>
+<tspan x="10" y="3322"></tspan>
 
-<tspan x="10" y="3066">     );</tspan>
+<tspan x="10" y="3338">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3354">age.html/coverage.txt</tspan>
 
-<tspan x="10" y="3082">     // init function</tspan>
+<tspan x="10" y="3370">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3386">age.html/index.html</tspan>
 
-<tspan x="10" y="3098">-    local.assertOrThrow = function (passed, message) {</tspan>
+<tspan x="10" y="3402">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3418">age.html/bootstrap-lite/index.html</tspan>
 
-<tspan x="10" y="3114">+    local.assertOrThrow = function (passed, msg) {</tspan>
+<tspan x="10" y="3434">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3450">age.html/bootstrap-lite/example.js.html</tspan>
 
-<tspan x="10" y="3130">     /*</tspan>
+<tspan x="10" y="3466">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3482">age.html/bootstrap-lite/lib.bootstrap.js.html</tspan>
 
-<tspan x="10" y="3146">-     * this function will throw err.&lt;message&gt; if &lt;passed&gt; is falsy</tspan>
+<tspan x="10" y="3498">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3514">age.html/bootstrap-lite/test.js.html</tspan>
 
-<tspan x="10" y="3162">+     * this function will throw err.&lt;msg&gt; if &lt;passed&gt; is falsy</tspan>
+<tspan x="10" y="3530">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3546">age.html/coverage.all.html</tspan>
 
-<tspan x="10" y="3178">      */</tspan>
+<tspan x="10" y="3562">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3578">age.html/coverage.json</tspan>
 
-<tspan x="10" y="3194">-        let err;</tspan>
+<tspan x="10" y="3594">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3610">age.html/coverage.include.json</tspan>
 
-<tspan x="10" y="3210">         if (passed) {</tspan>
+<tspan x="10" y="3626">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3642">age.badge.svg</tspan>
 
-<tspan x="10" y="3226">             return;</tspan>
+<tspan x="10" y="3658">istanbul - created coverage file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cov\</tspan>
+<tspan x="10" y="3674">erage.html/index.html</tspan>
 
-<tspan x="10" y="3242">         }</tspan>
+<tspan x="10" y="3690"></tspan>
 
-<tspan x="10" y="3258">-        err = (</tspan>
+<tspan x="10" y="3706">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="3274">+        throw (</tspan>
+<tspan x="10" y="3722">| test-report - npmTestPublished - node - linux v14.4.0 - 2020-06-13T19:34:45.942Z</tspan>
 
-<tspan x="10" y="3290">             (</tspan>
+<tspan x="10" y="3738">|    7475 ms            0 failed        7 passed      |</tspan>
 
-<tspan x="10" y="3306">-                message</tspan>
+<tspan x="10" y="3754">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="3322">-                &amp;&amp; typeof message.message === "string"</tspan>
+<tspan x="10" y="3770"></tspan>
 
-<tspan x="10" y="3338">-                &amp;&amp; typeof message.stack === "string"</tspan>
+<tspan x="10" y="3786">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-repo\</tspan>
+<tspan x="10" y="3802">rt.html</tspan>
 
-<tspan x="10" y="3354">+                msg</tspan>
+<tspan x="10" y="3818">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/build.bad\</tspan>
+<tspan x="10" y="3834">ge.svg</tspan>
 
-<tspan x="10" y="3370">+                &amp;&amp; typeof msg.message === "string"</tspan>
+<tspan x="10" y="3850">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-repo\</tspan>
+<tspan x="10" y="3866">rt.badge.svg</tspan>
 
-<tspan x="10" y="3386">+                &amp;&amp; typeof msg.stack === "string"</tspan>
+<tspan x="10" y="3882"></tspan>
 
-<tspan x="10" y="3402">             )</tspan>
+<tspan x="10" y="3898">npmTestPublished - 0 failed tests</tspan>
 
-<tspan x="10" y="3418">-            // if message is errObj, then leave as is</tspan>
+<tspan x="10" y="3914"></tspan>
 
-<tspan x="10" y="3434">-            ? message</tspan>
+<tspan x="10" y="3930"></tspan>
 
-<tspan x="10" y="3450">+            // if msg is err, then leave as is</tspan>
-
-<tspan x="10" y="3466">+            ? msg</tspan>
-
-<tspan x="10" y="3482">             : new Error(</tspan>
-
-<tspan x="10" y="3498">-                typeof message === "string"</tspan>
-
-<tspan x="10" y="3514">-                // if message is a string, then leave as is</tspan>
-
-<tspan x="10" y="3530">-                ? message</tspan>
-
-<tspan x="10" y="3546">-                // else JSON.stringify message</tspan>
-
-<tspan x="10" y="3562">-                : JSON.stringify(message, undefined, 4)</tspan>
-
-<tspan x="10" y="3578">+                typeof msg === "string"</tspan>
-
-<tspan x="10" y="3594">+                // if msg is a string, then leave as is</tspan>
-
-<tspan x="10" y="3610">+                ? msg</tspan>
-
-<tspan x="10" y="3626">+                // else JSON.stringify msg</tspan>
-
-<tspan x="10" y="3642">+                : JSON.stringify(msg, undefined, 4)</tspan>
-
-<tspan x="10" y="3658">             )</tspan>
-
-<tspan x="10" y="3674">         );</tspan>
-
-<tspan x="10" y="3690">-        throw err;</tspan>
-
-<tspan x="10" y="3706">     };</tspan>
-
-<tspan x="10" y="3722">     local.coalesce = function (...argList) {</tspan>
-
-<tspan x="10" y="3738">     /*</tspan>
-
-<tspan x="10" y="3754">@@ -358,6 +209,7 @@</tspan>
-
-<tspan x="10" y="3770">      * this function will sync "rm -rf" &lt;dir&gt;</tspan>
-
-<tspan x="10" y="3786">      */</tspan>
-
-<tspan x="10" y="3802">         let child_process;</tspan>
-
-<tspan x="10" y="3818">+        // do nothing if module does not exist</tspan>
-
-<tspan x="10" y="3834">         try {</tspan>
-
-<tspan x="10" y="3850">             child_process = require("child_process");</tspan>
-
-<tspan x="10" y="3866">         } catch (ignore) {</tspan>
-
-<tspan x="10" y="3882">@@ -376,6 +228,7 @@</tspan>
-
-<tspan x="10" y="3898">      * this function will sync write &lt;data&gt; to &lt;file&gt; with "mkdir -p"</tspan>
-
-<tspan x="10" y="3914">      */</tspan>
-
-<tspan x="10" y="3930">         let fs;</tspan>
-
-<tspan x="10" y="3946">+        // do nothing if module does not exist</tspan>
-
-<tspan x="10" y="3962">         try {</tspan>
-
-<tspan x="10" y="3978">             fs = require("fs");</tspan>
-
-<tspan x="10" y="3994">         } catch (ignore) {</tspan>
-
-<tspan x="10" y="4010">@@ -488,9 +341,7 @@</tspan>
-
-<tspan x="10" y="4026">         local.vm = require("vm");</tspan>
-
-<tspan x="10" y="4042">         local.zlib = require("zlib");</tspan>
-
-<tspan x="10" y="4058">     }</tspan>
-
-<tspan x="10" y="4074">-}((typeof globalThis === "object" &amp;&amp; globalThis) || (function () {</tspan>
-
-<tspan x="10" y="4090">-    return Function("return this")(); // jslint ignore:line</tspan>
-
-<tspan x="10" y="4106">-}())));</tspan>
-
-<tspan x="10" y="4122">+}((typeof globalThis === "object" &amp;&amp; globalThis) || window));</tspan>
-
-<tspan x="10" y="4138"> // assets.utility2.header.js - end</tspan>
-
-<tspan x="10" y="4154"> </tspan>
-
-<tspan x="10" y="4170"> </tspan>
-
-<tspan x="10" y="4186">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/READM\</tspan>
-<tspan x="10" y="4202">E.md</tspan>
-
-<tspan x="10" y="4218">jslint - 106ms /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md</tspan>
-
-<tspan x="10" y="4234">jslint - 1ms /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.css</tspan>
-
-<tspan x="10" y="4250">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js.autofix.old	2020-03-17 06\</tspan>
-<tspan x="10" y="4266">:33:56.426960025 +0000</tspan>
-
-<tspan x="10" y="4282">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js	2020-03-17 06:33:56.42696\</tspan>
-<tspan x="10" y="4298">0025 +0000</tspan>
-
-<tspan x="10" y="4314">@@ -14,8 +14,6 @@</tspan>
-
-<tspan x="10" y="4330"> /* jslint utility2:true */</tspan>
-
-<tspan x="10" y="4346"> (function (globalThis) {</tspan>
-
-<tspan x="10" y="4362">     "use strict";</tspan>
-
-<tspan x="10" y="4378">-    let ArrayPrototypeFlat;</tspan>
-
-<tspan x="10" y="4394">-    let TextXxcoder;</tspan>
-
-<tspan x="10" y="4410">     let consoleError;</tspan>
-
-<tspan x="10" y="4426">     let debugName;</tspan>
-
-<tspan x="10" y="4442">     let local;</tspan>
-
-<tspan x="10" y="4458">@@ -31,162 +29,17 @@</tspan>
-
-<tspan x="10" y="4474">          * and return &lt;argList&gt;[0]</tspan>
-
-<tspan x="10" y="4490">          */</tspan>
-
-<tspan x="10" y="4506">             consoleError("\n\n" + debugName);</tspan>
-
-<tspan x="10" y="4522">-            consoleError.apply(console, argList);</tspan>
-
-<tspan x="10" y="4538">+            consoleError(...argList);</tspan>
-
-<tspan x="10" y="4554">             consoleError("\n");</tspan>
-
-<tspan x="10" y="4570">-            // return arg0 for inspection</tspan>
-
-<tspan x="10" y="4586">             return argList[0];</tspan>
-
-<tspan x="10" y="4602">         };</tspan>
-
-<tspan x="10" y="4618">     }</tspan>
-
-<tspan x="10" y="4634">-    // polyfill</tspan>
-
-<tspan x="10" y="4650">-    ArrayPrototypeFlat = function (depth) {</tspan>
-
-<tspan x="10" y="4666">-    /*</tspan>
-
-<tspan x="10" y="4682">-     * this function will polyfill Array.prototype.flat</tspan>
-
-<tspan x="10" y="4698">-     * https://github.com/jonathantneal/array-flat-polyfill</tspan>
-
-<tspan x="10" y="4714">-     */</tspan>
-
-<tspan x="10" y="4730">-        depth = (</tspan>
-
-<tspan x="10" y="4746">-            globalThis.isNaN(depth)</tspan>
-
-<tspan x="10" y="4762">-            ? 1</tspan>
-
-<tspan x="10" y="4778">-            : Number(depth)</tspan>
-
-<tspan x="10" y="4794">-        );</tspan>
-
-<tspan x="10" y="4810">-        if (!depth) {</tspan>
-
-<tspan x="10" y="4826">-            return Array.prototype.slice.call(this);</tspan>
-
-<tspan x="10" y="4842">-        }</tspan>
-
-<tspan x="10" y="4858">-        return Array.prototype.reduce.call(this, function (acc, cur) {</tspan>
-
-<tspan x="10" y="4874">-            if (Array.isArray(cur)) {</tspan>
-
-<tspan x="10" y="4890">-                // recurse</tspan>
-
-<tspan x="10" y="4906">-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));</tspan>
-
-<tspan x="10" y="4922">-            } else {</tspan>
-
-<tspan x="10" y="4938">-                acc.push(cur);</tspan>
-
-<tspan x="10" y="4954">-            }</tspan>
-
-<tspan x="10" y="4970">-            return acc;</tspan>
-
-<tspan x="10" y="4986">-        }, []);</tspan>
-
-<tspan x="10" y="5002">-    };</tspan>
-
-<tspan x="10" y="5018">-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;</tspan>
-
-<tspan x="10" y="5034">-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(</tspan>
-
-<tspan x="10" y="5050">-        ...argList</tspan>
-
-<tspan x="10" y="5066">-    ) {</tspan>
-
-<tspan x="10" y="5082">-    /*</tspan>
-
-<tspan x="10" y="5098">-     * this function will polyfill Array.prototype.flatMap</tspan>
-
-<tspan x="10" y="5114">-     * https://github.com/jonathantneal/array-flat-polyfill</tspan>
-
-<tspan x="10" y="5130">-     */</tspan>
-
-<tspan x="10" y="5146">-        return this.map(...argList).flat();</tspan>
-
-<tspan x="10" y="5162">-    };</tspan>
-
-<tspan x="10" y="5178">     String.prototype.trimEnd = (</tspan>
-
-<tspan x="10" y="5194">         String.prototype.trimEnd || String.prototype.trimRight</tspan>
-
-<tspan x="10" y="5210">     );</tspan>
-
-<tspan x="10" y="5226">     String.prototype.trimStart = (</tspan>
-
-<tspan x="10" y="5242">         String.prototype.trimStart || String.prototype.trimLeft</tspan>
-
-<tspan x="10" y="5258">     );</tspan>
-
-<tspan x="10" y="5274">-    (function () {</tspan>
-
-<tspan x="10" y="5290">-        try {</tspan>
-
-<tspan x="10" y="5306">-            globalThis.TextDecoder = (</tspan>
-
-<tspan x="10" y="5322">-                globalThis.TextDecoder || require("util").TextDecoder</tspan>
-
-<tspan x="10" y="5338">-            );</tspan>
-
-<tspan x="10" y="5354">-            globalThis.TextEncoder = (</tspan>
-
-<tspan x="10" y="5370">-                globalThis.TextEncoder || require("util").TextEncoder</tspan>
-
-<tspan x="10" y="5386">-            );</tspan>
-
-<tspan x="10" y="5402">-        } catch (ignore) {}</tspan>
-
-<tspan x="10" y="5418">-    }());</tspan>
-
-<tspan x="10" y="5434">-    TextXxcoder = function () {</tspan>
-
-<tspan x="10" y="5450">-    /*</tspan>
-
-<tspan x="10" y="5466">-     * this function will polyfill TextDecoder/TextEncoder</tspan>
-
-<tspan x="10" y="5482">-     * https://gist.github.com/Yaffle/5458286</tspan>
-
-<tspan x="10" y="5498">-     */</tspan>
-
-<tspan x="10" y="5514">-        return;</tspan>
-
-<tspan x="10" y="5530">-    };</tspan>
-
-<tspan x="10" y="5546">-    TextXxcoder.prototype.decode = function (octets) {</tspan>
-
-<tspan x="10" y="5562">-    /*</tspan>
-
-<tspan x="10" y="5578">-     * this function will polyfill TextDecoder.prototype.decode</tspan>
-
-<tspan x="10" y="5594">-     * https://gist.github.com/Yaffle/5458286</tspan>
-
-<tspan x="10" y="5610">-     */</tspan>
-
-<tspan x="10" y="5626">-        let bytesNeeded;</tspan>
-
-<tspan x="10" y="5642">-        let codePoint;</tspan>
-
-<tspan x="10" y="5658">-        let ii;</tspan>
-
-<tspan x="10" y="5674">-        let kk;</tspan>
-
-<tspan x="10" y="5690">-        let octet;</tspan>
-
-<tspan x="10" y="5706">-        let string;</tspan>
-
-<tspan x="10" y="5722">-        string = "";</tspan>
-
-<tspan x="10" y="5738">-        ii = 0;</tspan>
-
-<tspan x="10" y="5754">-        while (ii &lt; octets.length) {</tspan>
-
-<tspan x="10" y="5770">-            octet = octets[ii];</tspan>
-
-<tspan x="10" y="5786">-            bytesNeeded = 0;</tspan>
-
-<tspan x="10" y="5802">-            codePoint = 0;</tspan>
-
-<tspan x="10" y="5818">-            if (octet &lt;= 0x7F) {</tspan>
-
-<tspan x="10" y="5834">-                bytesNeeded = 0;</tspan>
-
-<tspan x="10" y="5850">-                codePoint = octet &amp; 0xFF;</tspan>
-
-<tspan x="10" y="5866">-            } else if (octet &lt;= 0xDF) {</tspan>
-
-<tspan x="10" y="5882">-                bytesNeeded = 1;</tspan>
-
-<tspan x="10" y="5898">-                codePoint = octet &amp; 0x1F;</tspan>
-
-<tspan x="10" y="5914">-            } else if (octet &lt;= 0xEF) {</tspan>
-
-<tspan x="10" y="5930">-                bytesNeeded = 2;</tspan>
-
-<tspan x="10" y="5946">-                codePoint = octet &amp; 0x0F;</tspan>
-
-<tspan x="10" y="5962">-            } else if (octet &lt;= 0xF4) {</tspan>
-
-<tspan x="10" y="5978">-                bytesNeeded = 3;</tspan>
-
-<tspan x="10" y="5994">-                codePoint = octet &amp; 0x07;</tspan>
-
-<tspan x="10" y="6010">-            }</tspan>
-
-<tspan x="10" y="6026">-            if (octets.length - ii - bytesNeeded &gt; 0) {</tspan>
-
-<tspan x="10" y="6042">-                kk = 0;</tspan>
-
-<tspan x="10" y="6058">-                while (kk &lt; bytesNeeded) {</tspan>
-
-<tspan x="10" y="6074">-                    octet = octets[ii + kk + 1];</tspan>
-
-<tspan x="10" y="6090">-                    codePoint = (codePoint &lt;&lt; 6) | (octet &amp; 0x3F);</tspan>
-
-<tspan x="10" y="6106">-                    kk += 1;</tspan>
-
-<tspan x="10" y="6122">-                }</tspan>
-
-<tspan x="10" y="6138">-            } else {</tspan>
-
-<tspan x="10" y="6154">-                codePoint = 0xFFFD;</tspan>
-
-<tspan x="10" y="6170">-                bytesNeeded = octets.length - ii;</tspan>
-
-<tspan x="10" y="6186">-            }</tspan>
-
-<tspan x="10" y="6202">-            string += String.fromCodePoint(codePoint);</tspan>
-
-<tspan x="10" y="6218">-            ii += bytesNeeded + 1;</tspan>
-
-<tspan x="10" y="6234">-        }</tspan>
-
-<tspan x="10" y="6250">-        return string;</tspan>
-
-<tspan x="10" y="6266">-    };</tspan>
-
-<tspan x="10" y="6282">-    TextXxcoder.prototype.encode = function (string) {</tspan>
-
-<tspan x="10" y="6298">-    /*</tspan>
-
-<tspan x="10" y="6314">-     * this function will polyfill TextEncoder.prototype.encode</tspan>
-
-<tspan x="10" y="6330">-     * https://gist.github.com/Yaffle/5458286</tspan>
-
-<tspan x="10" y="6346">-     */</tspan>
-
-<tspan x="10" y="6362">-        let bits;</tspan>
-
-<tspan x="10" y="6378">-        let cc;</tspan>
-
-<tspan x="10" y="6394">-        let codePoint;</tspan>
-
-<tspan x="10" y="6410">-        let ii;</tspan>
-
-<tspan x="10" y="6426">-        let length;</tspan>
-
-<tspan x="10" y="6442">-        let octets;</tspan>
-
-<tspan x="10" y="6458">-        octets = [];</tspan>
-
-<tspan x="10" y="6474">-        length = string.length;</tspan>
-
-<tspan x="10" y="6490">-        ii = 0;</tspan>
-
-<tspan x="10" y="6506">-        while (ii &lt; length) {</tspan>
-
-<tspan x="10" y="6522">-            codePoint = string.codePointAt(ii);</tspan>
-
-<tspan x="10" y="6538">-            cc = 0;</tspan>
-
-<tspan x="10" y="6554">-            bits = 0;</tspan>
-
-<tspan x="10" y="6570">-            if (codePoint &lt;= 0x0000007F) {</tspan>
-
-<tspan x="10" y="6586">-                cc = 0;</tspan>
-
-<tspan x="10" y="6602">-                bits = 0x00;</tspan>
-
-<tspan x="10" y="6618">-            } else if (codePoint &lt;= 0x000007FF) {</tspan>
-
-<tspan x="10" y="6634">-                cc = 6;</tspan>
-
-<tspan x="10" y="6650">-                bits = 0xC0;</tspan>
-
-<tspan x="10" y="6666">-            } else if (codePoint &lt;= 0x0000FFFF) {</tspan>
-
-<tspan x="10" y="6682">-                cc = 12;</tspan>
-
-<tspan x="10" y="6698">-                bits = 0xE0;</tspan>
-
-<tspan x="10" y="6714">-            } else if (codePoint &lt;= 0x001FFFFF) {</tspan>
-
-<tspan x="10" y="6730">-                cc = 18;</tspan>
-
-<tspan x="10" y="6746">-                bits = 0xF0;</tspan>
-
-<tspan x="10" y="6762">-            }</tspan>
-
-<tspan x="10" y="6778">-            octets.push(bits | (codePoint &gt;&gt; cc));</tspan>
-
-<tspan x="10" y="6794">-            cc -= 6;</tspan>
-
-<tspan x="10" y="6810">-            while (cc &gt;= 0) {</tspan>
-
-<tspan x="10" y="6826">-                octets.push(0x80 | ((codePoint &gt;&gt; cc) &amp; 0x3F));</tspan>
-
-<tspan x="10" y="6842">-                cc -= 6;</tspan>
-
-<tspan x="10" y="6858">-            }</tspan>
-
-<tspan x="10" y="6874">-            ii += (</tspan>
-
-<tspan x="10" y="6890">-                codePoint &gt;= 0x10000</tspan>
-
-<tspan x="10" y="6906">-                ? 2</tspan>
-
-<tspan x="10" y="6922">-                : 1</tspan>
-
-<tspan x="10" y="6938">-            );</tspan>
-
-<tspan x="10" y="6954">-        }</tspan>
-
-<tspan x="10" y="6970">-        return octets;</tspan>
-
-<tspan x="10" y="6986">-    };</tspan>
-
-<tspan x="10" y="7002">-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;</tspan>
-
-<tspan x="10" y="7018">-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;</tspan>
-
-<tspan x="10" y="7034">     // init local</tspan>
-
-<tspan x="10" y="7050">     local = {};</tspan>
-
-<tspan x="10" y="7066">     local.local = local;</tspan>
-
-<tspan x="10" y="7082">@@ -199,34 +52,32 @@</tspan>
-
-<tspan x="10" y="7098">     );</tspan>
-
-<tspan x="10" y="7114">     // init isWebWorker</tspan>
-
-<tspan x="10" y="7130">     local.isWebWorker = (</tspan>
-
-<tspan x="10" y="7146">-        local.isBrowser &amp;&amp; typeof globalThis.importScript === "function"</tspan>
-
-<tspan x="10" y="7162">+        local.isBrowser &amp;&amp; typeof globalThis.importScripts === "function"</tspan>
-
-<tspan x="10" y="7178">     );</tspan>
-
-<tspan x="10" y="7194">     // init function</tspan>
-
-<tspan x="10" y="7210">-    local.assertOrThrow = function (passed, message) {</tspan>
-
-<tspan x="10" y="7226">+    local.assertOrThrow = function (passed, msg) {</tspan>
-
-<tspan x="10" y="7242">     /*</tspan>
-
-<tspan x="10" y="7258">-     * this function will throw err.&lt;message&gt; if &lt;passed&gt; is falsy</tspan>
-
-<tspan x="10" y="7274">+     * this function will throw err.&lt;msg&gt; if &lt;passed&gt; is falsy</tspan>
-
-<tspan x="10" y="7290">      */</tspan>
-
-<tspan x="10" y="7306">-        let err;</tspan>
-
-<tspan x="10" y="7322">         if (passed) {</tspan>
-
-<tspan x="10" y="7338">             return;</tspan>
-
-<tspan x="10" y="7354">         }</tspan>
-
-<tspan x="10" y="7370">-        err = (</tspan>
-
-<tspan x="10" y="7386">+        throw (</tspan>
-
-<tspan x="10" y="7402">             (</tspan>
-
-<tspan x="10" y="7418">-                message</tspan>
-
-<tspan x="10" y="7434">-                &amp;&amp; typeof message.message === "string"</tspan>
-
-<tspan x="10" y="7450">-                &amp;&amp; typeof message.stack === "string"</tspan>
-
-<tspan x="10" y="7466">+                msg</tspan>
-
-<tspan x="10" y="7482">+                &amp;&amp; typeof msg.message === "string"</tspan>
-
-<tspan x="10" y="7498">+                &amp;&amp; typeof msg.stack === "string"</tspan>
-
-<tspan x="10" y="7514">             )</tspan>
-
-<tspan x="10" y="7530">-            // if message is errObj, then leave as is</tspan>
-
-<tspan x="10" y="7546">-            ? message</tspan>
-
-<tspan x="10" y="7562">+            // if msg is err, then leave as is</tspan>
-
-<tspan x="10" y="7578">+            ? msg</tspan>
-
-<tspan x="10" y="7594">             : new Error(</tspan>
-
-<tspan x="10" y="7610">-                typeof message === "string"</tspan>
-
-<tspan x="10" y="7626">-                // if message is a string, then leave as is</tspan>
-
-<tspan x="10" y="7642">-                ? message</tspan>
-
-<tspan x="10" y="7658">-                // else JSON.stringify message</tspan>
-
-<tspan x="10" y="7674">-                : JSON.stringify(message, undefined, 4)</tspan>
-
-<tspan x="10" y="7690">+                typeof msg === "string"</tspan>
-
-<tspan x="10" y="7706">+                // if msg is a string, then leave as is</tspan>
-
-<tspan x="10" y="7722">+                ? msg</tspan>
-
-<tspan x="10" y="7738">+                // else JSON.stringify msg</tspan>
-
-<tspan x="10" y="7754">+                : JSON.stringify(msg, undefined, 4)</tspan>
-
-<tspan x="10" y="7770">             )</tspan>
-
-<tspan x="10" y="7786">         );</tspan>
-
-<tspan x="10" y="7802">-        throw err;</tspan>
-
-<tspan x="10" y="7818">     };</tspan>
-
-<tspan x="10" y="7834">     local.coalesce = function (...argList) {</tspan>
-
-<tspan x="10" y="7850">     /*</tspan>
-
-<tspan x="10" y="7866">@@ -249,6 +100,7 @@</tspan>
-
-<tspan x="10" y="7882">      * this function will sync "rm -rf" &lt;dir&gt;</tspan>
-
-<tspan x="10" y="7898">      */</tspan>
-
-<tspan x="10" y="7914">         let child_process;</tspan>
-
-<tspan x="10" y="7930">+        // do nothing if module does not exist</tspan>
-
-<tspan x="10" y="7946">         try {</tspan>
-
-<tspan x="10" y="7962">             child_process = require("child_process");</tspan>
-
-<tspan x="10" y="7978">         } catch (ignore) {</tspan>
-
-<tspan x="10" y="7994">@@ -267,6 +119,7 @@</tspan>
-
-<tspan x="10" y="8010">      * this function will sync write &lt;data&gt; to &lt;file&gt; with "mkdir -p"</tspan>
-
-<tspan x="10" y="8026">      */</tspan>
-
-<tspan x="10" y="8042">         let fs;</tspan>
-
-<tspan x="10" y="8058">+        // do nothing if module does not exist</tspan>
-
-<tspan x="10" y="8074">         try {</tspan>
-
-<tspan x="10" y="8090">             fs = require("fs");</tspan>
-
-<tspan x="10" y="8106">         } catch (ignore) {</tspan>
-
-<tspan x="10" y="8122">@@ -379,9 +232,7 @@</tspan>
-
-<tspan x="10" y="8138">         local.vm = require("vm");</tspan>
-
-<tspan x="10" y="8154">         local.zlib = require("zlib");</tspan>
-
-<tspan x="10" y="8170">     }</tspan>
-
-<tspan x="10" y="8186">-}((typeof globalThis === "object" &amp;&amp; globalThis) || (function () {</tspan>
-
-<tspan x="10" y="8202">-    return Function("return this")(); // jslint ignore:line</tspan>
-
-<tspan x="10" y="8218">-}())));</tspan>
-
-<tspan x="10" y="8234">+}((typeof globalThis === "object" &amp;&amp; globalThis) || window));</tspan>
-
-<tspan x="10" y="8250"> // assets.utility2.header.js - end</tspan>
-
-<tspan x="10" y="8266"> </tspan>
-
-<tspan x="10" y="8282"> </tspan>
-
-<tspan x="10" y="8298">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.b\</tspan>
-<tspan x="10" y="8314">ootstrap.js</tspan>
-
-<tspan x="10" y="8330">jslint - 492ms /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js</tspan>
-
-<tspan x="10" y="8346">jslint - 1ms /tmp/npmTestPublished/node_modules/bootstrap-lite/npm_scripts.sh</tspan>
-
-<tspan x="10" y="8362">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json.autofix.old	2020-03-17 06:33:\</tspan>
-<tspan x="10" y="8378">56.490960025 +0000</tspan>
-
-<tspan x="10" y="8394">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json	2020-03-17 06:33:56.490960025\</tspan>
-<tspan x="10" y="8410"> +0000</tspan>
-
-<tspan x="10" y="8426">@@ -1,69 +1,69 @@</tspan>
-
-<tspan x="10" y="8442"> {</tspan>
-
-<tspan x="10" y="8458">-  "_from": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="8474">-  "_id": "bootstrap-lite@2020.1.20",</tspan>
-
-<tspan x="10" y="8490">-  "_inBundle": false,</tspan>
-
-<tspan x="10" y="8506">-  "_integrity": "sha512-FroAuyTWXKHu9QayyI6imKOHVbGrWfCScFEFXYvoEYxpgBsqak1HG8Elp8IzkVWj7930aNB\</tspan>
-<tspan x="10" y="8522">u7czO4ZTL3S72yw==",</tspan>
-
-<tspan x="10" y="8538">-  "_location": "/bootstrap-lite",</tspan>
-
-<tspan x="10" y="8554">-  "_phantomChildren": {},</tspan>
-
-<tspan x="10" y="8570">-  "_requested": {</tspan>
-
-<tspan x="10" y="8586">-    "type": "tag",</tspan>
-
-<tspan x="10" y="8602">-    "registry": true,</tspan>
-
-<tspan x="10" y="8618">-    "raw": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="8634">+    "_from": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="8650">+    "_id": "bootstrap-lite@2020.1.20",</tspan>
-
-<tspan x="10" y="8666">+    "_inBundle": false,</tspan>
-
-<tspan x="10" y="8682">+    "_integrity": "sha512-FroAuyTWXKHu9QayyI6imKOHVbGrWfCScFEFXYvoEYxpgBsqak1HG8Elp8IzkVWj7930a\</tspan>
-<tspan x="10" y="8698">NBu7czO4ZTL3S72yw==",</tspan>
-
-<tspan x="10" y="8714">+    "_location": "/bootstrap-lite",</tspan>
-
-<tspan x="10" y="8730">+    "_phantomChildren": {},</tspan>
-
-<tspan x="10" y="8746">+    "_requested": {</tspan>
-
-<tspan x="10" y="8762">+        "escapedName": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="8778">+        "fetchSpec": "latest",</tspan>
-
-<tspan x="10" y="8794">+        "name": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="8810">+        "raw": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="8826">+        "rawSpec": "",</tspan>
-
-<tspan x="10" y="8842">+        "registry": true,</tspan>
-
-<tspan x="10" y="8858">+        "saveSpec": null,</tspan>
-
-<tspan x="10" y="8874">+        "type": "tag"</tspan>
-
-<tspan x="10" y="8890">+    },</tspan>
-
-<tspan x="10" y="8906">+    "_requiredBy_": [</tspan>
-
-<tspan x="10" y="8922">+        "#USER",</tspan>
-
-<tspan x="10" y="8938">+        "/"</tspan>
-
-<tspan x="10" y="8954">+    ],</tspan>
-
-<tspan x="10" y="8970">+    "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2020.1.20.tgz",</tspan>
-
-<tspan x="10" y="8986">+    "_shasum": "17f6ba628ada15ecb2dabddbd3764758f80f8ba6",</tspan>
-
-<tspan x="10" y="9002">+    "_spec": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="9018">+    "_where": "/tmp/npmTestPublished",</tspan>
-
-<tspan x="10" y="9034">+    "author": {</tspan>
-
-<tspan x="10" y="9050">+        "email": "kaizhu256@gmail.com",</tspan>
-
-<tspan x="10" y="9066">+        "name": "kai zhu"</tspan>
-
-<tspan x="10" y="9082">+    },</tspan>
-
-<tspan x="10" y="9098">+    "bugs": {</tspan>
-
-<tspan x="10" y="9114">+        "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
-
-<tspan x="10" y="9130">+    },</tspan>
-
-<tspan x="10" y="9146">+    "bundleDependencies": false,</tspan>
-
-<tspan x="10" y="9162">+    "deprecated": false,</tspan>
-
-<tspan x="10" y="9178">+    "description": "this zero-dependency package will provide a rolled-up .css (includes font/g\</tspan>
-<tspan x="10" y="9194">lyphicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a work\</tspan>
-<tspan x="10" y="9210">ing web-demo",</tspan>
-
-<tspan x="10" y="9226">+    "devDependencies": {</tspan>
-
-<tspan x="10" y="9242">+        "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
-
-<tspan x="10" y="9258">+    },</tspan>
-
-<tspan x="10" y="9274">+    "engines": {</tspan>
-
-<tspan x="10" y="9290">+        "node": "&gt;=10.0"</tspan>
-
-<tspan x="10" y="9306">+    },</tspan>
-
-<tspan x="10" y="9322">+    "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
-
-<tspan x="10" y="9338">+    "keywords": [],</tspan>
-
-<tspan x="10" y="9354">+    "license": "MIT",</tspan>
-
-<tspan x="10" y="9370">+    "main": "lib.bootstrap.js",</tspan>
-
-<tspan x="10" y="9386">     "name": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="9402">-    "escapedName": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="9418">-    "rawSpec": "",</tspan>
-
-<tspan x="10" y="9434">-    "saveSpec": null,</tspan>
-
-<tspan x="10" y="9450">-    "fetchSpec": "latest"</tspan>
-
-<tspan x="10" y="9466">-  },</tspan>
-
-<tspan x="10" y="9482">-  "_requiredBy_": [</tspan>
-
-<tspan x="10" y="9498">-    "#USER",</tspan>
-
-<tspan x="10" y="9514">-    "/"</tspan>
-
-<tspan x="10" y="9530">-  ],</tspan>
-
-<tspan x="10" y="9546">-  "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2020.1.20.tgz",</tspan>
-
-<tspan x="10" y="9562">-  "_shasum": "17f6ba628ada15ecb2dabddbd3764758f80f8ba6",</tspan>
-
-<tspan x="10" y="9578">-  "_spec": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="9594">-  "_where": "/tmp/npmTestPublished",</tspan>
-
-<tspan x="10" y="9610">-  "author": {</tspan>
-
-<tspan x="10" y="9626">-    "name": "kai zhu",</tspan>
-
-<tspan x="10" y="9642">-    "email": "kaizhu256@gmail.com"</tspan>
-
-<tspan x="10" y="9658">-  },</tspan>
-
-<tspan x="10" y="9674">-  "bugs": {</tspan>
-
-<tspan x="10" y="9690">-    "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
-
-<tspan x="10" y="9706">-  },</tspan>
-
-<tspan x="10" y="9722">-  "bundleDependencies": false,</tspan>
-
-<tspan x="10" y="9738">-  "deprecated": false,</tspan>
-
-<tspan x="10" y="9754">-  "description": "this zero-dependency package will provide a rolled-up .css (includes font/gly\</tspan>
-<tspan x="10" y="9770">phicon/theme) and a rolled-up .js (includes jquery) of twitter-bootstrap (v3.4.1), with a workin\</tspan>
-<tspan x="10" y="9786">g web-demo",</tspan>
-
-<tspan x="10" y="9802">-  "devDependencies": {</tspan>
-
-<tspan x="10" y="9818">-    "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
-
-<tspan x="10" y="9834">-  },</tspan>
-
-<tspan x="10" y="9850">-  "engines": {</tspan>
-
-<tspan x="10" y="9866">-    "node": "&gt;=10.0"</tspan>
-
-<tspan x="10" y="9882">-  },</tspan>
-
-<tspan x="10" y="9898">-  "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
-
-<tspan x="10" y="9914">-  "keywords": [],</tspan>
-
-<tspan x="10" y="9930">-  "license": "MIT",</tspan>
-
-<tspan x="10" y="9946">-  "main": "lib.bootstrap.js",</tspan>
-
-<tspan x="10" y="9962">-  "name": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="9978">-  "nameAliasPublish": "bootstrap-classic bootstrap3-lite",</tspan>
-
-<tspan x="10" y="9994">-  "nameLib": "bootstrap",</tspan>
-
-<tspan x="10" y="10010">-  "nameOriginal": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="10026">-  "os": [</tspan>
-
-<tspan x="10" y="10042">-    "darwin",</tspan>
-
-<tspan x="10" y="10058">-    "linux"</tspan>
-
-<tspan x="10" y="10074">-  ],</tspan>
-
-<tspan x="10" y="10090">-  "repository": {</tspan>
-
-<tspan x="10" y="10106">-    "type": "git",</tspan>
-
-<tspan x="10" y="10122">-    "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
-
-<tspan x="10" y="10138">-  },</tspan>
-
-<tspan x="10" y="10154">-  "scripts": {</tspan>
-
-<tspan x="10" y="10170">-    "build-ci": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10186">-    "env": "env",</tspan>
-
-<tspan x="10" y="10202">-    "eval": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10218">-    "heroku-postbuild": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10234">-    "postinstall": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10250">-    "start": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10266">-    "test": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10282">-    "utility2": "./npm_scripts.sh"</tspan>
-
-<tspan x="10" y="10298">-  },</tspan>
-
-<tspan x="10" y="10314">-  "version": "2020.1.20"</tspan>
-
-<tspan x="10" y="10330">+    "nameAliasPublish": "bootstrap-classic bootstrap3-lite",</tspan>
-
-<tspan x="10" y="10346">+    "nameLib": "bootstrap",</tspan>
-
-<tspan x="10" y="10362">+    "nameOriginal": "bootstrap-lite",</tspan>
-
-<tspan x="10" y="10378">+    "os": [</tspan>
-
-<tspan x="10" y="10394">+        "darwin",</tspan>
-
-<tspan x="10" y="10410">+        "linux"</tspan>
-
-<tspan x="10" y="10426">+    ],</tspan>
-
-<tspan x="10" y="10442">+    "repository": {</tspan>
-
-<tspan x="10" y="10458">+        "type": "git",</tspan>
-
-<tspan x="10" y="10474">+        "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
-
-<tspan x="10" y="10490">+    },</tspan>
-
-<tspan x="10" y="10506">+    "scripts": {</tspan>
-
-<tspan x="10" y="10522">+        "build-ci": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10538">+        "env": "env",</tspan>
-
-<tspan x="10" y="10554">+        "eval": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10570">+        "heroku-postbuild": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10586">+        "postinstall": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10602">+        "start": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10618">+        "test": "./npm_scripts.sh",</tspan>
-
-<tspan x="10" y="10634">+        "utility2": "./npm_scripts.sh"</tspan>
-
-<tspan x="10" y="10650">+    },</tspan>
-
-<tspan x="10" y="10666">+    "version": "2020.1.20"</tspan>
-
-<tspan x="10" y="10682"> }</tspan>
-
-<tspan x="10" y="10698">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/packa\</tspan>
-<tspan x="10" y="10714">ge.json</tspan>
-
-<tspan x="10" y="10730">jslint - 26ms /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json</tspan>
-
-<tspan x="10" y="10746">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js.autofix.old	2020-03-17 06:33:56.56\</tspan>
-<tspan x="10" y="10762">2960025 +0000</tspan>
-
-<tspan x="10" y="10778">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js	2020-03-17 06:33:56.562960025 +000\</tspan>
-<tspan x="10" y="10794">0</tspan>
-
-<tspan x="10" y="10810">@@ -4,8 +4,6 @@</tspan>
-
-<tspan x="10" y="10826"> /* jslint utility2:true */</tspan>
-
-<tspan x="10" y="10842"> (function (globalThis) {</tspan>
-
-<tspan x="10" y="10858">     "use strict";</tspan>
-
-<tspan x="10" y="10874">-    let ArrayPrototypeFlat;</tspan>
-
-<tspan x="10" y="10890">-    let TextXxcoder;</tspan>
-
-<tspan x="10" y="10906">     let consoleError;</tspan>
-
-<tspan x="10" y="10922">     let debugName;</tspan>
-
-<tspan x="10" y="10938">     let local;</tspan>
-
-<tspan x="10" y="10954">@@ -21,162 +19,17 @@</tspan>
-
-<tspan x="10" y="10970">          * and return &lt;argList&gt;[0]</tspan>
-
-<tspan x="10" y="10986">          */</tspan>
-
-<tspan x="10" y="11002">             consoleError("\n\n" + debugName);</tspan>
-
-<tspan x="10" y="11018">-            consoleError.apply(console, argList);</tspan>
-
-<tspan x="10" y="11034">+            consoleError(...argList);</tspan>
-
-<tspan x="10" y="11050">             consoleError("\n");</tspan>
-
-<tspan x="10" y="11066">-            // return arg0 for inspection</tspan>
-
-<tspan x="10" y="11082">             return argList[0];</tspan>
-
-<tspan x="10" y="11098">         };</tspan>
-
-<tspan x="10" y="11114">     }</tspan>
-
-<tspan x="10" y="11130">-    // polyfill</tspan>
-
-<tspan x="10" y="11146">-    ArrayPrototypeFlat = function (depth) {</tspan>
-
-<tspan x="10" y="11162">-    /*</tspan>
-
-<tspan x="10" y="11178">-     * this function will polyfill Array.prototype.flat</tspan>
-
-<tspan x="10" y="11194">-     * https://github.com/jonathantneal/array-flat-polyfill</tspan>
-
-<tspan x="10" y="11210">-     */</tspan>
-
-<tspan x="10" y="11226">-        depth = (</tspan>
-
-<tspan x="10" y="11242">-            globalThis.isNaN(depth)</tspan>
-
-<tspan x="10" y="11258">-            ? 1</tspan>
-
-<tspan x="10" y="11274">-            : Number(depth)</tspan>
-
-<tspan x="10" y="11290">-        );</tspan>
-
-<tspan x="10" y="11306">-        if (!depth) {</tspan>
-
-<tspan x="10" y="11322">-            return Array.prototype.slice.call(this);</tspan>
-
-<tspan x="10" y="11338">-        }</tspan>
-
-<tspan x="10" y="11354">-        return Array.prototype.reduce.call(this, function (acc, cur) {</tspan>
-
-<tspan x="10" y="11370">-            if (Array.isArray(cur)) {</tspan>
-
-<tspan x="10" y="11386">-                // recurse</tspan>
-
-<tspan x="10" y="11402">-                acc.push.apply(acc, ArrayPrototypeFlat.call(cur, depth - 1));</tspan>
-
-<tspan x="10" y="11418">-            } else {</tspan>
-
-<tspan x="10" y="11434">-                acc.push(cur);</tspan>
-
-<tspan x="10" y="11450">-            }</tspan>
-
-<tspan x="10" y="11466">-            return acc;</tspan>
-
-<tspan x="10" y="11482">-        }, []);</tspan>
-
-<tspan x="10" y="11498">-    };</tspan>
-
-<tspan x="10" y="11514">-    Array.prototype.flat = Array.prototype.flat || ArrayPrototypeFlat;</tspan>
-
-<tspan x="10" y="11530">-    Array.prototype.flatMap = Array.prototype.flatMap || function flatMap(</tspan>
-
-<tspan x="10" y="11546">-        ...argList</tspan>
-
-<tspan x="10" y="11562">-    ) {</tspan>
-
-<tspan x="10" y="11578">-    /*</tspan>
-
-<tspan x="10" y="11594">-     * this function will polyfill Array.prototype.flatMap</tspan>
-
-<tspan x="10" y="11610">-     * https://github.com/jonathantneal/array-flat-polyfill</tspan>
-
-<tspan x="10" y="11626">-     */</tspan>
-
-<tspan x="10" y="11642">-        return this.map(...argList).flat();</tspan>
-
-<tspan x="10" y="11658">-    };</tspan>
-
-<tspan x="10" y="11674">     String.prototype.trimEnd = (</tspan>
-
-<tspan x="10" y="11690">         String.prototype.trimEnd || String.prototype.trimRight</tspan>
-
-<tspan x="10" y="11706">     );</tspan>
-
-<tspan x="10" y="11722">     String.prototype.trimStart = (</tspan>
-
-<tspan x="10" y="11738">         String.prototype.trimStart || String.prototype.trimLeft</tspan>
-
-<tspan x="10" y="11754">     );</tspan>
-
-<tspan x="10" y="11770">-    (function () {</tspan>
-
-<tspan x="10" y="11786">-        try {</tspan>
-
-<tspan x="10" y="11802">-            globalThis.TextDecoder = (</tspan>
-
-<tspan x="10" y="11818">-                globalThis.TextDecoder || require("util").TextDecoder</tspan>
-
-<tspan x="10" y="11834">-            );</tspan>
-
-<tspan x="10" y="11850">-            globalThis.TextEncoder = (</tspan>
-
-<tspan x="10" y="11866">-                globalThis.TextEncoder || require("util").TextEncoder</tspan>
-
-<tspan x="10" y="11882">-            );</tspan>
-
-<tspan x="10" y="11898">-        } catch (ignore) {}</tspan>
-
-<tspan x="10" y="11914">-    }());</tspan>
-
-<tspan x="10" y="11930">-    TextXxcoder = function () {</tspan>
-
-<tspan x="10" y="11946">-    /*</tspan>
-
-<tspan x="10" y="11962">-     * this function will polyfill TextDecoder/TextEncoder</tspan>
-
-<tspan x="10" y="11978">-     * https://gist.github.com/Yaffle/5458286</tspan>
-
-<tspan x="10" y="11994">-     */</tspan>
-
-<tspan x="10" y="12010">-        return;</tspan>
-
-<tspan x="10" y="12026">-    };</tspan>
-
-<tspan x="10" y="12042">-    TextXxcoder.prototype.decode = function (octets) {</tspan>
-
-<tspan x="10" y="12058">-    /*</tspan>
-
-<tspan x="10" y="12074">-     * this function will polyfill TextDecoder.prototype.decode</tspan>
-
-<tspan x="10" y="12090">-     * https://gist.github.com/Yaffle/5458286</tspan>
-
-<tspan x="10" y="12106">-     */</tspan>
-
-<tspan x="10" y="12122">-        let bytesNeeded;</tspan>
-
-<tspan x="10" y="12138">-        let codePoint;</tspan>
-
-<tspan x="10" y="12154">-        let ii;</tspan>
-
-<tspan x="10" y="12170">-        let kk;</tspan>
-
-<tspan x="10" y="12186">-        let octet;</tspan>
-
-<tspan x="10" y="12202">-        let string;</tspan>
-
-<tspan x="10" y="12218">-        string = "";</tspan>
-
-<tspan x="10" y="12234">-        ii = 0;</tspan>
-
-<tspan x="10" y="12250">-        while (ii &lt; octets.length) {</tspan>
-
-<tspan x="10" y="12266">-            octet = octets[ii];</tspan>
-
-<tspan x="10" y="12282">-            bytesNeeded = 0;</tspan>
-
-<tspan x="10" y="12298">-            codePoint = 0;</tspan>
-
-<tspan x="10" y="12314">-            if (octet &lt;= 0x7F) {</tspan>
-
-<tspan x="10" y="12330">-                bytesNeeded = 0;</tspan>
-
-<tspan x="10" y="12346">-                codePoint = octet &amp; 0xFF;</tspan>
-
-<tspan x="10" y="12362">-            } else if (octet &lt;= 0xDF) {</tspan>
-
-<tspan x="10" y="12378">-                bytesNeeded = 1;</tspan>
-
-<tspan x="10" y="12394">-                codePoint = octet &amp; 0x1F;</tspan>
-
-<tspan x="10" y="12410">-            } else if (octet &lt;= 0xEF) {</tspan>
-
-<tspan x="10" y="12426">-                bytesNeeded = 2;</tspan>
-
-<tspan x="10" y="12442">-                codePoint = octet &amp; 0x0F;</tspan>
-
-<tspan x="10" y="12458">-            } else if (octet &lt;= 0xF4) {</tspan>
-
-<tspan x="10" y="12474">-                bytesNeeded = 3;</tspan>
-
-<tspan x="10" y="12490">-                codePoint = octet &amp; 0x07;</tspan>
-
-<tspan x="10" y="12506">-            }</tspan>
-
-<tspan x="10" y="12522">-            if (octets.length - ii - bytesNeeded &gt; 0) {</tspan>
-
-<tspan x="10" y="12538">-                kk = 0;</tspan>
-
-<tspan x="10" y="12554">-                while (kk &lt; bytesNeeded) {</tspan>
-
-<tspan x="10" y="12570">-                    octet = octets[ii + kk + 1];</tspan>
-
-<tspan x="10" y="12586">-                    codePoint = (codePoint &lt;&lt; 6) | (octet &amp; 0x3F);</tspan>
-
-<tspan x="10" y="12602">-                    kk += 1;</tspan>
-
-<tspan x="10" y="12618">-                }</tspan>
-
-<tspan x="10" y="12634">-            } else {</tspan>
-
-<tspan x="10" y="12650">-                codePoint = 0xFFFD;</tspan>
-
-<tspan x="10" y="12666">-                bytesNeeded = octets.length - ii;</tspan>
-
-<tspan x="10" y="12682">-            }</tspan>
-
-<tspan x="10" y="12698">-            string += String.fromCodePoint(codePoint);</tspan>
-
-<tspan x="10" y="12714">-            ii += bytesNeeded + 1;</tspan>
-
-<tspan x="10" y="12730">-        }</tspan>
-
-<tspan x="10" y="12746">-        return string;</tspan>
-
-<tspan x="10" y="12762">-    };</tspan>
-
-<tspan x="10" y="12778">-    TextXxcoder.prototype.encode = function (string) {</tspan>
-
-<tspan x="10" y="12794">-    /*</tspan>
-
-<tspan x="10" y="12810">-     * this function will polyfill TextEncoder.prototype.encode</tspan>
-
-<tspan x="10" y="12826">-     * https://gist.github.com/Yaffle/5458286</tspan>
-
-<tspan x="10" y="12842">-     */</tspan>
-
-<tspan x="10" y="12858">-        let bits;</tspan>
-
-<tspan x="10" y="12874">-        let cc;</tspan>
-
-<tspan x="10" y="12890">-        let codePoint;</tspan>
-
-<tspan x="10" y="12906">-        let ii;</tspan>
-
-<tspan x="10" y="12922">-        let length;</tspan>
-
-<tspan x="10" y="12938">-        let octets;</tspan>
-
-<tspan x="10" y="12954">-        octets = [];</tspan>
-
-<tspan x="10" y="12970">-        length = string.length;</tspan>
-
-<tspan x="10" y="12986">-        ii = 0;</tspan>
-
-<tspan x="10" y="13002">-        while (ii &lt; length) {</tspan>
-
-<tspan x="10" y="13018">-            codePoint = string.codePointAt(ii);</tspan>
-
-<tspan x="10" y="13034">-            cc = 0;</tspan>
-
-<tspan x="10" y="13050">-            bits = 0;</tspan>
-
-<tspan x="10" y="13066">-            if (codePoint &lt;= 0x0000007F) {</tspan>
-
-<tspan x="10" y="13082">-                cc = 0;</tspan>
-
-<tspan x="10" y="13098">-                bits = 0x00;</tspan>
-
-<tspan x="10" y="13114">-            } else if (codePoint &lt;= 0x000007FF) {</tspan>
-
-<tspan x="10" y="13130">-                cc = 6;</tspan>
-
-<tspan x="10" y="13146">-                bits = 0xC0;</tspan>
-
-<tspan x="10" y="13162">-            } else if (codePoint &lt;= 0x0000FFFF) {</tspan>
-
-<tspan x="10" y="13178">-                cc = 12;</tspan>
-
-<tspan x="10" y="13194">-                bits = 0xE0;</tspan>
-
-<tspan x="10" y="13210">-            } else if (codePoint &lt;= 0x001FFFFF) {</tspan>
-
-<tspan x="10" y="13226">-                cc = 18;</tspan>
-
-<tspan x="10" y="13242">-                bits = 0xF0;</tspan>
-
-<tspan x="10" y="13258">-            }</tspan>
-
-<tspan x="10" y="13274">-            octets.push(bits | (codePoint &gt;&gt; cc));</tspan>
-
-<tspan x="10" y="13290">-            cc -= 6;</tspan>
-
-<tspan x="10" y="13306">-            while (cc &gt;= 0) {</tspan>
-
-<tspan x="10" y="13322">-                octets.push(0x80 | ((codePoint &gt;&gt; cc) &amp; 0x3F));</tspan>
-
-<tspan x="10" y="13338">-                cc -= 6;</tspan>
-
-<tspan x="10" y="13354">-            }</tspan>
-
-<tspan x="10" y="13370">-            ii += (</tspan>
-
-<tspan x="10" y="13386">-                codePoint &gt;= 0x10000</tspan>
-
-<tspan x="10" y="13402">-                ? 2</tspan>
-
-<tspan x="10" y="13418">-                : 1</tspan>
-
-<tspan x="10" y="13434">-            );</tspan>
-
-<tspan x="10" y="13450">-        }</tspan>
-
-<tspan x="10" y="13466">-        return octets;</tspan>
-
-<tspan x="10" y="13482">-    };</tspan>
-
-<tspan x="10" y="13498">-    globalThis.TextDecoder = globalThis.TextDecoder || TextXxcoder;</tspan>
-
-<tspan x="10" y="13514">-    globalThis.TextEncoder = globalThis.TextEncoder || TextXxcoder;</tspan>
-
-<tspan x="10" y="13530">     // init local</tspan>
-
-<tspan x="10" y="13546">     local = {};</tspan>
-
-<tspan x="10" y="13562">     local.local = local;</tspan>
-
-<tspan x="10" y="13578">@@ -189,34 +42,32 @@</tspan>
-
-<tspan x="10" y="13594">     );</tspan>
-
-<tspan x="10" y="13610">     // init isWebWorker</tspan>
-
-<tspan x="10" y="13626">     local.isWebWorker = (</tspan>
-
-<tspan x="10" y="13642">-        local.isBrowser &amp;&amp; typeof globalThis.importScript === "function"</tspan>
-
-<tspan x="10" y="13658">+        local.isBrowser &amp;&amp; typeof globalThis.importScripts === "function"</tspan>
-
-<tspan x="10" y="13674">     );</tspan>
-
-<tspan x="10" y="13690">     // init function</tspan>
-
-<tspan x="10" y="13706">-    local.assertOrThrow = function (passed, message) {</tspan>
-
-<tspan x="10" y="13722">+    local.assertOrThrow = function (passed, msg) {</tspan>
-
-<tspan x="10" y="13738">     /*</tspan>
-
-<tspan x="10" y="13754">-     * this function will throw err.&lt;message&gt; if &lt;passed&gt; is falsy</tspan>
-
-<tspan x="10" y="13770">+     * this function will throw err.&lt;msg&gt; if &lt;passed&gt; is falsy</tspan>
-
-<tspan x="10" y="13786">      */</tspan>
-
-<tspan x="10" y="13802">-        let err;</tspan>
-
-<tspan x="10" y="13818">         if (passed) {</tspan>
-
-<tspan x="10" y="13834">             return;</tspan>
-
-<tspan x="10" y="13850">         }</tspan>
-
-<tspan x="10" y="13866">-        err = (</tspan>
-
-<tspan x="10" y="13882">+        throw (</tspan>
-
-<tspan x="10" y="13898">             (</tspan>
-
-<tspan x="10" y="13914">-                message</tspan>
-
-<tspan x="10" y="13930">-                &amp;&amp; typeof message.message === "string"</tspan>
-
-<tspan x="10" y="13946">-                &amp;&amp; typeof message.stack === "string"</tspan>
-
-<tspan x="10" y="13962">+                msg</tspan>
-
-<tspan x="10" y="13978">+                &amp;&amp; typeof msg.message === "string"</tspan>
-
-<tspan x="10" y="13994">+                &amp;&amp; typeof msg.stack === "string"</tspan>
-
-<tspan x="10" y="14010">             )</tspan>
-
-<tspan x="10" y="14026">-            // if message is errObj, then leave as is</tspan>
-
-<tspan x="10" y="14042">-            ? message</tspan>
-
-<tspan x="10" y="14058">+            // if msg is err, then leave as is</tspan>
-
-<tspan x="10" y="14074">+            ? msg</tspan>
-
-<tspan x="10" y="14090">             : new Error(</tspan>
-
-<tspan x="10" y="14106">-                typeof message === "string"</tspan>
-
-<tspan x="10" y="14122">-                // if message is a string, then leave as is</tspan>
-
-<tspan x="10" y="14138">-                ? message</tspan>
-
-<tspan x="10" y="14154">-                // else JSON.stringify message</tspan>
-
-<tspan x="10" y="14170">-                : JSON.stringify(message, undefined, 4)</tspan>
-
-<tspan x="10" y="14186">+                typeof msg === "string"</tspan>
-
-<tspan x="10" y="14202">+                // if msg is a string, then leave as is</tspan>
-
-<tspan x="10" y="14218">+                ? msg</tspan>
-
-<tspan x="10" y="14234">+                // else JSON.stringify msg</tspan>
-
-<tspan x="10" y="14250">+                : JSON.stringify(msg, undefined, 4)</tspan>
-
-<tspan x="10" y="14266">             )</tspan>
-
-<tspan x="10" y="14282">         );</tspan>
-
-<tspan x="10" y="14298">-        throw err;</tspan>
-
-<tspan x="10" y="14314">     };</tspan>
-
-<tspan x="10" y="14330">     local.coalesce = function (...argList) {</tspan>
-
-<tspan x="10" y="14346">     /*</tspan>
-
-<tspan x="10" y="14362">@@ -239,6 +90,7 @@</tspan>
-
-<tspan x="10" y="14378">      * this function will sync "rm -rf" &lt;dir&gt;</tspan>
-
-<tspan x="10" y="14394">      */</tspan>
-
-<tspan x="10" y="14410">         let child_process;</tspan>
-
-<tspan x="10" y="14426">+        // do nothing if module does not exist</tspan>
-
-<tspan x="10" y="14442">         try {</tspan>
-
-<tspan x="10" y="14458">             child_process = require("child_process");</tspan>
-
-<tspan x="10" y="14474">         } catch (ignore) {</tspan>
-
-<tspan x="10" y="14490">@@ -257,6 +109,7 @@</tspan>
-
-<tspan x="10" y="14506">      * this function will sync write &lt;data&gt; to &lt;file&gt; with "mkdir -p"</tspan>
-
-<tspan x="10" y="14522">      */</tspan>
-
-<tspan x="10" y="14538">         let fs;</tspan>
-
-<tspan x="10" y="14554">+        // do nothing if module does not exist</tspan>
-
-<tspan x="10" y="14570">         try {</tspan>
-
-<tspan x="10" y="14586">             fs = require("fs");</tspan>
-
-<tspan x="10" y="14602">         } catch (ignore) {</tspan>
-
-<tspan x="10" y="14618">@@ -369,9 +222,7 @@</tspan>
-
-<tspan x="10" y="14634">         local.vm = require("vm");</tspan>
-
-<tspan x="10" y="14650">         local.zlib = require("zlib");</tspan>
-
-<tspan x="10" y="14666">     }</tspan>
-
-<tspan x="10" y="14682">-}((typeof globalThis === "object" &amp;&amp; globalThis) || (function () {</tspan>
-
-<tspan x="10" y="14698">-    return Function("return this")(); // jslint ignore:line</tspan>
-
-<tspan x="10" y="14714">-}())));</tspan>
-
-<tspan x="10" y="14730">+}((typeof globalThis === "object" &amp;&amp; globalThis) || window));</tspan>
-
-<tspan x="10" y="14746"> // assets.utility2.header.js - end</tspan>
-
-<tspan x="10" y="14762"> </tspan>
-
-<tspan x="10" y="14778"> </tspan>
-
-<tspan x="10" y="14794">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/test.\</tspan>
-<tspan x="10" y="14810">js</tspan>
-
-<tspan x="10" y="14826">jslint - 75ms /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
-
-<tspan x="10" y="14842">http-server listening on port 50301</tspan>
-
-<tspan x="10" y="14858">testRunDefault - 41 ms - [node test-case 1 of 7 passed] - testCase_buildApidoc_default</tspan>
-
-<tspan x="10" y="14874">testRunDefault - 70 ms - [node test-case 2 of 7 passed] - testCase_buildLib_default</tspan>
-
-<tspan x="10" y="14890">testRunDefault - 79 ms - [node test-case 3 of 7 passed] - testCase_buildReadme_default</tspan>
-
-<tspan x="10" y="14906">testRunDefault - 79 ms - [node test-case 4 of 7 passed] - testCase_buildTest_default</tspan>
-
-<tspan x="10" y="14922">testRunDefault - 80 ms - [node test-case 5 of 7 passed] - testCase_nop_default</tspan>
-
-<tspan x="10" y="14938"></tspan>
-
-<tspan x="10" y="14954">DevTools listening on ws://127.0.0.1:33645/devtools/browser/8ca9b97d-c81a-49c5-9616-ecf7c426bb78</tspan>
-
-<tspan x="10" y="14970">[0317/063358.600906:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
-<tspan x="10" y="14986">th unconsumed attachments: 0/1</tspan>
-
-<tspan x="10" y="15002">[0317/063358.600932:ERROR:command_buffer_proxy_impl.cc(125)] ContextResult::kTransientFailure: F\</tspan>
-<tspan x="10" y="15018">ailed to send GpuChannelMsg_CreateCommandBuffer.</tspan>
-
-<tspan x="10" y="15034">[0317/063358.605076:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
-<tspan x="10" y="15050">th unconsumed attachments: 0/1</tspan>
-
-<tspan x="10" y="15066">[0317/063358.605577:ERROR:command_buffer_proxy_impl.cc(125)] ContextResult::kTransientFailure: F\</tspan>
-<tspan x="10" y="15082">ailed to send GpuChannelMsg_CreateCommandBuffer.</tspan>
-
-<tspan x="10" y="15098">[0317/063358.605530:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
-<tspan x="10" y="15114">th unconsumed attachments: 0/1</tspan>
-
-<tspan x="10" y="15130">http-server listening on port 38242</tspan>
-
-<tspan x="10" y="15146">testRunDefault - 1535 ms - [node test-case 6 of 7 passed] - testCase_webpage_default</tspan>
-
-<tspan x="10" y="15162">testRunDefault - 5951 ms - [node test-case 7 of 7 passed] - testCase_buildApp_default</tspan>
-
-<tspan x="10" y="15178">-----------------------|-----------|-----------|-----------|-----------|</tspan>
-
-<tspan x="10" y="15194">File                   |   % Stmts |% Branches |   % Funcs |   % Lines |</tspan>
-
-<tspan x="10" y="15210">-----------------------|-----------|-----------|-----------|-----------|</tspan>
-
-<tspan x="10" y="15226">   bootstrap-lite/     |       100 |       100 |       100 |       100 |</tspan>
-
-<tspan x="10" y="15242">      lib.bootstrap.js |       100 |       100 |       100 |       100 |</tspan>
-
-<tspan x="10" y="15258">      test.js          |       100 |       100 |       100 |       100 |</tspan>
-
-<tspan x="10" y="15274">-----------------------|-----------|-----------|-----------|-----------|</tspan>
-
-<tspan x="10" y="15290">All files              |       100 |       100 |       100 |       100 |</tspan>
-
-<tspan x="10" y="15306">-----------------------|-----------|-----------|-----------|-----------|</tspan>
-
-<tspan x="10" y="15322"></tspan>
-
-<tspan x="10" y="15338">created coverage file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/coverage.html/\</tspan>
-<tspan x="10" y="15354">index.html</tspan>
-
-<tspan x="10" y="15370"></tspan>
-
-<tspan x="10" y="15386">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="15402">| test-report - npmTestPublished - node - linux v13.11.0 - 2020-03-17T06:33:55.594Z</tspan>
-
-<tspan x="10" y="15418">|    5952 ms            0 failed        7 passed      |</tspan>
-
-<tspan x="10" y="15434">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="15450"></tspan>
-
-<tspan x="10" y="15466">created test-report file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-report\</tspan>
-<tspan x="10" y="15482">.html</tspan>
-
-<tspan x="10" y="15498"></tspan>
-
-<tspan x="10" y="15514"></tspan>
-
-<tspan x="10" y="15530">npmTestPublished - 0 failed tests</tspan>
-
-<tspan x="10" y="15546"></tspan>
-
-<tspan x="10" y="15562"></tspan>
-
-<tspan x="10" y="15578">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-03-17T06:34:04.482Z - EXIT_CODE - 0</tspan>
+<tspan x="10" y="3946">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-06-13T19:35:00.758Z - EXIT_CODE - 0</tspan>
 
 </text>
 </svg>

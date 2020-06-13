@@ -1,0 +1,462 @@
+<svg height="3966" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="3966" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26"></tspan>
+
+<tspan x="10" y="42">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-06-13T19:34:45.803Z - npm-testing /tmp/npmTe\</tspan>
+<tspan x="10" y="58">stPublished/node_modules/bootstrap-lite</tspan>
+
+<tspan x="10" y="74"></tspan>
+
+<tspan x="10" y="90"></tspan>
+
+<tspan x="10" y="106">istanbul - covering $ /home/travis/.nvm/versions/node/v14.4.0/bin/node /tmp/npmTestPublished/nod\</tspan>
+<tspan x="10" y="122">e_modules/bootstrap-lite/test.js</tspan>
+
+<tspan x="10" y="138">&gt; jslint - 7ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/npm_scripts.sh</tspan>
+
+<tspan x="10" y="154">--- /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json.autofix.old	2020-06-13 19:34:\</tspan>
+<tspan x="10" y="170">46.199389648 +0000</tspan>
+
+<tspan x="10" y="186">+++ /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json	2020-06-13 19:34:46.199389648\</tspan>
+<tspan x="10" y="202"> +0000</tspan>
+
+<tspan x="10" y="218">@@ -1,70 +1,70 @@</tspan>
+
+<tspan x="10" y="234"> {</tspan>
+
+<tspan x="10" y="250">-  "_from": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="266">-  "_id": "bootstrap-lite@2020.6.12",</tspan>
+
+<tspan x="10" y="282">-  "_inBundle": false,</tspan>
+
+<tspan x="10" y="298">-  "_integrity": "sha512-VuY+p9CesMIHtb476Ur9H0oKr1M3dgXcjUzlbMecvzBoxvw5bUJiDSbruoQcwq+5ZgMsJF4\</tspan>
+<tspan x="10" y="314">4To3AVb6lDvqVUg==",</tspan>
+
+<tspan x="10" y="330">-  "_location": "/bootstrap-lite",</tspan>
+
+<tspan x="10" y="346">-  "_phantomChildren": {},</tspan>
+
+<tspan x="10" y="362">-  "_requested": {</tspan>
+
+<tspan x="10" y="378">-    "type": "tag",</tspan>
+
+<tspan x="10" y="394">-    "registry": true,</tspan>
+
+<tspan x="10" y="410">-    "raw": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="426">+    "_from": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="442">+    "_id": "bootstrap-lite@2020.6.12",</tspan>
+
+<tspan x="10" y="458">+    "_inBundle": false,</tspan>
+
+<tspan x="10" y="474">+    "_integrity": "sha512-VuY+p9CesMIHtb476Ur9H0oKr1M3dgXcjUzlbMecvzBoxvw5bUJiDSbruoQcwq+5ZgMsJ\</tspan>
+<tspan x="10" y="490">F44To3AVb6lDvqVUg==",</tspan>
+
+<tspan x="10" y="506">+    "_location": "/bootstrap-lite",</tspan>
+
+<tspan x="10" y="522">+    "_phantomChildren": {},</tspan>
+
+<tspan x="10" y="538">+    "_requested": {</tspan>
+
+<tspan x="10" y="554">+        "escapedName": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="570">+        "fetchSpec": "latest",</tspan>
+
+<tspan x="10" y="586">+        "name": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="602">+        "raw": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="618">+        "rawSpec": "",</tspan>
+
+<tspan x="10" y="634">+        "registry": true,</tspan>
+
+<tspan x="10" y="650">+        "saveSpec": null,</tspan>
+
+<tspan x="10" y="666">+        "type": "tag"</tspan>
+
+<tspan x="10" y="682">+    },</tspan>
+
+<tspan x="10" y="698">+    "_requiredBy_": [</tspan>
+
+<tspan x="10" y="714">+        "#USER",</tspan>
+
+<tspan x="10" y="730">+        "/"</tspan>
+
+<tspan x="10" y="746">+    ],</tspan>
+
+<tspan x="10" y="762">+    "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2020.6.12.tgz",</tspan>
+
+<tspan x="10" y="778">+    "_shasum": "727645adc1089ab95eb0a2f5a1588b652db21713",</tspan>
+
+<tspan x="10" y="794">+    "_spec": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="810">+    "_where": "/tmp/npmTestPublished",</tspan>
+
+<tspan x="10" y="826">+    "author": {</tspan>
+
+<tspan x="10" y="842">+        "email": "kaizhu256@gmail.com",</tspan>
+
+<tspan x="10" y="858">+        "name": "kai zhu"</tspan>
+
+<tspan x="10" y="874">+    },</tspan>
+
+<tspan x="10" y="890">+    "bugs": {</tspan>
+
+<tspan x="10" y="906">+        "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
+
+<tspan x="10" y="922">+    },</tspan>
+
+<tspan x="10" y="938">+    "bundleDependencies": false,</tspan>
+
+<tspan x="10" y="954">+    "deprecated": false,</tspan>
+
+<tspan x="10" y="970">+    "description": "this zero-dependency package will provide single css-rollup (includes font/\</tspan>
+<tspan x="10" y="986">glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatable\</tspan>
+<tspan x="10" y="1002">s (v1.10.20), and chart.js (v2.9.3) with working web-demo",</tspan>
+
+<tspan x="10" y="1018">+    "devDependencies": {</tspan>
+
+<tspan x="10" y="1034">+        "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
+
+<tspan x="10" y="1050">+    },</tspan>
+
+<tspan x="10" y="1066">+    "engines": {</tspan>
+
+<tspan x="10" y="1082">+        "node": "&gt;=12.0"</tspan>
+
+<tspan x="10" y="1098">+    },</tspan>
+
+<tspan x="10" y="1114">+    "fileCount": 11,</tspan>
+
+<tspan x="10" y="1130">+    "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
+
+<tspan x="10" y="1146">+    "keywords": [</tspan>
+
+<tspan x="10" y="1162">+        "bootstrap",</tspan>
+
+<tspan x="10" y="1178">+        "datatables",</tspan>
+
+<tspan x="10" y="1194">+        "chartjs"</tspan>
+
+<tspan x="10" y="1210">+    ],</tspan>
+
+<tspan x="10" y="1226">+    "license": "MIT",</tspan>
+
+<tspan x="10" y="1242">+    "main": "lib.bootstrap.js",</tspan>
+
+<tspan x="10" y="1258">     "name": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="1274">-    "escapedName": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="1290">-    "rawSpec": "",</tspan>
+
+<tspan x="10" y="1306">-    "saveSpec": null,</tspan>
+
+<tspan x="10" y="1322">-    "fetchSpec": "latest"</tspan>
+
+<tspan x="10" y="1338">-  },</tspan>
+
+<tspan x="10" y="1354">-  "_requiredBy_": [</tspan>
+
+<tspan x="10" y="1370">-    "#USER",</tspan>
+
+<tspan x="10" y="1386">-    "/"</tspan>
+
+<tspan x="10" y="1402">-  ],</tspan>
+
+<tspan x="10" y="1418">-  "_resolved": "https://registry.npmjs.org/bootstrap-lite/-/bootstrap-lite-2020.6.12.tgz",</tspan>
+
+<tspan x="10" y="1434">-  "_shasum": "727645adc1089ab95eb0a2f5a1588b652db21713",</tspan>
+
+<tspan x="10" y="1450">-  "_spec": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="1466">-  "_where": "/tmp/npmTestPublished",</tspan>
+
+<tspan x="10" y="1482">-  "author": {</tspan>
+
+<tspan x="10" y="1498">-    "name": "kai zhu",</tspan>
+
+<tspan x="10" y="1514">-    "email": "kaizhu256@gmail.com"</tspan>
+
+<tspan x="10" y="1530">-  },</tspan>
+
+<tspan x="10" y="1546">-  "bugs": {</tspan>
+
+<tspan x="10" y="1562">-    "url": "https://github.com/kaizhu256/node-bootstrap-lite/issues"</tspan>
+
+<tspan x="10" y="1578">-  },</tspan>
+
+<tspan x="10" y="1594">-  "bundleDependencies": false,</tspan>
+
+<tspan x="10" y="1610">-  "deprecated": false,</tspan>
+
+<tspan x="10" y="1626">-  "description": "this zero-dependency package will provide single css-rollup (includes font/gl\</tspan>
+<tspan x="10" y="1642">yphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables \</tspan>
+<tspan x="10" y="1658">(v1.10.20), and chart.js (v2.9.3) with working web-demo",</tspan>
+
+<tspan x="10" y="1674">-  "devDependencies": {</tspan>
+
+<tspan x="10" y="1690">-    "utility2": "github:kaizhu256/node-utility2#alpha"</tspan>
+
+<tspan x="10" y="1706">-  },</tspan>
+
+<tspan x="10" y="1722">-  "engines": {</tspan>
+
+<tspan x="10" y="1738">-    "node": "&gt;=12.0"</tspan>
+
+<tspan x="10" y="1754">-  },</tspan>
+
+<tspan x="10" y="1770">-  "fileCount": 11,</tspan>
+
+<tspan x="10" y="1786">-  "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",</tspan>
+
+<tspan x="10" y="1802">-  "keywords": [</tspan>
+
+<tspan x="10" y="1818">-    "bootstrap",</tspan>
+
+<tspan x="10" y="1834">-    "datatables",</tspan>
+
+<tspan x="10" y="1850">-    "chartjs"</tspan>
+
+<tspan x="10" y="1866">-  ],</tspan>
+
+<tspan x="10" y="1882">-  "license": "MIT",</tspan>
+
+<tspan x="10" y="1898">-  "main": "lib.bootstrap.js",</tspan>
+
+<tspan x="10" y="1914">-  "name": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="1930">-  "nameAliasPublish": "bootstrap-classic bootstrap3-lite chartjs-lite datatable-lite",</tspan>
+
+<tspan x="10" y="1946">-  "nameLib": "bootstrap",</tspan>
+
+<tspan x="10" y="1962">-  "nameOriginal": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="1978">-  "repository": {</tspan>
+
+<tspan x="10" y="1994">-    "type": "git",</tspan>
+
+<tspan x="10" y="2010">-    "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
+
+<tspan x="10" y="2026">-  },</tspan>
+
+<tspan x="10" y="2042">-  "scripts": {</tspan>
+
+<tspan x="10" y="2058">-    "build-ci": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2074">-    "env": "env",</tspan>
+
+<tspan x="10" y="2090">-    "eval": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2106">-    "heroku-postbuild": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2122">-    "postinstall": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2138">-    "start": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2154">-    "test": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2170">-    "utility2": "./npm_scripts.sh"</tspan>
+
+<tspan x="10" y="2186">-  },</tspan>
+
+<tspan x="10" y="2202">-  "version": "2020.6.12"</tspan>
+
+<tspan x="10" y="2218">+    "nameAliasPublish": "bootstrap-classic bootstrap3-lite chartjs-lite datatable-lite",</tspan>
+
+<tspan x="10" y="2234">+    "nameLib": "bootstrap",</tspan>
+
+<tspan x="10" y="2250">+    "nameOriginal": "bootstrap-lite",</tspan>
+
+<tspan x="10" y="2266">+    "repository": {</tspan>
+
+<tspan x="10" y="2282">+        "type": "git",</tspan>
+
+<tspan x="10" y="2298">+        "url": "git+https://github.com/kaizhu256/node-bootstrap-lite.git"</tspan>
+
+<tspan x="10" y="2314">+    },</tspan>
+
+<tspan x="10" y="2330">+    "scripts": {</tspan>
+
+<tspan x="10" y="2346">+        "build-ci": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2362">+        "env": "env",</tspan>
+
+<tspan x="10" y="2378">+        "eval": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2394">+        "heroku-postbuild": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2410">+        "postinstall": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2426">+        "start": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2442">+        "test": "./npm_scripts.sh",</tspan>
+
+<tspan x="10" y="2458">+        "utility2": "./npm_scripts.sh"</tspan>
+
+<tspan x="10" y="2474">+    },</tspan>
+
+<tspan x="10" y="2490">+    "version": "2020.6.12"</tspan>
+
+<tspan x="10" y="2506"> }</tspan>
+
+<tspan x="10" y="2522">jslint-autofix - modified and saved file /tmp/npmTestPublished/node_modules/bootstrap-lite/packa\</tspan>
+<tspan x="10" y="2538">ge.json</tspan>
+
+<tspan x="10" y="2554">jslint - 35ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/package.json</tspan>
+
+<tspan x="10" y="2570">jslint - 105ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/test.js</tspan>
+
+<tspan x="10" y="2586">jslint - 192ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/README.md</tspan>
+
+<tspan x="10" y="2602">jslint - 195ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.css</tspan>
+
+<tspan x="10" y="2618">jslint - 540ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/lib.bootstrap.js</tspan>
+
+<tspan x="10" y="2634">http-server listening on port 38105</tspan>
+
+<tspan x="10" y="2650">testRunDefault - 145 ms - [node test-case 1 of 7 passed] - testCase_buildLib_default</tspan>
+
+<tspan x="10" y="2666">testRunDefault - 156 ms - [node test-case 2 of 7 passed] - testCase_buildReadme_default</tspan>
+
+<tspan x="10" y="2682">testRunDefault - 160 ms - [node test-case 3 of 7 passed] - testCase_buildTest_default</tspan>
+
+<tspan x="10" y="2698">testRunDefault - 161 ms - [node test-case 4 of 7 passed] - testCase_nop_default</tspan>
+
+<tspan x="10" y="2714"></tspan>
+
+<tspan x="10" y="2730">DevTools listening on ws://127.0.0.1:35751/devtools/browser/ee7bbfcc-ed3d-46fd-aaee-36daaa9c079c</tspan>
+
+<tspan x="10" y="2746">testRunDefault - 664 ms - [node test-case 5 of 7 passed] - testCase_buildApidoc_default</tspan>
+
+<tspan x="10" y="2762">[0613/193452.994490:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
+<tspan x="10" y="2778">th unconsumed attachments: 0/1</tspan>
+
+<tspan x="10" y="2794">[0613/193452.994687:ERROR:command_buffer_proxy_impl.cc(122)] ContextResult::kTransientFailure: F\</tspan>
+<tspan x="10" y="2810">ailed to send GpuChannelMsg_CreateCommandBuffer.</tspan>
+
+<tspan x="10" y="2826">[0613/193452.995151:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed wi\</tspan>
+<tspan x="10" y="2842">th unconsumed attachments: 0/1</tspan>
+
+<tspan x="10" y="2858">&gt; http-server listening on port 34798</tspan>
+
+<tspan x="10" y="2874">testRunDefault - 4163 ms - [node test-case 6 of 7 passed] - testCase_webpage_default</tspan>
+
+<tspan x="10" y="2890">testRunDefault - 6163 ms - testCase pending - testCase_buildApp_default ...</tspan>
+
+<tspan x="10" y="2906">jslint - 4ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.utility2.h\</tspan>
+<tspan x="10" y="2922">tml</tspan>
+
+<tspan x="10" y="2938">jslint - 9ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.test.js</tspan>
+
+<tspan x="10" y="2954">jslint - 12ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
+<tspan x="10" y="2970">.html</tspan>
+
+<tspan x="10" y="2986">jslint - 12ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.example.h\</tspan>
+<tspan x="10" y="3002">tml</tspan>
+
+<tspan x="10" y="3018">jslint - 12ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/index.html</tspan>
+
+<tspan x="10" y="3034">jslint - 14ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.example.j\</tspan>
+<tspan x="10" y="3050">s</tspan>
+
+<tspan x="10" y="3066">jslint - 17ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
+<tspan x="10" y="3082">.css</tspan>
+
+<tspan x="10" y="3098">jslint - 17ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/utility2.state.i\</tspan>
+<tspan x="10" y="3114">nit.js</tspan>
+
+<tspan x="10" y="3130">jslint - 75ms - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/app/assets.bootstrap\</tspan>
+<tspan x="10" y="3146">.js</tspan>
+
+<tspan x="10" y="3162">testRunDefault - 7474 ms - [node test-case 7 of 7 passed] - testCase_buildApp_default</tspan>
+
+<tspan x="10" y="3178">-------------------|---------|---------|---------|---------|</tspan>
+
+<tspan x="10" y="3194">File               | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
+
+<tspan x="10" y="3210">-------------------|---------|---------|---------|---------|</tspan>
+
+<tspan x="10" y="3226">All files          |   99.98 |   99.98 |     100 |   99.98 |</tspan>
+
+<tspan x="10" y="3242">bootstrap-lite/    |   99.98 |   99.98 |     100 |   99.98 |</tspan>
+
+<tspan x="10" y="3258">  example.js       |     100 |     100 |     100 |     100 |</tspan>
+
+<tspan x="10" y="3274">  lib.bootstrap.js |     100 |     100 |     100 |     100 |</tspan>
+
+<tspan x="10" y="3290">  test.js          |    95.7 |   96.36 |     100 |    95.7 |</tspan>
+
+<tspan x="10" y="3306">-------------------|---------|---------|---------|---------|</tspan>
+
+<tspan x="10" y="3322"></tspan>
+
+<tspan x="10" y="3338">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3354">age.html/coverage.txt</tspan>
+
+<tspan x="10" y="3370">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3386">age.html/index.html</tspan>
+
+<tspan x="10" y="3402">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3418">age.html/bootstrap-lite/index.html</tspan>
+
+<tspan x="10" y="3434">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3450">age.html/bootstrap-lite/example.js.html</tspan>
+
+<tspan x="10" y="3466">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3482">age.html/bootstrap-lite/lib.bootstrap.js.html</tspan>
+
+<tspan x="10" y="3498">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3514">age.html/bootstrap-lite/test.js.html</tspan>
+
+<tspan x="10" y="3530">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3546">age.html/coverage.all.html</tspan>
+
+<tspan x="10" y="3562">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3578">age.html/coverage.json</tspan>
+
+<tspan x="10" y="3594">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3610">age.html/coverage.include.json</tspan>
+
+<tspan x="10" y="3626">wrote file - coverage-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cover\</tspan>
+<tspan x="10" y="3642">age.badge.svg</tspan>
+
+<tspan x="10" y="3658">istanbul - created coverage file /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/cov\</tspan>
+<tspan x="10" y="3674">erage.html/index.html</tspan>
+
+<tspan x="10" y="3690"></tspan>
+
+<tspan x="10" y="3706">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="3722">| test-report - npmTestPublished - node - linux v14.4.0 - 2020-06-13T19:34:45.942Z</tspan>
+
+<tspan x="10" y="3738">|    7475 ms            0 failed        7 passed      |</tspan>
+
+<tspan x="10" y="3754">-------------------------------------------------------</tspan>
+
+<tspan x="10" y="3770"></tspan>
+
+<tspan x="10" y="3786">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-repo\</tspan>
+<tspan x="10" y="3802">rt.html</tspan>
+
+<tspan x="10" y="3818">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/build.bad\</tspan>
+<tspan x="10" y="3834">ge.svg</tspan>
+
+<tspan x="10" y="3850">wrote file - test-report - /tmp/npmTestPublished/node_modules/bootstrap-lite/tmp/build/test-repo\</tspan>
+<tspan x="10" y="3866">rt.badge.svg</tspan>
+
+<tspan x="10" y="3882"></tspan>
+
+<tspan x="10" y="3898">npmTestPublished - 0 failed tests</tspan>
+
+<tspan x="10" y="3914"></tspan>
+
+<tspan x="10" y="3930"></tspan>
+
+<tspan x="10" y="3946">\x1b[35m[MODE_BUILD=npmTestPublished]\x1b[0m - 2020-06-13T19:35:00.758Z - EXIT_CODE - 0</tspan>
+
+</text>
+</svg>
