@@ -45270,11 +45270,11 @@ local.assetsDict["/assets.test.template.js"] = '\
 \n\
 \n\
 /* jslint utility2:true */\n\
-/* istanbul ignore next */\n\
 (function (local) {\n\
 "use strict";\n\
 \n\
 \n\
+/* istanbul ignore next */\n\
 // run shared js\-env code - init-before\n\
 (function () {\n\
 // init local\n\
@@ -69986,11 +69986,11 @@ local.assetsDict["/assets.utility2.test.js"] = (
 \n\
 \n\
 /* jslint utility2:true */\n\
-/* istanbul ignore next */\n\
 (function (local) {\n\
 \"use strict\";\n\
 \n\
 \n\
+/* istanbul ignore next */\n\
 // run shared js-env code - init-before\n\
 (function () {\n\
 // init local\n\

@@ -296,17 +296,17 @@
     </thead>
     <tbody>
         <td>
-            Statements: 54<br>
-            Branches: 43<br>
+            Statements: 50<br>
+            Branches: 41<br>
             Functions: 12
         </td>
         <td>
             100%<br>
-            (93 / 93)
+            (87 / 87)
         </td>
         <td>
             100%<br>
-            (55 / 55)
+            (51 / 51)
         </td>
         <td>
             100%<br>
@@ -314,7 +314,7 @@
         </td>
         <td>
             100%<br>
-            (93 / 93)
+            (87 / 87)
         </td>
     </tbody>
     </table>
@@ -560,14 +560,6 @@
 <a href="#l235" id="l235">235</a>
 <a href="#l236" id="l236">236</a>
 <a href="#l237" id="l237">237</a>
-<a href="#l238" id="l238">238</a>
-<a href="#l239" id="l239">239</a>
-<a href="#l240" id="l240">240</a>
-<a href="#l241" id="l241">241</a>
-<a href="#l242" id="l242">242</a>
-<a href="#l243" id="l243">243</a>
-<a href="#l244" id="l244">244</a>
-<a href="#l245" id="l245">245</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -733,6 +725,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -740,24 +743,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
@@ -789,10 +777,6 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-yes">2</span>
@@ -980,11 +964,11 @@
 
 
 /* jslint utility2:true */
-/* istanbul ignore next */
 (function (local) {
 "use strict";
 
 
+/* istanbul ignore next */
 // run shared js-env code - init-before
 (function () {
 // init local
@@ -1002,10 +986,6 @@ local.testCase_buildApp_default = function (opt, onError) {
 /*
  * this function will test buildApp's default handling-behavior
  */
-    <span class="skip-if-branch" title="if path not taken">I</span>if (local.isBrowser) {
-<span class="cstat-skip" title="statement not covered">        onError(undefined, opt);</span>
-<span class="cstat-skip" title="statement not covered">        return;</span>
-    }
     local.testCase_buildReadme_default(opt, local.onErrorThrow);
     local.testCase_buildLib_default(opt, local.onErrorThrow);
     local.testCase_buildTest_default(opt, local.onErrorThrow);
@@ -1037,10 +1017,6 @@ local.testCase_buildReadme_default = function (opt, onError) {
 /*
  * this function will test buildReadme's default handling-behavior
  */
-    <span class="skip-if-branch" title="if path not taken">I</span>if (local.isBrowser) {
-<span class="cstat-skip" title="statement not covered">        onError(undefined, opt);</span>
-<span class="cstat-skip" title="statement not covered">        return;</span>
-    }
     opt = {};
     opt.customize = function () {
         // search-and-replace - customize dataTo
