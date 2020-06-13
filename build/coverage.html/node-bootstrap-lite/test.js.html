@@ -302,7 +302,7 @@
         </td>
         <td>
             100%<br>
-            (92 / 92)
+            (93 / 93)
         </td>
         <td>
             100%<br>
@@ -310,11 +310,11 @@
         </td>
         <td>
             100%<br>
-            (21 / 21)
+            (22 / 22)
         </td>
         <td>
             100%<br>
-            (92 / 92)
+            (93 / 93)
         </td>
     </tbody>
     </table>
@@ -555,6 +555,17 @@
 <a href="#l230" id="l230">230</a>
 <a href="#l231" id="l231">231</a>
 <a href="#l232" id="l232">232</a>
+<a href="#l233" id="l233">233</a>
+<a href="#l234" id="l234">234</a>
+<a href="#l235" id="l235">235</a>
+<a href="#l236" id="l236">236</a>
+<a href="#l237" id="l237">237</a>
+<a href="#l238" id="l238">238</a>
+<a href="#l239" id="l239">239</a>
+<a href="#l240" id="l240">240</a>
+<a href="#l241" id="l241">241</a>
+<a href="#l242" id="l242">242</a>
+<a href="#l243" id="l243">243</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -760,6 +771,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -780,7 +799,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -972,53 +994,64 @@ local.testRunDefault(local);
 
 // run shared js-env code - function
 (function () {
-local.testCase_buildApp_default = function (option, onError) {
+local.testCase_buildApp_default = function (opt, onError) {
 /*
  * this function will test buildApp's default handling-behavior
  */
     <span class="skip-if-branch" title="if path not taken">I</span>if (local.isBrowser) {
-<span class="cstat-skip" title="statement not covered">        onError(null, option);</span>
+<span class="cstat-skip" title="statement not covered">        onError(undefined, opt);</span>
 <span class="cstat-skip" title="statement not covered">        return;</span>
     }
-    local.testCase_buildReadme_default(option, local.onErrorThrow);
-    local.testCase_buildLib_default(option, local.onErrorThrow);
-    local.testCase_buildTest_default(option, local.onErrorThrow);
-    option = {
+    local.testCase_buildReadme_default(opt, local.onErrorThrow);
+    local.testCase_buildLib_default(opt, local.onErrorThrow);
+    local.testCase_buildTest_default(opt, local.onErrorThrow);
+    opt = {
         assetsList: [
             {
-                file: "/assets.bootstrap-v3.4.1.rollup.css",
+                file: (
+                    "/assets.bootstrap-v3.4.1"
+                    + ".datatables-v1.10.20"
+                    + ".chartjs=v2.9.3.rollup.css"
+                ),
                 url: "/assets.bootstrap.css"
             }, {
-                file: "/assets.bootstrap-v3.4.1.rollup.js",
+                file: (
+                    "/assets.bootstrap-v3.4.1"
+                    + ".datatables-v1.10.20"
+                    + ".chartjs=v2.9.3.rollup.js"
+                ),
                 url: "/assets.bootstrap.js"
             }
         ]
     };
-    local.buildApp(option, onError);
+    local.buildApp(opt, onError);
 };
 
-local.testCase_buildReadme_default = function (option, onError) {
+local.testCase_buildReadme_default = function (opt, onError) {
 /*
  * this function will test buildReadme's default handling-behavior
  */
     <span class="skip-if-branch" title="if path not taken">I</span>if (local.isBrowser) {
-<span class="cstat-skip" title="statement not covered">        onError(null, option);</span>
+<span class="cstat-skip" title="statement not covered">        onError(undefined, opt);</span>
 <span class="cstat-skip" title="statement not covered">        return;</span>
     }
-    option = {};
-    option.customize = function () {
+    opt = {};
+    opt.customize = function () {
         // search-and-replace - customize dataTo
         [
             (
                 /\n\/\*\u0020jslint\u0020ignore:start\u0020\*\/\nlocal.assetsDict\["\/assets.index.template.html"\]\u0020=\u0020'\\\n[\S\s]*?\n\/\*\u0020jslint\u0020ignore:end\u0020\*\/\n/
             )
         ].forEach(function (rgx) {
-            option.dataFrom.replace(rgx, function (match0) {
-                option.dataTo = option.dataTo.replace(rgx, match0);
+            opt.dataFrom.replace(rgx, function (match0) {
+                // disable $-escape in replacement-string
+                opt.dataTo = opt.dataTo.replace(rgx, function () {
+                    return match0;
+                });
             });
         });
     };
-    local.buildReadme(option, onError);
+    local.buildReadme(opt, onError);
 };
 }());
 }());

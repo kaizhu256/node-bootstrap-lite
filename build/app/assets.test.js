@@ -180,53 +180,64 @@ local.testRunDefault(local);
 
 // run shared js-env code - function
 (function () {
-local.testCase_buildApp_default = function (option, onError) {
+local.testCase_buildApp_default = function (opt, onError) {
 /*
  * this function will test buildApp's default handling-behavior
  */
     if (local.isBrowser) {
-        onError(null, option);
+        onError(undefined, opt);
         return;
     }
-    local.testCase_buildReadme_default(option, local.onErrorThrow);
-    local.testCase_buildLib_default(option, local.onErrorThrow);
-    local.testCase_buildTest_default(option, local.onErrorThrow);
-    option = {
+    local.testCase_buildReadme_default(opt, local.onErrorThrow);
+    local.testCase_buildLib_default(opt, local.onErrorThrow);
+    local.testCase_buildTest_default(opt, local.onErrorThrow);
+    opt = {
         assetsList: [
             {
-                file: "/assets.bootstrap-v3.4.1.rollup.css",
+                file: (
+                    "/assets.bootstrap-v3.4.1"
+                    + ".datatables-v1.10.20"
+                    + ".chartjs=v2.9.3.rollup.css"
+                ),
                 url: "/assets.bootstrap.css"
             }, {
-                file: "/assets.bootstrap-v3.4.1.rollup.js",
+                file: (
+                    "/assets.bootstrap-v3.4.1"
+                    + ".datatables-v1.10.20"
+                    + ".chartjs=v2.9.3.rollup.js"
+                ),
                 url: "/assets.bootstrap.js"
             }
         ]
     };
-    local.buildApp(option, onError);
+    local.buildApp(opt, onError);
 };
 
-local.testCase_buildReadme_default = function (option, onError) {
+local.testCase_buildReadme_default = function (opt, onError) {
 /*
  * this function will test buildReadme's default handling-behavior
  */
     if (local.isBrowser) {
-        onError(null, option);
+        onError(undefined, opt);
         return;
     }
-    option = {};
-    option.customize = function () {
+    opt = {};
+    opt.customize = function () {
         // search-and-replace - customize dataTo
         [
             (
                 /\n\/\*\u0020jslint\u0020ignore:start\u0020\*\/\nlocal.assetsDict\["\/assets.index.template.html"\]\u0020=\u0020'\\\n[\S\s]*?\n\/\*\u0020jslint\u0020ignore:end\u0020\*\/\n/
             )
         ].forEach(function (rgx) {
-            option.dataFrom.replace(rgx, function (match0) {
-                option.dataTo = option.dataTo.replace(rgx, match0);
+            opt.dataFrom.replace(rgx, function (match0) {
+                // disable $-escape in replacement-string
+                opt.dataTo = opt.dataTo.replace(rgx, function () {
+                    return match0;
+                });
             });
         });
     };
-    local.buildReadme(option, onError);
+    local.buildReadme(opt, onError);
 };
 }());
 }());
