@@ -195,16 +195,20 @@ local.testCase_buildApp_default = function (opt, onError) {
         assetsList: [
             {
                 file: (
-                    "/assets.bootstrap-v3.4.1"
+                    "/assets"
+                    + ".bootstrap-v3.4.1"
                     + ".datatables-v1.10.20"
-                    + ".chartjs=v2.9.3.rollup.css"
+                    + ".chartjs-v2.9.3"
+                    + ".rollup.css"
                 ),
                 url: "/assets.bootstrap.css"
             }, {
                 file: (
-                    "/assets.bootstrap-v3.4.1"
+                    "/assets"
+                    + ".bootstrap-v3.4.1"
                     + ".datatables-v1.10.20"
-                    + ".chartjs=v2.9.3.rollup.js"
+                    + ".chartjs-v2.9.3"
+                    + ".rollup.js"
                 ),
                 url: "/assets.bootstrap.js"
             }
