@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * lib.bootstrap.js (2020.6.14)
+ * lib.bootstrap.js (2020.6.12)
  * https://github.com/kaizhu256/node-bootstrap-lite
  * this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.20), and chart.js (v2.9.3) with working web-demo
  *
@@ -154,6 +154,14 @@
         };
         recurse(tgt, src, depth | 0);
         return tgt;
+    };
+    local.onErrorThrow = function (err) {
+    /*
+     * this function will throw <err> if exists
+     */
+        if (err) {
+            throw err;
+        }
     };
     // bug-workaround - throw unhandledRejections in node-process
     if (
@@ -52878,29 +52886,21 @@ if (local.isBrowser) {
 }
 // init assets
 local.assetsDict = local.assetsDict || {};
-[
-    ".css", ".js"
-].forEach(function (extname) {
+if (globalThis.utility2_rollup) {
     local.assetsDict[
-        "/assets.bootstrap" + extname
-    ] = local.assetsDict[
-        "/assets.bootstrap" + extname
-    ] || require("fs").readFileSync(
-        __dirname + "/lib.bootstrap" + extname,
-        "utf8"
-    ).replace((
-        /^#!\//
-    ), "// ");
+        "/assets.bootstrap-v3.4.1.rollup.css"
+    ] = local.assetsDict["/assets.bootstrap.css"];
     local.assetsDict[
-        "/assets"
-        + ".bootstrap-v3.4.1"
-        + ".datatables-v1.10.20"
-        + ".chartjs-v2.9.3"
-        + ".rollup" + extname
-    ] = local.assetsDict[
-        "/assets.bootstrap" + extname
-    ];
-});
+        "/assets.bootstrap-v3.4.1.rollup.js"
+    ] = local.assetsDict["/assets.bootstrap.js"];
+} else {
+    local.assetsDict[
+        "/assets.bootstrap-v3.4.1.rollup.css"
+    ] = require("fs").readFileSync(__dirname + "/lib.bootstrap.css");
+    local.assetsDict[
+        "/assets.bootstrap-v3.4.1.rollup.js"
+    ] = require("fs").readFileSync(__dirname + "/lib.bootstrap.js");
+}
 }());
 }());
 }());
