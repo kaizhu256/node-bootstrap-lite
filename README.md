@@ -54,9 +54,6 @@ this zero-dependency package will provide single css-rollup (includes font/glyph
 - improve apidoc with jquery-plugin documentation
 - none
 
-#### this package requires
-- darwin or linux os
-
 
 # quickstart standalone app
 #### to run this example, follow instruction in script below
