@@ -155,6 +155,14 @@
         recurse(tgt, src, depth | 0);
         return tgt;
     };
+    local.onErrorThrow = function (err) {
+    /*
+     * this function will throw <err> if exists
+     */
+        if (err) {
+            throw err;
+        }
+    };
     // bug-workaround - throw unhandledRejections in node-process
     if (
         typeof process === "object" && process
@@ -52878,29 +52886,21 @@ if (local.isBrowser) {
 }
 // init assets
 local.assetsDict = local.assetsDict || {};
-[
-    ".css", ".js"
-].forEach(function (extname) {
+if (globalThis.utility2_rollup) {
     local.assetsDict[
-        "/assets.bootstrap" + extname
-    ] = local.assetsDict[
-        "/assets.bootstrap" + extname
-    ] || require("fs").readFileSync(
-        __dirname + "/lib.bootstrap" + extname,
-        "utf8"
-    ).replace((
-        /^#!\//
-    ), "// ");
+        "/assets.bootstrap-v3.4.1.rollup.css"
+    ] = local.assetsDict["/assets.bootstrap.css"];
     local.assetsDict[
-        "/assets"
-        + ".bootstrap-v3.4.1"
-        + ".datatables-v1.10.20"
-        + ".chartjs-v2.9.3"
-        + ".rollup" + extname
-    ] = local.assetsDict[
-        "/assets.bootstrap" + extname
-    ];
-});
+        "/assets.bootstrap-v3.4.1.rollup.js"
+    ] = local.assetsDict["/assets.bootstrap.js"];
+} else {
+    local.assetsDict[
+        "/assets.bootstrap-v3.4.1.rollup.css"
+    ] = require("fs").readFileSync(__dirname + "/lib.bootstrap.css");
+    local.assetsDict[
+        "/assets.bootstrap-v3.4.1.rollup.js"
+    ] = require("fs").readFileSync(__dirname + "/lib.bootstrap.js");
+}
 }());
 }());
 }());

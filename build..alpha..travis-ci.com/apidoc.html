@@ -118,6 +118,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.elem.bootstrap-lite.onErrorThrow">
+            function <span class="apidocSignatureSpan">bootstrap-lite.</span>onErrorThrow
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">bootstrap-lite.</span>timeExit</span>
 
         </li>
@@ -340,6 +349,26 @@ let module;
     };
     recurse(tgt, src, depth | 0);
     return tgt;
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.bootstrap-lite.onErrorThrow" id="apidoc.elem.bootstrap-lite.onErrorThrow">
+        function <span class="apidocSignatureSpan">bootstrap-lite.</span>onErrorThrow
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onErrorThrow = function (err) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will throw &lt;err&gt; if exists
+ */
+</span>    if (err) {
+        throw err;
+    }
 }</pre></li>
     <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>

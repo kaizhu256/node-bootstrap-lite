@@ -146,6 +146,14 @@
         recurse(tgt, src, depth | 0);
         return tgt;
     };
+    local.onErrorThrow = function (err) {
+    /*
+     * this function will throw <err> if exists
+     */
+        if (err) {
+            throw err;
+        }
+    };
     // bug-workaround - throw unhandledRejections in node-process
     if (
         typeof process === "object" && process
@@ -184,62 +192,24 @@ local.testCase_buildApp_default = function (opt, onError) {
 /*
  * this function will test buildApp's default handling-behavior
  */
-    if (local.isBrowser) {
-        onError(undefined, opt);
-        return;
-    }
-    local.testCase_buildReadme_default(opt, local.onErrorThrow);
-    local.testCase_buildLib_default(opt, local.onErrorThrow);
-    local.testCase_buildTest_default(opt, local.onErrorThrow);
-    opt = {
+    local._testCase_buildApp_default({
         assetsList: [
             {
-                url: (
-                    "/assets"
-                    + ".bootstrap-v3.4.1"
-                    + ".datatables-v1.10.20"
-                    + ".chartjs-v2.9.3"
-                    + ".rollup.css"
-                )
+                file: "/assets.bootstrap-v3.4.1.rollup.css",
+                url: "/assets.bootstrap.css"
             }, {
-                url: (
-                    "/assets"
-                    + ".bootstrap-v3.4.1"
-                    + ".datatables-v1.10.20"
-                    + ".chartjs-v2.9.3"
-                    + ".rollup.js"
+                file: "/assets.bootstrap-v3.4.1.rollup.js",
+                url: "/assets.bootstrap.js"
+            }
+        ],
+        customizeReadmeList: [
+            {
+                merge: (
+                    /\n\/\*\u0020jslint\u0020ignore:start\u0020\*\/\nlocal.assetsDict\["\/assets.index.template.html"\]\u0020=\u0020'\\\n[\S\s]*?\n\/\*\u0020jslint\u0020ignore:end\u0020\*\/\n/
                 )
             }
         ]
-    };
-    local.buildApp(opt, onError);
-};
-
-local.testCase_buildReadme_default = function (opt, onError) {
-/*
- * this function will test buildReadme's default handling-behavior
- */
-    if (local.isBrowser) {
-        onError(undefined, opt);
-        return;
-    }
-    opt = {};
-    opt.customize = function () {
-        // search-and-replace - customize dataTo
-        [
-            (
-                /\n\/\*\u0020jslint\u0020ignore:start\u0020\*\/\nlocal.assetsDict\["\/assets.index.template.html"\]\u0020=\u0020'\\\n[\S\s]*?\n\/\*\u0020jslint\u0020ignore:end\u0020\*\/\n/
-            )
-        ].forEach(function (rgx) {
-            opt.dataFrom.replace(rgx, function (match0) {
-                // disable $-escape in replacement-string
-                opt.dataTo = opt.dataTo.replace(rgx, function () {
-                    return match0;
-                });
-            });
-        });
-    };
-    local.buildReadme(opt, onError);
+    }, onError, opt);
 };
 }());
 }());
