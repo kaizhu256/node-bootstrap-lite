@@ -9,7 +9,11 @@
     },
     "fileCount": 11,
     "homepage": "https://github.com/kaizhu256/node-bootstrap-lite",
-    "keywords": [],
+    "keywords": [
+        "bootstrap",
+        "datatables",
+        "chartjs"
+    ],
     "license": "MIT",
     "main": "lib.bootstrap.js",
     "name": "bootstrap-lite",
@@ -30,5 +34,5 @@
         "test": "./npm_scripts.sh",
         "utility2": "./npm_scripts.sh"
     },
-    "version": "2020.6.12"
+    "version": "2020.6.14"
 }
