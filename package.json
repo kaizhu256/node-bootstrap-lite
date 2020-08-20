@@ -1,4 +1,5 @@
 {
+    "!!jslint_utility2": true,
     "author": "kai zhu <kaizhu256@gmail.com>",
     "description": "this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.20), and chart.js (v2.9.3) with working web-demo",
     "devDependencies": {
