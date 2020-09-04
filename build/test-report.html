@@ -153,6 +153,16 @@ pre {
 <div class="uiAnimateSpin" style="animation: uiAnimateSpin 2s linear infinite; border: 5px solid #999; border-radius: 50%; border-top: 5px solid #7d7; display: none; height: 25px; vertical-align: middle; width: 25px;"></div>
 <script>
 /* jslint utility2:true */
+// polyfill globalThis
+(function () {
+/*
+ * this function will polyfill globalThis
+ */
+    "use strict";
+    window.globalThis = window.globalThis || globalThis;
+}());
+
+
 // init domOnEventWindowOnloadTimeElapsed
 (function () {
 /*
@@ -468,10 +478,10 @@ pre {
 <h4>
     <span>version</span>-
         2020.6.14<br>
-    <span>test date</span>- 2020-08-20T05:27:24.224Z<br>
+    <span>test date</span>- 2020-09-04T18:57:13.893Z<br>
     <span>commit info</span>-
         
-        dd0223b6cff3ec69cf01cd024307a4571ad34451 - <br>
+        ce2b9066e372689a4aae47b0b1b85b5ef8254d40 - <br>
         
 </h4>
 <table>
@@ -484,7 +494,7 @@ pre {
     </tr>
 </thead>
 <tbody><tr>
-    <td>76451 ms</td>
+    <td>18129 ms</td>
     <td class="testPassed">0</td>
     <td>5</td>
     <td>0</td>
@@ -494,10 +504,10 @@ pre {
 
 <div class="platform">
 <h4>
-    1. buildApidoc - node - linux v14.8.0 - 2020-08-20T05:26:18.015Z<br>
+    1. buildApidoc - node - linux v14.9.0 - 2020-09-04T18:57:09.937Z<br>
     
     
-    <span>time-elapsed</span>- 67930 ms<br>
+    <span>time-elapsed</span>- 9134 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 1<br>
     <span>tests pending</span>- 0<br>
@@ -513,7 +523,7 @@ pre {
 
 <tr>
     <td>1</td>
-    <td>4726 ms</td>
+    <td>4802 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
@@ -527,10 +537,10 @@ pre {
 
 <div class="platform">
 <h4>
-    2. npmTest - node - linux v14.8.0 - 2020-08-20T05:26:05.536Z<br>
+    2. npmTest - node - linux v14.9.0 - 2020-09-04T18:56:55.359Z<br>
     
     
-    <span>time-elapsed</span>- 76451 ms<br>
+    <span>time-elapsed</span>- 18129 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 4<br>
     <span>tests pending</span>- 0<br>
@@ -546,14 +556,14 @@ pre {
 
 <tr>
     <td>2</td>
-    <td>41 ms</td>
+    <td>43 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApidoc_default</td>
 </tr>
 
 <tr>
     <td>3</td>
-    <td>6389 ms</td>
+    <td>6505 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
@@ -567,7 +577,7 @@ pre {
 
 <tr>
     <td>5</td>
-    <td>5404 ms</td>
+    <td>6879 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_default</td>
 </tr>
