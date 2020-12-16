@@ -14,39 +14,39 @@ shRawLibFetch
             "url": "https://github.com/twbs/bootstrap/blob/v3.4.1/dist/fonts/glyphicons-halflings-regular.woff2"
         },
         {
-            "url": "https://github.com/DataTables/DataTables/blob/1.10.20/media/css/jquery.dataTables.css"
+            "url": "https://github.com/DataTables/DataTables/blob/1.10.21/media/css/jquery.dataTables.css"
         },
         {
             "contentType": "image/png",
             "type": "dataUri",
-            "url": "https://github.com/DataTables/DataTables/blob/1.10.20/media/images/sort_both.png"
+            "url": "https://github.com/DataTables/DataTables/blob/1.10.21/media/images/sort_both.png"
         },
         {
             "contentType": "image/png",
             "type": "dataUri",
-            "url": "https://github.com/DataTables/DataTables/blob/1.10.20/media/images/sort_asc.png"
+            "url": "https://github.com/DataTables/DataTables/blob/1.10.21/media/images/sort_asc.png"
         },
         {
             "contentType": "image/png",
             "type": "dataUri",
-            "url": "https://github.com/DataTables/DataTables/blob/1.10.20/media/images/sort_desc.png"
+            "url": "https://github.com/DataTables/DataTables/blob/1.10.21/media/images/sort_desc.png"
         },
         {
             "contentType": "image/png",
             "type": "dataUri",
-            "url": "https://github.com/DataTables/DataTables/blob/1.10.20/media/images/sort_asc_disabled.png"
+            "url": "https://github.com/DataTables/DataTables/blob/1.10.21/media/images/sort_asc_disabled.png"
         },
         {
             "contentType": "image/png",
             "type": "dataUri",
-            "url": "https://github.com/DataTables/DataTables/blob/1.10.20/media/images/sort_desc_disabled.png"
+            "url": "https://github.com/DataTables/DataTables/blob/1.10.21/media/images/sort_desc_disabled.png"
         },
         {
             "url": "https://github.com/DataTables/Buttons/blob/1.6.2/css/dataTables.buttons.css",
             "url2": "https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.css"
         },
         {
-            "url": "https://github.com/chartjs/Chart.js/blob/v2.9.3/dist/Chart.css"
+            "url": "https://github.com/chartjs/Chart.js/blob/v2.9.4/dist/Chart.css"
         }
     ]
 }
@@ -7541,13 +7541,13 @@ fieldset[disabled] .btn-danger.active {
 
 
 /*
-repo https://github.com/DataTables/DataTables/tree/1.10.20
-committed 2019-10-01T13:42:32Z
+repo https://github.com/DataTables/DataTables/tree/1.10.21
+committed 2020-05-21T10:08:44Z
 */
 
 
 /*
-file https://github.com/DataTables/DataTables/blob/1.10.20/media/css/jquery.dataTables.css
+file https://github.com/DataTables/DataTables/blob/1.10.21/media/css/jquery.dataTables.css
 */
 /*
  * Table styles
@@ -7737,7 +7737,7 @@ table.dataTable.nowrap th, table.dataTable.nowrap td {
 }
 table.dataTable.compact thead th,
 table.dataTable.compact thead td {
-  padding: 4px 17px 4px 4px;
+  padding: 4px 17px;
 }
 table.dataTable.compact tfoot th,
 table.dataTable.compact tfoot td {
@@ -8409,13 +8409,13 @@ a.dt-button.processing:after {
 
 
 /*
-repo https://github.com/chartjs/Chart.js/tree/v2.9.3
-committed 2019-11-14T18:37:30Z
+repo https://github.com/chartjs/Chart.js/tree/v2.9.4
+committed 2020-10-19T12:22:11Z
 */
 
 
 /*
-file https://github.com/chartjs/Chart.js/blob/v2.9.3/dist/Chart.css
+file https://github.com/chartjs/Chart.js/blob/v2.9.4/dist/Chart.css
 */
 /*
  * DOM element rendering detection

@@ -9,7 +9,7 @@ shRawLibFetch
             "url": "https://github.com/twbs/bootstrap/blob/v3.4.1/dist/js/bootstrap.js"
         },
         {
-            "url": "https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataTables.js"
+            "url": "https://github.com/DataTables/DataTables/blob/1.10.21/media/js/jquery.dataTables.js"
         },
         {
             "url": "https://github.com/DataTables/Buttons/blob/1.6.2/js/dataTables.buttons.js"
@@ -21,7 +21,7 @@ shRawLibFetch
             "url": "https://github.com/DataTables/Buttons/blob/1.6.2/js/buttons.print.js"
         },
         {
-            "url": "https://github.com/chartjs/Chart.js/blob/v2.9.3/dist/Chart.bundle.js"
+            "url": "https://github.com/chartjs/Chart.js/blob/v2.9.4/dist/Chart.bundle.js"
         },
         {
             "url": "https://github.com/imsky/holder/blob/1.9.0/holder.js"
