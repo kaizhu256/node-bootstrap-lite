@@ -9995,7 +9995,7 @@ return jQuery;
 
 /*
 repo https://github.com/twbs/bootstrap/tree/v3.4.1
-committed 2019-02-13T14:23:41Z
+committed 2019-02-13T15:55:38Z
 */
 
 
@@ -12570,26 +12570,26 @@ if (typeof jQuery === 'undefined') {
 
 
 /*
-repo https://github.com/DataTables/DataTables/tree/1.10.20
-committed 2019-10-01T13:42:32Z
+repo https://github.com/DataTables/DataTables/tree/1.10.21
+committed 2020-05-21T10:08:44Z
 */
 
 
 /*
-file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataTables.js
+file https://github.com/DataTables/DataTables/blob/1.10.21/media/js/jquery.dataTables.js
 */
-/*! DataTables 1.10.20
- * ©2008-2019 SpryMedia Ltd - datatables.net/license
+/*! DataTables 1.10.21
+ * ©2008-2020 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     DataTables
  * @description Paginate, search and order HTML tables
- * @version     1.10.20
+ * @version     1.10.21
  * @file        jquery.dataTables.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net
- * @copyright   Copyright 2008-2019 SpryMedia Ltd.
+ * @copyright   Copyright 2008-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license
@@ -16690,7 +16690,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 		var recordsTotal    = compat( 'iTotalRecords',        'recordsTotal' );
 		var recordsFiltered = compat( 'iTotalDisplayRecords', 'recordsFiltered' );
 
-		if ( draw ) {
+		if ( draw !== undefined ) {
 			// Protect against out of sequence returns
 			if ( draw*1 < settings.iDraw ) {
 				return;
@@ -16805,6 +16805,14 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 					_fnThrottle( searchFn, searchDelay ) :
 					searchFn
 			)
+			.on( 'mouseup', function(e) {
+				// Edge fix! Edge 17 does not trigger anything other than mouse events when clicking
+				// on the clear icon (Edge bug 17584515). This is safe in other browsers as `searchFn`
+				// checks the value to see if it has changed. In other browsers it won't have.
+				setTimeout( function () {
+					searchFn.call(jqFilter[0]);
+				}, 10);
+			} )
 			.on( 'keypress.DT', function(e) {
 				/* Prevent form submission */
 				if ( e.keyCode == 13 ) {
@@ -17735,10 +17743,10 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 			} );
 		}
 
-		$(scrollBody).css(
-			scrollY && scroll.bCollapse ? 'max-height' : 'height',
-			scrollY
-		);
+		$(scrollBody).css('max-height', scrollY);
+		if (! scroll.bCollapse) {
+			$(scrollBody).css('height', scrollY);
+		}
 
 		settings.nScrollHead = scrollHead;
 		settings.nScrollBody = scrollBody;
@@ -19147,7 +19155,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 	{
 		$(n)
 			.on( 'click.DT', oData, function (e) {
-					$(n).blur(); // Remove focus outline for mouse users
+					$(n).trigger('blur'); // Remove focus outline for mouse users
 					fn(e);
 				} )
 			.on( 'keypress.DT', oData, function (e){
@@ -19914,6 +19922,12 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 	 */
 	var __table_selector = function ( selector, a )
 	{
+		if ( $.isArray(selector) ) {
+			return $.map( selector, function (item) {
+				return __table_selector(item, a);
+			} );
+		}
+
 		// Integer is used to pick out a table by index
 		if ( typeof selector === 'number' ) {
 			return [ a[ selector ] ];
@@ -19948,7 +19962,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 	 */
 	_api_register( 'tables()', function ( selector ) {
 		// A new instance is created if there was a selector specified
-		return selector ?
+		return selector !== undefined && selector !== null ?
 			new _Api( __table_selector( selector, this.context ) ) :
 			this;
 	} );
@@ -20714,7 +20728,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 		row._aData = data;
 
 		// If the DOM has an id, and the data source is an array
-		if ( $.isArray( data ) && row.nTr.id ) {
+		if ( $.isArray( data ) && row.nTr && row.nTr.id ) {
 			_fnSetObjectDataFn( ctx[0].rowId )( data, row.nTr.id );
 		}
 
@@ -22035,7 +22049,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 	 *  @type string
 	 *  @default Version number
 	 */
-	DataTable.version = "1.10.20";
+	DataTable.version = "1.10.21";
 
 	/**
 	 * Private data store, containing all of the settings objects that are
@@ -23550,7 +23564,9 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 						'DataTables_'+settings.sInstance+'_'+location.pathname
 					)
 				);
-			} catch (e) {}
+			} catch (e) {
+				return {};
+			}
 		},
 
 
@@ -27138,7 +27154,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 								case 'next':
 									btnDisplay = lang.sNext;
 
-									if ( page === pages-1 ) {
+									if ( pages === 0 || page === pages-1 ) {
 										tabIndex = -1;
 										btnClass += ' ' + disabledClass;
 									}
@@ -27201,7 +27217,7 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 				attach( $(host).empty(), buttons );
 
 				if ( activeEl !== undefined ) {
-					$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
+					$(host).find( '[data-dt-idx='+activeEl+']' ).trigger('focus');
 				}
 			}
 		}
@@ -27484,7 +27500,11 @@ file https://github.com/DataTables/DataTables/blob/1.10.20/media/js/jquery.dataT
 
 	var __htmlEscapeEntities = function ( d ) {
 		return typeof d === 'string' ?
-			d.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') :
+			d
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;') :
 			d;
 	};
 
@@ -31662,18 +31682,18 @@ return DataTable.Buttons;
 
 
 /*
-repo https://github.com/chartjs/Chart.js/tree/v2.9.3
-committed 2019-11-14T18:37:30Z
+repo https://github.com/chartjs/Chart.js/tree/v2.9.4
+committed 2020-10-19T12:22:11Z
 */
 
 
 /*
-file https://github.com/chartjs/Chart.js/blob/v2.9.3/dist/Chart.bundle.js
+file https://github.com/chartjs/Chart.js/blob/v2.9.4/dist/Chart.bundle.js
 */
 /*!
- * Chart.js v2.9.3
+ * Chart.js v2.9.4
  * https://www.chartjs.org
- * (c) 2019 Chart.js Contributors
+ * (c) 2020 Chart.js Contributors
  * Released under the MIT License
  */
 (function (global, factory) {
@@ -33778,6 +33798,10 @@ if (typeof window !== 'undefined') {
 
 var chartjsColor = Color;
 
+function isValidKey(key) {
+	return ['__proto__', 'prototype', 'constructor'].indexOf(key) === -1;
+}
+
 /**
  * @namespace Chart.helpers
  */
@@ -33953,7 +33977,7 @@ var helpers = {
 		}
 
 		if (helpers.isObject(source)) {
-			var target = {};
+			var target = Object.create(source);
 			var keys = Object.keys(source);
 			var klen = keys.length;
 			var k = 0;
@@ -33974,6 +33998,12 @@ var helpers = {
 	 * @private
 	 */
 	_merger: function(key, target, source, options) {
+		if (!isValidKey(key)) {
+			// We want to ensure we do not copy prototypes over
+			// as this can pollute global namespaces
+			return;
+		}
+
 		var tval = target[key];
 		var sval = source[key];
 
@@ -33989,6 +34019,12 @@ var helpers = {
 	 * @private
 	 */
 	_mergerIf: function(key, target, source) {
+		if (!isValidKey(key)) {
+			// We want to ensure we do not copy prototypes over
+			// as this can pollute global namespaces
+			return;
+		}
+
 		var tval = target[key];
 		var sval = source[key];
 
@@ -35487,7 +35523,7 @@ helpers$1.extend(DatasetController.prototype, {
 	 */
 	_configure: function() {
 		var me = this;
-		me._config = helpers$1.merge({}, [
+		me._config = helpers$1.merge(Object.create(null), [
 			me.chart.options.datasets[me._type],
 			me.getDataset(),
 		], {
@@ -38756,7 +38792,8 @@ function updateDims(chartArea, params, layout) {
 		chartArea.h = newHeight;
 
 		// return true if chart area changed in layout's direction
-		return layout.horizontal ? newWidth !== chartArea.w : newHeight !== chartArea.h;
+		var sizes = layout.horizontal ? [newWidth, chartArea.w] : [newHeight, chartArea.h];
+		return sizes[0] !== sizes[1] && (!isNaN(sizes[0]) || !isNaN(sizes[1]));
 	}
 }
 
@@ -39767,7 +39804,7 @@ var core_scaleService = {
 	},
 	getScaleDefaults: function(type) {
 		// Return the scale defaults merged with the global settings so that we always use the latest ones
-		return this.defaults.hasOwnProperty(type) ? helpers$1.merge({}, [core_defaults.scale, this.defaults[type]]) : {};
+		return this.defaults.hasOwnProperty(type) ? helpers$1.merge(Object.create(null), [core_defaults.scale, this.defaults[type]]) : {};
 	},
 	updateScaleDefaults: function(type, additions) {
 		var me = this;
@@ -40842,7 +40879,7 @@ core_defaults._set('global', {
  * returns a deep copy of the result, thus doesn't alter inputs.
  */
 function mergeScaleConfig(/* config objects ... */) {
-	return helpers$1.merge({}, [].slice.call(arguments), {
+	return helpers$1.merge(Object.create(null), [].slice.call(arguments), {
 		merger: function(key, target, source, options) {
 			if (key === 'xAxes' || key === 'yAxes') {
 				var slen = source[key].length;
@@ -40882,9 +40919,9 @@ function mergeScaleConfig(/* config objects ... */) {
  * a deep copy of the result, thus doesn't alter inputs.
  */
 function mergeConfig(/* config objects ... */) {
-	return helpers$1.merge({}, [].slice.call(arguments), {
+	return helpers$1.merge(Object.create(null), [].slice.call(arguments), {
 		merger: function(key, target, source, options) {
-			var tval = target[key] || {};
+			var tval = target[key] || Object.create(null);
 			var sval = source[key];
 
 			if (key === 'scales') {
@@ -40901,7 +40938,7 @@ function mergeConfig(/* config objects ... */) {
 }
 
 function initConfig(config) {
-	config = config || {};
+	config = config || Object.create(null);
 
 	// Do NOT use mergeConfig for the data object because this method merges arrays
 	// and so would change references to labels and datasets, preventing data updates.
@@ -42882,6 +42919,8 @@ function computeLabelSizes(ctx, tickFonts, ticks, caches) {
 	var widths = [];
 	var heights = [];
 	var offsets = [];
+	var widestLabelSize = 0;
+	var highestLabelSize = 0;
 	var i, j, jlen, label, tickFont, fontString, cache, lineHeight, width, height, nestedLabel, widest, highest;
 
 	for (i = 0; i < length; ++i) {
@@ -42909,11 +42948,13 @@ function computeLabelSizes(ctx, tickFonts, ticks, caches) {
 		widths.push(width);
 		heights.push(height);
 		offsets.push(lineHeight / 2);
+		widestLabelSize = Math.max(width, widestLabelSize);
+		highestLabelSize = Math.max(height, highestLabelSize);
 	}
 	garbageCollect(caches, length);
 
-	widest = widths.indexOf(Math.max.apply(null, widths));
-	highest = heights.indexOf(Math.max.apply(null, heights));
+	widest = widths.indexOf(widestLabelSize);
+	highest = heights.indexOf(highestLabelSize);
 
 	function valueAt(idx) {
 		return {
