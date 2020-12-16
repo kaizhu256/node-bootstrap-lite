@@ -9843,7 +9843,7 @@ return jQuery;
 
 /*
 repo https://github.com/twbs/bootstrap/tree/v3.4.1
-committed 2019-02-13T14:23:41Z
+committed 2019-02-13T15:55:38Z
 */
 
 
