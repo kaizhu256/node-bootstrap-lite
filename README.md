@@ -1,5 +1,5 @@
 # bootstrap-lite
-this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.20), and chart.js (v2.9.3) with working web-demo
+this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.21), and chart.js (v2.9.4) with working web-demo
 
 # live web demo
 - [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app)
@@ -34,8 +34,8 @@ this zero-dependency package will provide single css-rollup (includes font/glyph
 
 
 # cdn download
-- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.20.chartjs-v2.9.3.rollup.css](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.20.chartjs-v2.9.3.rollup.css)
-- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.20.chartjs-v2.9.3.rollup.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.20.chartjs-v2.9.3.rollup.js)
+- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.21.chartjs-v2.9.4.rollup.css](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.21.chartjs-v2.9.4.rollup.css)
+- [https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.21.chartjs-v2.9.4.rollup.js](https://kaizhu256.github.io/node-bootstrap-lite/build..beta..travis-ci.com/app/assets.bootstrap-v3.4.1.datatables-v1.10.21.chartjs-v2.9.4.rollup.js)
 
 
 # documentation
@@ -47,7 +47,8 @@ this zero-dependency package will provide single css-rollup (includes font/glyph
 #### cli help
 ![screenshot](https://kaizhu256.github.io/node-bootstrap-lite/build/screenshot.npmPackageCliHelp.svg)
 
-#### changelog 2020.6.14
+#### changelog 2020.12.15
+- update datatables-v1.10.20 and chart.js-v2.9.4
 - none
 
 #### todo
@@ -507,7 +508,7 @@ body {\n\
 </div>\n\
 \n\
 \n\
-<!-- https://github.com/DataTables/DataTables/blob/1.10.20/examples/basic_init/zero_configuration.html -->\n\
+<!-- https://github.com/DataTables/DataTables/blob/1.10.21/examples/basic_init/zero_configuration.html -->\n\
 <h1>DataTables</h1>\n\
 <table id="example" class="display" style="width:100%">\n\
     <thead>\n\
@@ -992,7 +993,7 @@ body {\n\
 <br>\n\
 <br>\n\
 <br>\n\
-<!-- https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/charts/line/basic.html -->\n\
+<!-- https://github.com/chartjs/Chart.js/blob/v2.9.4/samples/charts/line/basic.html -->\n\
 <h1>Chart.js</h1>\n\
 <div style="width:100%;">\n\
     <canvas id="canvas"></canvas>\n\
@@ -1697,13 +1698,13 @@ body {\n\
 window.initHolderJs();\n\
 </script>\n\
 <script>\n\
-// https://github.com/DataTables/DataTables/blob/1.10.20/examples/basic_init/zero_configuration.html\n\
+// https://github.com/DataTables/DataTables/blob/1.10.21/examples/basic_init/zero_configuration.html\n\
 $(document).ready(function() {\n\
     $(\'#example\').DataTable();\n\
 });\n\
 </script>\n\
 <script>\n\
-// https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/utils.js\n\
+// https://github.com/chartjs/Chart.js/blob/v2.9.4/samples/utils.js\n\
 \'use strict\';\n\
 window.chartColors = {\n\
 	red: \'rgb(255, 99, 132)\',\n\
@@ -1831,7 +1832,7 @@ window.chartColors = {\n\
 }(this));\n\
 </script>\n\
 <script>\n\
-// https://github.com/chartjs/Chart.js/blob/v2.9.3/samples/charts/line/basic.html\n\
+// https://github.com/chartjs/Chart.js/blob/v2.9.4/samples/charts/line/basic.html\n\
 var MONTHS = [\'January\', \'February\', \'March\', \'April\', \'May\', \'June\', \'July\', \'August\', \'September\', \'October\', \'November\', \'December\'];\n\
 var config = {\n\
     type: \'line\',\n\
@@ -2057,7 +2058,7 @@ require("http").createServer(function (req, res) {
 {
     "!!jslint_utility2": true,
     "author": "kai zhu <kaizhu256@gmail.com>",
-    "description": "this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.20), and chart.js (v2.9.3) with working web-demo",
+    "description": "this zero-dependency package will provide single css-rollup (includes font/glyphicon/theme) and single js-rollup (includes jquery) of twitter-bootstrap (v3.4.1), datatables (v1.10.21), and chart.js (v2.9.4) with working web-demo",
     "devDependencies": {
         "utility2": "kaizhu256/node-utility2#alpha"
     },
